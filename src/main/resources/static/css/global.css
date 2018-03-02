@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#page_footer {
+	margin-top: 20px;
+	height: 60px;
+	background: #f5f5f5;
+}
+
+.footer_text{
+	margin: 20px 0;
+	color: #777;
+}
+
+.cursor{
+	cursor:pointer;
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.grayscale{
+	color: #777 !important; 
+}

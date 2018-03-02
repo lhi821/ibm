@@ -9,24 +9,46 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!-- FontAwesome -->
-	<script src="https://use.fontawesome.com/5e187afe23.js"></script>
+	<script src="/fontawesome-free-5.0.7/svg-with-js/js/fontawesome-all.js"></script>
 	<!-- Bootbox -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="/css/global.css">
 </head>
 <body>
-<!-- navbar -->
+	<!-- navbar -->
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 	  	<div class="navbar-header">
-	    	<a class="navbar-brand" href="#">WebSiteName</a>
+	    	<a class="navbar-brand" href="#">MeetingNote</a>
 	  	</div>
 	  	<ul class="nav navbar-nav">
-	  	<li class="active"><a href="#">Home</a></li>
-	  		<li><a href="#">Page 1</a></li>
+	  		<li class="active"><a href="#">Page 1</a></li>
 				<li><a href="#">Page 2</a></li>
 				<li><a href="#">Page 3</a></li>
 			</ul>
+		 	
+			<ul class="nav navbar-nav navbar-right">
+	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
+				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
+			</ul>
+			
+			<form class="navbar-form navbar-right" action="#">
+	     	<div class="input-group stylish-input-group">
+					<input type="text" class="form-control"  placeholder="Search" >
+					<span class="input-group-addon">
+				    <button type="submit">
+			        <span class="glyphicon glyphicon-search"></span>
+				    </button>  
+					</span>
+	      </div>
+    	</form>
+    	
 		</div>
 	</nav>
+	
+	<!-- Modal -->
+	<jsp:include page="../member/join.jsp"></jsp:include>
+	<jsp:include page="../member/login.jsp"></jsp:include>
 </body>
 </html>

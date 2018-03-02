@@ -7,6 +7,8 @@ import com.ibm.domain.RoleDomain;
 
 public interface MemberService {
 
+	public void createMember(MemberDomain memberDomain);
+	
 	public void insertMember(MemberDomain memberDomain, List<RoleDomain> roleDomainList);
 	
 	public MemberDomain selectMember(MemberDomain memberDomain);

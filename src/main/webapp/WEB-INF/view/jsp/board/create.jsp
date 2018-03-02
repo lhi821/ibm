@@ -9,6 +9,7 @@
 <body>
 	<!-- new post form -->
 	<form id="newPostForm" action="/board/create" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<!-- new post Modal -->
 		<div class="modal fade" id="newPostModal" role="dialog">
 		  <div class="modal-dialog">
@@ -29,7 +30,7 @@
 							<jsp:include page="../layout/fileUploadForm.jsp"></jsp:include>
 		      </div>
 		      <div class="modal-footer">
-		      	<button type="submit" class="btn btn-success">submit</button>
+		      	<button type="submit" class="btn">submit</button>
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>

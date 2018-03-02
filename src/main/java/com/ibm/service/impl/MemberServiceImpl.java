@@ -24,6 +24,12 @@ public class MemberServiceImpl implements MemberService{
 	MemberRoleMapper memberRoleMapper;
 
 	@Override
+	public void createMember(MemberDomain memberDomain) {
+		memberDomain.setPassword(new BCryptPasswordEncoder().encode(memberDomain.getPassword()));
+		memberMapper.insertMember(memberDomain);
+	}
+	
+	@Override
 	@Transactional
 	public void insertMember(MemberDomain memberDomain, List<RoleDomain> roleDomainList) {
 		for (RoleDomain roleDomain : roleDomainList) {

@@ -9,8 +9,8 @@ import com.ibm.domain.MemberDomain;
 @Mapper
 public interface MemberMapper {
 
-	@Insert("INSERT INTO MEMBER (memberNo, memberName, phoneNumber, emailAddr, password, regDate)"
-				+ "VALUES (#{memberNo}, #{memberName}, #{phoneNumber}, #{emailAddr}, #{password}, CURRENT_TIMESTAMP)")
+	@Insert("INSERT INTO MEMBER (memberName, phoneNumber, emailAddr, password, regDate)"
+				+ "VALUES (#{memberName}, #{phoneNumber}, #{emailAddr}, #{password}, CURRENT_TIMESTAMP)")
 	public void insertMember(MemberDomain memberDomain);
 	
 	@Select("SELECT * FROM MEMBER WHERE memberNo = #{memberNo}")
