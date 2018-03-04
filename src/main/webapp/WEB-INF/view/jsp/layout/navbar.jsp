@@ -31,6 +31,7 @@
 			<ul class="nav navbar-nav navbar-right">
 	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
 				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
+				<li><a><span class="fas fa-cog grayscale cursor"></span></a></li>
 			</ul>
 			
 			<form class="navbar-form navbar-right" action="#">
