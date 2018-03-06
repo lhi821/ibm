@@ -56,7 +56,7 @@
 			<div class="row">
 				<div class="container">
 					<div class="col-xs-12 text-right">
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#newPostModal">
+						<button id="newPostBtn" type="button" class="btn btn-default" onClick="location.href='/board/new'">
 							<i class="fas fa-pencil-alt grayscale"></i>
 						</button>
 					</div>
@@ -71,12 +71,6 @@
 		</div>
 	</div>
 </div>
-	
-	
-	<!-- Modal -->
-	<jsp:include page="create.jsp"></jsp:include>
-	<jsp:include page="read.jsp"></jsp:include>
-	<jsp:include page="update.jsp"></jsp:include>
 	
 </body>
 <!-- JS -->

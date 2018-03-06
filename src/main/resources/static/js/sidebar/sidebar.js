@@ -5,7 +5,7 @@
 $( document ).ready(function() {
   
   var folded = false;
-  var movePx = $(".affix-sidebar").width() - 35;
+  var movePx = $(".affix-sidebar").width() - 40;
   var orignSideBarHeight = $("#sidebarFold").height();
   var orign_ffix_sidebar_width = $(".affix-sidebar").width();
   var orign_affix_content_width = $(".affix-content").width();

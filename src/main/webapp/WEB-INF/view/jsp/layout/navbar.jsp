@@ -23,9 +23,8 @@
 	    	<a class="navbar-brand" href="#">MeetingNote</a>
 	  	</div>
 	  	<ul class="nav navbar-nav">
-	  		<li class="active"><a href="#">Page 1</a></li>
-				<li><a href="#">Page 2</a></li>
-				<li><a href="#">Page 3</a></li>
+	  		<li class="active"><a href="#"><i class="fas fa-th"></i> Gallery</a></li>
+				<li><a href="#"><i class="fas fa-list"></i> List</a></li>
 			</ul>
 		 	
 			<ul class="nav navbar-nav navbar-right">

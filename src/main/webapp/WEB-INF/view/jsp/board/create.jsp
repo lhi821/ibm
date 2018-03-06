@@ -7,35 +7,55 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- new post form -->
-	<form id="newPostForm" action="/board/create" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<!-- new post Modal -->
-		<div class="modal fade" id="newPostModal" role="dialog">
-		  <div class="modal-dialog">
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <div class="form-group">
-							<label for="newPostTitle">Title:</label>
-	  					<input type="text" class="form-control" id="newPostTitle" name="title">
-						</div>
-		      </div>
-		      <div class="modal-body">
-						<div class="form-group">
-						  <label for="newPostContents">Contents:</label>
-						  <textarea class="form-control" rows="10" id="newPostContents" name="contents"></textarea>
-						</div>
-							<jsp:include page="../layout/fileUploadForm.jsp"></jsp:include>
-		      </div>
-		      <div class="modal-footer">
-		      	<button type="submit" class="btn">submit</button>
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
+	<!-- Navbar -->
+	<jsp:include page="../layout/navbar.jsp"></jsp:include>
+	
+	<!-- sidebar -->
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
+	
+	<!-- posts area -->
+	<div class="col-xs-10 affix-content">
+		<div class="container affix-container">
+			<div class="row">
+				<div class="container">
+					<div class= "col-xs-12">
+					
+						<!-- new post form -->
+						<form id="newPostForm" action="/board/create" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<!-- new post Modal -->
+			        <div class="form-group">
+								<label for="newPostTitle">Title:</label>
+		  					<input type="text" class="form-control" id="newPostTitle" name="title">
+							</div>
+							
+							<div class="form-group">
+							  <label for="newPostContents">Contents:</label>
+							  <textarea class="form-control" rows="10" id="newPostContents" name="contents"></textarea>
+							</div>
+			      
+				      <div class="text-right">
+								<div class="form-group">
+									<button type="button" class="btn btn-default">back</button>
+					      	<button type="submit" class="btn">submit</button>
+					      </div>
+							</div>
+				      
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			
+		
+		<!-- footer -->		
+		<div class="row">
+			<div class="container">
+				<jsp:include page="../layout/footer.jsp"></jsp:include>
+			</div>
 		</div>
-	</form>
+	</div>
+</div>
+	
 </body>
 </html>

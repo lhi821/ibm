@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+label {
+	color: #444444;
+}
+
 #page_footer {
 	margin-top: 20px;
 	height: 60px;
@@ -30,4 +34,8 @@
 
 .grayscale{
 	color: #777 !important; 
+}
+
+textarea{
+  resize:none;
 }

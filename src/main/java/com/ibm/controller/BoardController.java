@@ -34,6 +34,12 @@ public class BoardController {
 		return mv;
 	}
 	
+	@GetMapping("/new")
+	public ModelAndView newPost() throws Exception{
+		ModelAndView mv = new ModelAndView("/board/create");
+		return mv;
+	}
+	
 	@PostMapping("/create")
 	public String newPost(BoardDomain boardDomain) throws Exception{
 
