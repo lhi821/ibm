@@ -20,7 +20,7 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 	  	<div class="navbar-header">
-	    	<a class="navbar-brand" href="#">MeetingNote</a>
+	    	<a class="navbar-brand" href="/board/index">MeetingNote</a>
 	  	</div>
 	  	<ul class="nav navbar-nav">
 	  		<li class="active"><a href="#"><i class="fas fa-th"></i> Gallery</a></li>
@@ -30,7 +30,7 @@
 			<ul class="nav navbar-nav navbar-right">
 	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
 				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
-				<li><a><span class="fas fa-cog grayscale cursor"></span></a></li>
+				<li><a href="/admin/index"><span class="fas fa-cog grayscale cursor"></span></a></li>
 			</ul>
 			
 			<form class="navbar-form navbar-right" action="#">
