@@ -29,6 +29,8 @@
 		  					<input type="text" class="form-control" id="newPostTitle" name="title">
 							</div>
 							
+							<input data-toggle="datepicker">
+							
 							<div class="form-group">
 							  <label for="newPostContents">Contents:</label>
 							  <textarea class="form-control" rows="10" id="newPostContents" name="contents"></textarea>
@@ -58,4 +60,9 @@
 </div>
 	
 </body>
+<script>
+$( document ).ready(function() {
+  $('[data-toggle="datepicker"]').datepicker();
+});
+</script>
 </html>

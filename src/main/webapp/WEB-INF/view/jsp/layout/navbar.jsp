@@ -6,14 +6,17 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<!-- Bootstarp & Jquery -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<!-- FontAwesome -->
 	<script src="/fontawesome-free-5.0.7/svg-with-js/js/fontawesome-all.js"></script>
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<!-- Bootbox -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+	<script src="/js/bootbox.min.js"></script>
+	<!-- Date Picker -->
+	<link  href="/datepicker/datepicker.css" rel="stylesheet">
+	<script src="/datepicker/datepicker.js"></script>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<!-- JS -->
