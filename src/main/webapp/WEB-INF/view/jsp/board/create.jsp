@@ -29,7 +29,12 @@
 		  					<input type="text" class="form-control" id="newPostTitle" name="title">
 							</div>
 							
-							<input data-toggle="datepicker">
+							<div class="form-group">
+								<div class="input-group col-xs-2">
+							    <input class="form-control" data-toggle="datepicker">
+							    <div class="input-group-addon cursor"><i class="far fa-calendar-alt"></i></div>
+							  </div>
+							</div>
 							
 							<div class="form-group">
 							  <label for="newPostContents">Contents:</label>
