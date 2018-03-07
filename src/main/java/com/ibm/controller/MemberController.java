@@ -8,10 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ibm.domain.BoardDomain;
 import com.ibm.domain.MemberDomain;
 import com.ibm.domain.RoleDomain;
 import com.ibm.service.MemberService;
