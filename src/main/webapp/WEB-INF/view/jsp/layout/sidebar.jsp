@@ -76,7 +76,7 @@
 	          </div>
 	        </li>
 			 	</c:forEach>
-        <li><a class="a cursor" class="curosr"><span class="fas fa-chart-pie"></span> Analysis</a></li>
+        <li><a class="a cursor" class="curosr" href="/analysis/index"><span class="fas fa-chart-pie"></span> Analysis</a></li>
         <li><a class="notthing"></a></li>
       </ul>
       </div>

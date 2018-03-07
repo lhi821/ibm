@@ -41,10 +41,12 @@ public class BoardController {
 
 	@GetMapping("/new")
 	public ModelAndView newPost(@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
-															@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar) throws Exception{
+															@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
+															@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/create");
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
+		mv.addObject("subMenu", subMenu);
 		return mv;
 	}
 	
@@ -86,7 +88,8 @@ public class BoardController {
 	@GetMapping("/{id}")
 	public ModelAndView read(@PathVariable int id, 
 													 @RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
-													 @RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar) throws Exception{
+													 @RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
+														@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/read");
 		Map<String, Object> resultMap = new HashMap<>();
 		try {
@@ -100,6 +103,7 @@ public class BoardController {
 		mv.addObject("resultMap", resultMap);
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
+		mv.addObject("subMenu", subMenu);
 		return mv;
 	}
 
