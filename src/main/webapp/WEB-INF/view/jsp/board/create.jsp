@@ -36,7 +36,7 @@
 			      
 				      <div class="text-right">
 								<div class="form-group">
-									<button type="button" class="btn btn-default">back</button>
+									<button type="button" class="btn btn-default back">back</button>
 					      	<button type="submit" class="btn">submit</button>
 					      </div>
 							</div>

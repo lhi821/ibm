@@ -8,7 +8,6 @@
 
   html,body{
     height: 100%;
-    overflow: hidden;
   }
     .affix-content .container .page-header{
     margin-top: 0;
@@ -73,11 +72,9 @@
 
 @media (min-width: 1220px){
   .affix-row{
-    overflow: hidden;
   }
 
   .affix-content{
-    overflow: auto;
   }
 
   .affix-content .container {
@@ -122,4 +119,16 @@
 #fold{
 	color: #777 !important; 
 	cursor:pointer;	
+}
+
+.notthing{
+	background-color: #ffffff !important; 
+}
+
+.notthing:hover{
+	background-color: #ffffff !important; 
+}
+
+.sub-span{
+		
 }

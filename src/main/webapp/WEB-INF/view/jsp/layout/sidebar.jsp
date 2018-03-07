@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,56 +13,73 @@
 
 </head>
 <body>
+<input type="hidden" id="sideBar" name="sideBar" value="${sideBar}">
+<input type="hidden" id="subMenu" name="subMenu" value="${subMenu}">
 <div class="row affix-row">
-    <div class="col-xs-2 affix-sidebar">
+    <div class="col-xs-2 affix-sidebar" style="visibility:hidden;">
 		<div class="sidebar-nav">
   <div class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
+<!--     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       </button>
-      <span class="visible-xs navbar-brand">Sidebar menu</span>
-    </div>
+    </div> -->
     <div class="navbar-collapse collapse sidebar-navbar-collapse">
       <ul class="nav navbar-nav" id="sidenav01" style="overflow: hidden;">
         <li id="sidebarFold" class="active">
-          <a id="controlPanel" href="#">
+          <a class="cursor" id="controlPanel">
           	<big id="foldTitle">Sidebar</big>
-          	<span id="fold" class="fas fa-caret-left fa-lg grayscale pull-right"></span>&nbsp;
+	          	<c:choose>
+						    <c:when test="${sideBar eq 'T'}">
+						    	<span id="fold" class="fas fa-caret-left fa-lg grayscale pull-right"></span>&nbsp;
+						    </c:when>
+						    <c:otherwise>
+						    	<span id="fold" class="fas fa-caret-right fa-lg grayscale pull-right"></span>&nbsp;
+						    </c:otherwise>
+							</c:choose>
           </a>
         </li>
         <li>
-          <a class="a" href="#" data-toggle="collapse" data-target="#toggleDemo" data-parent="#sidenav01" class="collapsed">
-          <span class="glyphicon glyphicon-cloud"></span> Submenu 1 <span class="caret pull-right"></span>
+          <a class="a cursor submenu collapsed" data-toggle="collapse" data-target="#toggleDemo0" data-parent="#sidenav01">
+          <span class="fas fa-star"></span> Favorite <span class="caret pull-right"></span>
           </a>
-          <div class="collapse" id="toggleDemo" style="height: 0px;">
+          <div class="collapse" id="toggleDemo0" style="height: 0px;">
             <ul class="nav nav-list">
-              <li><a class="a" href="#">Submenu1.1</a></li>
-              <li><a class="a" href="#">Submenu1.2</a></li>
-              <li><a class="a" href="#">Submenu1.3</a></li>
+ 							<c:forEach var="i" begin="0" varStatus="status" end="1">
+	            	<li><a class="a cursor small"><span class="far fa-folder"></span> project ${status.count}<span class="fas fa-star fa-xs pull-right"></span></a></li>
+	            </c:forEach>
+	            <c:forEach var="i" begin="0" varStatus="status" end="1">
+	            	<li><a class="a cursor small"><span class="far fa-file-alt"></span> doc ${status.count}<span class="fas fa-star fa-xs pull-right"></span></a></li>
+	            </c:forEach>
+	             <c:forEach var="i" begin="0" varStatus="status" end="1">
+	            	<li><a class="a cursor small"><span class="fab fa-slack-hash"></span> tag ${status.count}<span class="fas fa-star fa-xs pull-right"></span></a></li>
+	            </c:forEach>
             </ul>
           </div>
         </li>
-        <li class="active">
-          <a class="a" href="#" data-toggle="collapse" data-target="#toggleDemo2" data-parent="#sidenav01" class="collapsed">
-          <span class="glyphicon glyphicon-inbox"></span> Submenu 2 <span class="caret pull-right"></span>
-          </a>
-          <div class="collapse" id="toggleDemo2" style="height: 0px;">
-            <ul class="nav nav-list">
-              <li><a class="a" href="#">Submenu2.1</a></li>
-              <li><a class="a" href="#">Submenu2.2</a></li>
-              <li><a class="a" href="#">Submenu2.3</a></li>
-            </ul>
-          </div>
-        </li>
-        <li><a class="a" href="#"><span class="glyphicon glyphicon-lock"></span> Normalmenu</a></li>
-        <li><a class="a" href="#"><span class="glyphicon glyphicon-calendar"></span> WithBadges</a></li>
-        <li><a class="a" href=""><span class="glyphicon glyphicon-cog"></span> PreferencesMenu</a></li>
+        
+        <!-- TODO -->
+      	<c:forEach var="i" begin="0" varStatus="status" end="2">
+	        <li>
+	          <a class="a cursor submenu collapsed" data-toggle="collapse" data-target="#toggleDemo${status.count}" data-parent="#sidenav01">
+	          <span class="fas fa-folder"></span> Project ${status.count} <span class="caret pull-right"></span>
+	          </a>
+	          <div class="collapse" id="toggleDemo${status.count}" style="height: 0px;">
+	            <ul class="nav nav-list">
+	              <li><a class="a cursor small"><span class="far fa-folder"></span> Submenu ${status.count}.1</a></li>
+	              <li><a class="a cursor small"><span class="far fa-folder"></span> Submenu ${status.count}.2</a></li>
+	              <li><a class="a cursor small"><span class="far fa-folder"></span> Submenu ${status.count}.3</a></li>
+	            </ul>
+	          </div>
+	        </li>
+			 	</c:forEach>
+        <li><a class="a cursor" class="curosr"><span class="fas fa-chart-pie"></span> Analysis</a></li>
+        <li><a class="notthing"></a></li>
       </ul>
-      </div><!--/.nav-collapse -->
+      </div>
     </div>
   </div>
 </div>

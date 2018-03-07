@@ -1,8 +1,23 @@
 /**
  * 
  */
-  
 $( document ).ready(function() {
+  
+  //sebmenu 갯수 별 접힘상태
+  if($("#subMenu").val() == ""){
+    var times = $('.submenu').length;
+    $("#subMenu").val("F".repeat(times));
+  }else{
+    var flag = $("#subMenu").val();
+    var times = $('.submenu').length;
+    var flagLength = $("#subMenu").val().length;
+    
+    for (var i=0; i < flagLength; i++) {
+      if (flag[i] == "T"){
+        $("#sidenav01 .submenu").eq(i).trigger('click');
+      }
+    }
+  }
   
   var folded = false;
   var movePx = $(".affix-sidebar").width() - 40;
@@ -11,11 +26,33 @@ $( document ).ready(function() {
   var orign_affix_content_width = $(".affix-content").width();
   var orign_affix_container_width = $(".affix-container").width();
   
+  if ($("#sideBar").val() == "F"){
+    $("#sidenav01 li").hide();
+    $("#sidebarFold").show();
+    $("#foldTitle").text(" ");
+    $("#sidebarFold").height(orignSideBarHeight);
+    
+    $(".affix-sidebar").css("width", $(".affix-sidebar").width() - movePx + "px");
+    $(".affix-content").css("width", $(".affix-content").width() + movePx + "px");
+    $(".affix-container").css("width", $(".affix-container").width() + movePx + "px");
+    
+    $(".affix-sidebar").css("visibility", "visible");
+   
+    folded = true;
+  }else{
+    $(".affix-sidebar").css("visibility", "visible");
+    
+    folded = false;
+  }
+  
+  
+  
   $("#controlPanel").click(function() {
+    //접기
     if (folded == false){
       $("#sidenav01 li").hide();
       $("#sidebarFold").show();
-      $("#foldTitle").hide();
+      $("#foldTitle").text(" ");
       $("#sidebarFold").height(orignSideBarHeight);
       
       $(".affix-sidebar").animate({width: $(".affix-sidebar").width() - movePx + "px"},{ complete: function(){
@@ -27,13 +64,15 @@ $( document ).ready(function() {
       }});
       
       folded = true;
+      $("#sideBar").val("F");
 
     }else{
+      //펴기
       $(".affix-sidebar").animate({width: orign_ffix_sidebar_width + "px"},{ complete: function(){
         $("#fold").removeClass("fa-caret-right").addClass("fa-caret-left");
         
         $("#sidenav01 li").show();
-        $("#foldTitle").show();
+        $("#foldTitle").text("Sidebar");
         $("#sidebarFold").height(orignSideBarHeight);
       }});      
       $(".affix-content").animate({width: orign_affix_content_width + "px"},{ complete: function(){
@@ -42,6 +81,24 @@ $( document ).ready(function() {
       }});
       
       folded = false;
+      $("#sideBar").val("T");
+    }
+  });
+  
+  $(".submenu").click(function() {
+    
+    var flag = $("#subMenu").val();
+    var flagLength = $("#subMenu").val().length;
+    var prefix = flag.substring(0,$(this).parent().index()-1);
+    var subfix = flag.substring($(this).parent().index(), flagLength);
+    
+    //펼침
+    if ($(this).attr("class") == "a cursor collapsed submenu" || $(this).attr("class") == "a cursor submenu collapsed") {
+      $("#subMenu").val(prefix+"T"+subfix);
+    }
+    //접힘
+    else{
+      $("#subMenu").val(prefix+"F"+subfix);
     }
   });
 });

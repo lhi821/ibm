@@ -5,49 +5,65 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- CSS -->
-<link rel="stylesheet" type="text/css" href="/css/board/read.css">
 </head>
 <body>
-	<!-- read post form -->
-	<form id="readPostForm" action="#" method="post">
-		<!-- read post Modal -->
-		<div class="modal fade" id="readPostModal" role="dialog">
-		  <div class="modal-dialog">
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <div class="text-right samll">
-		        	<i class="fa fa-file-text-o"></i>
-		        	<span id="readPostNumber" class="small"></span> |
-		        	<i class="fa fa-user-circle-o"></i>
-		        	<span id="readPostAuthor" class="small"></span> |
-		        	<i class="fa fa-clock-o"></i>
-		        	<span id="readPostRegDate" class="small"></span> |
-		        	<i class="fa fa-check-circle-o"></i>
-		        	<span id="readPostModDate" class="small"></span>
-		        </div>
-		        <div class="form-group">
-							<label for="readPostTitle">Title:</label>
-	  					<input readonly type="text" class="form-control" id="readPostTitle" name="title">
-						</div>
-		      </div>
-		      <div class="modal-body">
-						<div class="form-group">
-						  <label for="readPostContents">Contents:</label>
-						  <textarea readonly class="form-control" rows="10" id="readPostContents" name="contents"></textarea>
-						</div> 
-						<div class="form-group">
-							<label>Attachment:</label>
-							<div id="readAttachment"></div> 
-						</div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
+	<!-- Navbar -->
+	<jsp:include page="../layout/navbar.jsp"></jsp:include>
+	
+	<!-- sidebar -->
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
+	
+	<!-- posts area -->
+	<div class="col-xs-10 affix-content">
+		<div class="container affix-container">
+			<div class="row">
+				<div class="container">
+					<div class="col-xs-12">
+					<!-- read post form -->
+						<form id="readPostForm" action="#" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<input type="hidden" name="id" value="${resultMap.result.id}"/>
+			        <div class="text-right samll">
+			        	<i class="far fa-file-alt grayscale"></i>
+			        	<span id="readPostNumber" class="small">${resultMap.result.id}</span> |
+			        	<i class="fas fa-user-circle grayscale"></i>
+			        	<span id="readPostAuthor" class="small">${resultMap.result.author}</span> |
+			        	<i class="far fa-clock grayscale"></i>
+			        	<span id="readPostRegDate" class="small">${resultMap.result.reg_date}</span> |
+			        	<i class="fas fa-clock grayscale"></i>
+			        	<span id="readPostModDate" class="small">${resultMap.result.mod_date}</span>
+			        </div>
+			        <div class="form-group">
+								<label for="readPostTitle">Title:</label>
+		  					<input readonly type="text" class="form-control" id="readPostTitle" name="title" value="${resultMap.result.title}">
+							</div>
+							<div class="form-group">
+							  <label for="readPostContents">Contents:</label>
+							  <textarea readonly class="form-control" rows="10" id="readPostContents" name="contents">${resultMap.result.contents}</textarea>
+							</div> 
+							<div class="text-right">
+								<div class="form-group">
+				        	<button type="button" class="btn btn-default back">back</button>
+				        	<button id="editBtn" class="btn" type="button" class="btn">Edit</button>
+				        </div>
+			        </div>
+						</form>
+
+					</div>
+					
+				</div>
+			</div>
+		
+		<!-- footer -->		
+		<div class="row">
+			<div class="container">
+				<jsp:include page="../layout/footer.jsp"></jsp:include>
+			</div>
 		</div>
-	</form>
+	</div>
+</div>
+	
 </body>
+<!-- JS -->
+<script type="text/javascript" src="/js/board/update.js"></script>
 </html>

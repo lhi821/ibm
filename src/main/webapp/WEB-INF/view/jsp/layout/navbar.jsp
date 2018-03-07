@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,8 +15,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
+	<!-- JS -->
+	<script src="/js/navbar/navbar.js"></script>
+	
 </head>
 <body>
+<input type="hidden" id="veiwType" name="veiwType" value="${veiwType}">
 	<!-- navbar -->
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -23,10 +28,17 @@
 	    	<a class="navbar-brand" href="/board/index">MeetingNote</a>
 	  	</div>
 	  	<ul class="nav navbar-nav">
-	  		<li class="active"><a href="#"><i class="fas fa-th"></i> Gallery</a></li>
-				<li><a href="#"><i class="fas fa-list"></i> List</a></li>
+	  		<c:choose>
+			    <c:when test="${veiwType eq 'G'}">
+			    	<li id="galleryVeiw" class="active cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
+						<li id="listVeiw" class="cursor"><a><i class="fas fa-list"></i> List</a></li>
+			    </c:when>
+			    <c:otherwise>
+			    	<li id="galleryVeiw" class="cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
+						<li id="listVeiw" class="active cursor"><a><i class="fas fa-list"></i> List</a></li>
+			    </c:otherwise>
+				</c:choose>
 			</ul>
-		 	
 			<ul class="nav navbar-nav navbar-right">
 	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
 				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>

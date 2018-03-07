@@ -23,7 +23,7 @@ public interface BoardMapper {
 	public BoardDomain selectBaord(@Param("id") int id);
 	
 	@Insert("INSERT INTO BOARD (title, contents, reg_date, mod_date) "
-				+ "VALUES (#{title}, #{contents}, CURRENT_TIMESTAMP, NULL)")
+				+ "VALUES (#{title}, #{contents}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)")
 	@Options(useGeneratedKeys=true, keyProperty="id", keyColumn = "id")
 	public void insertBoard(BoardDomain boardDomain);
 	
