@@ -22,12 +22,12 @@ $(document).ready(function(){
 function checkSubmenu() {
   var flag = ""
   $("#sidenav01 .submenu").each(function(i){
-    if ($("#sidenav01 .submenu").eq(i).attr("class") == "a cursor collapsed submenu" || $("#sidenav01 .submenu").eq(i).attr("class") == "a cursor submenu collapsed"){
-      //접힙
-      flag = flag + "F";
-    }else{
+    if ($("#sidenav01 .submenu").eq(i).parent().children("div").attr("class") == "collapse in"){
       //펼침
       flag = flag + "T";
+    }else{
+      //접힘
+      flag = flag + "F";
     }
   });
   return flag;
