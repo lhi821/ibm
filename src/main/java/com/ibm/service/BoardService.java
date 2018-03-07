@@ -6,7 +6,7 @@ import com.ibm.domain.BoardDomain;
 
 public interface BoardService {
 
-	public BoardDomain selectBaord(int id);
+	public BoardDomain selectBoard(int id);
 	
 	public void insertBoard(BoardDomain boardDomain);
 	

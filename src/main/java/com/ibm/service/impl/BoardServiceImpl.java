@@ -16,8 +16,8 @@ public class BoardServiceImpl implements BoardService{
 	BoardMapper boardMapper;
 	
 	@Override
-	public BoardDomain selectBaord(int id) {
-		return boardMapper.selectBaord(id);
+	public BoardDomain selectBoard(int id) {
+		return boardMapper.selectBoard(id);
 	}
 	
 	@Override

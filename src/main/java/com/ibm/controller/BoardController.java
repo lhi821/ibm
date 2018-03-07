@@ -90,7 +90,7 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView("/board/read");
 		Map<String, Object> resultMap = new HashMap<>();
 		try {
-			BoardDomain result = boardService.selectBaord(id);
+			BoardDomain result = boardService.selectBoard(id);
 			resultMap.put("result", result);
 			
 			resultMap.put("message", "success");

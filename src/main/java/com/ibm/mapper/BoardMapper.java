@@ -20,7 +20,7 @@ public interface BoardMapper {
 						+ "DATE_FORMAT(mod_date, '%Y-%m-%d %H:%i:%s') mod_date "
 				+ "FROM BOARD "
 				+ "WHERE id = #{id}")
-	public BoardDomain selectBaord(@Param("id") int id);
+	public BoardDomain selectBoard(@Param("id") int id);
 	
 	@Insert("INSERT INTO BOARD (title, contents, reg_date, mod_date) "
 				+ "VALUES (#{title}, #{contents}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)")
