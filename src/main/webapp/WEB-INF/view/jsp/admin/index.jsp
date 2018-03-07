@@ -22,7 +22,25 @@
 		<div class="container affix-container">
 			<div class="row">
 				<div class="container">
-					여기는 어드민
+					<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#menu1">관리자 탭1</a></li>
+					<li><a data-toggle="tab" href="#menu2">관리자 탭2</a></li>
+					<li><a data-toggle="tab" href="#menu3">관리자 탭3</a></li>
+					</ul>	
+				</div>
+				<div class="tab-content">
+					<div id="menu1" class="tab-pane fade in active">
+						<h3>메뉴1</h3>
+						<p>11</p>
+					</div>
+					<div id="menu2" class="tab-pane fade">
+						<h3>2</h3>
+						<p></p>
+					</div>
+					<div id="menu3" class="tab-pane fade">
+						<h3>3</h3>
+						<p></p>
+					</div>
 				</div>
 			</div>
 		

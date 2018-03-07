@@ -22,9 +22,8 @@ public class AdminController {
 	@GetMapping("/index")
 	public ModelAndView admin() throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/index");
-		List<BoardDomain> resultList = new ArrayList<>();
-		//resultList = adminService.selectBoardList();
-		//mv.addObject("boardList", resultList);
+		//List<BoardDomain> resultList = new ArrayList<>();
+		
 		return mv;
 	}
 }
