@@ -24,17 +24,35 @@
 						<form id="newPostForm" action="/board/create" method="post">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<!-- new post Modal -->
+							
+							<div class="row">
+							  <div class="col-xs-3">
+							    <div class="form-group">
+							      <select class="selectpicker form-control">
+							        <option>Mustard</option>
+							        <option>Ketchup</option>
+							        <option>Relish</option>
+							      </select>
+							    </div>
+							  </div>
+							  <div class="col-xs-3">
+							  	<div class="form-group">
+										<div class="input-group stylish-input-group">
+									    <input class="form-control" data-toggle="datepicker">
+									    <div class="input-group-addon cursor"><i class="far fa-calendar-alt fa-sm"></i></div>
+									  </div>
+									</div>
+							  </div>
+							</div>
+							
 			        <div class="form-group">
 								<label for="newPostTitle">Title:</label>
 		  					<input type="text" class="form-control" id="newPostTitle" name="title">
 							</div>
 							
-							<div class="form-group">
-								<div class="input-group col-xs-2">
-							    <input class="form-control" data-toggle="datepicker">
-							    <div class="input-group-addon cursor"><i class="far fa-calendar-alt"></i></div>
-							  </div>
-							</div>
+							
+							
+														
 							
 							<div class="form-group">
 							  <label for="newPostContents">Contents:</label>

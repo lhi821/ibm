@@ -37,7 +37,7 @@
 						    	<span id="fold" class="fas fa-caret-left fa-lg grayscale pull-right"></span>&nbsp;
 						    </c:when>
 						    <c:otherwise>
-						    	<span id="fold" class="fas fa-caret-right fa-lg grayscale pull-right"></span>&nbsp;
+						    	<span id="fold" class="fas fa-caret-right fa-lg grayscale pull-right"></span>
 						    </c:otherwise>
 							</c:choose>
           </a>
@@ -49,13 +49,13 @@
           <div class="collapse" id="toggleDemo0" style="height: 0px;">
             <ul class="nav nav-list">
  							<c:forEach var="i" begin="0" varStatus="status" end="1">
-	            	<li><a class="a cursor small"><span class="far fa-folder"></span> project ${status.count}<span class="fas fa-star fa-xs pull-right"></span></a></li>
+	            	<li><a class="a cursor small"><span class="far fa-folder"></span> submenu ${status.count}<span class="fas fa-star fa-xs pull-right"></span></a></li>
 	            </c:forEach>
 	            <c:forEach var="i" begin="0" varStatus="status" end="1">
-	            	<li><a class="a cursor small"><span class="far fa-file-alt"></span> doc ${status.count}<span class="fas fa-star fa-xs pull-right"></span></a></li>
+	            	<li><a class="a cursor small"><span class="far fa-file-alt" style="margin-left:1.5px;"></span> doc ${status.count}<span class="fas fa-bookmark fa-xs pull-right" style="margin-right:1.5px;"></span></a></li>
 	            </c:forEach>
 	             <c:forEach var="i" begin="0" varStatus="status" end="1">
-	            	<li><a class="a cursor small"><span class="fab fa-slack-hash"></span> tag ${status.count}<span class="fas fa-star fa-xs pull-right"></span></a></li>
+	            	<li><a class="a cursor small"><span class="fab fa-slack-hash"></span> tag ${status.count}<span class="fas fa-heart fa-xs pull-right"></span></a></li>
 	            </c:forEach>
             </ul>
           </div>

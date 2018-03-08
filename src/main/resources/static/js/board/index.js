@@ -11,6 +11,6 @@ $(document).ready(function(){
   });
   
   $('#newPostBtn').click(function() { 
-    $(location).attr('href',"/board/new/?veiwType=" + $(".veiwType").val()+'&sideBar='+$("#sideBar").val()+'&subMenu='+checkSubmenu());
+    $(location).attr('href',"/board/new/?veiwType=" + $("#veiwType").val()+'&sideBar='+$("#sideBar").val()+'&subMenu='+checkSubmenu());
   });
 });

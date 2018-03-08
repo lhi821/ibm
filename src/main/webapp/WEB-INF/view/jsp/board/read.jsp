@@ -23,16 +23,26 @@
 						<form id="readPostForm" action="#" method="post">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<input type="hidden" name="id" value="${resultMap.result.id}"/>
-			        <div class="text-right samll">
-			        	<i class="far fa-file-alt grayscale"></i>
-			        	<span id="readPostNumber" class="small">${resultMap.result.id}</span> |
-			        	<i class="fas fa-user-circle grayscale"></i>
-			        	<span id="readPostAuthor" class="small">${resultMap.result.author}</span> |
-			        	<i class="far fa-clock grayscale"></i>
-			        	<span id="readPostRegDate" class="small">${resultMap.result.reg_date}</span> |
-			        	<i class="fas fa-clock grayscale"></i>
-			        	<span id="readPostModDate" class="small">${resultMap.result.mod_date}</span>
-			        </div>
+										
+										<div class="col-xs-6 text-left samll" style="padding:0px;">
+											<i class="far fa-bookmark grayscale cursor"></i>
+											<span class="small">&nbsp;&nbsp;</span> 
+											<i class="far fa-file-alt grayscale"></i>
+						        	<span id="readPostNumber" class="small">${resultMap.result.id} &nbsp;</span>
+						        	<i class="fas fa-user-circle grayscale cursor"></i>
+						        	<span id="readPostAuthor" class="small">${resultMap.result.author} TEST &nbsp;</span>
+											
+										</div>
+										<div class="col-xs-6 text-right samll" style="padding:0px;">
+											<i class="fas fa-sync-alt grayscale fa-sm cursor"></i>
+											<span class="small">&nbsp;</span> 
+						        	<i class="far fa-clock grayscale"></i>
+						        	<span id="readPostRegDate" class="small">${resultMap.result.reg_date}&nbsp;</span>
+						        	<i class="fas fa-clock grayscale"></i>
+						        	<span id="readPostModDate" class="small">${resultMap.result.mod_date}&nbsp;</span>
+						        </div>
+								
+			        
 			        <div class="form-group">
 								<label for="readPostTitle">Title:</label>
 		  					<input readonly type="text" class="form-control" id="readPostTitle" name="title" value="${resultMap.result.title}">

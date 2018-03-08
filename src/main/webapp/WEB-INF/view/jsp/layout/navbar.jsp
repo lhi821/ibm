@@ -5,18 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
-	<!-- Bootstarp & Jquery -->
-	<link rel="stylesheet" href="/bootstrap-3.3.7/dist/css/bootstrap.min.css">
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<!-- FontAwesome -->
-	<script src="/fontawesome-free-5.0.7/svg-with-js/js/fontawesome-all.js"></script>
-	<link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<!-- Bootbox -->
-	<script src="/js/bootbox.min.js"></script>
-	<!-- Date Picker -->
-	<link  href="/datepicker/datepicker.css" rel="stylesheet">
-	<script src="/datepicker/datepicker.js"></script>
+	<!-- Library -->
+	<jsp:include page="../layout/library.jsp"></jsp:include>			
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<!-- JS -->
@@ -26,10 +16,10 @@
 <body>
 <input type="hidden" id="veiwType" name="veiwType" value="${veiwType}">
 	<!-- navbar -->
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default custom-nav">
 		<div class="container-fluid">
 	  	<div class="navbar-header">
-	    	<a class="navbar-brand" href="/board/index">MeetingNote</a>
+	    	<a class="navbar-brand" href="/analysis/index">MeetingNote</a>
 	  	</div>
 	  	<ul class="nav navbar-nav">
 	  		<c:choose>
@@ -46,8 +36,9 @@
 			<ul class="nav navbar-nav navbar-right">
 	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
 				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
-				<li><a class="cursor" href="#"><i class="fas fa-user-circle grayscale"></i> MyPage</a></li>
-				<li><a class="cursor" href="/admin/config1"><i class="fas fa-cog grayscale"></i> Admin</a></li>
+				<li><a class="cursor"><i class="far fa-bell grayscale"></i>&nbsp;</a></li>
+				<li><a class="cursor" href="#"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
+				<li><a class="cursor" href="/admin/config1"><i class="fas fa-cog grayscale"></i>&nbsp;</a></li>
 			</ul>
 			
 			<form class="navbar-form navbar-right" action="#">

@@ -22,6 +22,7 @@ $( document ).ready(function() {
   var folded = false;
   var movePx = $(".affix-sidebar").width() - 40;
   var orignSideBarHeight = $("#sidebarFold").height();
+  var originConPanHeight = $("#controlPanel").height();
   var orign_ffix_sidebar_width = $(".affix-sidebar").width();
   var orign_affix_content_width = $(".affix-content").width();
   var orign_affix_container_width = $(".affix-container").width();
@@ -31,6 +32,7 @@ $( document ).ready(function() {
     $("#sidebarFold").show();
     $("#foldTitle").text(" ");
     $("#sidebarFold").height(orignSideBarHeight);
+    $("#controlPanel").height(originConPanHeight);
     
     $(".affix-sidebar").css("width", $(".affix-sidebar").width() - movePx + "px");
     $(".affix-content").css("width", $(".affix-content").width() + movePx + "px");
@@ -54,9 +56,12 @@ $( document ).ready(function() {
       $("#sidebarFold").show();
       $("#foldTitle").text(" ");
       $("#sidebarFold").height(orignSideBarHeight);
+      $("#controlPanel").height(originConPanHeight);
       
       $(".affix-sidebar").animate({width: $(".affix-sidebar").width() - movePx + "px"},{ complete: function(){
         $("#fold").removeClass("fa-caret-left").addClass("fa-caret-right");
+        $("#sidebarFold").height(orignSideBarHeight);
+        $("#controlPanel").height(originConPanHeight);
       }});      
       $(".affix-content").animate({width: $(".affix-content").width() + movePx + "px"},{ complete: function(){
       }});
@@ -74,6 +79,7 @@ $( document ).ready(function() {
         $("#sidenav01 li").show();
         $("#foldTitle").text("Sidebar");
         $("#sidebarFold").height(orignSideBarHeight);
+        $("#controlPanel").height(originConPanHeight);
       }});      
       $(".affix-content").animate({width: orign_affix_content_width + "px"},{ complete: function(){
       }});
