@@ -64,7 +64,7 @@ public class MemberController {
 	
 	@GetMapping("/mypage")
 	public ModelAndView mypage() throws Exception{
-		ModelAndView mv = new ModelAndView("/mypage/config1");
+		ModelAndView mv = new ModelAndView("/mypage/index");
 		return mv;
 	}
 
