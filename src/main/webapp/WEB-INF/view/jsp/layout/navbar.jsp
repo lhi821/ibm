@@ -46,7 +46,7 @@
 					<input type="text" class="form-control"  placeholder="Search" >
 					<span class="input-group-addon">
 				    <button type="submit">
-			        <span class="glyphicon glyphicon-search"></span>
+			        <i class="fas fa-search grayscale"></i>
 				    </button>  
 					</span>
 	      </div>

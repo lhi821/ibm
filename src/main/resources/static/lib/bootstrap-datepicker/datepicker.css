@@ -139,7 +139,7 @@
 }
 
 .datepicker-panel > ul > li:hover {
-  background-color: rgb(229, 242, 255);
+  background-color: #ccc;
 }
 
 .datepicker-panel > ul > li.muted,
@@ -148,11 +148,11 @@
 }
 
 .datepicker-panel > ul > li.highlighted {
-  background-color: rgb(229, 242, 255);
+  background-color: #ccc;
 }
 
 .datepicker-panel > ul > li.highlighted:hover {
-  background-color: rgb(204, 229, 255);
+  background-color: #ccc
 }
 
 .datepicker-panel > ul > li.picked,
@@ -169,7 +169,7 @@
 
 .datepicker-panel > ul > li.disabled.highlighted,
 .datepicker-panel > ul > li.disabled:hover.highlighted {
-  background-color: rgb(229, 242, 255);
+  background-color: #ccc;
 }
 
 .datepicker-panel > ul > li[data-view="years prev"],

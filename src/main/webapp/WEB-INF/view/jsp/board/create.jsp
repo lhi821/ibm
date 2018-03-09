@@ -28,7 +28,7 @@
 							<div class="row">
 							  <div class="col-xs-3">
 							    <div class="form-group">
-							      <select class="selectpicker form-control">
+							      <select class="selectpicker form-control" title="<i class='far fa-clock grayscale'></i>&nbsp; Subject">
 							        <option>Mustard</option>
 							        <option>Ketchup</option>
 							        <option>Relish</option>
@@ -38,21 +38,48 @@
 							  <div class="col-xs-3">
 							  	<div class="form-group">
 										<div class="input-group stylish-input-group">
-									    <input class="form-control" data-toggle="datepicker">
-									    <div class="input-group-addon cursor"><i class="far fa-calendar-alt fa-sm"></i></div>
+									    <input class="form-control cursor" readonly data-toggle="datepicker" placeholder="Date">
+									    <div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale fa-sm"></i></div>
 									  </div>
 									</div>
 							  </div>
+							   <div class="col-xs-3">
+							    <div class="form-group">
+							      <select class="selectpicker form-control" title="<i class='far fa-clock grayscale'></i>&nbsp; Start Time">
+							        <option>Mustard</option>
+							        <option>Ketchup</option>
+							        <option>Relish</option>
+							      </select>
+							    </div>
+							  </div>
+							   <div class="col-xs-3">
+							    <div class="form-group">
+							      <select class="selectpicker form-control" title="<i class='far fa-clock grayscale'></i>&nbsp; End Time">
+							        <option>Mustard</option>
+							        <option>Ketchup</option>
+							        <option>Relish</option>
+							      </select>
+							    </div>
+							  </div>
+							  <!-- 
+								<div class="col-xs-3">
+									<div class="form-group">
+										<div class="input-group stylish-input-group">
+											<input type="text" readonly class="form-control cursor" placeholder="Attendants">
+											<span class="input-group-addon">
+										    <button type="button">
+									      	<i class="fas fa-users grayscale"></i>
+										    </button>  
+											</span>
+							      </div>
+						      </div>
+					      </div> -->
 							</div>
 							
 			        <div class="form-group">
 								<label for="newPostTitle">Title:</label>
 		  					<input type="text" class="form-control" id="newPostTitle" name="title">
 							</div>
-							
-							
-							
-														
 							
 							<div class="form-group">
 							  <label for="newPostContents">Contents:</label>
