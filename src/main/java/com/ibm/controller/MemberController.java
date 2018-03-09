@@ -61,5 +61,11 @@ public class MemberController {
 		
 		return "redirect:/board/index";
 	}
+	
+	@GetMapping("/mypage")
+	public ModelAndView mypage() throws Exception{
+		ModelAndView mv = new ModelAndView("/mypage/config1");
+		return mv;
+	}
 
 }
