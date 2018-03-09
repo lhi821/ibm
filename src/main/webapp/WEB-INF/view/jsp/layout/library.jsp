@@ -25,3 +25,7 @@
 	<!-- Latest compiled and minified CSS , JS-->
 	<link rel="stylesheet" href="/lib/bootstrap-select/css/bootstrap-select.min.css">
 	<script src="/lib/bootstrap-select/js/bootstrap-select.min.js"></script>
+	
+	<!-- Bootstrap toggle -->
+	<link href="/lib/toggle/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="/lib/toggle/bootstrap-toggle.min.js"></script>
