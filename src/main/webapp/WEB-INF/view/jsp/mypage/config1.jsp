@@ -24,8 +24,9 @@
 			<div class="row">
 				<div class="container">
 				<!-- 여기가 화면 -->
-				 
-				 여기가 빈 여백 공간
+				
+				<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>
+				
 				
 				<!-- 여기가 끝 -->
 				</div>
@@ -39,11 +40,9 @@
 		</div>
 	</div>
 </div>
+<!-- Modal -->
+<jsp:include page="../mypage/user_search_pop.jsp"></jsp:include>
 
 </body>
-<!-- JS -->
-<!-- <script type="text/javascript" src="/js/board/delete.js"></script>
-<script type="text/javascript" src="/js/board/update.js"></script>
-<script type="text/javascript" src="/js/board/read.js"></script> -->
 
 </html>
