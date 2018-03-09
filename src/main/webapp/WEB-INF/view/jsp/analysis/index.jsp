@@ -9,6 +9,7 @@
 
 <style>
 .graph-box-first{
+		border: 1.5px;
     border-radius: 10px;
     border-style: solid;
     padding: 10px 0px;
@@ -20,6 +21,7 @@
 }
 
 .graph-box{
+		border: 1.5px;
     border-radius: 10px;
     border-style: solid;
     padding: 10px 0px;
