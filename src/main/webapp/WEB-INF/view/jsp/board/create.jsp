@@ -55,35 +55,39 @@
 									  </div>
 									   <div class="col-xs-2">
 									    <div class="form-group">
-									      <select class="selectpicker form-control" data-live-search="true" title="<i class='far fa-clock grayscale input-icon'></i>Start Time">
-										      <option title="<i class='far fa-clock grayscale input-icon'></i>09:00">09:00</option>
-									      	<c:forEach var="MM" begin="10" end="50" step="10">
-	            							<option title="<i class='far fa-clock grayscale input-icon'></i>09:${MM}">09:${MM}</option>
-	            						</c:forEach>
-										      <c:forEach var="HH" begin="10" end="17" step="1">
+									      <select id="startTime" class="selectpicker form-control" data-live-search="true" title="<i class='far fa-clock grayscale input-icon'></i>Start Time">
+										      <c:forEach var="HH" begin="0" end="9" step="1">
+										      	<option title="<i class='far fa-clock grayscale input-icon'></i>0${HH}:00">0${HH}:00</option>
+										      	<c:forEach var="MM" begin="10" end="50" step="10">
+		            							<option title="<i class='far fa-clock grayscale input-icon'></i>0${HH}:${MM}">0${HH}:${MM}</option>
+		            						</c:forEach>
+		            					</c:forEach>
+										      <c:forEach var="HH" begin="10" end="23" step="1">
 										      	<option title="<i class='far fa-clock grayscale input-icon'></i>${HH}:00">${HH}:00</option>
 										      	<c:forEach var="MM" begin="10" end="50" step="10">
 		            							<option title="<i class='far fa-clock grayscale input-icon'></i>${HH}:${MM}">${HH}:${MM}</option>
 		            						</c:forEach>
 		            					</c:forEach>
-		            					<option title="<i class='far fa-clock grayscale input-icon'></i>18:00">18:00</option>
+		            					<option title="<i class='far fa-clock grayscale input-icon'></i>18:00">24:00</option>
 												</select>
 									    </div>
 									  </div>
 									  <div class="col-xs-2">
 									  	<div class="form-group">
-									  		<select class="selectpicker form-control" data-live-search="true" title="<i class='fas fa-clock grayscale input-icon'></i>End Time">
-										      <option title="<i class='fas fa-clock grayscale input-icon'></i>09:00">09:00</option>
-									      	<c:forEach var="MM" begin="10" end="50" step="10">
-	            							<option title="<i class='fas fa-clock grayscale input-icon'></i>09:${MM}">09:${MM}</option>
-	            						</c:forEach>
-										      <c:forEach var="HH" begin="10" end="17" step="1">
+									  		<select id="endTime" class="selectpicker form-control" data-live-search="true" title="<i class='fas fa-clock grayscale input-icon'></i>End Time">
+										      <c:forEach var="HH" begin="0" end="9" step="1">
+										      	<option title="<i class='fas fa-clock grayscale input-icon'></i>0${HH}:00">0${HH}:00</option>
+										      	<c:forEach var="MM" begin="10" end="50" step="10">
+		            							<option title="<i class='fas fa-clock grayscale input-icon'></i>0${HH}:${MM}">0${HH}:${MM}</option>
+		            						</c:forEach>
+		            					</c:forEach>
+										      <c:forEach var="HH" begin="10" end="23" step="1">
 										      	<option title="<i class='fas fa-clock grayscale input-icon'></i>${HH}:00">${HH}:00</option>
 										      	<c:forEach var="MM" begin="10" end="50" step="10">
 		            							<option title="<i class='fas fa-clock grayscale input-icon'></i>${HH}:${MM}">${HH}:${MM}</option>
 		            						</c:forEach>
 		            					</c:forEach>
-		            					<option title="<i class='fas fa-clock grayscale input-icon'></i>18:00">18:00</option>
+		            					<option title="<i class='fas fa-clock grayscale input-icon'></i>18:00">24:00</option>
 												</select>
 								    	</div>
 									  </div>
@@ -108,8 +112,7 @@
 									  <div class="col-xs-2">
 									  	<div class="form-group">
 									      <select class="selectpicker form-control" title="<i class='fas fa-code-branch grayscale input-icon'></i>Version">
-									        <option title="<i class='fas fa-code-branch grayscale input-icon'></i>0.0.1">0.0.1</option>
-												  <option title="<i class='fas fa-code-branch grayscale input-icon'></i>0.0.2">0.0.2</option>
+									        <option selected title="<i class='fas fa-code-branch grayscale input-icon'></i>0.0.1">0.0.1</option>
 												</select>
 									    </div>
 									  </div>
@@ -223,7 +226,18 @@
 </body>
 <script>
 $( document ).ready(function() {
-  $('[data-toggle="datepicker"]').datepicker();
+  
+ 
+  var dt = new Date();
+  var hour = dt.getHours().toString().length < 2 ? "0" + dt.getHours().toString() : dt.getHours().toString();
+  var minute = dt.getMinutes().toString().length < 2 ? "0" + dt.getMinutes().toString() : dt.getMinutes().toString();
+  minute = Math.round(minute / 10) * 10
+  
+  $('#startTime').selectpicker('val',hour+':'+minute);
+  $('#endTime').selectpicker('val',(parseInt(hour)+1)+':'+minute);
+  
+  
+  $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
   
   $('[data-toggle="datepicker"]').change(function() { $('[data-toggle="datepicker"]').datepicker('hide');});
   
@@ -243,11 +257,13 @@ $( document ).ready(function() {
 				"</div>");
 	});
   
-  
   $('body').on('click', '.minusActionItem', function () {
     $(this).parentsUntil($(".col-xs-12")).remove();
 	});
   
+  $('#startTime').change(function() {
+    $('#endTime').selectpicker('val',(parseInt($('#startTime').val().substring(0,2))+1)+$('#startTime').val().substring(2,5));
+  });
   
 });
 
