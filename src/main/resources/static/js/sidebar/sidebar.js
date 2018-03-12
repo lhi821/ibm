@@ -93,6 +93,12 @@ $( document ).ready(function() {
   
   $(".submenu").click(function() {
     
+    if($(this).children("svg").attr("class") == "svg-inline--fa fa-folder fa-w-16"){
+      $(this).children("svg").removeClass("fa-folder").addClass("fa-folder-open");
+    }else if($(this).children("svg").attr("class") == "svg-inline--fa fa-folder-open fa-w-18"){
+      $(this).children("svg").removeClass("fa-folder-open").addClass("fa-folder");
+    }
+    
     var flag = $("#subMenu").val();
     var flagLength = $("#subMenu").val().length;
     var prefix = flag.substring(0,$(this).parent().index()-1);

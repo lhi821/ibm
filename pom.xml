@@ -6,7 +6,7 @@
 	<groupId>com.ibm</groupId>
 	<artifactId>meetingNote</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>meetingNote</name>
 	<description>Tool of Meeting Note</description>
