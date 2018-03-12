@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,15 +37,15 @@
 							<div class="panel panel-default">
 						    <div class="panel-heading bg-gray">
 						    	<div class="row">
-									  <div class="col-xs-3">
+									  <div class="col-xs-2">
 									    <div class="form-group">
-									      <select class="selectpicker form-control" title="<i class='fas fa-tags grayscale input-icon'></i>Type">
+									      <select class="selectpicker form-control" data-live-search="true" title="<i class='fas fa-tags grayscale input-icon'></i>Type">
 									        <option title="<i class='fas fa-tag grayscale input-icon'></i>Meeting">Meeting</option>
 									        <option title="<i class='fas fa-tag grayscale input-icon'></i>InterVeiw">InterView</option>
 									      </select>
 									    </div>
 									  </div>
-									  <div class="col-xs-3">
+									  <div class="col-xs-2">
 									  	<div class="form-group">
 												<div class="input-group stylish-input-group-left">
 													<div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale"></i></div>
@@ -52,20 +53,46 @@
 											  </div>
 											</div>
 									  </div>
-									   <div class="col-xs-3">
+									   <div class="col-xs-2">
 									    <div class="form-group">
-									      <select class="selectpicker form-control" title="<i class='far fa-clock grayscale input-icon'></i>Start Time">
-									        <option title="<i class='far fa-clock grayscale input-icon'></i>10:00">10:00</option>
-												  <option title="<i class='far fa-clock grayscale input-icon'></i>11:00">11:00</option>
+									      <select class="selectpicker form-control" data-live-search="true" title="<i class='far fa-clock grayscale input-icon'></i>Start Time">
+										      <option title="<i class='far fa-clock grayscale input-icon'></i>09:00">09:00</option>
+									      	<c:forEach var="MM" begin="10" end="50" step="10">
+	            							<option title="<i class='far fa-clock grayscale input-icon'></i>09:${MM}">09:${MM}</option>
+	            						</c:forEach>
+										      <c:forEach var="HH" begin="10" end="17" step="1">
+										      	<option title="<i class='far fa-clock grayscale input-icon'></i>${HH}:00">${HH}:00</option>
+										      	<c:forEach var="MM" begin="10" end="50" step="10">
+		            							<option title="<i class='far fa-clock grayscale input-icon'></i>${HH}:${MM}">${HH}:${MM}</option>
+		            						</c:forEach>
+		            					</c:forEach>
+		            					<option title="<i class='far fa-clock grayscale input-icon'></i>18:00">18:00</option>
 												</select>
 									    </div>
 									  </div>
-									   <div class="col-xs-3">
-									    <div class="form-group">
-									      <select class="selectpicker form-control" title="<i class='fas fa-clock grayscale input-icon'></i>End Time">
-									        <option title="<i class='fas fa-clock grayscale input-icon'></i>10:00">10:00</option>
-												  <option title="<i class='fas fa-clock grayscale input-icon'></i>11:00">11:00</option>
+									  <div class="col-xs-2">
+									  	<div class="form-group">
+									  		<select class="selectpicker form-control" data-live-search="true" title="<i class='fas fa-clock grayscale input-icon'></i>End Time">
+										      <option title="<i class='fas fa-clock grayscale input-icon'></i>09:00">09:00</option>
+									      	<c:forEach var="MM" begin="10" end="50" step="10">
+	            							<option title="<i class='fas fa-clock grayscale input-icon'></i>09:${MM}">09:${MM}</option>
+	            						</c:forEach>
+										      <c:forEach var="HH" begin="10" end="17" step="1">
+										      	<option title="<i class='fas fa-clock grayscale input-icon'></i>${HH}:00">${HH}:00</option>
+										      	<c:forEach var="MM" begin="10" end="50" step="10">
+		            							<option title="<i class='fas fa-clock grayscale input-icon'></i>${HH}:${MM}">${HH}:${MM}</option>
+		            						</c:forEach>
+		            					</c:forEach>
+		            					<option title="<i class='fas fa-clock grayscale input-icon'></i>18:00">18:00</option>
 												</select>
+								    	</div>
+									  </div>
+									  <div class="col-xs-4">
+									  	<div class="form-group">
+												<div class="input-group stylish-input-group-left">
+													<div class="input-group-addon"><i class="fas fa-map-pin grayscale"></i></div>
+													<input type="text" class="form-control" placeholder="Location">
+									      </div>
 									    </div>
 									  </div>
 									</div>
@@ -132,12 +159,15 @@
 									</div>
 						    </div>
 						    <div class="panel-footer bg-gray">
-							    <div class="row">
+							    <div id="ActionItemRows" class="row">
 										<div class="col-xs-12">
 											<div class="form-group">
-												<div class="input-group stylish-input-group-left">
+												<div class="input-group stylish-input-group-both">
 													<div class="input-group-addon"><i class="fas fa-exclamation grayscale input-icon-action"></i></div>
 													<input type="text" class="form-control" placeholder="Action Item">
+													<div class="input-group-addon cursor">
+														<span class="plusActionItem"><i class="fas fa-plus-circle grayscale"></i></span>
+													</div>
 									      </div>
 									    </div>
 									  </div>
@@ -145,40 +175,81 @@
 									<div class="row">
 										<div class="col-xs-12">
 											<div class="form-group">
-												<div class="input-group stylish-input-group-left">
+												<div class="input-group stylish-input-group-both">
 													<div class="input-group-addon"><i class="fab fa-slack-hash grayscale"></i></div>
 													<input type="text" class="form-control" placeholder="Key Word">
+													<div class="input-group-addon cursor"><i class="fas fa-magic grayscale"></i></div>
 									      </div>
 									    </div>
 									  </div>
 									</div>
 						    </div>
 						  </div>
-							
+						  
+						  <div class="row">
+								<div class="col-xs-6 text-left">
+									<button type="button" class="btn btn-default">
+							  		<i class="fas fa-arrow-circle-left grayscale"></i> Back
+									</button>
+							  </div>
+							  <div class="col-xs-6 text-right">
+							  	<button type="button" class="btn btn-default">
+							  		<i class="fas fa-desktop grayscale"></i> Preview
+									</button>
+									<button type="button" class="btn btn-default">
+							  		<i class="fas fa-save grayscale"></i> Temporary
+									</button>
+							  	<button type="button" class="btn btn-default">
+							  		<i class="fas fa-save"></i> Save
+									</button>
+							  </div>
+							</div>
 						</form>			
+						
+						<br>
+						<!-- footer -->		
+						<div class="row">
+							<div class="container">
+								<jsp:include page="../layout/footer.jsp"></jsp:include>
+							</div>
+						</div>
+						
 				</div>
 			</div>
 		</div>
 		
-		<!-- footer -->		
-		<div class="row">
-			<div class="container">
-				<jsp:include page="../layout/footer.jsp"></jsp:include>
-			</div>
-		</div>
 	</div>
 	
 </body>
 <script>
 $( document ).ready(function() {
   $('[data-toggle="datepicker"]').datepicker();
-
-  $('#toggle-event').change(function() {
-    console.log('Toggle: ' + $(this).prop('checked'))
-  });
+  
+  $('[data-toggle="datepicker"]').change(function() { $('[data-toggle="datepicker"]').datepicker('hide');});
+  
+  $('body').on('click', '.plusActionItem', function () {
+    $('#ActionItemRows').append(
+        "<div class='col-xs-12'>"+
+	  			"<div class='form-group'>"+
+	  				"<div class='input-group stylish-input-group-both'>"+
+	  					"<div class='input-group-addon'><i class='fas fa-exclamation grayscale input-icon-action'></i></div>"+
+	  					"<input type='text' class='form-control' placeholder='Action Item'>"+
+	  					"<div class='input-group-addon cursor'>"+
+	  						"<span class='minusActionItem input-icon-action'><i class='fas fa-minus-circle grayscale'></i></span>"+
+	  						"<span class='plusActionItem'><i class='fas fa-plus-circle grayscale'></i></span>"+
+	  					"</div>"+
+	  			  "</div>"+
+	  			"</div>"+
+				"</div>");
+	});
+  
+  
+  $('body').on('click', '.minusActionItem', function () {
+    $(this).parentsUntil($(".col-xs-12")).remove();
+	});
+  
+  
 });
-
-
 
 </script>
 </html>
