@@ -119,7 +119,7 @@
 													<textarea class="form-control border-none" rows="10" ></textarea>
 									    </div>
 									  </div>
-									  <!-- <div class="col-xs-12"> TODO
+									  <!-- <div class="col-xs-12">
 							  			<div class="col-xs-2">
 												<div class=""></div>
 											</div>

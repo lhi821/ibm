@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<!-- Library -->
-	<jsp:include page="../layout/library.jsp"></jsp:include>			
+	<jsp:include page="../layout/library.jsp"></jsp:include>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<!-- JS -->
