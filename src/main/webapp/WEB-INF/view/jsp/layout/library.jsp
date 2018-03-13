@@ -29,3 +29,6 @@
 	<!-- Bootstrap toggle -->
 	<link href="/lib/toggle/bootstrap-toggle.min.css" rel="stylesheet">
 	<script src="/lib/toggle/bootstrap-toggle.min.js"></script>
+	
+	<!-- autosize -->
+	<script src="/lib/autosize/autosize.min.js"></script>
