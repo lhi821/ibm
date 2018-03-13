@@ -11,7 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<!-- JS -->
 	<script src="/js/navbar/navbar.js"></script>
-	
+	<!-- 호환성보기 방지 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
 <input type="hidden" id="veiwType" name="veiwType" value="${veiwType}">
@@ -36,8 +37,12 @@
 			<ul class="nav navbar-nav navbar-right">
 	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
 				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
-				<li><a class="cursor"><i class="far fa-bell grayscale"></i>&nbsp;</a></li>
-				<li><a class="cursor" href="/member/mypage"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
+				<li><a class="cursor">  
+					<span class="fa-layers fa-fw">
+	    			<i class="fas fa-bell"></i>
+	    			<span class="fa-layers-counter" style="background:Tomato"></span>
+	  			</span>&nbsp;</a></li>
+				<li><a class="cursor" href="/mypage/main"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
 				<li><a class="cursor" href="/admin/config1"><i class="fas fa-cog grayscale"></i>&nbsp;</a></li>
 			</ul>
 			

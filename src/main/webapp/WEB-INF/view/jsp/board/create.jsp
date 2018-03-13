@@ -68,7 +68,7 @@
 		            							<option title="<i class='far fa-clock grayscale input-icon'></i>${HH}:${MM}">${HH}:${MM}</option>
 		            						</c:forEach>
 		            					</c:forEach>
-		            					<option title="<i class='far fa-clock grayscale input-icon'></i>18:00">24:00</option>
+		            					<option title="<i class='far fa-clock grayscale input-icon'></i>24:00">24:00</option>
 												</select>
 									    </div>
 									  </div>
@@ -87,7 +87,7 @@
 		            							<option title="<i class='fas fa-clock grayscale input-icon'></i>${HH}:${MM}">${HH}:${MM}</option>
 		            						</c:forEach>
 		            					</c:forEach>
-		            					<option title="<i class='fas fa-clock grayscale input-icon'></i>18:00">24:00</option>
+		            					<option title="<i class='fas fa-clock grayscale input-icon'></i>24:00">24:00</option>
 												</select>
 								    	</div>
 									  </div>
@@ -143,22 +143,29 @@
 									</div>
 						    </div>
 						    <div class="panel-body">
-							    <div class="row">
+									<div id="painTextBox" class="row display-none">
 										<div class="col-xs-12">
 											<div class="form-group">
-													<textarea class="form-control border-none" rows="10" ></textarea>
+													<textarea placeholder="Please fill out the Meeting Note..." class="form-control border-none" rows="10" ></textarea>
 									    </div>
 									  </div>
-									  <!-- <div class="col-xs-12">
-							  			<div class="col-xs-2">
-												<div class=""></div>
-											</div>
-											<div class="col-xs-10">
-												<div class="bubble">
-													<textarea class="form-control border-none" style="background-color: transparent;"></textarea>
+								  </div>
+								  <div id="dialogueBox" class="row">
+									  <div class="col-xs-12">
+							  			<div class="col-xs-1">
+												<div class="text-right small">
+													<span class="grayscale cursor"><i class="fas fa-user-plus chat-user fa-lg"></i></span>
 												</div>
 											</div>
-									  </div> -->
+											<div class="col-xs-11">
+												<div class="bubble">
+													<textarea placeholder="Please fill out the Meeting Note..." class="form-control border-none dialogueContents" rows="5"></textarea>
+													<div class="text-right">
+														<i class="fas fa-comment-alt grayscale cursor chat-icon addDialogue"></i>
+													</div>
+												</div>
+											</div>
+									  </div> 
 									</div>
 						    </div>
 						    <div class="panel-footer bg-gray">
@@ -227,20 +234,34 @@
 <script>
 $( document ).ready(function() {
   
- 
+  autosize($('.dialogueContents'));
+  
   var dt = new Date();
   var hour = dt.getHours().toString().length < 2 ? "0" + dt.getHours().toString() : dt.getHours().toString();
   var minute = dt.getMinutes().toString().length < 2 ? "0" + dt.getMinutes().toString() : dt.getMinutes().toString();
-  minute = Math.round(minute / 10) * 10
+  minute = Math.round(minute / 10) * 10;
+  minute = minute == 0 ? "00" : minute;
+  
+ 	if(minute == 60 || minute == "60"){
+ 	 	minute = "00";
+ 	  hour = parseInt(hour) + 1;
+  }
   
   $('#startTime').selectpicker('val',hour+':'+minute);
   $('#endTime').selectpicker('val',(parseInt(hour)+1)+':'+minute);
   
-  
   $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
+  $('[data-toggle="datepicker"]').change(function() { 
+    $('[data-toggle="datepicker"]').datepicker('hide');
+  });
   
-  $('[data-toggle="datepicker"]').change(function() { $('[data-toggle="datepicker"]').datepicker('hide');});
-  
+  $('#startTime').change(function() {
+    var hour = parseInt($('#startTime').val().substring(0,2))+1
+    hour = hour.toString().length < 2 ? "0"+hour : hour;
+    $('#endTime').selectpicker('val',hour + $('#startTime').val().substring(2,5));
+  });
+
+  //Action Item 추가
   $('body').on('click', '.plusActionItem', function () {
     $('#ActionItemRows').append(
         "<div class='col-xs-12'>"+
@@ -257,15 +278,98 @@ $( document ).ready(function() {
 				"</div>");
 	});
   
+  //Action Item 삭제
   $('body').on('click', '.minusActionItem', function () {
     $(this).parentsUntil($(".col-xs-12")).remove();
 	});
   
-  $('#startTime').change(function() {
-    $('#endTime').selectpicker('val',(parseInt($('#startTime').val().substring(0,2))+1)+$('#startTime').val().substring(2,5));
-  });
+  //대화 추가
+  $('body').on('click', '.addDialogue', function () {
+    $('#dialogueBox').append(
+        "<div class='col-xs-12'>"+
+	      	"<div class='col-xs-1'>"+
+	      		"<div class='text-right small'>"+
+	      			"<span class='grayscale cursor'><i class='fas fa-user-plus chat-user fa-lg'></i></span>"+
+	      		"</div>"+
+	      	"</div>"+
+	      	"<div class='col-xs-11'>"+
+	      		"<div class='bubble'>"+
+	      			"<textarea placeholder='Please fill out the Meeting Note...' class='form-control border-none dialogueContents' rows='5'></textarea>"+
+	      			"<div class='text-right'>"+
+	      				"<i class='fas fa-trash-alt grayscale cursor chat-icon delDialogue'></i>"+
+	      				"<i class='fas fa-comment-alt grayscale cursor chat-icon addDialogue'></i>"+
+	      			"</div>"+
+	      		"</div>"+
+	      	"</div>"
+    );
+    autosize($('.dialogueContents'));
+	});
   
+  //대화 삭제
+  $('body').on('click', '.delDialogue', function () {
+    $(this).parentsUntil($("#dialogueBox")).remove();
+	});
+  
+  $('#toggle-event').change(function() {
+    $('#toggle-event').stop();
+    console.log($(this).prop('checked'));
+    if($(this).prop('checked') == true){
+      //Dialogue
+			bootbox.confirm({
+			  size: "small",
+			  title: "WARNING",
+        message: "<font class='small'>Are you sure Change to <b class='big'>Dialogue Format</b>?<font>",
+			  buttons: {
+			    confirm: {
+			      label: 'Yes',
+			      className: 'btn-default btn-sm'
+			    },
+			    cancel: {
+			      label: 'No',
+			      className: 'btn btn-sm'
+			    }
+			  },
+			  callback: function (result) {
+			    if(result == true){
+			      $("#painTextBox").hide();
+			      $("#dialogueBox").show();
+			    }else{
+			      $('#toggle-event').prop('checked', false).bootstrapToggle('destroy').bootstrapToggle();
+			    }
+			  }
+			});
+      
+    }else{
+      //Plan Text
+      bootbox.confirm({
+        size: "small",
+        title: "WARNING",
+        message: "<font class='small'>Are you sure Change to <b class='big'>Plain Text format</b>?<font>",
+			  buttons: {
+			    confirm: {
+			      label: 'Yes',
+			      className: 'btn-default btn-sm'
+			    },
+			    cancel: {
+			      label: 'No',
+			      className: 'btn btn-sm'
+			    }
+			  },
+			  callback: function (result) {
+			    if(result == true){
+			      $("#dialogueBox").hide();
+			      $("#painTextBox").show();
+			    }else{
+			      $('#toggle-event').prop('checked', true).bootstrapToggle('destroy').bootstrapToggle();
+			    }
+			  }
+			});
+      
+    }
+  })
+   
 });
 
 </script>
 </html>
+
