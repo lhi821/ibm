@@ -88,40 +88,17 @@
 	    });
 	}
 	$(document).ready(function() {
-		calendarInit();
-		
+		calendarInit();		
   });
 
-$(function(){
+/* $(function(){
 	//mypage tab 변경
 	var changeTab = $("ul > li");    
 	changeTab.find("a").click(function(){   
 		changeTab.removeClass("active");     
 		$(this).parent().addClass("active"); 
 	})
-}); 
-
-function getContents(type) {
-	switch(type) {
-		case 'C':
-			$.get("/member/calendar", {}, function(data){
-				console.log(data);
-				$("#contentsDiv").html(data);
-				calendarInit();
-			});
-			break;
-		case 'H':
-			$.get("/member/history", {}, function(data){
-				$("#contentsDiv").html(data);
-			});
-			break;
-		case 'I':
-			$.get("/member/info", {}, function(data){
-				$("#contentsDiv").html(data);
-			});
-			break;
-	}
-};
+});  */
 </script>
 <style>
 
@@ -156,8 +133,11 @@ function getContents(type) {
 				<!-- 사용자검색 팝업 
 					<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>	
 				-->
-				<!-- adminTab -->
-				<jsp:include page="../mypage/layout/mypageTab.jsp"></jsp:include>
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="/mypage/calendar"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
+					<li><a href="/mypage/history"><span class="glyphicon glyphicon-time"></span> History</a></li>
+					<li><a href="/mypage/info"><span class="glyphicon glyphicon-refresh"></span> Information</a></li>
+				</ul>
 				
 				<!-- mypage tab 전환 -->
 				<div id="contentsDiv">
