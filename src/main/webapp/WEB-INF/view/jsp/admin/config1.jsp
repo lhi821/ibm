@@ -62,7 +62,7 @@
 					<div class="row">
 						<div class="container">
 							<div class="col-xs-12 text-right">
-								<button id="newPostBtn" type="button" class="btn btn-default">
+								<button data-toggle="modal" data-target="#addMTCModal" type="button" class="btn btn-default">
 									<i class="fas fa-pencil-alt grayscale"></i>
 								</button>
 							</div>
@@ -80,6 +80,9 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal -->
+	<jsp:include page="../admin/addMeetingTypeCode.jsp"></jsp:include>
 
 </body>
 <!-- JS -->
