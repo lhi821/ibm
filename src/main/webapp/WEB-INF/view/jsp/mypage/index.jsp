@@ -16,80 +16,112 @@
 
 <script>
 
-	$(document).ready(function() {
+	function calendarInit(){
+		$('#calendar').fullCalendar({
+			schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
 		
-	$('#calendar').fullCalendar({
-		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-	
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listWeek'
-      },
-      defaultDate: '2018-03-12',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2018-03-01',
-        },
-        {
-          title: 'Long Event',
-          start: '2018-03-07',
-          end: '2018-03-10'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2018-03-09T16:00:00'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2018-03-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2018-03-11',
-          end: '2018-03-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2018-03-12T10:30:00',
-          end: '2018-03-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2018-03-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2018-03-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2018-03-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2018-03-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2018-03-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2018-03-28'
-        }
-      ]
-    });
-
+	      header: {
+	        left: 'prev,next today',
+	        center: 'title',
+	        right: 'month,agendaWeek,agendaDay,listWeek'
+	      },
+	      defaultDate: '2018-03-12',
+	      navLinks: true, // can click day/week names to navigate views
+	      editable: true,
+	      eventLimit: true, // allow "more" link when too many events
+	      events: [
+	        {
+	          title: 'All Day Event',
+	          start: '2018-03-01',
+	        },
+	        {
+	          title: 'Long Event',
+	          start: '2018-03-07',
+	          end: '2018-03-10'
+	        },
+	        {
+	          id: 999,
+	          title: 'Repeating Event',
+	          start: '2018-03-09T16:00:00'
+	        },
+	        {
+	          id: 999,
+	          title: 'Repeating Event',
+	          start: '2018-03-16T16:00:00'
+	        },
+	        {
+	          title: 'Conference',
+	          start: '2018-03-11',
+	          end: '2018-03-13'
+	        },
+	        {
+	          title: 'Meeting',
+	          start: '2018-03-12T10:30:00',
+	          end: '2018-03-12T12:30:00'
+	        },
+	        {
+	          title: 'Lunch',
+	          start: '2018-03-12T12:00:00'
+	        },
+	        {
+	          title: 'Meeting',
+	          start: '2018-03-12T14:30:00'
+	        },
+	        {
+	          title: 'Happy Hour',
+	          start: '2018-03-12T17:30:00'
+	        },
+	        {
+	          title: 'Dinner',
+	          start: '2018-03-12T20:00:00'
+	        },
+	        {
+	          title: 'Birthday Party',
+	          start: '2018-03-13T07:00:00'
+	        },
+	        {
+	          title: 'Click for Google',
+	          url: 'http://google.com/',
+	          start: '2018-03-28'
+	        }
+	      ]
+	    });
+	}
+	$(document).ready(function() {
+		calendarInit();
+		
   });
 
+$(function(){
+	//mypage tab 변경
+	var changeTab = $("ul > li");    
+	changeTab.find("a").click(function(){   
+		changeTab.removeClass("active");     
+		$(this).parent().addClass("active"); 
+	})
+}); 
+
+function getContents(type) {
+	switch(type) {
+		case 'C':
+			$.get("/member/calendar", {}, function(data){
+				console.log(data);
+				$("#contentsDiv").html(data);
+				calendarInit();
+			});
+			break;
+		case 'H':
+			$.get("/member/history", {}, function(data){
+				$("#contentsDiv").html(data);
+			});
+			break;
+		case 'I':
+			$.get("/member/info", {}, function(data){
+				$("#contentsDiv").html(data);
+			});
+			break;
+	}
+};
 </script>
 <style>
 
@@ -124,56 +156,13 @@
 				<!-- 사용자검색 팝업 
 					<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>	
 				-->
-				<div id="calendar"></div><br>
-				<!-- <div class="col-xs-12" style="height:100%; border-radius: 5px; border:solid grey;"> background-color:#e7e7e7;
-					<i class="fas fa-user-circle grayscale" style="font-size: 30px;"></i> 
-					<h1 style="display:inline-block; font-size: 25px;">MY PAGE</h1>
+				<!-- adminTab -->
+				<jsp:include page="../mypage/layout/mypageTab.jsp"></jsp:include>
+				
+				<!-- mypage tab 전환 -->
+				<div id="contentsDiv">
+					<div id="calendar" style="padding-top: 20px;"></div>
 				</div>
-				<hr />
-				<div class="col-xs-6">
-					<h3>View History</h3>
-					<ul>
-						<li><p>View History list1</p></li>
-						<li><p>View History list2</p></li>
-						<li><p>View History list3</p></li>
-					</ul>
-					<h3>Upload History</h3>
-					<ul>
-						<li><p>Upload History list1</p></li>
-						<li><p>Upload History list2</p></li>
-						<li><p>Upload History list3</p></li>
-					</ul>
-					<h3>Edit History</h3>
-					<ul>
-						<li><p>Edit History list1</p></li>
-						<li><p>Edit History list2</p></li>
-						<li><p>Edit History list3</p></li>
-					</ul>
-				</div>
-				<div class="col-xs-6">
-					<h3>Current Project</h3>
-						<table class="table table-hover table-fixed"> table-striped
-  							<thead>
-    							<tr>
-    								<th style="text-align:center;">#</th>
-      								<th style="text-align:center;">고객사</th>
-							        <th style="text-align:center;">프로젝트명</th>
-    							</tr>
-  							</thead>
-  							<tbody>
-							 	<tr>
-							     	<td style="text-align:center;">#1</td>
-							        <td style="text-align:center;">John</td>
-							        <td style="text-align:center;">Doe</td>
-							      </tr>
-							     <tr>
-							        <td style="text-align:center;">#2</td>
-							        <td style="text-align:center;">John</td>
-							        <td style="text-align:center;">Doe</td>
-							      </tr>
-							</tbody>
-						</table>
-				</div> -->
 				<!-- 여기가 끝 -->
 				</div>
 			</div>

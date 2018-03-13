@@ -67,5 +67,25 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("/mypage/index");
 		return mv;
 	}
+	
+	@GetMapping("/calendar")
+	public ModelAndView mypageCalendar() throws Exception{
+		ModelAndView mv = new ModelAndView("/mypage/mypage_calendar");
+		return mv;
+	}
+	
+	@GetMapping("/history")
+	public ModelAndView mypageHistory() throws Exception{
+		ModelAndView mv = new ModelAndView("/mypage/mypage_history");
+		return mv;
+	}
+	
+	@GetMapping("/info")
+	public ModelAndView mypageInfo() throws Exception{
+		ModelAndView mv = new ModelAndView("/mypage/mypage_info");
+		return mv;
+	}
+	
+	
 
 }
