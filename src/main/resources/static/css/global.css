@@ -216,8 +216,18 @@ top: 16px;
 
 .chat-icon{
 	margin:5px;
+	margin-left:0px;
 }
 
 .chat-user{
-	margin-top:25px;
+	margin-top:30px;
+}
+
+.dialogueContents{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.display-none{
+	display:none;
 }
