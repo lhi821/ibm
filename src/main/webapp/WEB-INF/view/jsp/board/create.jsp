@@ -143,12 +143,14 @@
 									</div>
 						    </div>
 						    <div class="panel-body">
-							    <div class="row">
-										<!-- <div class="col-xs-12">
+							    <div id="painTextBox" class="row">
+										<div class="col-xs-12">
 											<div class="form-group">
 													<textarea id="contents" class="form-control border-none" rows="10" ></textarea>
 									    </div>
-									  </div> -->
+									  </div>
+								  </div>
+								  <div id="dialogueBox" class="row">
 									  <div class="col-xs-12">
 							  			<div class="col-xs-1">
 												<div class="text-right small">
@@ -235,7 +237,6 @@ $( document ).ready(function() {
   
   autosize(document.getElementById("contents"));
   
-  
   var dt = new Date();
   var hour = dt.getHours().toString().length < 2 ? "0" + dt.getHours().toString() : dt.getHours().toString();
   var minute = dt.getMinutes().toString().length < 2 ? "0" + dt.getMinutes().toString() : dt.getMinutes().toString();
@@ -280,8 +281,25 @@ $( document ).ready(function() {
     hour = hour.toString().length < 2 ? "0"+hour : hour;
     $('#endTime').selectpicker('val',hour + $('#startTime').val().substring(2,5));
   });
-  
+  /* 
+"<div class='col-xs-12'>"+
+	"<div class='col-xs-1'>"+
+		<div class="text-right small">
+			<span class="grayscale cursor"><i class="fas fa-user chat-user"></i> TEST</span>
+		</div>
+	</div>
+	<div class="col-xs-11">
+		<div class="bubble">
+			<textarea id="contents" class="form-control border-none" rows="5"></textarea>
+			<div class="text-right">
+				<i class="fas fa-trash-alt grayscale cursor chat-icon"></i>
+				<i class="fas fa-comment-alt grayscale cursor chat-icon"></i>
+			</div>
+		</div>
+	</div>"
+   */
 });
 
 </script>
 </html>
+

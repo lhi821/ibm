@@ -11,7 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<!-- JS -->
 	<script src="/js/navbar/navbar.js"></script>
-	
+	<!-- 호환성보기 방지 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
 <input type="hidden" id="veiwType" name="veiwType" value="${veiwType}">

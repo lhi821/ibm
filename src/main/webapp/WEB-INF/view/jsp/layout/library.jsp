@@ -35,8 +35,6 @@
 	<link href='/lib/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<link href='/lib/scheduler/scheduler.css' rel='stylesheet' /> 
 	<script type="text/javascript" src="/lib/fullcalendar/lib/moment.min.js"></script>
-	<script type="text/javascript" src="/lib/fullcalendar/lib/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/lib/fullcalendar/lib/jquery.min.js"></script>
 	<script type="text/javascript" src="/lib/fullcalendar/fullcalendar.min.js"></script>
 	<script type="text/javascript" src="/lib/scheduler/scheduler.js"></script>
 	<script type="text/javascript" src="/lib/fullcalendar/locale-all.js"></script>
