@@ -6,9 +6,106 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.9.1.js"  type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/css/board/index.css">
+
+<script>
+
+	$(document).ready(function() {
+		
+	$('#calendar').fullCalendar({
+		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+	
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      },
+      defaultDate: '2018-03-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2018-03-01',
+        },
+        {
+          title: 'Long Event',
+          start: '2018-03-07',
+          end: '2018-03-10'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2018-03-09T16:00:00'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2018-03-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2018-03-11',
+          end: '2018-03-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2018-03-12T10:30:00',
+          end: '2018-03-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2018-03-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2018-03-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2018-03-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2018-03-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2018-03-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2018-03-28'
+        }
+      ]
+    });
+
+  });
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
 </head>
 <body>
 
@@ -27,8 +124,8 @@
 				<!-- 사용자검색 팝업 
 					<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>	
 				-->
-				
-				<div class="col-xs-12" style="height:100%; border-radius: 5px; border:solid grey;"> <!-- background-color:#e7e7e7; -->
+				<div id="calendar"></div><br>
+				<!-- <div class="col-xs-12" style="height:100%; border-radius: 5px; border:solid grey;"> background-color:#e7e7e7;
 					<i class="fas fa-user-circle grayscale" style="font-size: 30px;"></i> 
 					<h1 style="display:inline-block; font-size: 25px;">MY PAGE</h1>
 				</div>
@@ -55,7 +152,7 @@
 				</div>
 				<div class="col-xs-6">
 					<h3>Current Project</h3>
-						<table class="table table-hover table-fixed"> <!-- table-striped -->
+						<table class="table table-hover table-fixed"> table-striped
   							<thead>
     							<tr>
     								<th style="text-align:center;">#</th>
@@ -76,7 +173,7 @@
 							      </tr>
 							</tbody>
 						</table>
-				</div>
+				</div> -->
 				<!-- 여기가 끝 -->
 				</div>
 			</div>

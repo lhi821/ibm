@@ -1,11 +1,16 @@
 package com.ibm.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ibm.domain.AdminDomain;
 import com.ibm.service.AdminService;
 
 @Controller
@@ -18,6 +23,9 @@ public class AdminController {
 	@GetMapping("/config1")
 	public ModelAndView adminConfig1() throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/config1");
+		List<AdminDomain> meetingTypeList = new ArrayList<>();
+		meetingTypeList = adminService.selectMeetingTypeList();
+		mv.addObject("meetingTypeList", meetingTypeList);
 		return mv;
 	}
 	
@@ -38,4 +46,5 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("/admin/systemAdmin");
 		return mv;
 	}
+	
 }
