@@ -38,11 +38,11 @@ public class AdminController {
 		return "redirect:/admin/config1";
 	}
 	
-	@PostMapping("/delete")
-	public String deleteMeetingType(AdminDomain adminDomain){
-		adminService.deleteMeetingType(adminDomain.getMeetingTypeID());
-		return "redirect:/admin/config1";
-	}
+//	@PostMapping("/delete")
+//	public String deleteMeetingType(AdminDomain adminDomain){
+//		adminService.deleteMeetingType(adminDomain.getMeetingTypeID());
+//		return "redirect:/admin/config1";
+//	}
 	
 	@GetMapping("/config2")
 	public ModelAndView adminConfig2() throws Exception{

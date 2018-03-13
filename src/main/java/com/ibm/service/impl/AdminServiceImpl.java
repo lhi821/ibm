@@ -29,8 +29,8 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.selectMeetingTypeList();
 	}
 	
-	@Override
-	public void deleteMeetingType(String id) {
-		adminMapper.deleteMeetingType(id);
-	}
+//	@Override
+//	public void deleteMeetingType(String id) {
+//		adminMapper.deleteMeetingType(id);
+//	}
 }
