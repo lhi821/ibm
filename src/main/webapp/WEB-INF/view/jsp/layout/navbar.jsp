@@ -38,7 +38,12 @@
 	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
 				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
 				<li><a class="cursor">  
-					<span class="fa-layers fa-fw">
+					<span class="fa-layers fa-fw" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
+					data-content="<ul class='noti-ul'>
+													<c:forEach var='i' begin='0' varStatus='status' end='1'>
+														<li class='cursor'>You have been invited project <b>SLT</b></li>
+													</c:forEach>
+												</ul>">
 	    			<i class="fas fa-bell"></i>
 	    			<span class="fa-layers-counter" style="background:Tomato"></span>
 	  			</span>&nbsp;</a></li>
@@ -64,4 +69,10 @@
 	<jsp:include page="../member/join.jsp"></jsp:include>
 	<jsp:include page="../member/login.jsp"></jsp:include>
 </body>
+<script>
+//for Popover of bell
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
 </html>

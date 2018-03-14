@@ -231,3 +231,27 @@ top: 16px;
 .display-none{
 	display:none;
 }
+
+.noti-ul{
+  padding: 5px;
+  padding-bottom: 0px;
+  list-style-type: circle;
+}
+
+.noti-ul li:hover { 
+	list-style-type: circle;
+}
+
+.noti-ul li:hover { 
+    list-style-type: disc;
+}
+
+.popover-content{
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-right: 2px !important;
+}
+
+.popover{
+	color: #555 !important;
+}

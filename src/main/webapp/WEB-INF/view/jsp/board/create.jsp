@@ -280,7 +280,28 @@ $( document ).ready(function() {
   
   //Action Item 삭제
   $('body').on('click', '.minusActionItem', function () {
-    $(this).parentsUntil($(".col-xs-12")).remove();
+    var removeDiv = $(this).parentsUntil($(".col-xs-12"));
+    bootbox.confirm({
+		  size: "small",
+		  title: "WARNING",
+      message: "<font class='small'>Are you sure remove this <b class='big'>Action Item</b>?<font>",
+		  buttons: {
+		    confirm: {
+		      label: 'Yes',
+		      className: 'btn-default btn-sm'
+		    },
+		    cancel: {
+		      label: 'No',
+		      className: 'btn btn-sm'
+		    }
+		  },
+		  callback: function (result) {
+		    if(result == true){
+		      removeDiv.remove();
+		    }else{
+		    }
+		  }
+		});
 	});
   
   //대화 추가
@@ -307,12 +328,31 @@ $( document ).ready(function() {
   
   //대화 삭제
   $('body').on('click', '.delDialogue', function () {
-    $(this).parentsUntil($("#dialogueBox")).remove();
+    var removeDiv = $(this).parentsUntil($("#dialogueBox"));
+    bootbox.confirm({
+		  size: "small",
+		  title: "WARNING",
+      message: "<font class='small'>Are you sure remove this <b class='big'>Dialogue</b>?<font>",
+		  buttons: {
+		    confirm: {
+		      label: 'Yes',
+		      className: 'btn-default btn-sm'
+		    },
+		    cancel: {
+		      label: 'No',
+		      className: 'btn btn-sm'
+		    }
+		  },
+		  callback: function (result) {
+		    if(result == true){
+		      removeDiv.remove();
+		    }else{
+		    }
+		  }
+		});
 	});
   
   $('#toggle-event').change(function() {
-    $('#toggle-event').stop();
-    console.log($(this).prop('checked'));
     if($(this).prop('checked') == true){
       //Dialogue
 			bootbox.confirm({
