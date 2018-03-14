@@ -47,7 +47,8 @@
 									<tbody>
 										<c:forEach var="item" varStatus="status"
 											items="${meetingTypeList}" step="1" begin="0">
-											<tr id="${item.meetingTypeID}" class="cursor tableContent">
+											<tr id="${item.meetingTypeID}" class="cursor tableContent" data-toggle="modal" data-target="#modifyMTCModal">
+											<!-- data-id="item.meetingTypeID" -->
 												<td>${item.meetingTypeID}</td>
 												<td>${item.meetingTypeNM}</td>
 												<td>${item.meetingTypeDesc}</td>
@@ -62,7 +63,7 @@
 					<div class="row">
 						<div class="container">
 							<div class="col-xs-12 text-right">
-								<button id="newPostBtn" type="button" class="btn btn-default">
+								<button data-toggle="modal" data-target="#addMTCModal" type="button" class="btn btn-default">
 									<i class="fas fa-pencil-alt grayscale"></i>
 								</button>
 							</div>
@@ -81,6 +82,9 @@
 		</div>
 	</div>
 
+	<!-- Modal -->
+	<jsp:include page="../admin/addMeetingTypeCode.jsp"></jsp:include>
+	<jsp:include page="../admin/modifyMeetingTypeCode.jsp"></jsp:include>
 </body>
 <!-- JS -->
 <!-- <script type="text/javascript" src="/js/board/delete.js"></script>
