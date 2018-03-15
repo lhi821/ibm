@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.domain.BoardDomain;
 import com.ibm.service.BoardService;
+import com.ibm.service.NlpService;
 
 @Controller
 @RequestMapping("/board")
@@ -24,7 +25,7 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
-
+	
 	@GetMapping("/index")
 	public ModelAndView board(@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
 														@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
@@ -36,7 +37,7 @@ public class BoardController {
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
-		return mv;
+				return mv;
 	}
 
 	@GetMapping("/new")

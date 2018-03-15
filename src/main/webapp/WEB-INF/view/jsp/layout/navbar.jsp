@@ -13,6 +13,9 @@
 	<script src="/js/navbar/navbar.js"></script>
 	<!-- 호환성보기 방지 -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta name="_csrf" content="${_csrf.token}" />
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
 </head>
 <body>
 <input type="hidden" id="veiwType" name="veiwType" value="${veiwType}">
@@ -68,11 +71,33 @@
 	<!-- Modal -->
 	<jsp:include page="../member/join.jsp"></jsp:include>
 	<jsp:include page="../member/login.jsp"></jsp:include>
+	
+	<!-- Loader -->
+	<div id="loaderBox">
+		<div class="loader"></div>
+	</div>
 </body>
+<script type="text/javascript">
+$(function() {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
+</script>
 <script>
 //for Popover of bell
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
+
+$(document).ajaxStart(function() {
+  $("#loaderBox").show();
+});
+
+$( document ).ajaxComplete(function() {
+  $("#loaderBox").hide();
+});
 </script>
 </html>
