@@ -146,7 +146,7 @@
 									<div id="painTextBox" class="row display-none">
 										<div class="col-xs-12">
 											<div class="form-group">
-													<textarea placeholder="Please fill out the Meeting Note..." class="form-control border-none" rows="10" ></textarea>
+													<textarea id="planContents" placeholder="Please fill out the Meeting Note..." class="form-control border-none" rows="10" ></textarea>
 									    </div>
 									  </div>
 								  </div>
@@ -235,6 +235,7 @@
 $( document ).ready(function() {
   
   autosize($('.dialogueContents'));
+  autosize($('#planContents'));
   
   var dt = new Date();
   var hour = dt.getHours().toString().length < 2 ? "0" + dt.getHours().toString() : dt.getHours().toString();
@@ -263,6 +264,19 @@ $( document ).ready(function() {
 
   //Action Item 추가
   $('body').on('click', '.plusActionItem', function () {
+    if ($(this).parentsUntil("stylish-input-group-both").children("input").val() == "") {
+      bootbox.alert({
+        message: "Please fill out Action Item",
+        size: 'small',
+        buttons: {
+          ok: {
+              label: "OK",
+              className: 'btn'
+          	}
+      	}
+    	});
+      return false;
+    }
     $('#ActionItemRows').append(
         "<div class='col-xs-12'>"+
 	  			"<div class='form-group'>"+
@@ -410,7 +424,18 @@ $( document ).ready(function() {
   
   $('.fa-magic').click(function() {
     
-    var text = "문재인 대통령은 오늘 국민헌법자문특별위원회로부터 개헌 자문안을 전달 받은 뒤 마무리 발언을 했습니다. 그 내용을 소개합니다."+
+    var dialogueContents = ""; 
+    var text = "";
+    if ($('#toggle-event').prop('checked')){
+      $(".dialogueContents").each(function(){
+        dialogueContents = dialogueContents + " " + $(this).val();
+      });
+      text = dialogueContents;
+    }else{
+      text = $("#planContents").val();
+    }
+    
+    /* var text = "문재인 대통령은 오늘 국민헌법자문특별위원회로부터 개헌 자문안을 전달 받은 뒤 마무리 발언을 했습니다. 그 내용을 소개합니다."+
 		 "“개헌안 자체에 대해서는 아무런 이견이 없습니다. ibm 다만 국회에 발의할 개헌안 속에 담을 수 있는 범위에 대해서는 생각의 차이가 있을 수 있습니다. 그것은 자문안의 문제가 아니라 우리 현실 때문입니다. 지금 국회에 대한 국민들의 불신, 지방정부에 대한 불신, 그 가운데에서도 지방의회에 대한 불신, 정당제도에 대한 불신들을 우리가 현실적으로 감안하지 않을 수 없다고 생각합니다. 그 때문에 저는 지금 단계에서 의원내각제나 이원집정부제는 우리 현실에 맞지 않다, 좀 시기상조다 이렇게 생각을 하는 편입니다. 그렇다 하더라도 최대한 국회 쪽에 많은 권한을 넘겨서 국회의 견제 감시권을 높일 필요는 있다 생각하는데 그 조차도 좀처럼 국민들이 동의하려고 하지 않고 있는 것이 현실입니다. 이런 것을 감안해서 나중에 개헌 발의안을 선택할 수밖에 없다는 생각입니다.”"+
 	 	 "“저는 오늘 이 개헌 자문안 가운데 가장 중요한 것이 빠졌다고 생각합니다. 본문들은 다 준비가 되었는데 부칙이 없습니다. 현실세계 속에서는 부칙이 시행시기를 정하는 것이기 때문에 오히려 부칙이 더욱 중요할 수 있거든요. 아마도 우리 특위에서는 부칙 부분은 정치적 결단의 문제라고 생각해서 그냥 넘겨주신 것으로 생각합니다. 하지만 그 부칙이 왜, 지금 이 시기에 개헌을 해야 하느냐 하는 것하고 서로 맞닿아 있습니다. 예를 들면 지금 4년 중임제를 한다면 4년 중임제라는 제도는 저에게는 적용되지 않는 것입니다. 그것은 차기 대통령부터 적용되는 것이죠. 그래서 혹시라도 이 개헌이 저에게 무슨 정치적인 이득이 있을 것이라고 생각하는 오해들도 있고 실제로 그렇게 호도하는 사람들이 있기 때문에 그 점에 대해서 분명히 해 주시면 좋겠습니다.”"+
 	 	 "“기본권 강화 조항의 경우 우리가 ibm 정하기에 따IBM라서는 보다 이른 시기에, 지금 우리 정부 임기 중에라도 일찍부터 시작해ibm서 기본권을 강화해 갈 수도 있는 것입니다. 그 다음에 지방분권을 강화하는 것도 이번 지방선거를 통해서 선출되는 지방정부와 함께 시행되도록 우리가 할 수 있는 것이죠. 이런 것이 전부 이번 개헌에 이루어지지 않고, 예를 들면 또 다음 총선 시기에 공약이 이루어져서 다음 국회에서 된다고 한다면 그만큼 모든 게 다 시행이 미루어지게 되는 것이거든요.”"+
@@ -421,7 +446,7 @@ $( document ).ready(function() {
  	 	 "문 대통령은 “헌법을 쉬운 우리말로 고치는 작업은 하지 cloud 않고 있나?”라고 물은 뒤 “한자어가 많이 섞여있는 우리 헌법을 한글로 바꿔 놓는(hoonil) 작업을 미리 해놓으면 새로운 헌법 개정을 논의할 때 참조가 될 것”이라고 말했습니다."+
  	 	 "문 대통ibm령은 또 “기존의 법령을 고치ibm는 것도 중요하지만 새로운 법령이 만들어질 때 처음부터 한글화 작업을 하는 것이 중요하다. 그렇지 않을 경우 ‘밑 빠진 독에 물 붓기’ 식으로 성과가 남지 않을 수 있다”며 “새로운 법을 만들 때 종말단계에서 법제처가 중심이 돼 한글화를 하는 체계를 만들 필요가 있다”고 말했습니다."+
  	 	 "문 대통령은 또 “한자나 일본식 어투만이 문제가 아니라 요즘은 영어식 표현이 법률 용어로도 들어오고 있다. 정부의 회의석상에서도 쓰이고 있다. 특히 과학기술용어는 매일 새로운 용어들이 쏟아져 그 뜻을 확인하는 데 어려움을 겪고 있다”며 “이상하게 번역하지는 말아야겠지만 가능하다면 정부가 모범을 보여야 할 것”이라고 말했습니다.";
-
+ */
     $.ajax({
       url: '/nlp/getKeyword',
       type: 'POST',
@@ -430,7 +455,7 @@ $( document ).ready(function() {
         if(data.message == "success"){
           $("#keyWordInput").val("");
           var dialog = bootbox.dialog({
-            message: "<h4>Maybe consider adding these?</h4>",
+            message: "<h4 id='hasTagTitle'>Maybe consider adding these?</h4>",
             buttons: {
               	hasTag1: {
                     label: "#"+$.trim(data.keyWordList[0]),
@@ -478,6 +503,18 @@ $( document ).ready(function() {
                 }
             }
           });
+          
+          var hashTagCnt = 0;
+          $(".hash-tag").each(function(){
+            if ($(this).text() == "#"){
+              $(this).remove();
+              hashTagCnt++;
+            }
+  				});
+          
+          if(hashTagCnt == 5){
+            $("#hasTagTitle").text("No results")
+          }
           
           $('.hash-tag').click(function() {
             if($(this).attr("value") == "checked"){
