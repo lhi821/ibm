@@ -112,7 +112,7 @@
 									  <div class="col-xs-2">
 									  	<div class="form-group">
 									      <select class="selectpicker form-control" title="<i class='fas fa-code-branch grayscale input-icon'></i>Version">
-									        <option selected title="<i class='fas fa-code-branch grayscale input-icon'></i>0.0.1">0.0.1</option>
+									        <option selected data-subtext="Version" title="<i class='fas fa-code-branch grayscale input-icon'></i>1">1</option>
 												</select>
 									    </div>
 									  </div>
@@ -169,6 +169,13 @@
 									</div>
 						    </div>
 						    <div class="panel-footer bg-gray">
+						    	<div class="row">
+										<div class="col-xs-12">
+											<div class="form-group">
+												<textarea id="mainPoint" placeholder="Main Point" class="form-control" rows="2" ></textarea>
+									    </div>
+									  </div>
+									</div>
 							    <div id="ActionItemRows" class="row">
 										<div class="col-xs-12">
 											<div class="form-group">
@@ -209,7 +216,7 @@
 									<button type="button" class="btn btn-default">
 							  		<i class="fas fa-save grayscale"></i> Temporary
 									</button>
-							  	<button type="button" class="btn btn-default">
+							  	<button id="mtnSaveBtn" type="button" class="btn btn-default">
 							  		<i class="fas fa-save"></i> Save
 									</button>
 							  </div>
@@ -531,6 +538,68 @@ $( document ).ready(function() {
         }
       }
     });
+  });
+  
+  
+  $('#mtnSaveBtn').click(function() {
+    var url = "/meetingnote/create";
+    var data = "";
+    if ($('#toggle-event').prop('checked')){
+     	//Dialogue
+      url = url+"/dialogue";
+			data = {
+							 "meetingNoteDomain": {
+															    		"meetingNoteId" : "TEST",
+															    		"version" : "TEST",
+															    		"title": "TEST",
+															    		"projectId" : "TEST",
+															    		"divisionId" : "TEST",
+															    		"meetingTypeId" : "TEST",
+															    		"regMemberId" : "TEST",
+															    		"modMemberId" : "TEST",
+															    		"location" : "TEST",
+															    		"startTm" : "TEST",
+															    		"endTm" : "TEST",
+															    		"mainPoint" : "TEST",
+															    		"hit" : 0,
+															    		"statusId" : "TEST",
+															    		"statusDesc" : "TEST"
+														    		}
+						}
+    }else{
+      //Pain Text
+      url = url+"/plaintext";
+			data = {
+			    "meetingNoteId" : "TEST",
+	    		"version" : "TEST",
+	    		"title": "TEST",
+	    		"projectId" : "TEST",
+	    		"divisionId" : "TEST",
+	    		"meetingTypeId" : "TEST",
+	    		"regMemberId" : "TEST",
+	    		"modMemberId" : "TEST",
+	    		"location" : "TEST",
+	    		"startTm" : "TEST",
+	    		"endTm" : "TEST",
+	    		"mainPoint" : "TEST",
+	    		"hit" : 0,
+	    		"statusId" : "TEST",
+	    		"statusDesc" : "TEST"
+    		};
+    }
+    
+    $.ajax({
+			type : "POST",
+			url : url,
+			data : JSON.stringify(data),
+			contentType: "application/json",
+			success : function(data){
+			  alert("통신데이터 값 : " + data) ;
+			},
+			error : function(){
+			}
+  	});
+    
   });
    
 });
