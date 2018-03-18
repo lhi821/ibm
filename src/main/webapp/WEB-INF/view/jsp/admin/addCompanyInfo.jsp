@@ -9,29 +9,39 @@
 
 <body>
 
-	<form id="addMTCForm" action="/admin/create" method="post">
+	<form id="addMTCForm" action="/admin/createCompany" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<div class="modal fade" id="addMTCModal">
+		<div class="modal fade" id="addCompanyModal">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-body">
 					
 						<div class="form-group">
-							<label for="meetingTypeCodeName" class="cols-sm-2 control-label">Code Name</label>
+							<label for="companyNM" class="cols-sm-2 control-label">Company Name</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span> -->
-									<input type="text" class="form-control" name="meetingTypeNM" id="meetingTypeNM" size="100"/>
+									<input type="text" class="form-control" name="companyNM" id="companyNM" size="100"/>
 								</div>
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label for="meetingTypeCodeDesc" class="cols-sm-2 control-label">Code Description</label>
+							<label for="address" class="cols-sm-2 control-label">Address</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span> -->
-									<input type="text" class="form-control" name="meetingTypeDesc" id="meetingTypeDesc" size="100"/>
+									<input type="text" class="form-control" name="address" id="address" size="100"/>
+								</div>
+							</div>
+						</div>
+						
+							<div class="form-group">
+							<label for="tel" class="cols-sm-2 control-label">Tel</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span> -->
+									<input type="text" class="form-control" name="tel" id="tel" size="100"/>
 								</div>
 							</div>
 						</div>

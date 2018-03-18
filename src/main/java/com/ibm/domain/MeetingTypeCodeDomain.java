@@ -1,6 +1,6 @@
 package com.ibm.domain;
 
-public class AdminDomain {
+public class MeetingTypeCodeDomain {
 	String meetingTypeID;
 	String meetingTypeNM;
 	String meetingTypeDesc;

@@ -84,7 +84,6 @@
 
 	<!-- Modal -->
 	<jsp:include page="../admin/addMeetingTypeCode.jsp"></jsp:include>
-	
 	<jsp:include page="../admin/modifyMeetingTypeCode.jsp"></jsp:include>
 											
 </body>

@@ -28,7 +28,48 @@
 				<jsp:include page="../admin/layout/admintab.jsp"></jsp:include>
 				<br>
 				<!-- 여기가 화면 -->
-				asdf
+					<div class="col-xs-12">
+						<div class="panel panel-default">
+							<div class="panel-heading content">
+								<div class="text-left">Company Info Configuration</div>
+							</div>
+							<div class="panel-body content">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Company ID</th>
+											<th>Company Name</th>
+											<th>Address</th>
+											<th>Tel</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="item" varStatus="status"
+											items="${companyInfoList}" step="1" begin="0">
+											<tr class="cursor tableContent" data-toggle="modal" data-target="#modifyCompanyModal"
+											 		data-id="${item.companyID}" data-nm="${item.companyNM}" data-address="${item.address}"
+													data-address="${item.address}" data-tel="${item.tel}">
+												<td>${item.companyID}</td>
+												<td>${item.companyNM}</td>
+												<td>${item.address}</td>
+												<td>${item.tel}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- open new post button -->
+					<div class="row">
+						<div class="container">
+							<div class="col-xs-12 text-right">
+								<button data-toggle="modal" data-target="#addCompanyModal" type="button" class="btn btn-default">
+									<i class="fas fa-pencil-alt grayscale"></i>
+								</button>
+							</div>
+						</div>
+					</div>
 				
 				<!-- 여기가 끝 -->
 				</div>
@@ -43,6 +84,11 @@
 	</div>
 </div>
 
+	<!-- Modal -->
+	<jsp:include page="../admin/addCompanyInfo.jsp"></jsp:include>
+	<jsp:include page="../admin/modifyCompanyInfo.jsp"></jsp:include>
+	
+	
 </body>
 <!-- JS -->
 <!-- <script type="text/javascript" src="/js/board/delete.js"></script>

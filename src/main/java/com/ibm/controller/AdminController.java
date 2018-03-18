@@ -3,17 +3,15 @@ package com.ibm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ibm.domain.AdminDomain;
+import com.ibm.domain.CompanyInfoDomain;
+import com.ibm.domain.MeetingTypeCodeDomain;
 import com.ibm.service.AdminService;
 
 @Controller
@@ -23,39 +21,64 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
+	// TAB 1 [MeetingTypeCode Config] -----------------------------------
 	@GetMapping("/meetingTypeCode")
 	public ModelAndView adminConfig1() throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/meetingTypeCode");
-		List<AdminDomain> meetingTypeList = new ArrayList<>();
+		List<MeetingTypeCodeDomain> meetingTypeList = new ArrayList<>();
 		meetingTypeList = adminService.selectMeetingTypeList();
 		mv.addObject("meetingTypeList", meetingTypeList);
 		return mv;
 	}
 	
 	@PostMapping("/create")
-	public String newMeetingType(AdminDomain adminDomain) throws Exception{
-		adminService.insertMeetingType(adminDomain);
+	public String newMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain) throws Exception{
+		adminService.insertMeetingType(meetingTypeCodeDomain);
 		return "redirect:/admin/meetingTypeCode";
 	}
 
 	@PostMapping("/update")
-	public String updateMeetingType(AdminDomain adminDomain){
-		adminService.updateMeetingType(adminDomain);
+	public String updateMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain){
+		adminService.updateMeetingType(meetingTypeCodeDomain);
 		return "redirect:/admin/meetingTypeCode";
 	}
 	
 	@PostMapping("/delete")
-	public String deleteMeetingType(AdminDomain adminDomain){
-		adminService.deleteMeetingType(adminDomain.getMeetingTypeID());
+	public String deleteMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain){
+		adminService.deleteMeetingType(meetingTypeCodeDomain.getMeetingTypeID());
 		return "redirect:/admin/meetingTypeCode";
 	}
 	
+	// TAB 2 [CompanyInfo Config] -----------------------------------
 	@GetMapping("/companyInfo")
 	public ModelAndView adminConfig2() throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/companyInfo");
+		List<CompanyInfoDomain> companyInfoList = new ArrayList<>();
+		companyInfoList = adminService.selectCompanyInfoList();
+		mv.addObject("companyInfoList",companyInfoList);
 		return mv;
 	}
 	
+
+	@PostMapping("/createCompany")
+	public String newCompany(CompanyInfoDomain companyInfoDomain) throws Exception{
+		adminService.insertCompany(companyInfoDomain);
+		return "redirect:/admin/companyInfo";
+	}
+
+	@PostMapping("/updateCompany")
+	public String updateCompany(CompanyInfoDomain companyInfoDomain){
+		adminService.updateCompany(companyInfoDomain);
+		return "redirect:/admin/companyInfo";
+	}
+	
+	@PostMapping("/deleteCompany")
+	public String deleteCompany(CompanyInfoDomain companyInfoDomain){
+		adminService.deleteCompany(companyInfoDomain.getCompanyID());
+		return "redirect:/admin/companyInfo";
+	}
+	
+	// TAB 3 -----------------------------------
 	@GetMapping("/inviteMember")
 	public ModelAndView adminConfig3() throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/inviteMember");
