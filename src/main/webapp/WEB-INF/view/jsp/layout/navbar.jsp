@@ -51,7 +51,7 @@
 	    			<span class="fa-layers-counter" style="background:Tomato"></span>
 	  			</span>&nbsp;</a></li>
 				<li><a class="cursor" href="/mypage/main"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
-				<li><a class="cursor" href="/admin/config1"><i class="fas fa-cog grayscale"></i>&nbsp;</a></li>
+				<li><a class="cursor" href="/admin/meetingTypeCode"><i class="fas fa-cog grayscale"></i>&nbsp;</a></li>
 			</ul>
 			
 			<form class="navbar-form navbar-right" action="#">

@@ -23,9 +23,9 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
-	@GetMapping("/config1")
+	@GetMapping("/meetingTypeCode")
 	public ModelAndView adminConfig1() throws Exception{
-		ModelAndView mv = new ModelAndView("/admin/config1");
+		ModelAndView mv = new ModelAndView("/admin/meetingTypeCode");
 		List<AdminDomain> meetingTypeList = new ArrayList<>();
 		meetingTypeList = adminService.selectMeetingTypeList();
 		mv.addObject("meetingTypeList", meetingTypeList);
@@ -35,30 +35,30 @@ public class AdminController {
 	@PostMapping("/create")
 	public String newMeetingType(AdminDomain adminDomain) throws Exception{
 		adminService.insertMeetingType(adminDomain);
-		return "redirect:/admin/config1";
+		return "redirect:/admin/meetingTypeCode";
 	}
 
 	@PostMapping("/update")
 	public String updateMeetingType(AdminDomain adminDomain){
 		adminService.updateMeetingType(adminDomain);
-		return "redirect:/admin/config1";
+		return "redirect:/admin/meetingTypeCode";
 	}
 	
 	@PostMapping("/delete")
 	public String deleteMeetingType(AdminDomain adminDomain){
 		adminService.deleteMeetingType(adminDomain.getMeetingTypeID());
-		return "redirect:/admin/config1";
+		return "redirect:/admin/meetingTypeCode";
 	}
 	
-	@GetMapping("/config2")
+	@GetMapping("/companyInfo")
 	public ModelAndView adminConfig2() throws Exception{
-		ModelAndView mv = new ModelAndView("/admin/config2");
+		ModelAndView mv = new ModelAndView("/admin/companyInfo");
 		return mv;
 	}
 	
-	@GetMapping("/config3")
+	@GetMapping("/inviteMember")
 	public ModelAndView adminConfig3() throws Exception{
-		ModelAndView mv = new ModelAndView("/admin/config3");
+		ModelAndView mv = new ModelAndView("/admin/inviteMember");
 		return mv;
 	}
 	
