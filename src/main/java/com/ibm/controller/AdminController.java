@@ -3,17 +3,17 @@ package com.ibm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.domain.AdminDomain;
-import com.ibm.domain.BoardDomain;
 import com.ibm.service.AdminService;
 
 @Controller
@@ -37,12 +37,18 @@ public class AdminController {
 		adminService.insertMeetingType(adminDomain);
 		return "redirect:/admin/config1";
 	}
+
+	@PostMapping("/update")
+	public String updateMeetingType(AdminDomain adminDomain){
+		adminService.updateMeetingType(adminDomain);
+		return "redirect:/admin/config1";
+	}
 	
-//	@PostMapping("/delete")
-//	public String deleteMeetingType(AdminDomain adminDomain){
-//		adminService.deleteMeetingType(adminDomain.getMeetingTypeID());
-//		return "redirect:/admin/config1";
-//	}
+	@PostMapping("/delete")
+	public String deleteMeetingType(AdminDomain adminDomain){
+		adminService.deleteMeetingType(adminDomain.getMeetingTypeID());
+		return "redirect:/admin/config1";
+	}
 	
 	@GetMapping("/config2")
 	public ModelAndView adminConfig2() throws Exception{

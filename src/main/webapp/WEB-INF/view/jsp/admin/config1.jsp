@@ -47,8 +47,8 @@
 									<tbody>
 										<c:forEach var="item" varStatus="status"
 											items="${meetingTypeList}" step="1" begin="0">
-											<tr id="${item.meetingTypeID}" class="cursor tableContent" data-toggle="modal" data-target="#modifyMTCModal">
-											<!-- data-id="item.meetingTypeID" -->
+											<tr class="cursor tableContent" data-toggle="modal" data-target="#modifyMTCModal"
+											 data-id="${item.meetingTypeID}" data-nm="${item.meetingTypeNM}" data-desc="${item.meetingTypeDesc}">
 												<td>${item.meetingTypeID}</td>
 												<td>${item.meetingTypeNM}</td>
 												<td>${item.meetingTypeDesc}</td>
@@ -84,7 +84,9 @@
 
 	<!-- Modal -->
 	<jsp:include page="../admin/addMeetingTypeCode.jsp"></jsp:include>
+	
 	<jsp:include page="../admin/modifyMeetingTypeCode.jsp"></jsp:include>
+											
 </body>
 <!-- JS -->
 <!-- <script type="text/javascript" src="/js/board/delete.js"></script>

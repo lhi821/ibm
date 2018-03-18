@@ -9,12 +9,18 @@
 
 <body>
 
-	<form id="modifyMTCForm" action="/admin/create" method="post">
+	<form id="modifyMTCForm" action="" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="modal fade" id="modifyMTCModal">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-body">
+					
+					<div class="form-group">
+						<div class="input-group">
+						  <input type="hidden" class="form-control" name="meetingTypeID" id="meetingTypeID" size="100" />
+						</div>
+					</div>
 					
 						<div class="form-group">
 							<label for="meetingTypeCodeName" class="cols-sm-2 control-label">Code Name</label>
@@ -38,18 +44,40 @@
 						</div>
 
 						<div class="form-group">
-							<button type="submit" value="Save" class="btn btn-lg btn-block login-button">Submit </button>
+							<button id="mtUpdateBtn" type="submit" name="submit" value="submit" class="btn btn-lg btn-block login-button">Submit</button>
 						</div>
 						<div class="form-group">
-							<button type="submit" value="Save" class="btn btn-lg btn-block login-button">Delete </button>
+							<button id="mtDeleteBtn" type="submit" name="delete" value="delete" class="btn btn-lg btn-block login-button">Delete</button>
 						</div>
-						<!-- Icon으로 바꿔야됨 -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
-
-
 </body>
+<script>
+
+//Getting data from config1.jsp
+$('#modifyMTCModal').on('show.bs.modal', function(e){
+	var meetingTypeID = $(e.relatedTarget).data('id');
+	var meetingTypeNM = $(e.relatedTarget).data('nm');
+	var meetingTypeDesc = $(e.relatedTarget).data('desc');
+	$(e.currentTarget).find('input[name="meetingTypeID"]').val(meetingTypeID);
+	$(e.currentTarget).find('input[name="meetingTypeNM"]').val(meetingTypeNM);
+	$(e.currentTarget).find('input[name="meetingTypeDesc"]').val(meetingTypeDesc);
+});
+
+$(document).ready(function() {
+	//삭제
+	$("#mtDeleteBtn").click(function(){
+		$("#modifyMTCForm").attr("action", "/admin/delete").submit();
+	});
+	
+	//수정
+	$("#mtUpdateBtn").click(function(){
+		$("#modifyMTCForm").attr("action", "/admin/update").submit();
+	});
+});
+
+</script>
 </html>
