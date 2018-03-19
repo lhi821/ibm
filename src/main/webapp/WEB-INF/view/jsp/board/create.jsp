@@ -40,8 +40,9 @@
 									  <div class="col-xs-2">
 									    <div class="form-group">
 									      <select class="selectpicker form-control" data-live-search="true" title="<i class='fas fa-tags grayscale input-icon'></i>Type">
-									        <option title="<i class='fas fa-tag grayscale input-icon'></i>Meeting">Meeting</option>
-									        <option title="<i class='fas fa-tag grayscale input-icon'></i>InterVeiw">InterView</option>
+									      	<c:forEach items="${meetingTypes}" var="meetingType">
+									        	<option title="<i class='fas fa-tag grayscale input-icon'></i>${meetingType.meetingTypeNM}">${meetingType.meetingTypeNM}</option>
+									        </c:forEach>
 									      </select>
 									    </div>
 									  </div>

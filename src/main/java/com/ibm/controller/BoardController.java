@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.domain.BoardDomain;
+import com.ibm.domain.MeetingTypeCodeDomain;
+import com.ibm.service.AdminService;
 import com.ibm.service.BoardService;
-import com.ibm.service.NlpService;
 
 @Controller
 @RequestMapping("/board")
@@ -25,6 +26,8 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	AdminService adminService;
 	
 	@GetMapping("/index")
 	public ModelAndView board(@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
@@ -45,6 +48,8 @@ public class BoardController {
 															@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
 															@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/create");
+		List<MeetingTypeCodeDomain> meetingTypeCodeDomain = adminService.selectMeetingTypeList();
+		mv.addObject("meetingTypes", meetingTypeCodeDomain);
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
