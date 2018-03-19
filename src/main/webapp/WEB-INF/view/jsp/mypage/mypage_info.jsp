@@ -140,8 +140,101 @@
 				</ul>
 				
 				<!-- mypage tab 전환 -->
-				<div id="contentsDiv">
-					정보수정해야함 
+				<div id="contentsDiv" style="padding-top: 20px;">
+					<h4 class="text-info">You can edit your personal information.</h4>
+					<br/>
+					<div class="form-group">
+							<label for="MemberName" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa"></i></span>
+									<input type="text" class="form-control" name="MemberName" id="MemberName" readonly/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Company</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-building"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm" readonly/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Department</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-archive"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Position</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-users"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="phoneNumber" class="cols-sm-2 control-label">Phone Number</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-phone fa"></i></span>
+									<input type="text" class="form-control" name="phoneNumber" id="phoneNumber"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="emailAddr" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa"></i></span>
+									<input type="text" class="form-control" name="emailAddr" id="emailAddr"/>
+								</div>
+							</div>
+						</div>
+
+					
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
+									<input type="password" class="form-control" name="password" id="password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm"/>
+								</div>
+							</div>
+						</div>
+						
+						   <div class="form-group">
+          						<div class="col-sm-12 text-center">
+            						<button class="btn btn-info" type="submit"> 정보 수정 <i class="fa fa-check spaceLeft"></i></button>
+            						<button class="btn btn-danger" type="submit">취소 <i class="fa fa-times spaceLeft"></i></button>
+						         </div>
+						   </div>
+
+						<!-- <div class="form-group ">
+							<button type="submit" class="btn btn-lg btn-block login-button">Join</button>
+						</div>  -->
 				</div>
 				<!-- 여기가 끝 -->
 				</div>
