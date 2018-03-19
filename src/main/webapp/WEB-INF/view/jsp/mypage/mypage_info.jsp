@@ -134,7 +134,7 @@
 					<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>	
 				-->
 				<ul class="nav nav-tabs">
-					<li><a href="/mypage/calendar"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
+					<li><a href="/mypage/main"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
 					<li><a href="/mypage/history"><span class="glyphicon glyphicon-time"></span> History</a></li>
 					<li class="active"><a href="/mypage/info"><span class="glyphicon glyphicon-refresh"></span> Information</a></li>
 				</ul>
