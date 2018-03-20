@@ -19,7 +19,31 @@ public class MeetingNoteDomain {
 	String statusDesc;
 	String regDate;
 	String modDate;
+
+	//for integSearch	
+	String contents;
+	String inputVal;
+	String category;
 	
+	public String getInputVal() {
+		return inputVal;
+	}
+	public void setInputVal(String inputVal) {
+		this.inputVal = inputVal;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+		
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
 	public String getMeetingNoteId() {
 		return meetingNoteId;
 	}

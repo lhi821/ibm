@@ -12,6 +12,8 @@
 
 </head>
 <body>
+
+
   <!-- Navbar -->
   <jsp:include page="../layout/navbar.jsp"></jsp:include>
   
@@ -36,22 +38,22 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <c:forEach var="item" varStatus="status" items="${boardList}" step="1" begin="0">
-                    <tr id="${item.id}" class="cursor tableContent">
-                      <td>${item.id}</td>
+                  <c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
+                    <tr id="${item.meetingNoteId}" class="cursor tableContent">
+                     
                       <td>${item.title}</td>
                       <td>${item.contents}</td>
-                      <td>@${item.author}</td>
-                      <td>${item.mod_date}</td>
+                      <td>@${item.regMemberId}</td>
+                      <td>${item.modDate}</td>
                     </tr>
                   </c:forEach>
                   </tbody>
                 </table>
               </c:when>
               <c:otherwise>
-                <c:forEach var="item" varStatus="status" items="${boardList}" step="1" begin="0">
+                <c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
                   <div class="col-lg-3 col-md-4 col-xs-6"> 
-                    <div id="${item.id}" class="panel panel-default box">
+                    <div id="${item.meetingNoteId}" class="panel panel-default box">
                     	<div class="ribbon content"><span>Meeting</span></div> 
                       <div class="panel-heading content">
                         <div class="text-left small">${item.title}</div>
@@ -62,15 +64,14 @@
                       <div class="panel-footer">
                         <div class="row small">
                           <div class="col-xs-4 text-left small">
-                            <i class="fas fa-user-circle grayscale"></i>${item.author} test
-                          </div>
+                            <i class="fas fa-user-circle grayscale"></i>${item.regMemberId}</div>
                           <div class="col-xs-8 text-right small">
                             <c:choose>
-                              <c:when test="${item.mod_date eq item.reg_date}">
-                                <i class="far fa-clock grayscale"></i> ${item.reg_date}
+                              <c:when test="${item.modDate eq item.regDate}">
+                                <i class="far fa-clock grayscale"></i> ${item.regDate}
                               </c:when>
                               <c:otherwise>
-                                <i class="fas fa-clock grayscale"></i> ${item.mod_date}
+                                <i class="fas fa-clock grayscale"></i> ${item.modDate}
                               </c:otherwise>
                             </c:choose>
                           </div>
