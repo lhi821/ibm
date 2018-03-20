@@ -16,6 +16,14 @@
 	
 	<meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
+	<script>
+	$(document).ready(function() {
+		  $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
+		  $('[data-toggle="datepicker"]').change(function() { 
+			  $('[data-toggle="datepicker"]').datepicker('hide');
+		  });
+	});
+	</script>
 </head>
 <body>
 <input type="hidden" id="veiwType" name="veiwType" value="${veiwType}">
@@ -53,17 +61,28 @@
 				<li><a class="cursor" href="/mypage/main"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
 				<li><a class="cursor" href="/admin/meetingTypeCode"><i class="fas fa-cog grayscale"></i>&nbsp;</a></li>
 			</ul>
-			
-			<form class="navbar-form navbar-right" action="#">
-	     	<div class="input-group stylish-input-group">
-					<input type="text" class="form-control"  placeholder="Search" >
+			<!-- 통합검색 -->
+			<form class="navbar-form navbar-right" action="//board">
+		     	<select class="form-control"> 
+		     			<option>전체</option> 
+		     			<option>제목</option> 
+		     			<option>내용</option> 
+		     			<option>작성자</option> 
+		     	</select>
+		     	<div class="input-group stylish-input-group">
+					<input type="text" class="form-control" placeholder="Search">	
 					<span class="input-group-addon">
-				    <button type="submit">
-			        <i class="fas fa-search grayscale"></i>
-				    </button>  
+						<!-- <i class="far fa-calendar-alt grayscale"></i> -->
+						<button type="submit">
+					        <i class="fas fa-search grayscale"></i>
+						</button> 
 					</span>
-	      </div>
-    	</form>
+		      	</div>
+		      	<div class="input-group stylish-input-group-left">
+						<div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale"></i></div>
+				    <input class="form-control cursor left-padding" readonly data-toggle="datepicker" placeholder="Date">
+				  </div>
+	    	</form>
     	
 		</div>
 	</nav>
