@@ -9,12 +9,11 @@
 
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/css/board/index.css">
-
+	
 </head>
 <body>
-
   <!-- Navbar -->
-  <jsp:include page="../layout/navbar.jsp"></jsp:include>
+  <jsp:include page="../member/navbar.jsp"></jsp:include>
   
   <!-- sidebar -->
   <jsp:include page="../layout/sidebar.jsp"></jsp:include>
@@ -37,25 +36,22 @@
                     </tr>
                   </thead>
                   <tbody>
-
-                  <c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
-                    <tr id="${item.meetingNoteId}" class="cursor tableContent">
-                     
+                  <c:forEach var="item" varStatus="status" items="${boardList}" step="1" begin="0">
+                    <tr id="${item.id}" class="cursor tableContent">
+                      <td>${item.id}</td>
                       <td>${item.title}</td>
                       <td>${item.contents}</td>
-                      <td>@${item.regMemberId}</td>
-                      <td>${item.modDate}</td>
+                      <td>@${item.author}</td>
+                      <td>${item.mod_date}</td>
                     </tr>
                   </c:forEach>
                   </tbody>
                 </table>
               </c:when>
               <c:otherwise>
-
-                <c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
-                  <div class="col-lg-3 col-md-4 col-xs-6"> 
-                    <div id="${item.meetingNoteId}" class="panel panel-default box">
-                    	<div class="ribbon content"><span>Meeting</span></div> 
+                <c:forEach var="item" varStatus="status" items="${boardList}" step="1" begin="0">
+                  <div class="col-lg-3 col-md-4 col-xs-6">        
+                    <div id="${item.id}" class="panel panel-default">
                       <div class="panel-heading content">
                         <div class="text-left small">${item.title}</div>
                       </div>
@@ -65,16 +61,15 @@
                       <div class="panel-footer">
                         <div class="row small">
                           <div class="col-xs-4 text-left small">
-
-                            <i class="fas fa-user-circle grayscale"></i>${item.regMemberId}</div>
+                            <i class="fas fa-user-circle grayscale"></i>${item.author} test
+                          </div>
                           <div class="col-xs-8 text-right small">
                             <c:choose>
-                              <c:when test="${item.modDate eq item.regDate}">
-                                <i class="far fa-clock grayscale"></i> ${item.regDate}
+                              <c:when test="${item.mod_date eq item.reg_date}">
+                                <i class="far fa-clock grayscale"></i> ${item.reg_date}
                               </c:when>
                               <c:otherwise>
-                                <i class="fas fa-clock grayscale"></i> ${item.modDate}
-
+                                <i class="fas fa-clock grayscale"></i> ${item.mod_date}
                               </c:otherwise>
                             </c:choose>
                           </div>

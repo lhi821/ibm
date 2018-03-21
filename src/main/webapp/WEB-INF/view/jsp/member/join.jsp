@@ -5,78 +5,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="/css/member/join.css">
 </head>
 <body>
 
 	<!-- join form -->
-	<form id="newJoinForm" action="/member/create" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<!-- new post Modal -->
-		<div class="modal fade" id="newJoinModal" role="dialog">
-		  <div class="modal-dialog modal-sm">
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-body">
-		      
-						<div class="form-group">
-							<label for="MemberName" class="cols-sm-2 control-label">Your Name</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa"></i></span>
-									<input type="text" class="form-control" name="MemberName" id="MemberName"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="emailAddr" class="cols-sm-2 control-label">Your Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa"></i></span>
-									<input type="text" class="form-control" name="emailAddr" id="emailAddr"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="phoneNumber" class="cols-sm-2 control-label">Phone Number</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-phone fa"></i></span>
-									<input type="text" class="form-control" name="phoneNumber" id="phoneNumber"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
-									<input type="password" class="form-control" name="password" id="password"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"/>
-								</div>
-							</div>
-						</div>
-
+		<div class="container modal fade" id="newJoinModal" >
+		   <div class="card card-container">
+            <form id="newJoinModal" class="form-join" method="post" action="/member/join" method="post">
+                
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required>
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+ 				<input type="password" id="inputPassword" name="inputComfirmPassword" class="form-control" placeholder="Confirm Password" required>
+                <input type="text" id="inputMemberNm" name="inputMemberNm" class="form-control" placeholder="Name" required autofocus>
+                <input type="text" id="inputCompany" name="inputCompany" class="form-control" placeholder="Company" required>
+                <input type="text" id="inputDept" name="inputDept" class="form-control" placeholder="Department" required>
+                <input type="text" id="inputJobs" name="inputJobs" class="form-control" placeholder="Role" required>
+                <input type="text" id="inputPhone" name="inputPhone" class="form-control" placeholder="Phone Number" required>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                
 						<div class="form-group ">
-							<button type="submit" class="btn btn-lg btn-block login-button">Join</button>
+							<button type="submit" class="btn btn-lg btn-block Join-button">Join</button>
 						</div>
-		      </div>
-
-		    </div>
-		  </div>
-		</div>
-	</form>
+		   
+            </form><!-- /form -->
+            </div>
+            </div>
 
 </body>
 </html>

@@ -11,58 +11,94 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 public class MemberDomain {
 	
-	@Id
-	@GeneratedValue
-	private int memberNo;
+	@Column(nullable = false, unique = true, length=100)
+	private String memberid;
 	
-	@Column(nullable = false, length=10)
-	private String memberName;
+	@Column(nullable = false, length=100)
+	private String membernm;
 	
-	@Column(nullable = false, unique = true, length=50)
-	private String phoneNumber;
+	@Column(nullable = true, length=100)
+	private String companyid;
 	
-	@Column(nullable = false, unique = true, length=50)
-	private String emailAddr;
+	@Column(nullable = true, length=50)
+	private String dept;
 	
-	@Column(nullable = false, length=50)
+	@Column(nullable = true, length=50)
+	private String jobs;
+	
+	@Column(nullable = true, length=100)
+	private String phone;
+	
+	@Column(nullable = true, length=100)
+	private String email;
+	
+	@Column(nullable = true, length=100)
 	private String password;
 	
+	@Column(nullable = false, length=1)
+	private String joinyn;
+	
 	@CreationTimestamp
-	private Date regDate;
+	private Date regdt;
 	
 	@UpdateTimestamp
-	private Date modDate;
+	private Date moddt;
 
-	public int getMemberNo() {
-		return memberNo;
+	
+	public String getMemberid() {
+		return memberid;
 	}
 
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
 	}
 
-	public String getMemberName() {
-		return memberName;
+	public String getMembernm() {
+		return membernm;
 	}
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public void setMembernm(String membernm) {
+		this.membernm = membernm;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getCompanyid() {
+		return companyid;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setCompanyid(String companyid) {
+		this.companyid = companyid;
 	}
 
-	public String getEmailAddr() {
-		return emailAddr;
+	public String getDept() {
+		return dept;
 	}
 
-	public void setEmailAddr(String emailAddr) {
-		this.emailAddr = emailAddr;
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
+	public String getJobs() {
+		return jobs;
+	}
+
+	public void setJobs(String jobs) {
+		this.jobs = jobs;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -73,20 +109,29 @@ public class MemberDomain {
 		this.password = password;
 	}
 
-	public Date getRegDate() {
-		return regDate;
+	public String getJoinyn() {
+		return joinyn;
 	}
 
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+	public void setJoinyn(String joinyn) {
+		this.joinyn = joinyn;
 	}
 
-	public Date getModDate() {
-		return modDate;
+	public Date getRegdt() {
+		return regdt;
 	}
 
-	public void setModDate(Date modDate) {
-		this.modDate = modDate;
+	public void setRegdt(Date regdt) {
+		this.regdt = regdt;
 	}
+
+	public Date getModdt() {
+		return moddt;
+	}
+
+	public void setModdt(Date moddt) {
+		this.moddt = moddt;
+	}
+
 
 }

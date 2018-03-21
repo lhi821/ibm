@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<!-- JS -->
 	<script src="/js/navbar/navbar.js"></script>
+
 	<!-- 호환성보기 방지 -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
@@ -32,6 +33,7 @@
 	</script>
 </head>
 <body>
+
 <input type="hidden" id="veiwType" name="veiwType" value="${veiwType}">
 	<!-- navbar -->
 	<nav class="navbar navbar-default custom-nav">
@@ -52,6 +54,7 @@
 				</c:choose>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+
 	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
 				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
 				<li><a class="cursor">  
@@ -100,6 +103,7 @@
 	<!-- Modal -->
 	<jsp:include page="../member/join.jsp"></jsp:include>
 	<jsp:include page="../member/login.jsp"></jsp:include>
+
 	
 	<!-- Loader -->
 	<div id="loaderBox">
@@ -129,4 +133,5 @@ $( document ).ajaxComplete(function() {
   $("#loaderBox").hide();
 });
 </script>
+
 </html>

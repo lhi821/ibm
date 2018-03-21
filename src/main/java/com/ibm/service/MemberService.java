@@ -15,4 +15,8 @@ public interface MemberService {
 	
 	public MemberDomain selectMemberByEmail(String emailAddr);
 	
+//	public MemberDomain login(MemberDomain memberDomain);
+
+	public MemberDomain login(String email,String password);
+	
 }

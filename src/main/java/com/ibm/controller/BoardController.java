@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,26 +16,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.domain.BoardDomain;
-import com.ibm.domain.MeetingTypeCodeDomain;
-import com.ibm.service.AdminService;
 import com.ibm.service.BoardService;
 
 @Controller
+@SessionAttributes("id")
 @RequestMapping("/board")
 public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
-	@Autowired
-	AdminService adminService;
-	
+
 	@GetMapping("/index")
 	public ModelAndView board(@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
 														@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
-														@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
+														@RequestParam(value="subMenu", required=false) String subMenu,
+														HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/index");
 		List<BoardDomain> resultList = new ArrayList<>();
 		resultList = boardService.selectBoardList();
@@ -40,7 +42,15 @@ public class BoardController {
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
-				return mv;
+		
+		// get session
+		HttpSession session = request.getSession();
+		if(session.getAttribute("id")==null) {
+			session.invalidate();
+			return new ModelAndView("redirect:/member/index");
+		}
+		
+		return mv;
 	}
 
 	@GetMapping("/new")
@@ -48,8 +58,6 @@ public class BoardController {
 															@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
 															@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/create");
-		List<MeetingTypeCodeDomain> meetingTypeCodeDomain = adminService.selectMeetingTypeList();
-		mv.addObject("meetingTypes", meetingTypeCodeDomain);
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
