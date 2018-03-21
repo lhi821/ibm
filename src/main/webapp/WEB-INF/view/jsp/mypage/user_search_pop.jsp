@@ -24,7 +24,7 @@
 					     	</div>
 					     	<div class="col-xs-10 padding-left-small">
 		       				<div class="input-group stylish-input-group">
-										<input type="text" class="form-control" placeholder="Name, Email or Phone">
+										<input type="text" class="form-control" placeholder="Name, Email, Phone or Team">
 										<div class="input-group-addon cursor"><i class="fas fa-search grayscale"></i></div>
 						      </div>
 					      </div>
