@@ -4,6 +4,8 @@
 
 $(document).ready(function(){
 
+	$('#loginModal').modal({backdrop: 'static'});
+	 
   $('#galleryVeiw').click(function() { 
     $("#veiwType").val("G");
     $(location).attr('href','/board/index?veiwType=G&sideBar='+$("#sideBar").val()+'&subMenu='+checkSubmenu());

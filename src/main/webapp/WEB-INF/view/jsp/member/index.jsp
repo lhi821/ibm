@@ -13,7 +13,7 @@
 </head>
 <body>
   <!-- Navbar -->
-  <jsp:include page="../layout/navbar.jsp"></jsp:include>
+  <jsp:include page="../member/navbar.jsp"></jsp:include>
   
   <!-- sidebar -->
   <jsp:include page="../layout/sidebar.jsp"></jsp:include>

@@ -2,6 +2,7 @@ package com.ibm.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.ibm.domain.MemberDomain;
@@ -19,4 +20,11 @@ public interface MemberMapper {
 	@Select("SELECT * FROM MEMBER WHERE emailAddr = #{emailAddr}")
 	public MemberDomain selectMemberByEmail(String emailAddr);
 
+	@Select("SELECT * FROM MEMBER WHERE EMAIL = #{email} AND JOINYN = 'Y'")
+	public MemberDomain login(@Param("email") String email, @Param("password") String password);
+
+	@Insert("INSERT INTO MEMBER (memberid, membernm, companyid, dept, jobs, phone, email, password, joinyn, regdt, moddt)"
+			+ "VALUES (#{memberid}, #{membernm}, #{companyid}, #{dept}, #{jobs}, #{phone}, #{email}, #{password}, #{joinyn}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)")
+	public void createMember(MemberDomain memberDomain);
+	
 }

@@ -10,7 +10,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<!-- JS -->
-	<script src="/js/navbar/navbar.js"></script>
+	<script src="/js/member/navbar.js"></script>
 
 </head>
 <body>
@@ -35,7 +35,7 @@
 				</c:choose>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="cursor" href="/member/logout">Logout</a></li>
+	  			<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
 				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
 				<li><a class="cursor"><i class="far fa-bell grayscale"></i>&nbsp;</a></li>
 				<li><a class="cursor" href="/member/mypage"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
