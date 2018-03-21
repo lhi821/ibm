@@ -13,139 +13,102 @@
 	<div class="modal fade" id="userSearchPop" role="dialog">
   		<div class="modal-dialog modal-lg" role="document">
     		<div class="modal-content">
-      			<div class="modal-header" style="">
-       				<h4 class="modal-title" id="">사용자 검색</h4>
+      			<div class="modal-header">
+      				<h4 class="margin-top-none grayscale">Search User</h4>
+							<div class="row">
+							  <div class="col-xs-2 padding-right-small">
+								  	<select class="selectpicker form-control" title="<i class='fas fa-folder grayscale input-icon'></i>Project">
+							     			<option title="<i class='fas fa-folder-open grayscale input-icon'></i>ALL">ALL</option> 
+							     			<option title="<i class='fas fa-folder-open grayscale input-icon'></i>SLT">SLT</option> 
+							     	</select>
+					     	</div>
+					     	<div class="col-xs-10 padding-left-small">
+		       				<div class="input-group stylish-input-group">
+										<input type="text" class="form-control" placeholder="Name, Email, Phone or Team">
+										<div class="input-group-addon cursor"><i class="fas fa-search grayscale"></i></div>
+						      </div>
+					      </div>
+				      </div>
       			</div>
-	     		 <div class="modal-body">
-	        		<div class="userSearch"> <!--  class="userSearch popupSearch" -->
-	        			<div class="container-fluid">
-	        				<div class="row">
-								<div class="col-xs-3 form-inline">
-									<label for="inputdefault">회사</label>
-									<select class="selectpicker" id="cmpyOpt" name="cmpyOpt" data-width="150px"><!-- onChange="return false;" -->
-										<option value="all">전체</option>
-										<option>한화</option> 
-										<option>아모레</option> 
-										<option>현대제철</option> 
-										<option>신한</option> 
-										<option>ABL</option>
-									</select>
+      			
+						<div class="modal-body">
+							<div class="row small-bottom">
+								<div class="col-xs-6 text-right">
+									<div class="btn-group">
+										<button class="btn btn-default btn-xs"><i class="fas fa-angle-right grayscale"></i></button>
+										<button class="btn btn-default btn-xs"><i class="fas fa-angle-double-right grayscale"></i></button>
+									</div>
 								</div>
-								<div class="col-xs-3 form-inline">
-									<label for="inputdefault">직위</label>
-				        			<select class="selectpicker" id="officeOpt" name="officeOpt" data-width="150px"><!-- onChange="return false;" -->
-										<option value="all">전체</option>
-										<option>사원</option> 
-										<option>과장</option> 
-										<option>부장</option>
-										<option>실장</option>  
-										<option></option> 
-									</select>
+								<div class="col-xs-6 text-right">
+									<div class="btn-group">
+										<button class="btn btn-default btn-xs"><i class="fas fa-angle-left grayscale"></i></button>
+										<button class="btn btn-default btn-xs"><i class="fas fa-angle-double-left grayscale"></i></button>
+									</div>
 								</div>
-								<div class="col-xs-4 form-inline">
-									<label for="inputdefault">이름</label>
-									<input type="text" class="form-control" id="userName" name="userName" data-width="100px"><!-- onChange="return false;" -->
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="panel panel-default small-bottom small panel-min-height">
+									  <div class="panel-body small">
+									  	<table class="table table-hover table-sm small-bottom padding-none">
+											  <thead>
+											    <tr>
+											      <th scope="col" style="width: 25%">Name</th>
+											      <th scope="col" style="width: 40%">Email</th>
+											      <th scope="col" style="width: 25%">Phone</th>
+											      <th scope="col" style="width: 10%">JOBS</th>
+											    </tr>
+											  </thead>
+											  <tbody class="cursor">
+											    <tr>
+											      <td>이훈일</td>
+											      <td>hooooonil@gmail.com</td>
+											      <td>010-7753-5038</td>
+											      <td>사원</td>
+											    </tr>
+											  </tbody>
+											</table>
+									  </div>
+									</div>
 								</div>
-								<div class="col-xs-2 form-inline" >
-									<button class="btn btn-primary">검색</button><!--  onClick="userSearch()" -->
+								<div class="col-xs-6">
+									<div class="panel panel-default small-bottom small panel-min-height">
+									  <div class="panel-body small">
+									  	<table class="table table-hover table-sm small-bottom padding-none">
+											  <thead>
+											    <tr>
+										        <th scope="col" style="width: 25%">Name</th>
+											      <th scope="col" style="width: 40%">Email</th>
+											      <th scope="col" style="width: 25%">Phone</th>
+											      <th scope="col" style="width: 10%">JOBS</th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											    <!-- <tr>
+											      <td>Lee Hun Il</td>
+											      <td>hooooonil@gmail.com</td>
+											      <td>010-7753-5038</td>
+											    </tr> -->
+											  </tbody>
+											</table>
+									  </div>
+									</div>
 								</div>
-	        				</div> 
-	        		</div>
-	        	</div>
-		        
-		        <hr />
-	        	 
-        		<div class="userSearchResult">
-        			<div class="container-fluid" style="padding-bottom: 20px;">
-        				<div class="row-fluid">
-    						<div class="col-xs-5" style="height:300px; border:2px solid grey; overflow:auto;">
-    							<!-- TODO 총 몇 명인지 체크한 사람 수 && 전체 선택 
-    							<div class="selectText">
-									<p>총 <b><span id="selectedNum">0</span>명</b>이 대상자로 지정되었습니다.</p>
-										<input type="checkbox" id="rightSelectAll"/><label for="rightSelectAll">전체</label>
-								</div>  
-    							<ul class="list-group">
-								
-								</ul>
-								-->
-								<!-- TODO 그냥 테이블 row 클릭해도 체크박스 클릭 -->
-      							<table class="table table-hover table-fixed"> <!-- table-striped -->
-    								<thead>
-      									<tr>
-      										<th></th>
-        									<th style="text-align:center;">회사</th>
-									        <th style="text-align:center;">직위</th>
-									        <th style="text-align:center;">이름</th>
-      									</tr>
-    								</thead>
-    								<tbody>
-									      <tr>
-									        <td><input type="checkbox"></td>
-									        <td>John</td>
-									        <td>Doe</td>
-									        <td>john@example.com</td>
-									      </tr>
-									      <tr>
-									      	<td><input type="checkbox"></td>
-									        <td>Mary</td>
-									        <td>Moe</td>
-									        <td>mary@example.com</td>
-									      </tr>
-									      <tr>
-									      	<td><input type="checkbox"></td>
-									        <td>July</td>
-									        <td>Dooley</td>
-									        <td>july@example.com</td>
-									      </tr>
-									      <tr>
-									      	<td><input type="checkbox"></td>
-									        <td>July</td>
-									        <td>Dooley</td>
-									        <td>july@example.com</td>
-									      </tr>
-									      <tr>
-									      	<td><input type="checkbox"></td>
-									        <td>July</td>
-									        <td>Dooley</td>
-									        <td>july@example.com</td>
-									      </tr>
-									      <tr>
-									      	<td><input type="checkbox"></td>
-									        <td>July</td>
-									        <td>Dooley</td>
-									        <td>july@example.com</td>
-									      </tr>
-									      <tr>
-									      	<td><input type="checkbox"></td>
-									        <td>July</td>
-									        <td>Dooley</td>
-									        <td>july@example.com</td>
-									      </tr>
-									    </tbody>
-									  </table>
-    						</div>
-    						<div class="col-xs-2" style="padding-top: 100px;">
-    							<button type="button" class="btn btn-default btn-block" id="moveRight" name="moveRight" onClick="moveToRight()">&gt;</button>
-								<button type="button" class="btn btn-default btn-block" id="moveLeft" name="moveLieft" onClick="moveToLeft()">&lt;</button>
-    						</div>
-   							 <div class="col-xs-5" style="height:300px; border:2px solid grey;">
-   							 	<ul class="list-group">
-								  
-								</ul>
-						      
-						   	 </div>
-  						</div>
-					</div>
-       			</div>
-	        		
-	        	
-
-	      		<div class="modal-footer" style="text-align: center;">
-	        		<button type="button" class="btn btn-default">적용</button>
-	        		<button type="button" class="btn btn-danger">취소</button>
-	     		</div>
+							</div>
+						</div>
+					
+						<div class="modal-footer">
+							<div class="text-right">
+								<button id="closeUserModal" type="button" class="btn btn-default btn-sm">
+									<i class="fas fa-ban grayscale"></i> Cancle
+								</button>
+								<button id="applyUserModal" type="button" class="btn btn-sm">
+									<i class="fas fa-check-circle grayscale"></i> Apply
+								</button>
+							</div>
+						</div>
     		</div>
+		</div>
 	</div>
-</div>
 </body>
 </html>

@@ -89,6 +89,65 @@
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 			<version>2.11.0</version>
+
+		<!-- 통합 인터페이스의 정의가 등재된 중심 묶음입니다. -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-core_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+		<!-- 한나눔 분석기 패키지입니다. -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-hannanum_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+		<!-- 꼬꼬마 분석기 패키지입니다. -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-kkma_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+		<!-- 트위터(OpenKoreanText) 분석기 패키지입니다.  -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-twitter_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+		<!-- 은전한닢 분석기 패키지입니다. -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-eunjeon_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+		<!-- 아리랑 분석기 패키지입니다. -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-arirang_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+		<!-- RHINO 분석기 패키지입니다. -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-rhino_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+		<!-- Kryo Serialization을 지원하기 위한 패키지입니다. -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-kryo_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+		<!-- HTTP 서비스 구성을 위한 패키지입니다. -->
+		<dependency>
+		  <groupId>kr.bydelta</groupId>
+		  <artifactId>koalanlp-server_2.12</artifactId>
+		  <version>1.9.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-neo4j</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -29,3 +29,16 @@
 	<!-- Bootstrap toggle -->
 	<link href="/lib/toggle/bootstrap-toggle.min.css" rel="stylesheet">
 	<script src="/lib/toggle/bootstrap-toggle.min.js"></script>
+	
+	<!-- full calendar -->
+	<link href='/lib/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+	<link href='/lib/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+	<link href='/lib/scheduler/scheduler.css' rel='stylesheet' /> 
+	<script type="text/javascript" src="/lib/fullcalendar/lib/moment.min.js"></script>
+	<script type="text/javascript" src="/lib/fullcalendar/fullcalendar.min.js"></script>
+	<script type="text/javascript" src="/lib/scheduler/scheduler.js"></script>
+	<script type="text/javascript" src="/lib/fullcalendar/locale-all.js"></script>
+	<script type="text/javascript" src="/lib/fullcalendar/gcal.js"></script>
+		
+	<!-- autosize -->
+	<script src="/lib/autosize/autosize.min.js"></script>
