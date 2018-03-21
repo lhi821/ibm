@@ -72,31 +72,32 @@
 				<li><a class="cursor" href="/mypage/main"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
 				<li><a class="cursor" href="/admin/meetingTypeCode"><i class="fas fa-cog grayscale"></i>&nbsp;</a></li>
 			</ul>
-			<!-- 통합검색 -->
-			<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
+				<!-- 날짜 -->
+				<form id="datePickForm" class="navbar-form navbar-right" action="/integSearch/date_result" method="get">
+			   	<div class="input-group stylish-input-group-left fixed-width">
+						<div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale"></i></div>
+					    <input id="selectedDate" name="selectedDate" class="form-control cursor left-padding" readonly data-toggle="datepicker" placeholder="Date">
+			 		</div>
+		 		</form>
+		 		<!-- 통합검색 -->
+				<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
 			   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		     	<select class="form-control" id="categoryBox" name="category">
+   	    	<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
 		     			<option value="all">전체</option> 
 		     			<option value="title">제목</option> 
 		     			<option value="content">내용</option> 
 		     			<option value="regId">작성자</option>	 
 		     	</select>
 		     	<div class="input-group stylish-input-group">
-					<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
-					<span class="input-group-addon">
-						<!-- <i class="far fa-calendar-alt grayscale"></i> -->
-						<button type="button" id="searchBtn" onClick="searchStart();">
-					        <i class="fas fa-search grayscale"></i>
-						</button> 
-					</span>
-		      	</div>
+						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
+						<span class="input-group-addon">
+							<!-- <i class="far fa-calendar-alt grayscale"></i> -->
+							<button type="button" id="searchBtn" onClick="searchStart();">
+				        <i class="fas fa-search grayscale"></i>
+							</button> 
+						</span>
+	      	</div>
 	    	</form>
-	    	<form id="datePickForm" class="navbar-form navbar-right" action="/integSearch/date_result" method="get">
-		    	<div class="input-group stylish-input-group-right">
-						<div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale"></i></div>
-					    <input id="selectedDate" name="selectedDate" class="form-control cursor left-padding" readonly data-toggle="datepicker" placeholder="Date">
-			 	</div>
-		 	</form>
     	
 		</div>
 	</nav>
