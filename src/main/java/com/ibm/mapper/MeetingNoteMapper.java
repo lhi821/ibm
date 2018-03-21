@@ -1,7 +1,10 @@
 package com.ibm.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import com.ibm.domain.MeetingNoteDomain;
 
@@ -46,6 +49,26 @@ public interface MeetingNoteMapper {
 					+ "CURRENT_TIMESTAMP, "
 					+ "CURRENT_TIMESTAMP"
 				+ ")")
-	public void insertMeetingNote(MeetingNoteDomain meetingNoteDomain);
+	public void insertMeetingNote(Map<String, Object> meetingNoteMap);
+	
+	@Select("SELECT MEETINGNOTEID FROM MEETINGNOTE ORDER BY MEETINGNOTEID DESC LIMIT 1")
+	public String getLastMeetingNoteId();
+	
+	
+	@Insert("INSERT INTO MTNCONTENTS ("
+			+ "MEETINGNOTEID, "
+			+ "VERSION, "
+			+ "SEQ, "
+			+ "SPEAKERID, "
+			+ "CONTENTS"
+		+ ")"
+		+ "VALUES ("
+			+ "#{meetingNoteId}, "
+			+ "#{version}, "
+			+ "#{seq}, "
+			+ "#{speakerId}, "
+			+ "#{contents}"
+		+ ")")
+	public void insertMtnContents(Map<String, Object> mtnContentsMap);
 	
 }

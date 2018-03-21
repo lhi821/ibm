@@ -303,3 +303,38 @@ top: 16px;
 		background-color: #ccc !important;
 }
 
+.fixed-width{
+		width: 140px !important;
+}
+
+.small-bottom{
+		margin-bottom: 5px;
+}
+
+.panel-min-height{
+		min-height: 150px;
+}
+
+.padding-none{
+		padding: 0px;
+}
+
+.padding-right-small{
+		padding-right: 1px;
+}
+
+.padding-left-small{
+		padding-left: 1px;
+}
+
+.margin-top-none{
+		margin-top: 0px;
+}
+
+.user-list{
+    padding: 4px 15px 1px 10px;
+}
+
+.user-list:hover{
+		font-weight: 1000;
+}

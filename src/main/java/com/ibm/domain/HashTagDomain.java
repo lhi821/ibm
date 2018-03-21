@@ -4,6 +4,7 @@ public class HashTagDomain {
 	
 	String hashTagId;
 	String hashTag;
+	
 	public String getHashTagId() {
 		return hashTagId;
 	}
