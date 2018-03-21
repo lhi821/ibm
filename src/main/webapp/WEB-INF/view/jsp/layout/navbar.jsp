@@ -20,15 +20,10 @@
 	$(document).ready(function() {
 		  $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
 		  
-		  $('[data-toggle="datepicker"]').change(function(dateText) { 
+		  /* $('[data-toggle="datepicker"]').change(function(dateText) { 
 			  $('[data-toggle="datepicker"]').datepicker('hide');
-			 
 			  $('#datePickForm').submit();	  
-			  
-		  });
-		  	  
-	
-		  
+		  }); */
 	});
 	
 	function searchStart() {	
