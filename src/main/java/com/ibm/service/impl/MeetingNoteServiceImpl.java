@@ -28,7 +28,6 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 	HashTagMapper hashTagMapper;
 	
 	@SuppressWarnings("unchecked")
-	@Transactional
 	@Override
 	public void createDialogue(Map<String, Object> requestMap) {
 		System.out.println(requestMap.get("meetingNoteDomain"));
