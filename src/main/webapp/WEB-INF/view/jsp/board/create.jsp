@@ -112,7 +112,7 @@
 									  </div>
 									  <div class="col-xs-2">
 									  	<div class="form-group">
-									      <select class="selectpicker form-control" title="<i class='fas fa-code-branch grayscale input-icon'></i>Version">
+									      <select id="mtnVersion" class="selectpicker form-control" title="<i class='fas fa-code-branch grayscale input-icon'></i>Version">
 									        <option selected data-subtext="Version" title="<i class='fas fa-code-branch grayscale input-icon'></i>1">1</option>
 												</select>
 									    </div>
@@ -121,7 +121,7 @@
 									<div class="row">
 										<div class="col-xs-12">
 											<div class="form-group">
-												<div class="input-group stylish-input-group-both">
+												<div id="attendantsDiv" class="input-group stylish-input-group-both">
 													<div class="input-group-addon cursor"><i class="fas fa-user-plus grayscale"></i></div>
 													<input type="text" disabled class="form-control cursor" placeholder="Attendants">
 													<div class="input-group-addon cursor"><i class="fas fa-search grayscale"></i></div>
@@ -153,14 +153,14 @@
 								  </div>
 								  <div id="dialogueBox" class="row">
 									  <div class="col-xs-12">
-							  			<div class="col-xs-1">
-												<div class="text-right small">
-													<span class="grayscale cursor"><i class="fas fa-user-plus chat-user fa-lg"></i></span>
+							  			<div class="col-xs-1 padding-left-small">
+												<div class="text-right">
+													<span class="grayscale cursor chooseUser"><i class="fas fa-user-plus chat-user"></i><span id='chooseUserNm0' class='chooseUserNm'> </span></span>
 												</div>
 											</div>
 											<div class="col-xs-11">
 												<div class="bubble">
-													<textarea placeholder="Please fill out the Meeting Note..." class="form-control border-none dialogueContents" rows="5"></textarea>
+													<textarea id='dialogueContents0' placeholder="Please fill out the Meeting Note..." class="form-control border-none dialogueContents" rows="5"></textarea>
 													<div class="text-right">
 														<i class="fas fa-comment-alt grayscale cursor chat-icon addDialogue"></i>
 													</div>
@@ -182,7 +182,7 @@
 											<div class="form-group">
 												<div class="input-group stylish-input-group-both">
 													<div class="input-group-addon"><i class="fas fa-exclamation grayscale input-icon-action"></i></div>
-													<input type="text" class="form-control" placeholder="Action Item">
+													<input type="text" class="form-control action-item" placeholder="Action Item">
 													<div class="input-group-addon cursor">
 														<span class="plusActionItem"><i class="fas fa-plus-circle grayscale"></i></span>
 													</div>
@@ -238,9 +238,18 @@
 		
 	</div>
 	
+	<!-- Modal -->
+	<jsp:include page="../mypage/user_search_pop.jsp"></jsp:include>
+	
+	
 </body>
 <script>
+
+var gvDialougeID = 0;
+
 $( document ).ready(function() {
+  
+  chooseSpeaker();
   
   autosize($('.dialogueContents'));
   autosize($('#planContents'));
@@ -269,7 +278,7 @@ $( document ).ready(function() {
     hour = hour.toString().length < 2 ? "0"+hour : hour;
     $('#endTime').selectpicker('val',hour + $('#startTime').val().substring(2,5));
   });
-
+  
   //Action Item 추가
   $('body').on('click', '.plusActionItem', function () {
     if ($(this).parentsUntil("stylish-input-group-both").children("input").val() == "") {
@@ -290,7 +299,7 @@ $( document ).ready(function() {
 	  			"<div class='form-group'>"+
 	  				"<div class='input-group stylish-input-group-both'>"+
 	  					"<div class='input-group-addon'><i class='fas fa-exclamation grayscale input-icon-action'></i></div>"+
-	  					"<input type='text' class='form-control' placeholder='Action Item'>"+
+	  					"<input type='text' class='form-control action-item' placeholder='Action Item'>"+
 	  					"<div class='input-group-addon cursor'>"+
 	  						"<span class='minusActionItem input-icon-action'><i class='fas fa-minus-circle grayscale'></i></span>"+
 	  						"<span class='plusActionItem'><i class='fas fa-plus-circle grayscale'></i></span>"+
@@ -306,7 +315,7 @@ $( document ).ready(function() {
     bootbox.confirm({
 		  size: "small",
 		  title: "WARNING",
-      message: "<font class='small'>Are you sure remove this <b class='big'>Action Item</b>?<font>",
+      message: "<font class='small'>Are you sure remove this <b class='big'>Action Item</b>?<br/>can not undo.<font>",
 		  buttons: {
 		    confirm: {
 		      label: 'Yes',
@@ -328,16 +337,17 @@ $( document ).ready(function() {
   
   //대화 추가
   $('body').on('click', '.addDialogue', function () {
+    gvDialougeID += 1;
     $('#dialogueBox').append(
         "<div class='col-xs-12'>"+
-	      	"<div class='col-xs-1'>"+
-	      		"<div class='text-right small'>"+
-	      			"<span class='grayscale cursor'><i class='fas fa-user-plus chat-user fa-lg'></i></span>"+
+	      	"<div class='col-xs-1 padding-left-small'>"+
+	      		"<div class='text-right'>"+
+	      			"<span class='grayscale cursor chooseUser'><i class='fas fa-user-plus chat-user'></i></i><span id='chooseUserNm"+gvDialougeID+"' class='chooseUserNm'> </span></span>"+
 	      		"</div>"+
 	      	"</div>"+
 	      	"<div class='col-xs-11'>"+
 	      		"<div class='bubble'>"+
-	      			"<textarea placeholder='Please fill out the Meeting Note...' class='form-control border-none dialogueContents' rows='5'></textarea>"+
+	      			"<textarea id='dialogueContents"+gvDialougeID+"' placeholder='Please fill out the Meeting Note...' class='form-control border-none dialogueContents' rows='5'></textarea>"+
 	      			"<div class='text-right'>"+
 	      				"<i class='fas fa-trash-alt grayscale cursor chat-icon delDialogue'></i>"+
 	      				"<i class='fas fa-comment-alt grayscale cursor chat-icon addDialogue'></i>"+
@@ -346,6 +356,7 @@ $( document ).ready(function() {
 	      	"</div>"
     );
     autosize($('.dialogueContents'));
+    chooseSpeaker();
 	});
   
   //대화 삭제
@@ -354,7 +365,7 @@ $( document ).ready(function() {
     bootbox.confirm({
 		  size: "small",
 		  title: "WARNING",
-      message: "<font class='small'>Are you sure remove this <b class='big'>Dialogue</b>?<font>",
+      message: "<font class='small'>Are you sure remove this <b class='big'>Dialogue</b>?<br/>can not undo.<font>",
 		  buttons: {
 		    confirm: {
 		      label: 'Yes',
@@ -380,7 +391,7 @@ $( document ).ready(function() {
 			bootbox.confirm({
 			  size: "small",
 			  title: "WARNING",
-        message: "<font class='small'>Are you sure Change to <b class='big'>Dialogue Format</b>?<font>",
+        message: "<font class='small'>Are you sure Change to <b class='big'>Dialogue Format</b>?<br/>data can not be saved.<font>",
 			  buttons: {
 			    confirm: {
 			      label: 'Yes',
@@ -406,7 +417,7 @@ $( document ).ready(function() {
       bootbox.confirm({
         size: "small",
         title: "WARNING",
-        message: "<font class='small'>Are you sure Change to <b class='big'>Plain Text format</b>?<font>",
+        message: "<font class='small'>Are you sure Change to <b class='big'>Plain Text format</b>?<br/>data can not be saved.<font>",
 			  buttons: {
 			    confirm: {
 			      label: 'Yes',
@@ -541,57 +552,112 @@ $( document ).ready(function() {
     });
   });
   
+  $('#attendantsDiv').click(function() {
+    $("#userSearchPop").modal();
+  });
+  
+  $('#closeUserModal').click(function() {
+    $("#userSearchPop").modal("hide");
+  });
+  
+  $('#applyUserModal').click(function() {
+    $("#userSearchPop").modal("hide");
+    alert("TO BE UPDATE");
+  });
   
   $('#mtnSaveBtn').click(function() {
-    var url = "/meetingnote/create";
-    var data = "";
+    var url = "";
+    
+    //액션아이템 추출
+    var actionItemList = [];
+  	$(".action-item").each(function(index){
+  	  if($(this).val() != ""){
+  	    actionItemList.push({
+  				"version" : $("#mtnVersion").val(),
+  				"seq" : index + 1,
+  				"actionItem" : $(this).val()
+  			});
+  	  }
+		});
+  	
+  	//해쉬태그 추출
+  	var hashTagList = [];
+  	$("#keyWordInput").val().split(" ").forEach(function(word, index){ 
+  	  if(word.substring(0,1) == "#"){
+  	    hashTagList.push({
+  				"version" : $("#mtnVersion").val(),
+  				"seq" : index + 1,
+  				"hashTag" : word.substring(1,word.length)
+  			});
+  	  }
+    });
+  	
+   	//회의 내용 추출
+  	var mtnContentsList = [];
     if ($('#toggle-event').prop('checked')){
      	//Dialogue
-      url = url+"/dialogue";
-			data = {
-							 "meetingNoteDomain": {
-															    		"meetingNoteId" : "TEST",
-															    		"version" : "TEST",
-															    		"title": "TEST",
-															    		"projectId" : "TEST",
-															    		"divisionId" : "TEST",
-															    		"meetingTypeId" : "TEST",
-															    		"regMemberId" : "TEST",
-															    		"modMemberId" : "TEST",
-															    		"location" : "TEST",
-															    		"startTm" : "TEST",
-															    		"endTm" : "TEST",
-															    		"mainPoint" : "TEST",
-															    		"hit" : 0,
-															    		"statusId" : "TEST",
-															    		"statusDesc" : "TEST"
-														    		}
-						}
+   	  url = "dialogue";
+     
+			$(".dialogueContents").each(function(index){
+			  if($(this).val() != ""){
+					mtnContentsList.push({
+						"version" : $("#mtnVersion").val(),
+						"seq" : index + 1,
+						"speakerId" : $.trim($("#chooseUserNm"+$(this).attr("id").replace("dialogueContents","")).text()),
+						"contents" : $(this).val()
+					});
+				}
+			});
+
     }else{
       //Pain Text
-      url = url+"/plaintext";
-			data = {
-			    "meetingNoteId" : "TEST",
-	    		"version" : "TEST",
-	    		"title": "TEST",
-	    		"projectId" : "TEST",
-	    		"divisionId" : "TEST",
-	    		"meetingTypeId" : "TEST",
-	    		"regMemberId" : "TEST",
-	    		"modMemberId" : "TEST",
-	    		"location" : "TEST",
-	    		"startTm" : "TEST",
-	    		"endTm" : "TEST",
-	    		"mainPoint" : "TEST",
-	    		"hit" : 0,
-	    		"statusId" : "TEST",
-	    		"statusDesc" : "TEST"
-    		};
+      url = "plaintext";
+      
+     	var textLength = $("#planContents").val().length;
+     	var splitCount = parseInt(textLength / 6000) + 1;
+  		var start = 0;
+  		var end = 0;
+  		var textSize = 6000;
+  		
+     	for (var i=0; i<splitCount; i++){
+     	  start = i * textSize;
+     	  end = (i+1) * textSize;
+     	  mtnContentsList.push({
+     	   					 						"version" : $("#mtnVersion").val(),
+     	   											"seq" : i + 1,
+     	   											"speakerId" : "planText",
+     	   											"contents" : $("#planContents").val().substring(start, end)
+   	   											 });
+     	}
     }
+    
+		var data = {"meetingNoteDomain" : {
+																    		"version" : "TEST",
+																    		"title": "TEST",
+																    		"projectId" : "TEST",
+																    		"divisionId" : "TEST",
+																    		"meetingTypeId" : "TEST",
+																    		"regMemberId" : "TEST",
+																    		"modMemberId" : "TEST",
+																    		"location" : "TEST",
+																    		"startTm" : "TEST",
+																    		"endTm" : "TEST",
+																    		"mainPoint" : "TEST",
+																    		"hit" : 0,
+																    		"statusId" : "TEST",
+																    		"statusDesc" : "TEST"
+															    		},
+				   			"AttendantsList" : [],
+								"MtnContentsList" : mtnContentsList,
+								"ActionItemList" : actionItemList,
+								"HashTagList" : hashTagList
+							}
+    
+    
     
     $.ajax({
 			type : "POST",
-			url : url,
+			url : "/meetingnote/create",
 			data : JSON.stringify(data),
 			contentType: "application/json",
 			success : function(data){
@@ -604,6 +670,32 @@ $( document ).ready(function() {
   });
    
 });
+
+function chooseSpeaker(){
+  userIcon = null;
+  $('.chooseUser').click(function() {
+    userIcon = $(this);
+    $(this).popover({title: "Speaker"
+      , content: "<div class='row small cursor grayscale user-list'><i class='fas fa-user-circle grayscale'></i><span class='chooseUserNm'> 이훈일</span></div>"+
+						     "<div class='row small cursor grayscale user-list'><i class='fas fa-user-circle grayscale'></i><span class='chooseUserNm'> 홍길동</span></div>"+
+						     "<div class='row small cursor grayscale user-list'><i class='fas fa-user-circle grayscale'></i><span class='chooseUserNm'> 홍길순</span></div>"
+      , html: true, placement: "bottom"}); 
+  });
+  
+  $('.chooseUser').on('shown.bs.popover', function () {
+    $('.user-list').unbind();
+    $('.user-list').click(function() {
+     //alert($(this).children('.chooseUserNm').text());
+				if(userIcon.children("svg").attr("class") == "svg-inline--fa fa-user-plus fa-w-20 chat-user"){
+					userIcon.children("svg").removeClass("fa-user-plus");
+					userIcon.children("svg").addClass("fa-user-circle");
+				}
+				userIcon.children(".chooseUserNm").text($(this).children('.chooseUserNm').text());
+				userIcon.popover("hide");
+    });
+  });
+  
+}
 
 </script>
 </html>

@@ -18,7 +18,7 @@ body, html {
     max-width: 500px;
     padding: 40px 50px;
 }
-
+/* 
 .btn {
     font-weight: 700;
     height: 36px;
@@ -26,7 +26,7 @@ body, html {
     -webkit-user-select: none;
     user-select: none;
     cursor: default;
-}
+} */
 
 /*
  * Card component

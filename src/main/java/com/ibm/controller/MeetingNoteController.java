@@ -28,13 +28,13 @@ public class MeetingNoteController {
 	@Autowired
 	MeetingNoteService meetingNoteService;
 	
-	@PostMapping("/create/dialogue")
+	@PostMapping("/create")
 	public String newMtnDialouge(@RequestBody Map<String, Object> requestMap) throws Exception{
 		meetingNoteService.createDialogue(requestMap);
 		
 		return "redirect:/board/index";
 	}
-	
+	/*
 	@PostMapping("/create/plaintext")
 	public String newMtnPlainText(@RequestBody MeetingNoteDomain meetingNoteDomain) throws Exception{
 
@@ -44,6 +44,6 @@ public class MeetingNoteController {
 		meetingNoteService.createPlanText(meetingNoteDomain);
 		
 		return "redirect:/board/index";
-	}
+	}*/
 
 }
