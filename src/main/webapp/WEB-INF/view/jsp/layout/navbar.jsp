@@ -55,8 +55,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 
-	  		<li><a class="cursor" data-toggle="modal" data-target="#loginModal">Login</a></li>
-				<li><a class="cursor" data-toggle="modal" data-target="#newJoinModal">Join</a></li>
+	  		<li><a class="cursor" href="/member/logout">Logout</a></li>
 				<li><a class="cursor">  
 					<span class="fa-layers fa-fw" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
 					data-content="<ul class='noti-ul'>
