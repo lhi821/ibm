@@ -24,7 +24,7 @@
 					     	</div>
 					     	<div class="col-xs-10 padding-left-small">
 		       				<div class="input-group stylish-input-group">
-										<input type="text" class="form-control" placeholder="Name, Email, Phone or Team">
+										<input id="searchKey" type="text" class="form-control" placeholder="Name, Email, Phone or Team">
 										<div class="input-group-addon cursor"><i class="fas fa-search grayscale"></i></div>
 						      </div>
 					      </div>
@@ -111,4 +111,30 @@
 		</div>
 	</div>
 </body>
+<script>
+$( document ).ready(function() {
+  $('.fa-search').click(function() {
+    var data = {"searchKey" : $("#searchKey").val()};
+    $.ajax({
+      url: '/member/search',
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: function(data) {
+    	    //location.reload();  	
+    	    alert(1);
+    	    console.log(data);
+    	    alert(data);
+      },
+      error: function(data) {
+    	    //location.reload();  	
+    	    alert(2);
+    	    console.log(data);
+    	}
+    });
+  });
+});
+
+
+</script>
 </html>

@@ -1,7 +1,9 @@
 package com.ibm.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,12 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ibm.domain.BoardDomain;
 import com.ibm.domain.MemberDomain;
 import com.ibm.domain.MemberRoleDomain;
 import com.ibm.domain.RoleDomain;
@@ -171,5 +176,15 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("/mypage/index");
 		return mv;
 	}
+	
+
+	@PostMapping("/search")
+	@ResponseBody
+	public List<MemberDomain> selectMemberByKeyword(@RequestBody Map<String, String> MemberMap) throws Exception{
+		System.out.println(MemberMap.get("searchKey"));
+		System.out.println(memberService.selectMemberByKeyword(MemberMap));
+		return memberService.selectMemberByKeyword(MemberMap);
+	}
+	
 
 }

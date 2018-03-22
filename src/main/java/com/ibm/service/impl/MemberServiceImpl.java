@@ -3,6 +3,7 @@ package com.ibm.service.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -76,6 +77,11 @@ public class MemberServiceImpl implements MemberService{
 //		Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
 //		roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 		
+	}
+	
+	@Override
+	public List<MemberDomain> selectMemberByKeyword(Map<String, String> MemberMap) {
+		return memberMapper.selectMemberByKeyword(MemberMap);
 	}
 	
 	

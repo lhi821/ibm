@@ -1,5 +1,8 @@
 package com.ibm.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,5 +29,14 @@ public interface MemberMapper {
 	@Insert("INSERT INTO MEMBER (memberid, membernm, companyid, dept, jobs, phone, email, password, joinyn, regdt, moddt)"
 			+ "VALUES (#{memberid}, #{membernm}, #{companyid}, #{dept}, #{jobs}, #{phone}, #{email}, #{password}, #{joinyn}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)")
 	public void createMember(MemberDomain memberDomain);
+	
+	@Select("SELECT * FROM MEMBER "
+			+ "WHERE memberid = #{searchKey} "
+			+ "OR membernm = #{searchKey} "
+			+ "OR companyid = #{searchKey} "
+			+ "OR dept = #{searchKey} "
+			+ "OR phone = #{searchKey} "
+			+ "OR email = #{searchKey}")
+	public List<MemberDomain> selectMemberByKeyword(Map<String, String> MemberMap);
 	
 }

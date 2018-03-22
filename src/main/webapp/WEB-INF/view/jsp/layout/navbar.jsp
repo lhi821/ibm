@@ -43,13 +43,13 @@
 	  	</div>
 	  	<ul class="nav navbar-nav">
 	  		<c:choose>
-			    <c:when test="${veiwType eq 'G'}">
-			    	<li id="galleryVeiw" class="active cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
-						<li id="listVeiw" class="cursor"><a><i class="fas fa-list"></i> List</a></li>
-			    </c:when>
-			    <c:otherwise>
+			    <c:when test="${veiwType eq 'L'}">
 			    	<li id="galleryVeiw" class="cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
 						<li id="listVeiw" class="active cursor"><a><i class="fas fa-list"></i> List</a></li>
+			    </c:when>
+			    <c:otherwise>
+			    	<li id="galleryVeiw" class="active cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
+						<li id="listVeiw" class="cursor"><a><i class="fas fa-list"></i> List</a></li>
 			    </c:otherwise>
 				</c:choose>
 			</ul>
