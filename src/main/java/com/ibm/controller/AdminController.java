@@ -38,13 +38,13 @@ public class AdminController {
 	}
 
 	@PostMapping("/update")
-	public String updateMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain){
+	public String updateMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain) throws Exception{
 		adminService.updateMeetingType(meetingTypeCodeDomain);
 		return "redirect:/admin/meetingTypeCode";
 	}
 	
 	@PostMapping("/delete")
-	public String deleteMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain){
+	public String deleteMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain) throws Exception{
 		adminService.deleteMeetingType(meetingTypeCodeDomain.getMeetingTypeID());
 		return "redirect:/admin/meetingTypeCode";
 	}
@@ -67,13 +67,13 @@ public class AdminController {
 	}
 
 	@PostMapping("/updateCompany")
-	public String updateCompany(CompanyInfoDomain companyInfoDomain){
+	public String updateCompany(CompanyInfoDomain companyInfoDomain) throws Exception{
 		adminService.updateCompany(companyInfoDomain);
 		return "redirect:/admin/companyInfo";
 	}
 	
 	@PostMapping("/deleteCompany")
-	public String deleteCompany(CompanyInfoDomain companyInfoDomain){
+	public String deleteCompany(CompanyInfoDomain companyInfoDomain) throws Exception{
 		adminService.deleteCompany(companyInfoDomain.getCompanyID());
 		return "redirect:/admin/companyInfo";
 	}

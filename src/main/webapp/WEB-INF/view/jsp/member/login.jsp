@@ -22,8 +22,8 @@
             <p id="profile-name" class="profile-name-card"></p>
             <form id="login-form" class="form-signin" method="post" action="/member/login">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="email" id="Email" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input type="password" id="Password" name="inputPassword" class="form-control" placeholder="Password" required>
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
@@ -56,7 +56,7 @@
  				
  				<div class="input-group">
  				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
- 				<input type="password" id="inputPassword" name="inputComfirmPassword" class="form-control" placeholder="Confirm Password" required>
+ 				<input type="password" id="inputConfirmPassword" name="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required>
 				</div>
                 
                 <div class="input-group">

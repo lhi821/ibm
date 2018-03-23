@@ -19,10 +19,20 @@ public class AdminServiceImpl implements AdminService {
 	//TAB 1 [MeetingTypeCode Config]-----------------
 	@Override
 	public void insertMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain) {
-		String prevID = adminMapper.selectLatestMeetingType().get(0).getMeetingTypeID().substring(2, 7);
-		int prevID_int = Integer.parseInt(prevID) + 1;
-		String postID =	"MT" + String.format("%05d", prevID_int);
-		meetingTypeCodeDomain.setMeetingTypeID(postID);
+		
+		List<MeetingTypeCodeDomain> typeList = adminMapper.selectMeetingTypeList();
+		if (typeList.isEmpty()) 
+			meetingTypeCodeDomain.setMeetingTypeID("MT00001");
+		else {
+			for (int i = 0; i < typeList.size(); i++) {
+				if (meetingTypeCodeDomain.getMeetingTypeNM().equals(typeList.get(i).getMeetingTypeNM()))
+					;
+			}
+			String prevID = adminMapper.selectLatestMeetingType().get(0).getMeetingTypeID().substring(2, 7);
+			int prevID_int = Integer.parseInt(prevID) + 1;
+			String postID = "MT" + String.format("%05d", prevID_int);
+			meetingTypeCodeDomain.setMeetingTypeID(postID);
+		}
 		adminMapper.insertMeetingType(meetingTypeCodeDomain);
 	}
 	
