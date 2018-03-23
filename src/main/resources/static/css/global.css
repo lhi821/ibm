@@ -331,6 +331,10 @@ top: 16px;
 		margin-top: 0px;
 }
 
+.margin-bottom-none{
+		margin-bottom: 0px;
+}
+
 .user-list{
     padding: 4px 15px 1px 10px;
 }

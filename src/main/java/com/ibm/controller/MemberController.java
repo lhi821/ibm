@@ -181,10 +181,7 @@ public class MemberController {
 	@PostMapping("/search")
 	@ResponseBody
 	public List<MemberDomain> selectMemberByKeyword(@RequestBody Map<String, String> MemberMap) throws Exception{
-		System.out.println(MemberMap.get("searchKey"));
-		System.out.println(memberService.selectMemberByKeyword(MemberMap));
 		return memberService.selectMemberByKeyword(MemberMap);
 	}
-	
 
 }

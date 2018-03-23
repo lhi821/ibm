@@ -44,6 +44,16 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 		meetingNoteMapper.insertMeetingNote(meetingNoteMap);
 		
 		//참석자 저장
+		int seq = 1;
+		for (String attendee : (List<String>) requestMap.get("AttendantsList")) {
+			Map<String, Object> attenantsMap = new HashMap<String, Object>();
+			attenantsMap.put("meetingNoteId", meetingNoteId);
+			attenantsMap.put("version", meetingNoteMap.get("version"));
+			attenantsMap.put("seq", seq);
+			attenantsMap.put("memberId", attendee);
+			meetingNoteMapper.insertMtnAtentants(attenantsMap);
+			seq++;
+		}
 		
 		//ActionItem저장
 		for (Object actionItem : (List<Object>) requestMap.get("ActionItemList")) {
