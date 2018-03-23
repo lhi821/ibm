@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.ibm.domain.MemberDomain;
 
@@ -29,6 +30,19 @@ public interface MemberMapper {
 	@Insert("INSERT INTO MEMBER (memberid, membernm, companyid, dept, jobs, phone, email, password, joinyn, regdt, moddt)"
 			+ "VALUES (#{memberid}, #{membernm}, #{companyid}, #{dept}, #{jobs}, #{phone}, #{email}, #{password}, #{joinyn}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)")
 	public void createMember(MemberDomain memberDomain);
+	
+	@Update("UPDATE MEMBER "
+			+ "SET companyid = #{companyid}, dept = #{dept}, jobs = #{jobs}, phone = #{phone}, email = #{email},  moddt = CURRENT_TIMESTAMP "
+			+ "WHERE memberid = #{memberid} ")
+	public void editMember(MemberDomain memberDomain);
+	
+	@Update("UPDATE MEMBER "
+			+ "SET password = #{password},  moddt = CURRENT_TIMESTAMP "
+			+ "WHERE memberid = #{memberid} ")
+	public void editPassword(MemberDomain memberDomain);
+	
+	@Select("SELECT * FROM MEMBER WHERE memberid = #{memberid}")
+	public MemberDomain selectMember_edit(MemberDomain memberDomain);
 	
 	@Select("SELECT * FROM MEMBER "
 			+ "WHERE memberid = #{searchKey} "

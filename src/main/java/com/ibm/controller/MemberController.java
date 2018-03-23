@@ -71,13 +71,26 @@ public class MemberController {
 			
 			return model;
 		}
-		
+		/* mypage 회원정보 수정 */
 		String membernm = result.getMembernm();
 		String memberid = result.getMemberid();
+		String companyid = result.getCompanyid();
+		String dept = result.getDept();
+		String jobs = result.getJobs();
+		String phone = result.getPhone();
+		String mod_email = result.getEmail();
+		
 		
 		// create session
 		HttpSession session = request.getSession();
 		session.setAttribute("id",memberid);
+		/* mypage 회원정보 수정 */
+		session.setAttribute("name", membernm);
+		session.setAttribute("companyid", companyid);
+		session.setAttribute("dept", dept);
+		session.setAttribute("jobs", jobs);
+		session.setAttribute("phone", phone);
+		session.setAttribute("email", mod_email);
 		
 		md.addAttribute("id");
 		
@@ -170,13 +183,6 @@ public class MemberController {
 		
 		return "redirect:/board/index";
 	}
-	
-	@GetMapping("/mypage")
-	public ModelAndView mypage() throws Exception{
-		ModelAndView mv = new ModelAndView("/mypage/index");
-		return mv;
-	}
-	
 
 	@PostMapping("/search")
 	@ResponseBody
