@@ -21,10 +21,10 @@
 	$(document).ready(function() {
 		  $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
 		  
-		  /* $('[data-toggle="datepicker"]').change(function(dateText) { 
+		   $('[data-toggle="datepicker"]').change(function(dateText) { 
 			  $('[data-toggle="datepicker"]').datepicker('hide');
-			  $('#datePickForm').submit();	  
-		  }); */
+			  //$('#datePickForm').submit();	  
+		  }); 
 	});
 	
 	function searchStart() {	
@@ -79,7 +79,7 @@
 		 		<!-- 통합검색 -->
 				<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
 			   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-   	    	<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
+   	    		<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
 		     			<option value="all">All</option> 
 		     			<option value="title">Title</option> 
 		     			<option value="content">Contents</option> 
