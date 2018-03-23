@@ -3,6 +3,7 @@ package com.ibm.service.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -87,6 +88,32 @@ public class MemberServiceImpl implements MemberService{
 			return "M" + idKeyStr + idKeyNum;
 		}
 	}
+	
+	@Override
+	public List<MemberDomain> selectMemberByKeyword(Map<String, String> MemberMap) {
+		return memberMapper.selectMemberByKeyword(MemberMap);
+	}
+
+	@Override
+	public void editMemberInfo(MemberDomain memberDomain) {
+		// TODO Auto-generated method stub
+		memberMapper.editMember(memberDomain);
+	}
+
+	@Override
+	public MemberDomain selectMember_edit(MemberDomain memberDomain) {
+		// TODO Auto-generated method stub
+		return memberMapper.selectMember_edit(memberDomain);
+	}
+
+	@Override
+	public void editMemberChange(MemberDomain memberDomain) {
+		// TODO Auto-generated method stub
+		memberDomain.setPassword(new BCryptPasswordEncoder().encode(memberDomain.getPassword()));
+		memberMapper.editPassword(memberDomain);
+	}
+	
+	
 	
 	
 	

@@ -21,10 +21,10 @@
 	$(document).ready(function() {
 		  $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
 		  
-		  /* $('[data-toggle="datepicker"]').change(function(dateText) { 
+		   $('[data-toggle="datepicker"]').change(function(dateText) { 
 			  $('[data-toggle="datepicker"]').datepicker('hide');
-			  $('#datePickForm').submit();	  
-		  }); */
+			  //$('#datePickForm').submit();	  
+		  }); 
 	});
 	
 	function searchStart() {	
@@ -43,13 +43,13 @@
 	  	</div>
 	  	<ul class="nav navbar-nav">
 	  		<c:choose>
-			    <c:when test="${veiwType eq 'G'}">
-			    	<li id="galleryVeiw" class="active cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
-						<li id="listVeiw" class="cursor"><a><i class="fas fa-list"></i> List</a></li>
-			    </c:when>
-			    <c:otherwise>
+			    <c:when test="${veiwType eq 'L'}">
 			    	<li id="galleryVeiw" class="cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
 						<li id="listVeiw" class="active cursor"><a><i class="fas fa-list"></i> List</a></li>
+			    </c:when>
+			    <c:otherwise>
+			    	<li id="galleryVeiw" class="active cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
+						<li id="listVeiw" class="cursor"><a><i class="fas fa-list"></i> List</a></li>
 			    </c:otherwise>
 				</c:choose>
 			</ul>
@@ -79,11 +79,11 @@
 		 		<!-- 통합검색 -->
 				<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
 			   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-   	    	<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
-		     			<option value="all">전체</option> 
-		     			<option value="title">제목</option> 
-		     			<option value="content">내용</option> 
-		     			<option value="regId">작성자</option>	 
+   	    		<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
+		     			<option value="all">All</option> 
+		     			<option value="title">Title</option> 
+		     			<option value="content">Contents</option> 
+		     			<option value="regId">Writer</option>	 
 		     	</select>
 		     	<div class="input-group stylish-input-group">
 						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
