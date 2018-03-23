@@ -80,10 +80,10 @@
 				<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
 			   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
    	    	<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
-		     			<option value="all">전체</option> 
-		     			<option value="title">제목</option> 
-		     			<option value="content">내용</option> 
-		     			<option value="regId">작성자</option>	 
+		     			<option value="all">All</option> 
+		     			<option value="title">Title</option> 
+		     			<option value="content">Contents</option> 
+		     			<option value="regId">Writer</option>	 
 		     	</select>
 		     	<div class="input-group stylish-input-group">
 						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
