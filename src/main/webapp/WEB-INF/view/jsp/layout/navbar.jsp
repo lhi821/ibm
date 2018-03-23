@@ -98,10 +98,6 @@
     	
 		</div>
 	</nav>
-	
-	<!-- Modal -->
-	<jsp:include page="../member/join.jsp"></jsp:include>
-	<jsp:include page="../member/login.jsp"></jsp:include>
 
 	
 	<!-- Loader -->
