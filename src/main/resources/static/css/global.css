@@ -73,6 +73,10 @@ th {
 	cursor:pointer !important;
 }
 
+.context-menu{
+	cursor:context-menu !important;
+}
+
 .stylish-input-group .input-group-addon{
     background: white !important; 
 }

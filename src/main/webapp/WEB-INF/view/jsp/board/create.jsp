@@ -138,7 +138,7 @@
 									  		<i class="fas fa-cloud-download-alt grayscale"></i> Get Information
 											</button>
 									  	<button id="setNoteHeadBtn" type="button" class="btn btn-default btn-xs">
-									  		<i class="fas fa-save grayscale"></i> Save Information
+									  		<i class="fas fa-cloud-upload-alt grayscale"></i> Save Information
 											</button>
 									  </div>
 									</div>
