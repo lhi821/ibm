@@ -107,7 +107,7 @@ public class MemberController {
 		
 	}
 	
-	
+	//회원가입
 	@RequestMapping("/create")
 	public String create(MemberDomain memberDomain,
 						HttpServletRequest request,
@@ -130,9 +130,6 @@ public class MemberController {
 		memberDomain.setJobs(jobs);
 		memberDomain.setPhone(phone);
 		memberDomain.setJoinyn("Y");
-		
-		// memberid 채번 로직 필요
-		memberDomain.setMemberid("m"+membernm);
 		
 		memberService.createMember(memberDomain);
 		

@@ -28,9 +28,13 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void createMember(MemberDomain memberDomain) {
+		
+		//MemberId 채번
+		memberDomain.setMemberid(getMemNextKey());
+		
+		//비밀번호 암호화
 		memberDomain.setPassword(new BCryptPasswordEncoder().encode(memberDomain.getPassword()));
 		memberMapper.createMember(memberDomain);
-//		memberMapper.insertMember(memberDomain);
 	}
 	
 	@Override
@@ -61,21 +65,27 @@ public class MemberServiceImpl implements MemberService{
 		MemberDomain result = memberMapper.login(email, password);
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		if(email.equalsIgnoreCase(result.getEmail()) && encoder.matches(password, result.getPassword())) {
 			return result;
 		}else{
 		    return null;
 		}
 		
-		
-//		if(result == null) {
-//			System.out.println("No user found.");
-////			throw new UsernameNotFoundException("No user found.");
-//		}
-		
-//		Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
-//		roles.add(new SimpleGrantedAuthority("ROLE_USER"));
-		
+	}
+	
+	public String getMemNextKey() {
+		if(memberMapper.getLastMemberId() == null){
+			return "M00001";
+		}else {
+			String idKeyStr = "";
+			int idKeyNum = Integer.valueOf(memberMapper.getLastMemberId().substring(1))+1;
+			int idKeyLen = (5 - String.valueOf(idKeyNum).length());
+			for (int i=0;i<idKeyLen;i++) {
+				idKeyStr += "0";
+			}
+			return "M" + idKeyStr + idKeyNum;
+		}
 	}
 	
 	

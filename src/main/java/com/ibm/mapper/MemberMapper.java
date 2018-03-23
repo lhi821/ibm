@@ -27,4 +27,7 @@ public interface MemberMapper {
 			+ "VALUES (#{memberid}, #{membernm}, #{companyid}, #{dept}, #{jobs}, #{phone}, #{email}, #{password}, #{joinyn}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)")
 	public void createMember(MemberDomain memberDomain);
 	
+	@Select("SELECT MEMBERID FROM MEMBER ORDER BY MEMBERID DESC LIMIT 1")
+	public String getLastMemberId();
+	
 }

@@ -45,7 +45,7 @@ public class BoardController {
 		
 		// get session
 		HttpSession session = request.getSession();
-		if(session.getAttribute("id")==null) {
+		if(session.getAttribute("id")==null) { 
 			session.invalidate();
 			return new ModelAndView("redirect:/member/index");
 		}
