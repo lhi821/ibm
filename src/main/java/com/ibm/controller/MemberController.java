@@ -94,7 +94,7 @@ public class MemberController {
 		
 		md.addAttribute("id");
 		
-		String url = "redirect:/board/index";
+		String url = "redirect:/analysis/index";
 		return new ModelAndView(url);
 
 
