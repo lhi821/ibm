@@ -1,7 +1,5 @@
 package com.ibm.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,10 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ibm.domain.BoardDomain;
 import com.ibm.domain.MemberDomain;
-import com.ibm.domain.MemberRoleDomain;
-import com.ibm.domain.RoleDomain;
 import com.ibm.service.MemberService;
 
 
@@ -56,20 +49,16 @@ public class MemberController {
 
 		ModelAndView model = new ModelAndView("/member/index");
 
-//		if (error != null) {
-//			model.addObject("error", "Invalid username and password!");
-//			return model;
-//		}
-//		if (logout != null) {
-//			model.addObject("msg", "You've been logged out successfully.");
-//			return model;
-//		}
-
 		MemberDomain result = memberService.login(email, password);
 		
-		if(result == null) {
+		if(result.equals(null)) {
+			
+			String failmsg = "<script language='javascript' type='text/javascript'> alert('Fail Login'); </script>";
+			
+			model.addObject(failmsg);
 			
 			return model;
+
 		}
 		/* mypage 회원정보 수정 */
 		String membernm = result.getMembernm();
@@ -112,19 +101,6 @@ public class MemberController {
 
 	}
 	
-	@GetMapping("/join")
-	public String join(MemberDomain memberDomain) throws Exception{
-		
-		MemberRoleDomain role = new MemberRoleDomain();
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//		memberDomain.setPassword(passwordEncoder.encode(memberDomain.getPassword()));
-//		role.setRoleName("USER");
-//		memberDomain.setRoles(role);
-//		memberDomain.save(memberDomain);
-		return "redirect:/";
-		
-	}
-	
 	//회원가입
 	@RequestMapping("/create")
 	public String create(MemberDomain memberDomain,
@@ -141,8 +117,6 @@ public class MemberController {
 		memberDomain.setEmail(email);
 		memberDomain.setPassword(password);
 		memberDomain.setMembernm(membernm);
-		
-		// company id 수정 필요
 		memberDomain.setCompanyid(company);
 		memberDomain.setDept(dept);
 		memberDomain.setJobs(jobs);
@@ -152,33 +126,6 @@ public class MemberController {
 		memberService.createMember(memberDomain);
 		
 		return "redirect:/member/index";
-	}
-	
-	
-	private int i = 0;
-	@GetMapping("/createrole")
-	public String temp(/*MemberDomain memberDomain, List<RoleDomain> roleDomainList*/) throws Exception{
-		
-		i++;
-		List<RoleDomain> roleDomainList = new ArrayList<RoleDomain>();
-		RoleDomain tmpRoleDomain = new RoleDomain();
-		tmpRoleDomain.setRoleNo(1);
-		tmpRoleDomain.setRoleName("master");
-
-		roleDomainList.add(tmpRoleDomain);
-		
-//		MemberDomain memberDomain = new MemberDomain();
-//		memberDomain.setMemberNo(i);
-//		memberDomain.setMemberName(String.valueOf(i));
-//		memberDomain.setPhoneNumber(String.valueOf(i));
-//		memberDomain.setEmailAddr(String.valueOf(i));
-//		memberDomain.setPassword(String.valueOf(i));
-//		
-
-		
-//		memberService.insertMember(memberDomain, roleDomainList);
-		
-		return "redirect:/board/index";
 	}
 
 	@PostMapping("/search")

@@ -173,9 +173,105 @@ $('.table tbody tr').on('click',function () {
 		</div>
 	</div>
 </body>
-<!-- JS -->
-<!-- <script type="text/javascript" src="/js/board/delete.js"></script>
-<script type="text/javascript" src="/js/board/update.js"></script>
-<script type="text/javascript" src="/js/board/read.js"></script> -->
+<script>
+var attendantsList = [];
+var attendantsNmList = [];
+$( document ).ready(function() {
+ 
+  $('#toRightBtn').click(function() {
+    $("#leftTable tr.active").each(function(){
+      $(this).removeClass("active");
+      $(this).css("font-weight", "");
+      
+      if(jQuery.inArray($(this).attr("data-value"), attendantsList) == -1){
+        attendantsList.push($(this).attr("data-value"));
+        attendantsNmList.push($(this).children('td').eq(0).text());
+        var clone = $(this).clone();
+        clone.removeClass("active");
+        clone.css("font-weight", "");
+        $("#rightTable").append(clone);
+        activeClick("rightTable");
+      }
+		});
+  });
+  
+  $('#toRightAllBtn').click(function() {
+    $("#leftTable tr").each(function(){
+      $(this).removeClass("active");
+      $(this).css("font-weight", "");
+      
+      if(jQuery.inArray($(this).attr("data-value"), attendantsList) == -1){
+        attendantsList.push($(this).attr("data-value"));
+        attendantsNmList.push($(this).children('td').eq(0).text());
+        var clone = $(this).clone();
+        clone.removeClass("active");
+        clone.css("font-weight", "");
+        $("#rightTable").append(clone);
+        activeClick("rightTable");
+      }
+		});
+  });
+  
+  $('#toLeftBtn').click(function() {
+    attendantsList = [];
+    attendantsNmList = [];
+    $("#rightTable tr.active").each(function(){
+      $(this).remove();
+		});
+    $("#rightTable tr").each(function(){
+      attendantsList.push($(this).attr("data-value"));
+      attendantsNmList.push($(this).children('td').eq(0).text());
+		});
+  });
+  
+  $('#toLeftAllBtn').click(function() {
+    attendantsList = [];
+    attendantsNmList = [];
+    $("#rightTable tr").each(function(){
+      $(this).remove();
+		});
+  });
+  
+  $('#userSearchIcon').click(function() {
+    var data = {"searchKey" : $("#searchKey").val()};
+    $.ajax({
+      url: '/member/search',
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: function(data) {
+    	    console.log(data);
+    	    $("#leftTable").empty();
+    	    for (var i=0; i<data.length; i++){
+    	      $("#leftTable").append("<tr data-value="+data[i].memberid+" class='grayscale'>"+
+    	          											"<td>"+data[i].membernm+"</td>"+
+    	          											"<td>"+data[i].email+"</td>"+
+    	          											"<td>"+data[i].phone+"</td>"+
+    	          											"<td>"+data[i].jobs+"</td>"+
+  	          											"</tr>");
+    	    }
+    	    activeClick("leftTable");
+      },
+      error: function(data) {
+        	alert("Error");
+    	}
+    });
+  });
+  
+});
 
+function activeClick(table){
+  $('#'+table+' tr').unbind();
+  $('#'+table+' tr').click(function() {
+    if ($(this).attr("class") == "grayscale") {
+      $(this).addClass("active");
+      $(this).css("font-weight", "bold");
+    }else{
+      $(this).removeClass("active");
+      $(this).css("font-weight", "");
+    }
+  });
+}
+
+</script>
 </html>
