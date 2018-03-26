@@ -24,8 +24,8 @@
 					     	</div>
 					     	<div class="col-xs-10 padding-left-small">
 		       				<div class="input-group stylish-input-group">
-										<input type="text" class="form-control" placeholder="Name, Email, Phone or Team">
-										<div class="input-group-addon cursor"><i class="fas fa-search grayscale"></i></div>
+										<input id="searchKey" type="text" class="form-control" placeholder="Name, Email, Phone or Team">
+										<div class="input-group-addon cursor"><i id="userSearchIcon" class="fas fa-search grayscale"></i></div>
 						      </div>
 					      </div>
 				      </div>
@@ -35,14 +35,14 @@
 							<div class="row small-bottom">
 								<div class="col-xs-6 text-right">
 									<div class="btn-group">
-										<button class="btn btn-default btn-xs"><i class="fas fa-angle-right grayscale"></i></button>
-										<button class="btn btn-default btn-xs"><i class="fas fa-angle-double-right grayscale"></i></button>
+										<button id="toRightBtn" class="btn btn-default btn-xs"><i class="fas fa-angle-right grayscale"></i></button>
+										<button id="toRightAllBtn" class="btn btn-default btn-xs"><i class="fas fa-angle-double-right grayscale"></i></button>
 									</div>
 								</div>
 								<div class="col-xs-6 text-right">
 									<div class="btn-group">
-										<button class="btn btn-default btn-xs"><i class="fas fa-angle-left grayscale"></i></button>
-										<button class="btn btn-default btn-xs"><i class="fas fa-angle-double-left grayscale"></i></button>
+										<button id="toLeftBtn" class="btn btn-default btn-xs"><i class="fas fa-angle-left grayscale"></i></button>
+										<button id="toLeftAllBtn" class="btn btn-default btn-xs"><i class="fas fa-angle-double-left grayscale"></i></button>
 									</div>
 								</div>
 							</div>
@@ -59,13 +59,7 @@
 											      <th scope="col" style="width: 10%">JOBS</th>
 											    </tr>
 											  </thead>
-											  <tbody class="cursor">
-											    <tr>
-											      <td>이훈일</td>
-											      <td>hooooonil@gmail.com</td>
-											      <td>010-7753-5038</td>
-											      <td>사원</td>
-											    </tr>
+											  <tbody id="leftTable" class="cursor">
 											  </tbody>
 											</table>
 									  </div>
@@ -83,7 +77,7 @@
 											      <th scope="col" style="width: 10%">JOBS</th>
 											    </tr>
 											  </thead>
-											  <tbody>
+											  <tbody id="rightTable" class="cursor">
 											    <!-- <tr>
 											      <td>Lee Hun Il</td>
 											      <td>hooooonil@gmail.com</td>
@@ -111,4 +105,105 @@
 		</div>
 	</div>
 </body>
+<script>
+var attendantsList = [];
+var attendantsNmList = [];
+$( document ).ready(function() {
+ 
+  $('#toRightBtn').click(function() {
+    $("#leftTable tr.active").each(function(){
+      $(this).removeClass("active");
+      $(this).css("font-weight", "");
+      
+      if(jQuery.inArray($(this).attr("data-value"), attendantsList) == -1){
+        attendantsList.push($(this).attr("data-value"));
+        attendantsNmList.push($(this).children('td').eq(0).text());
+        var clone = $(this).clone();
+        clone.removeClass("active");
+        clone.css("font-weight", "");
+        $("#rightTable").append(clone);
+        activeClick("rightTable");
+      }
+		});
+  });
+  
+  $('#toRightAllBtn').click(function() {
+    $("#leftTable tr").each(function(){
+      $(this).removeClass("active");
+      $(this).css("font-weight", "");
+      
+      if(jQuery.inArray($(this).attr("data-value"), attendantsList) == -1){
+        attendantsList.push($(this).attr("data-value"));
+        attendantsNmList.push($(this).children('td').eq(0).text());
+        var clone = $(this).clone();
+        clone.removeClass("active");
+        clone.css("font-weight", "");
+        $("#rightTable").append(clone);
+        activeClick("rightTable");
+      }
+		});
+  });
+  
+  $('#toLeftBtn').click(function() {
+    attendantsList = [];
+    attendantsNmList = [];
+    $("#rightTable tr.active").each(function(){
+      $(this).remove();
+		});
+    $("#rightTable tr").each(function(){
+      attendantsList.push($(this).attr("data-value"));
+      attendantsNmList.push($(this).children('td').eq(0).text());
+		});
+  });
+  
+  $('#toLeftAllBtn').click(function() {
+    attendantsList = [];
+    attendantsNmList = [];
+    $("#rightTable tr").each(function(){
+      $(this).remove();
+		});
+  });
+  
+  $('#userSearchIcon').click(function() {
+    var data = {"searchKey" : $("#searchKey").val()};
+    $.ajax({
+      url: '/member/search',
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: function(data) {
+    	    console.log(data);
+    	    $("#leftTable").empty();
+    	    for (var i=0; i<data.length; i++){
+    	      $("#leftTable").append("<tr data-value="+data[i].memberid+" class='grayscale'>"+
+    	          											"<td>"+data[i].membernm+"</td>"+
+    	          											"<td>"+data[i].email+"</td>"+
+    	          											"<td>"+data[i].phone+"</td>"+
+    	          											"<td>"+data[i].jobs+"</td>"+
+  	          											"</tr>");
+    	    }
+    	    activeClick("leftTable");
+      },
+      error: function(data) {
+        	alert("Error");
+    	}
+    });
+  });
+  
+});
+
+function activeClick(table){
+  $('#'+table+' tr').unbind();
+  $('#'+table+' tr').click(function() {
+    if ($(this).attr("class") == "grayscale") {
+      $(this).addClass("active");
+      $(this).css("font-weight", "bold");
+    }else{
+      $(this).removeClass("active");
+      $(this).css("font-weight", "");
+    }
+  });
+}
+
+</script>
 </html>

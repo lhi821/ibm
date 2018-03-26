@@ -73,6 +73,10 @@ th {
 	cursor:pointer !important;
 }
 
+.context-menu{
+	cursor:context-menu !important;
+}
+
 .stylish-input-group .input-group-addon{
     background: white !important; 
 }
@@ -329,6 +333,10 @@ top: 16px;
 
 .margin-top-none{
 		margin-top: 0px;
+}
+
+.margin-bottom-none{
+		margin-bottom: 0px;
 }
 
 .user-list{

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<% String usrId = (String)session.getAttribute("id");  %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,109 +15,24 @@
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/css/board/index.css">
-
-<script>
-
-	function calendarInit(){
-		$('#calendar').fullCalendar({
-			schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-		
-	      header: {
-	        left: 'prev,next today',
-	        center: 'title',
-	        right: 'month,agendaWeek,agendaDay,listWeek'
-	      },
-	      defaultDate: '2018-03-12',
-	      navLinks: true, // can click day/week names to navigate views
-	      editable: true,
-	      eventLimit: true, // allow "more" link when too many events
-	      events: [
-	        {
-	          title: 'All Day Event',
-	          start: '2018-03-01',
-	        },
-	        {
-	          title: 'Long Event',
-	          start: '2018-03-07',
-	          end: '2018-03-10'
-	        },
-	        {
-	          id: 999,
-	          title: 'Repeating Event',
-	          start: '2018-03-09T16:00:00'
-	        },
-	        {
-	          id: 999,
-	          title: 'Repeating Event',
-	          start: '2018-03-16T16:00:00'
-	        },
-	        {
-	          title: 'Conference',
-	          start: '2018-03-11',
-	          end: '2018-03-13'
-	        },
-	        {
-	          title: 'Meeting',
-	          start: '2018-03-12T10:30:00',
-	          end: '2018-03-12T12:30:00'
-	        },
-	        {
-	          title: 'Lunch',
-	          start: '2018-03-12T12:00:00'
-	        },
-	        {
-	          title: 'Meeting',
-	          start: '2018-03-12T14:30:00'
-	        },
-	        {
-	          title: 'Happy Hour',
-	          start: '2018-03-12T17:30:00'
-	        },
-	        {
-	          title: 'Dinner',
-	          start: '2018-03-12T20:00:00'
-	        },
-	        {
-	          title: 'Birthday Party',
-	          start: '2018-03-13T07:00:00'
-	        },
-	        {
-	          title: 'Click for Google',
-	          url: 'http://google.com/',
-	          start: '2018-03-28'
-	        }
-	      ]
-	    });
-	}
-	$(document).ready(function() {
-		calendarInit();		
-  });
-
-/* $(function(){
-	//mypage tab 변경
-	var changeTab = $("ul > li");    
-	changeTab.find("a").click(function(){   
-		changeTab.removeClass("active");     
-		$(this).parent().addClass("active"); 
-	})
-});  */
-</script>
-<style>
-
-	body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-
-</style>
 </head>
+
+<script type="text/javascript">
+	
+	$(function(){
+		
+		$('#name').val('${userName}');
+		$('#company').val('${userCompany}');
+		$('#dept').val('${userDept}');
+		$('#position').val('${userJobs}');
+		$('#phone').val('${userPhone}');
+		$('#email').val('${userEmail}');
+	
+		
+	})
+	
+</script>
+
 <body>
 
 	<!-- Navbar -->
@@ -127,118 +44,120 @@
 	<!-- posts area -->
 	<div class="col-xs-10 affix-content">
 		<div class="container affix-container">
-			<div class="row">
-				<div class="container">
-				<!-- 여기가 화면 -->
-				<!-- 사용자검색 팝업 
-					<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>	
-				-->
-				<ul class="nav nav-tabs">
-					<li><a href="/mypage/main"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
-					<li><a href="/mypage/history"><span class="glyphicon glyphicon-time"></span> History</a></li>
-					<li class="active"><a href="/mypage/info"><span class="glyphicon glyphicon-refresh"></span> Information</a></li>
-				</ul>
+			<form action="/mypage/editInfo.do" method="get" >
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<input type="hidden" name="memberid" value="${userId}"/>
 				
-				<!-- mypage tab 전환 -->
-				<div id="contentsDiv" style="padding-top: 20px;">
-					<h4 class="text-info">You can edit your personal information.</h4>
-					<br/>
-					<div class="form-group">
-							<label for="MemberName" class="cols-sm-2 control-label">Your Name</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa"></i></span>
-									<input type="text" class="form-control" name="MemberName" id="MemberName" readonly/>
-								</div>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Company</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fas fa-building"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm" readonly/>
-								</div>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Department</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fas fa-archive"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"/>
-								</div>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Position</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fas fa-users"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"/>
-								</div>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="phoneNumber" class="cols-sm-2 control-label">Phone Number</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-phone fa"></i></span>
-									<input type="text" class="form-control" name="phoneNumber" id="phoneNumber"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="emailAddr" class="cols-sm-2 control-label">Your Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa"></i></span>
-									<input type="text" class="form-control" name="emailAddr" id="emailAddr"/>
-								</div>
-							</div>
-						</div>
-
+				<div class="row">
+					<div class="container">
+					<!-- 여기가 화면 -->
+					<ul class="nav nav-tabs">
+						<li><a href="/mypage/main" class="a"><i class="far fa-calendar-alt"></i> Calendar </a></li>
+						<li><a href="/mypage/history" class="a"><i class="fas fa-history"></i> History </a></li>
+						<li class="active"><a href="/mypage/info" class="a"><i class="fas fa-info"></i> Information </a></li>
+					</ul>
 					
-
+					<div id="contentsDiv" style="padding-top: 20px;">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h4 class="text-muted">You can edit your personal information.</h4>
+						</div>
+						<div class="panel-body">
 						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
-									<input type="password" class="form-control" name="password" id="password"/>
+								<label for="MemberName" class="cols-sm-2 control-label">Your Name</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa"></i></span>
+										<input type="text" class="form-control" name="name" id="name" disabled/>
+									</div>
 								</div>
 							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"/>
+							
+							<div class="form-group">
+								<label for="confirm" class="cols-sm-2 control-label">Company</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fas fa-building"></i></span>
+										<input type="text" class="form-control" name="company" id="company"/>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						   <div class="form-group">
-          						<div class="col-sm-12 text-center">
-            						<button class="btn btn-info" type="submit"> 정보 수정 <i class="fa fa-check spaceLeft"></i></button>
-            						<button class="btn btn-danger" type="submit">취소 <i class="fa fa-times spaceLeft"></i></button>
-						         </div>
-						   </div>
+							
+							<div class="form-group">
+								<label for="confirm" class="cols-sm-2 control-label">Department</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fas fa-archive"></i></span>
+										<input type="text" class="form-control" name="dept" id="dept"/>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="confirm" class="cols-sm-2 control-label">Position</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fas fa-users"></i></span>
+										<input type="text" class="form-control" name="position" id="position"/>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="phoneNumber" class="cols-sm-2 control-label">Phone Number</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-phone fa"></i></span>
+										<input type="text" class="form-control" name="phone" id="phone"/>
+									</div>
+								</div>
+							</div>
+	
+							<div class="form-group">
+								<label for="emailAddr" class="cols-sm-2 control-label">Your Email</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-envelope fa"></i></span>
+										<input type="text" class="form-control" name="email" id="email"/>
+									</div>
+								</div>
+							</div>
 
-						<!-- <div class="form-group ">
-							<button type="submit" class="btn btn-lg btn-block login-button">Join</button>
-						</div>  -->
+	
+							<div class="form-group">
+								<label for="password" class="cols-sm-2 control-label">Password</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
+										<button type="button" class="btn" data-toggle="modal" data-target="#changePasswordModal">Change Password</button>
+										<!-- <input type="password" class="form-control" name="password" id="password"/> -->
+									</div>
+								</div>
+							</div>
+	
+						<!-- 	<div class="form-group">
+								<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
+										<input type="password" class="form-control" name="confirmPass" id="confirmPass"/>
+									</div>
+								</div>
+							</div> -->
+							
+							</div>
+						</div>
+						<div class="form-group">
+       						<div class="col-sm-12 text-center">
+           						<button class="btn btn-defualt" type="submit"> Submit <i class="fa fa-check spaceLeft"></i></button>
+           						<button class="btn" type="button">Cancel <i class="fa fa-times spaceLeft"></i></button>
+					         </div>
+					   </div>
+					</div>
+					<!-- 여기가 끝 -->
+					</div>
 				</div>
-				<!-- 여기가 끝 -->
-				</div>
-			</div>
+			
+			</form>
 		
 		<!-- footer -->		
 		<div class="row">
@@ -249,7 +168,7 @@
 	</div>
 </div>
 <!-- Modal -->
-<jsp:include page="../mypage/user_search_pop.jsp"></jsp:include>
+<jsp:include page="../mypage/changePassword.jsp"></jsp:include>
 
 </body>
 

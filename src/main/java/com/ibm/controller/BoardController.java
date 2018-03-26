@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.domain.BoardDomain;
+import com.ibm.service.AdminService;
 import com.ibm.service.BoardService;
 
 @Controller
@@ -29,6 +30,10 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+
+	@Autowired
+	AdminService adminService;
+	
 
 	@GetMapping("/index")
 	public ModelAndView board(@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
@@ -45,7 +50,7 @@ public class BoardController {
 		
 		// get session
 		HttpSession session = request.getSession();
-		if(session.getAttribute("id")==null) {
+		if(session.getAttribute("id")==null) { 
 			session.invalidate();
 			return new ModelAndView("redirect:/member/index");
 		}
@@ -61,6 +66,7 @@ public class BoardController {
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
+		mv.addObject("meetingTypes", adminService.selectMeetingTypeList());
 		return mv;
 	}
 	

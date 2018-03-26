@@ -71,4 +71,17 @@ public interface MeetingNoteMapper {
 		+ ")")
 	public void insertMtnContents(Map<String, Object> mtnContentsMap);
 	
+	@Insert("INSERT INTO ATTENDEE ("
+			+ "MEETINGNOTEID, "
+			+ "VERSION, "
+			+ "SEQ, "
+			+ "MEMBERID"
+		+ ")"
+		+ "VALUES ("
+			+ "#{meetingNoteId}, "
+			+ "#{version}, "
+			+ "#{seq}, "
+			+ "#{memberId}"
+		+ ")")
+	public void insertMtnAtentants(Map<String, Object> attenantsMap);
 }

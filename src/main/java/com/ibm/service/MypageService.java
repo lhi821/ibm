@@ -7,5 +7,6 @@ import com.ibm.domain.MeetingNoteDomain;
 public interface MypageService {
 
 		public List<MeetingNoteDomain> getMeetingNoteInfo(String usrId) throws Exception;
-
+		
+			
 }

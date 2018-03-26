@@ -1,14 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-
-	//TODO session 
-	//session.getAttribute("usrId");
-
-	
-%>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,10 +14,10 @@
 <link rel="stylesheet" type="text/css" href="/css/board/index.css">
 
 <script>
-
 	function calendarInit(){
 		
-		var usrId = 'testUsr';
+		var userId = '${userId}';
+
 		
 		$('#calendar').fullCalendar({
 			schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
@@ -44,7 +35,7 @@
 				$.ajax({
 					url:"/mypage/getMeetingNoteInfo.do",
 					type:"get",
-					data: {'usrId':usrId},
+					data: {'usrId':userId},
 					type:"get",
 					success:function(list){
 		
@@ -141,9 +132,9 @@
 					<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>	
 				-->
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="/mypage/main"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
-					<li><a href="/mypage/history"><span class="glyphicon glyphicon-time"></span> History</a></li>
-					<li><a href="/mypage/info"><span class="glyphicon glyphicon-refresh"></span> Information</a></li>
+					<li class="active"><a href="/mypage/main" class="a"><i class="far fa-calendar-alt"></i> Calendar </a></li>
+					<li><a href="/mypage/history" class="a"><i class="fas fa-history"></i> History </a></li>
+					<li><a href="/mypage/info" class="a"><i class="fas fa-info"></i> Information </a></li>
 				</ul>
 				
 				<!-- mypage tab 전환 -->
@@ -162,9 +153,6 @@
 		</div>
 	</div>
 </div>
-<!-- Modal -->
-<jsp:include page="../mypage/user_search_pop.jsp"></jsp:include>
-
 </body>
 
 </html>
