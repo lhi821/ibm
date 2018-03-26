@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ibm.domain.BoardDomain;
 import com.ibm.domain.MeetingNoteDomain;
 import com.ibm.mapper.ActionItemMapper;
 import com.ibm.mapper.HashTagMapper;
@@ -123,6 +124,19 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 		}
 	}
 	
-
+	/*@Override
+	public List<MeetingNoteDomain> selectMeetingNoteList() {
+		return meetingNoteMapper.selectMeetingNoteList();
+	}*/
+	
+	@Override
+	public List<Integer> countMeetingTypePerNote() {
+		return meetingNoteMapper.countMeetingTypePerNote();
+	}
+	
+	@Override
+	public List<String> type_countMeetingTypePerNote() {
+		return meetingNoteMapper.type_countMeetingTypePerNote();
+	}
 }
 

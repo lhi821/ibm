@@ -1,11 +1,13 @@
 package com.ibm.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.ibm.domain.BoardDomain;
 import com.ibm.domain.MeetingNoteDomain;
 
 @Mapper
@@ -84,4 +86,20 @@ public interface MeetingNoteMapper {
 			+ "#{memberId}"
 		+ ")")
 	public void insertMtnAtentants(Map<String, Object> attenantsMap);
+	
+	/*@Select("SELECT meetingnoteid, version, title, projectid, divisionid, meetingtypeid, "
+			+ "regmemberid, modmemberid, location, starttm, endtm, mainpoint, hit, statusid, statusdesc,"
+			+ "DATE_FORMAT(regdate, '%Y-%m-%d %H:%i:%s') regdate, "
+			+ "DATE_FORMAT(moddate, '%Y-%m-%d %H:%i:%s') moddate "
+	+ "FROM MEETINGNOTE")
+	public List<MeetingNoteDomain> selectMeetingNoteList();*/
+	
+	//---ANALYSIS---
+	@Select("SELECT COUNT(meetingnoteid) meetingtypecount "
+			+ "FROM MEETINGNOTE "
+			+ "GROUP BY meetingtypeid desc")
+	public List<Integer> countMeetingTypePerNote();	// analysis - chart 1
+	
+	@Select("SELECT meetingtypenm FROM MEETINGTYPE INNER JOIN MEETINGNOTE ON MEETINGNOTE.meetingtypeid = MEETINGTYPE.meetingtypeid GROUP BY meetingtypenm desc")
+	public List<String> type_countMeetingTypePerNote();	// analysis - chart 1
 }

@@ -25,6 +25,15 @@ public class MeetingNoteDomain {
 	String inputVal;
 	String category;
 	
+	//for analysis
+	int meetingTypeCount;
+	
+	public int getMeetingTypeCount() {
+		return meetingTypeCount;
+	}
+	public void setMeetingTypeCount(int meetingTypeCount) {
+		this.meetingTypeCount = meetingTypeCount;
+	}
 	public String getInputVal() {
 		return inputVal;
 	}
