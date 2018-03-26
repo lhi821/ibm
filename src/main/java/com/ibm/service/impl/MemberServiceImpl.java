@@ -92,25 +92,26 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void editMemberInfo(MemberDomain memberDomain) {
 		// TODO Auto-generated method stub
-		
+		memberMapper.editMember(memberDomain);
 	}
 
 	@Override
 	public List<MemberDomain> selectMemberByKeyword(Map<String, String> MemberMap) {
 		// TODO Auto-generated method stub
-		return null;
+		return memberMapper.selectMemberByKeyword(MemberMap);
 	}
 
 	@Override
 	public MemberDomain selectMember_edit(MemberDomain memberDomain) {
 		// TODO Auto-generated method stub
-		return null;
+		return memberMapper.selectMember_edit(memberDomain);
 	}
 
 	@Override
 	public void editMemberChange(MemberDomain memberDomain) {
 		// TODO Auto-generated method stub
-		
+		memberDomain.setPassword(new BCryptPasswordEncoder().encode(memberDomain.getPassword()));
+		memberMapper.editPassword(memberDomain);
 	}
 	
 	
