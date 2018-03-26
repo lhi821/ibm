@@ -52,9 +52,9 @@
 					<div class="container">
 					<!-- 여기가 화면 -->
 					<ul class="nav nav-tabs">
-						<li><a href="/mypage/main"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
-						<li><a href="/mypage/history"><span class="glyphicon glyphicon-time"></span> History</a></li>
-						<li class="active"><a href="/mypage/info"><span class="glyphicon glyphicon-refresh"></span> Information</a></li>
+						<li><a href="/mypage/main" class="a"><i class="far fa-calendar-alt"></i> Calendar </a></li>
+						<li><a href="/mypage/history" class="a"><i class="fas fa-history"></i> History </a></li>
+						<li class="active"><a href="/mypage/info" class="a"><i class="fas fa-info"></i> Information </a></li>
 					</ul>
 					
 					<div id="contentsDiv" style="padding-top: 20px;">

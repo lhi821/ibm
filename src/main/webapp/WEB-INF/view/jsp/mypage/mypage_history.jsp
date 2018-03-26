@@ -125,9 +125,9 @@
 					<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>	
 				-->
 				<ul class="nav nav-tabs">
-					<li><a href="/mypage/main"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
-					<li class="active"><a href="/mypage/history"><span class="glyphicon glyphicon-time"></span> History</a></li>
-					<li><a href="/mypage/info"><span class="glyphicon glyphicon-refresh"></span> Information</a></li>
+					<li><a href="/mypage/main" class="a"><i class="far fa-calendar-alt"></i> Calendar </a></li>
+					<li class="active"><a href="/mypage/history" class="a"><i class="fas fa-history"></i> History </a></li>
+					<li><a href="/mypage/info" class="a"><i class="fas fa-info"></i> Information </a></li>
 				</ul>
 				
 				<!-- mypage tab 전환 -->
