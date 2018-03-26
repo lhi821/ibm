@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/css/board/index.css">
 </head>
@@ -24,9 +25,14 @@
 		<div class="container affix-container">
 			<div class="row">
 				<div class="container">
+			
+				<ul class="nav nav-tabs">
+				<li class="active"><a class="a" href="/admin/meetingTypeCode"><span class="fal fa-sticky-note"></span>Meeting Type</a></li>
+				<li><a class="a" href="/admin/companyInfo">Company </a></li>
+				<li><a class="a" href="/admin/inviteMember">Invite Members</a></li>
+				<li><a class="a" href="/admin/systemAdmin">System Admin</a>
+				</ul>
 
-					<!-- adminTab -->
-					<jsp:include page="../admin/layout/admintab.jsp"></jsp:include>
 					<br>
 					<!-- 여기가 화면 -->
 					<div class="col-xs-12">
@@ -87,6 +93,19 @@
 	<jsp:include page="../admin/modifyMeetingTypeCode.jsp"></jsp:include>
 											
 </body>
+<script>
+var url_string = window.location.href
+var url = new URL(url_string);
+var resultmsg = url.searchParams.get("resultmsg");
+if(resultmsg == "fail" ){
+	bootbox.alert({
+	    message: "Duplicate Code Name!",
+	    size: 'small'
+	});
+}
+
+</script>
+
 <!-- JS -->
 <!-- <script type="text/javascript" src="/js/board/delete.js"></script>
 <script type="text/javascript" src="/js/board/update.js"></script>

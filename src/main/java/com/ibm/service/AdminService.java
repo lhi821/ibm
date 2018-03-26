@@ -7,7 +7,7 @@ import com.ibm.domain.MeetingTypeCodeDomain;
 
 public interface AdminService {
 	
-	public void insertMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain);
+	public boolean insertMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain);
 	public List<MeetingTypeCodeDomain> selectMeetingTypeList();
 	public void updateMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain);
 	public void deleteMeetingType(String id);

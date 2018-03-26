@@ -31,10 +31,21 @@ public class AdminController {
 		return mv;
 	}
 	
-	@PostMapping("/create")
-	public String newMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain) throws Exception{
-		adminService.insertMeetingType(meetingTypeCodeDomain);
-		return "redirect:/admin/meetingTypeCode";
+	@PostMapping("/create") 
+	public ModelAndView newMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/meetingTypeCode");
+		List<MeetingTypeCodeDomain> meetingTypeList = new ArrayList<>();
+		if (adminService.insertMeetingType(meetingTypeCodeDomain)) {	//duplicate:N
+			meetingTypeList = adminService.selectMeetingTypeList();
+			mv.addObject("meetingTypeList", meetingTypeList);
+			mv.addObject("resultmsg", "success");
+			return mv; 
+		}else {															//duplicate:Y
+			meetingTypeList = adminService.selectMeetingTypeList();
+			mv.addObject("meetingTypeList", meetingTypeList);
+			mv.addObject("resultmsg", "fail");
+			return mv;
+		}
 	}
 
 	@PostMapping("/update")

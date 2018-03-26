@@ -24,8 +24,12 @@
 			<div class="row">
 				<div class="container">
 				
-				<!-- adminTab -->
-				<jsp:include page="../admin/layout/admintab.jsp"></jsp:include>
+				<ul class="nav nav-tabs">
+				<li><a class="a" href="/admin/meetingTypeCode">Meeting Type</a></li>
+				<li class="active"><a class="a" href="/admin/companyInfo">Company </a></li>
+				<li><a class="a" href="/admin/inviteMember">Invite Members</a></li>
+				<li><a class="a" href="/admin/systemAdmin">System Admin</a>
+				</ul>
 				<br>
 				<!-- 여기가 화면 -->
 					<div class="col-xs-12">
