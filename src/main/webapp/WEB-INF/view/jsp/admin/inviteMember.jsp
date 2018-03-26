@@ -15,23 +15,18 @@
 .panel-body.small {
 	padding: 5px;
 }
-
 .small {
 	font-size: 96% !important;
 	padding: 5px;
 }
-
 th {
 	text-align: center !important;
 	padding: 6px !important;
 }
-
 td {
 	text-align: center;
 	padding: 6px !important;
 }
-
-
 tr.acitve{
 	background-color: red !important;
 }
@@ -42,13 +37,11 @@ tr.acitve{
 <script src='/lib/jquery/jquery.min.js'></script>
 
 <script  type="text/javascript">
-
 $('.table tbody tr').on('click',function () {
 		console.log("click");
         $(this).addClass('table-primary');
         $(this).addClass('active');
 });
-
 		
 </script>
 
@@ -66,15 +59,15 @@ $('.table tbody tr').on('click',function () {
 		<div class="container affix-container">
 			<div class="row">
 				<div class="container">
-				
+
 				<ul class="nav nav-tabs">
-				<li><a class="a" href="/admin/meetingTypeCode">Meeting Type</a></li>
-				<li><a class="a" href="/admin/companyInfo">Company </a></li>
-				<li class="active"><a class="a" href="/admin/inviteMember">Invite Members</a></li>
-				<li><a class="a" href="/admin/systemAdmin">System Admin</a>
+				<li><a class="a" href="/admin/meetingTypeCode"><i class="far fa-sticky-note"></i> Meeting Type </a></li>
+				<li><a class="a" href="/admin/companyInfo"><i class="far fa-building"></i> Company </a></li>
+				<li class="active"><a class="a" href="/admin/inviteMember"><i class="fas fa-user-plus"></i> Invite Members </a></li>
+				<li><a class="a" href="/admin/systemAdmin"><i class="fas fa-cog"></i> System Admin </a>
 				</ul>
 				
-				<br>
+					<!-- 여기가 화면 -->
 					<div class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading content">
@@ -177,105 +170,9 @@ $('.table tbody tr').on('click',function () {
 		</div>
 	</div>
 </body>
-<script>
-var attendantsList = [];
-var attendantsNmList = [];
-$( document ).ready(function() {
- 
-  $('#toRightBtn').click(function() {
-    $("#leftTable tr.active").each(function(){
-      $(this).removeClass("active");
-      $(this).css("font-weight", "");
-      
-      if(jQuery.inArray($(this).attr("data-value"), attendantsList) == -1){
-        attendantsList.push($(this).attr("data-value"));
-        attendantsNmList.push($(this).children('td').eq(0).text());
-        var clone = $(this).clone();
-        clone.removeClass("active");
-        clone.css("font-weight", "");
-        $("#rightTable").append(clone);
-        activeClick("rightTable");
-      }
-		});
-  });
-  
-  $('#toRightAllBtn').click(function() {
-    $("#leftTable tr").each(function(){
-      $(this).removeClass("active");
-      $(this).css("font-weight", "");
-      
-      if(jQuery.inArray($(this).attr("data-value"), attendantsList) == -1){
-        attendantsList.push($(this).attr("data-value"));
-        attendantsNmList.push($(this).children('td').eq(0).text());
-        var clone = $(this).clone();
-        clone.removeClass("active");
-        clone.css("font-weight", "");
-        $("#rightTable").append(clone);
-        activeClick("rightTable");
-      }
-		});
-  });
-  
-  $('#toLeftBtn').click(function() {
-    attendantsList = [];
-    attendantsNmList = [];
-    $("#rightTable tr.active").each(function(){
-      $(this).remove();
-		});
-    $("#rightTable tr").each(function(){
-      attendantsList.push($(this).attr("data-value"));
-      attendantsNmList.push($(this).children('td').eq(0).text());
-		});
-  });
-  
-  $('#toLeftAllBtn').click(function() {
-    attendantsList = [];
-    attendantsNmList = [];
-    $("#rightTable tr").each(function(){
-      $(this).remove();
-		});
-  });
-  
-  $('#userSearchIcon').click(function() {
-    var data = {"searchKey" : $("#searchKey").val()};
-    $.ajax({
-      url: '/member/search',
-      type: 'POST',
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      success: function(data) {
-    	    console.log(data);
-    	    $("#leftTable").empty();
-    	    for (var i=0; i<data.length; i++){
-    	      $("#leftTable").append("<tr data-value="+data[i].memberid+" class='grayscale'>"+
-    	          											"<td>"+data[i].membernm+"</td>"+
-    	          											"<td>"+data[i].email+"</td>"+
-    	          											"<td>"+data[i].phone+"</td>"+
-    	          											"<td>"+data[i].jobs+"</td>"+
-  	          											"</tr>");
-    	    }
-    	    activeClick("leftTable");
-      },
-      error: function(data) {
-        	alert("Error");
-    	}
-    });
-  });
-  
-});
+<!-- JS -->
+<!-- <script type="text/javascript" src="/js/board/delete.js"></script>
+<script type="text/javascript" src="/js/board/update.js"></script>
+<script type="text/javascript" src="/js/board/read.js"></script> -->
 
-function activeClick(table){
-  $('#'+table+' tr').unbind();
-  $('#'+table+' tr').click(function() {
-    if ($(this).attr("class") == "grayscale") {
-      $(this).addClass("active");
-      $(this).css("font-weight", "bold");
-    }else{
-      $(this).removeClass("active");
-      $(this).css("font-weight", "");
-    }
-  });
-}
-
-</script>
 </html>

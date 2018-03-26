@@ -27,10 +27,10 @@
 				<div class="container">
 			
 				<ul class="nav nav-tabs">
-				<li class="active"><a class="a" href="/admin/meetingTypeCode"><span class="fal fa-sticky-note"></span>Meeting Type</a></li>
-				<li><a class="a" href="/admin/companyInfo">Company </a></li>
-				<li><a class="a" href="/admin/inviteMember">Invite Members</a></li>
-				<li><a class="a" href="/admin/systemAdmin">System Admin</a>
+				<li class="active"><a class="a" href="/admin/meetingTypeCode"><i class="far fa-sticky-note"></i> Meeting Type </a></li>
+				<li><a class="a" href="/admin/companyInfo"><i class="far fa-building"></i> Company </a></li>
+				<li><a class="a" href="/admin/inviteMember"><i class="fas fa-user-plus"></i> Invite Members </a></li>
+				<li><a class="a" href="/admin/systemAdmin"><i class="fas fa-cog"></i> System Admin </a>
 				</ul>
 
 					<br>
