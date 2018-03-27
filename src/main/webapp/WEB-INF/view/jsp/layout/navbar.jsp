@@ -71,16 +71,10 @@
 				</c:choose>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
-
+			<!-- 통합검색 날짜 버튼 -->
+			<li><a class="cursor whitescale" data-toggle="modal" data-target="#periodSearch"><i class="fas fa-calendar-alt"></i>&nbsp;</a></li>
 	  		<li><a class="cursor whitescale" href="/member/logout">Logout</a></li>
 				<li><a class="cursor whitescale">  
-=======
-			<!-- 통합검색 날짜 버튼 -->
-			<li><a class="cursor" data-toggle="modal" data-target="#periodSearch"><i class="fas fa-calendar-alt"></i>&nbsp;</a></li>
-	  		<li><a class="cursor" href="/member/logout">Logout</a></li>
-				<li><a class="cursor">  
->>>>>>> d70f882a42e1a4744f7449f19bee9e6cb2e72cd2
 					<span class="fa-layers fa-fw" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
 					data-content="<ul class='noti-ul'>
 													<c:forEach var='i' begin='0' varStatus='status' end='1'>
