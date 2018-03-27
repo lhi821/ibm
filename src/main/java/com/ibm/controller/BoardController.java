@@ -41,9 +41,10 @@ public class BoardController {
 														@RequestParam(value="subMenu", required=false) String subMenu,
 														HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/index");
-		List<BoardDomain> resultList = new ArrayList<>();
-		resultList = boardService.selectBoardList();
-		mv.addObject("boardList", resultList);
+		List<Map<String,Object>> resultList = new ArrayList<>();
+		Map<String, Object> requestMap = new HashMap<String,Object>();
+		resultList = boardService.getMeetingNote(requestMap);
+		mv.addObject("resultList", resultList);
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);

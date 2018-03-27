@@ -374,3 +374,8 @@ top: 16px;
 		font-family:'IBMPlexSans-Bold' !important;
 }
 
+.box-contents{
+    height: 80px;
+    max-height: 80px;
+    overflow: hidden;
+}

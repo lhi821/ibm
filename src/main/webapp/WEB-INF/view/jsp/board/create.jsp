@@ -637,6 +637,60 @@ $( document ).ready(function() {
 });
 
 function saveMtn(saveType) {
+  
+  if($("#selectType").val() == ""){
+    bootbox.alert({
+      message: "Please Select Types",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    return false;
+  }
+  if($("#locationInput").val() == ""){
+    bootbox.alert({
+      message: "Please fill out Location",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    return false;
+  }
+  if($("#titleInput").val() == ""){
+    bootbox.alert({
+      message: "Please fill out Title",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    return false;
+  }
+  if($("#attendantsInput").val() == ""){
+    bootbox.alert({
+      message: "Please select Attendants",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    return false;
+  }
+  
   var url = "";
   
   //액션아이템 추출
@@ -732,7 +786,7 @@ function saveMtn(saveType) {
 		data : JSON.stringify(data),
 		contentType: "application/json",
 		success : function(data){
-		  alert("통신데이터 값 : " + data) ;
+		  location.href = "/board/index?veiwType=G&sideBar=T&subMenu=FFFF";
 		},
 		error : function(){
 		}
