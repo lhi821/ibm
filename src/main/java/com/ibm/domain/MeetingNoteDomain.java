@@ -19,7 +19,15 @@ public class MeetingNoteDomain {
 	String statusDesc;
 	String regDate;
 	String modDate;
+	
+	String withDate;
 
+	public String getWithDate() {
+		return withDate;
+	}
+	public void setWithDate(String withDate) {
+		this.withDate = withDate;
+	}
 	//for integSearch	
 	String contents;
 	String inputVal;

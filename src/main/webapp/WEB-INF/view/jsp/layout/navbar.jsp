@@ -29,9 +29,24 @@
 		  		  
 		 
 	}); */
+	
+	//일반 검색
 	function searchStart() {	
 		$('#integSearchForm').submit();
+		
 	}
+
+	//날짜조건 추각 검색
+	function searchWithDate(start, end){
+
+		$('#selectedStartDate').val(start)
+		$('#selectedEndDate').val(end)
+		$('#withDate').val('y')
+		
+		searchStart()
+
+	}
+	
 	</script>
 </head>
 <body>
@@ -82,23 +97,27 @@
 		 		
 		 		<!-- 통합검색 -->
 				<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
-			   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-   	    		<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
-		     			<option value="all">All</option> 
-		     			<option value="title">Title</option> 
-		     			<option value="content">Contents</option> 
-		     			<option value="regId">Writer</option>
-		     			<option>HashTag</option>	<!-- TODO 해시태그 검색 --> 
-		     	</select>
-		     	<div class="input-group stylish-input-group">
-					<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
-						<span class="input-group-addon">
-						<!-- <i class="far fa-calendar-alt grayscale"></i> -->
-							<button type="button" id="searchBtn" onClick="searchStart();">
-					        	<i class="fas fa-search grayscale"></i>
-							</button> 
-						</span>
-	      		</div>
+				   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				   	<input type="hidden" id="withDate" name="withDate" value=""/>
+				   	<input type="hidden" id="selectedStartDate" name="selectedStartDate" value="" />
+				   	<input type="hidden" id="selectedEndDate" name="selectedEndDate" value="" />
+				   	
+	   	    		<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
+			     			<option value="all">All</option> 
+			     			<option value="title">Title</option> 
+			     			<option value="content">Contents</option> 
+			     			<option value="regId">Writer</option>
+			     			<option>HashTag</option>	<!-- TODO 해시태그 검색 --> 
+			     	</select>
+			     	<div class="input-group stylish-input-group">
+						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
+							<span class="input-group-addon">
+							<!-- <i class="far fa-calendar-alt grayscale"></i> -->
+								<button type="button" id="searchBtn" onClick="searchStart();">
+						        	<i class="fas fa-search grayscale"></i>
+								</button> 
+							</span>
+		      		</div>
 	    		</form>
 		</div>
 	</nav>

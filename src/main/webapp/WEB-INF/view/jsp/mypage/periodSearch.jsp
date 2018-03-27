@@ -9,13 +9,24 @@
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 <title>Insert title here</title>
 <script>
+
+var startDate
+var endDate
+
+
 	$(function() {
 
 	    var start = moment().subtract(29, 'days');
 	    var end = moment();
+	    
+	    
 
 	    function cb(start, end) {
 	        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+	        
+	        startDate = start.format('YYYY-MM-DD')
+	        endDate = end.format('YYYY-MM-DD')
+	        
 	    }
 
 	    $('#reportrange').daterangepicker({
@@ -32,8 +43,14 @@
 	    }, cb);
 
 	    cb(start, end);
-	    
+ 
 	});
+	
+	function getDate(){
+		searchWithDate(startDate, endDate);
+		
+	}
+	
 </script>
 </head>
 <body>
@@ -54,7 +71,7 @@
       <br />
       <br />
       <div class="modal-footer">
-        <button type="button" class="btn" data-dismiss="modal">Search</button>
+        <button type="button" class="btn" data-dismiss="modal" Onclick="getDate();">Search</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
