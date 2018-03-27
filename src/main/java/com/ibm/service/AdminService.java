@@ -12,7 +12,7 @@ public interface AdminService {
 	public void updateMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain);
 	public void deleteMeetingType(String id);
 	
-	public void insertCompany(CompanyInfoDomain companyInfoDomain);
+	public boolean insertCompany(CompanyInfoDomain companyInfoDomain);
 	public List<CompanyInfoDomain> selectCompanyInfoList();
 	public void updateCompany(CompanyInfoDomain companyInfoDomain);
 	public void deleteCompany(String id);

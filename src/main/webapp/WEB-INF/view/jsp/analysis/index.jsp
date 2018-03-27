@@ -76,8 +76,15 @@
       </div>
     </div>
   </div>
+  <input type="hidden" id="typeName" value='${typeName}'/>
+  <input type="hidden" id="typeCount" value='${typeCount}'/>
 </div>
 </body>
+<script>
+var typeName = $('#typeName').val();
+var typeCount = $('#typeCount').val();
+</script>
+
 <!-- JS -->
 <script src="/js/analysis/graph.js"></script>
 </html>

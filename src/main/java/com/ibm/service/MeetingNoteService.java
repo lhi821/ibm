@@ -14,4 +14,7 @@ public interface MeetingNoteService {
 	
 	public List<NoteHeadDomain> getNoteHead(Map<String, Object> noteHeadMap);
 
+	//public List<MeetingNoteDomain> selectMeetingNoteList();
+	public List<Integer> countMeetingTypePerNote();
+	public List<String> type_countMeetingTypePerNote();
 }

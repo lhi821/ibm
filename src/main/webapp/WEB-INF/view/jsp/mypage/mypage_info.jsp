@@ -15,6 +15,9 @@
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/css/board/index.css">
+<style>
+
+</style>
 </head>
 
 <script type="text/javascript">
@@ -127,23 +130,20 @@
 								<label for="password" class="cols-sm-2 control-label">Password</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
-										<button type="button" class="btn" data-toggle="modal" data-target="#changePasswordModal">Change Password</button>
-										<!-- <input type="password" class="form-control" name="password" id="password"/> -->
+										<!--<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
+										 <button type="button" class="btn" data-toggle="modal" data-target="#changePasswordModal">Change Password</button> -->
+										<!-- <a class="btn icon-btn btn-default" data-toggle="modal" data-target="#changePasswordModal">
+										<i class="fa fa-lock fa-lg"></i> 
+										 	 Change Password
+										</a> -->
+										<div class="input-group">
+							                <span class="input-group-addon""><i class="fa fa-lock"></i></span>
+							                <input class="form-control" data-toggle="modal" data-target="#changePasswordModal" readonly placeholder="Change Password">
+						 				</div>
 									</div>
 								</div>
 							</div>
-	
-						<!-- 	<div class="form-group">
-								<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
-										<input type="password" class="form-control" name="confirmPass" id="confirmPass"/>
-									</div>
-								</div>
-							</div> -->
-							
+
 							</div>
 						</div>
 						<div class="form-group">

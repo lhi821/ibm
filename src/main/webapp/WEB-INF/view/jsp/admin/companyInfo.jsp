@@ -94,6 +94,19 @@
 	
 	
 </body>
+<script>
+var url_string = window.location.href
+var url = new URL(url_string);
+var resultmsg = url.searchParams.get("resultmsg");
+if(resultmsg == "fail" ){
+	bootbox.alert({
+	    message: "Duplicate Code Name!",
+	    size: 'small'
+	});
+}
+
+</script>
+
 <!-- JS -->
 <!-- <script type="text/javascript" src="/js/board/delete.js"></script>
 <script type="text/javascript" src="/js/board/update.js"></script>

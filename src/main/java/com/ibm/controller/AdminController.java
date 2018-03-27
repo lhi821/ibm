@@ -70,11 +70,21 @@ public class AdminController {
 		return mv;
 	}
 	
-
 	@PostMapping("/createCompany")
-	public String newCompany(CompanyInfoDomain companyInfoDomain) throws Exception{
-		adminService.insertCompany(companyInfoDomain);
-		return "redirect:/admin/companyInfo";
+	public ModelAndView newCompany(CompanyInfoDomain companyInfoDomain) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/companyInfo");
+		List<CompanyInfoDomain> companyInfoList = new ArrayList<>();
+		if (adminService.insertCompany(companyInfoDomain)) {
+			companyInfoList = adminService.selectCompanyInfoList();
+			mv.addObject("companyInfoList",companyInfoList);
+			mv.addObject("resultmsg", "success");
+			return mv; 
+		}else {
+			companyInfoList = adminService.selectCompanyInfoList();
+			mv.addObject("companyInfoList",companyInfoList);
+			mv.addObject("resultmsg", "fail");
+			return mv;
+		}
 	}
 
 	@PostMapping("/updateCompany")

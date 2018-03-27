@@ -19,12 +19,29 @@ public class MeetingNoteDomain {
 	String statusDesc;
 	String regDate;
 	String modDate;
+	
+	String withDate;
 
+	public String getWithDate() {
+		return withDate;
+	}
+	public void setWithDate(String withDate) {
+		this.withDate = withDate;
+	}
 	//for integSearch	
 	String contents;
 	String inputVal;
 	String category;
 	
+	//for analysis
+	int meetingTypeCount;
+	
+	public int getMeetingTypeCount() {
+		return meetingTypeCount;
+	}
+	public void setMeetingTypeCount(int meetingTypeCount) {
+		this.meetingTypeCount = meetingTypeCount;
+	}
 	public String getInputVal() {
 		return inputVal;
 	}

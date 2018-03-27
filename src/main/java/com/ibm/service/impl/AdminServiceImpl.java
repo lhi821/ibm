@@ -55,12 +55,24 @@ public class AdminServiceImpl implements AdminService {
 	
 	//TAB 2 [CompanyInfo Config]-----------------
 	@Override
-	public void insertCompany(CompanyInfoDomain companyInfoDomain) {
-		String prevID = adminMapper.selectLatestCompany().get(0).getCompanyID().substring(2, 7);
-		int prevID_int = Integer.parseInt(prevID) + 1;
-		String postID =	"CP" + String.format("%05d", prevID_int);
-		companyInfoDomain.setCompanyID(postID);
+	public boolean insertCompany(CompanyInfoDomain companyInfoDomain) {
+		
+		List<CompanyInfoDomain> companyList = adminMapper.selectCompanyInfoList();
+		if (companyList.isEmpty()) 
+			companyInfoDomain.setCompanyID("CP00001");
+		else {
+			for (int i = 0; i < companyList.size(); i++) {
+				if (companyInfoDomain.getCompanyNM().equals(companyList.get(i).getCompanyNM())) {
+					return false;
+				}
+			}
+			String prevID = adminMapper.selectLatestCompany().get(0).getCompanyID().substring(2, 7);
+			int prevID_int = Integer.parseInt(prevID) + 1;
+			String postID =	"CP" + String.format("%05d", prevID_int);
+			companyInfoDomain.setCompanyID(postID);
+		}
 		adminMapper.insertCompany(companyInfoDomain);
+		return true;
 	}
 	
 	public List<CompanyInfoDomain> selectCompanyInfoList(){
