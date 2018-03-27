@@ -18,15 +18,17 @@
 	<meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
 	<script>
-	$(document).ready(function() {
+	 /* $(document).ready(function() {
 		  $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
+		 
 		  
 		   $('[data-toggle="datepicker"]').change(function(dateText) { 
 			  $('[data-toggle="datepicker"]').datepicker('hide');
 			  //$('#datePickForm').submit();	  
-		  }); 
-	});
-	
+		  });
+		  		  
+		 
+	}); */
 	function searchStart() {	
 		$('#integSearchForm').submit();
 	}
@@ -54,7 +56,8 @@
 				</c:choose>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-
+			<!-- 통합검색 날짜 버튼 -->
+			<li><a class="cursor" data-toggle="modal" data-target="#periodSearch"><i class="fas fa-calendar-alt"></i>&nbsp;</a></li>
 	  		<li><a class="cursor" href="/member/logout">Logout</a></li>
 				<li><a class="cursor">  
 					<span class="fa-layers fa-fw" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
@@ -69,13 +72,14 @@
 				<li><a class="cursor" href="/mypage/main"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
 				<li><a class="cursor" href="/admin/meetingTypeCode"><i class="fas fa-cog grayscale"></i>&nbsp;</a></li>
 			</ul>
-				<!-- 날짜 -->
-				<form id="datePickForm" class="navbar-form navbar-right" action="/integSearch/date_result" method="get">
+				<!-- 날짜 
+				 <form id="datePickForm" class="navbar-form navbar-right" action="/integSearch/date_result" method="get">
 			   	<div class="input-group stylish-input-group-left fixed-width">
 						<div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale"></i></div>
 					    <input id="selectedDate" name="selectedDate" class="form-control cursor left-padding" readonly data-toggle="datepicker" placeholder="Date">
-			 		</div>
-		 		</form>
+			 	</div>
+		 		</form> -->
+		 		
 		 		<!-- 통합검색 -->
 				<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
 			   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -83,19 +87,19 @@
 		     			<option value="all">All</option> 
 		     			<option value="title">Title</option> 
 		     			<option value="content">Contents</option> 
-		     			<option value="regId">Writer</option>	 
+		     			<option value="regId">Writer</option>
+		     			<option>HashTag</option>	<!-- TODO 해시태그 검색 --> 
 		     	</select>
 		     	<div class="input-group stylish-input-group">
-						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
+					<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
 						<span class="input-group-addon">
-							<!-- <i class="far fa-calendar-alt grayscale"></i> -->
+						<!-- <i class="far fa-calendar-alt grayscale"></i> -->
 							<button type="button" id="searchBtn" onClick="searchStart();">
-				        <i class="fas fa-search grayscale"></i>
+					        	<i class="fas fa-search grayscale"></i>
 							</button> 
 						</span>
-	      	</div>
-	    	</form>
-    	
+	      		</div>
+	    		</form>
 		</div>
 	</nav>
 
@@ -104,6 +108,8 @@
 	<div id="loaderBox">
 		<div class="loader"></div>
 	</div>
+	<!-- Modal -->
+	<jsp:include page="../mypage/periodSearch.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 $(function() {
