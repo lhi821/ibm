@@ -78,7 +78,6 @@ public class AdminController {
 		return mv;
 	}
 	
-
 	@PostMapping("/createCompany")
 	public ModelAndView newCompany(CompanyInfoDomain companyInfoDomain) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/admin/companyInfo");

@@ -18,18 +18,35 @@
 	<meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
 	<script>
-	$(document).ready(function() {
+	 /* $(document).ready(function() {
 		  $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
+		 
 		  
 		   $('[data-toggle="datepicker"]').change(function(dateText) { 
 			  $('[data-toggle="datepicker"]').datepicker('hide');
 			  //$('#datePickForm').submit();	  
-		  }); 
-	});
+		  });
+		  		  
+		 
+	}); */
 	
+	//일반 검색
 	function searchStart() {	
 		$('#integSearchForm').submit();
+		
 	}
+
+	//날짜조건 추각 검색
+	function searchWithDate(start, end){
+
+		$('#selectedStartDate').val(start)
+		$('#selectedEndDate').val(end)
+		$('#withDate').val('y')
+		
+		searchStart()
+
+	}
+	
 	</script>
 </head>
 <body>
@@ -39,24 +56,25 @@
 	<nav class="navbar navbar-default custom-nav">
 		<div class="container-fluid">
 	  	<div class="navbar-header">
-	    	<a class="navbar-brand" href="/analysis/index">MeetingNote</a>
+	    	<a class="navbar-brand ibm whitescale" href="/analysis/index">MeetingNote</a>
 	  	</div>
 	  	<ul class="nav navbar-nav">
 	  		<c:choose>
 			    <c:when test="${veiwType eq 'L'}">
-			    	<li id="galleryVeiw" class="cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
-						<li id="listVeiw" class="active cursor"><a><i class="fas fa-list"></i> List</a></li>
+			    	<li id="galleryVeiw" class="cursor"><a class="whitescale"><i class="fas fa-th whitescale"></i> Gallery</a></li>
+						<li id="listVeiw" class="active cursor"><a class="whitescale"><i class="fas fa-list"></i> List</a></li>
 			    </c:when>
 			    <c:otherwise>
-			    	<li id="galleryVeiw" class="active cursor"><a><i class="fas fa-th"></i> Gallery</a></li>
-						<li id="listVeiw" class="cursor"><a><i class="fas fa-list"></i> List</a></li>
+			    	<li id="galleryVeiw" class="active cursor"><a class="whitescale"><i class="fas fa-th"></i> Gallery</a></li>
+						<li id="listVeiw" class="cursor"><a class="whitescale"><i class="fas fa-list"></i> List</a></li>
 			    </c:otherwise>
 				</c:choose>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-
-	  		<li><a class="cursor" href="/member/logout">Logout</a></li>
-				<li><a class="cursor">  
+			<!-- 통합검색 날짜 버튼 -->
+			<li><a class="cursor whitescale" data-toggle="modal" data-target="#periodSearch"><i class="fas fa-calendar-alt"></i>&nbsp;</a></li>
+	  		<li><a class="cursor whitescale" href="/member/logout">Logout</a></li>
+				<li><a class="cursor whitescale">  
 					<span class="fa-layers fa-fw" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
 					data-content="<ul class='noti-ul'>
 													<c:forEach var='i' begin='0' varStatus='status' end='1'>
@@ -66,36 +84,41 @@
 	    			<i class="fas fa-bell"></i>
 	    			<span class="fa-layers-counter" style="background:Tomato"></span>
 	  			</span>&nbsp;</a></li>
-				<li><a class="cursor" href="/mypage/main"><i class="fas fa-user-circle grayscale"></i>&nbsp;</a></li>
-				<li><a class="cursor" href="/admin/meetingTypeCode"><i class="fas fa-cog grayscale"></i>&nbsp;</a></li>
+				<li><a class="cursor whitescale" href="/mypage/main"><i class="fas fa-user-circle"></i>&nbsp;</a></li>
+				<li><a class="cursor whitescale" href="/admin/meetingTypeCode"><i class="fas fa-cog"></i>&nbsp;</a></li>
 			</ul>
-				<!-- 날짜 -->
-				<form id="datePickForm" class="navbar-form navbar-right" action="/integSearch/date_result" method="get">
+				<!-- 날짜 
+				 <form id="datePickForm" class="navbar-form navbar-right" action="/integSearch/date_result" method="get">
 			   	<div class="input-group stylish-input-group-left fixed-width">
 						<div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale"></i></div>
 					    <input id="selectedDate" name="selectedDate" class="form-control cursor left-padding" readonly data-toggle="datepicker" placeholder="Date">
-			 		</div>
-		 		</form>
+			 	</div>
+		 		</form> -->
+		 		
 		 		<!-- 통합검색 -->
 				<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
-			   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-   	    		<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
-		     			<option value="all">All</option> 
-		     			<option value="title">Title</option> 
-		     			<option value="content">Contents</option> 
-		     			<option value="regId">Writer</option>	 
-		     	</select>
-		     	<div class="input-group stylish-input-group">
+				   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				   	<input type="hidden" id="withDate" name="withDate" value=""/>
+				   	<input type="hidden" id="selectedStartDate" name="selectedStartDate" value="" />
+				   	<input type="hidden" id="selectedEndDate" name="selectedEndDate" value="" />
+				   	
+	   	    		<select class="selectpicker" id="categoryBox" name="category" data-width="auto">
+			     			<option value="all">All</option> 
+			     			<option value="title">Title</option> 
+			     			<option value="content">Contents</option> 
+			     			<option value="regId">Writer</option>
+			     			<option>HashTag</option>	<!-- TODO 해시태그 검색 --> 
+			     	</select>
+			     	<div class="input-group stylish-input-group">
 						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
-						<span class="input-group-addon">
+							<span class="input-group-addon">
 							<!-- <i class="far fa-calendar-alt grayscale"></i> -->
-							<button type="button" id="searchBtn" onClick="searchStart();">
-				        <i class="fas fa-search grayscale"></i>
-							</button> 
-						</span>
-	      	</div>
-	    	</form>
-    	
+								<button type="button" id="searchBtn" onClick="searchStart();">
+						        	<i class="fas fa-search grayscale"></i>
+								</button> 
+							</span>
+		      		</div>
+	    		</form>
 		</div>
 	</nav>
 
@@ -104,6 +127,8 @@
 	<div id="loaderBox">
 		<div class="loader"></div>
 	</div>
+	<!-- Modal -->
+	<jsp:include page="../mypage/periodSearch.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 $(function() {

@@ -77,7 +77,8 @@ public class AdminServiceImpl implements AdminService {
 			String postID =	"CP" + String.format("%05d", prevID_int);
 			companyInfoDomain.setCompanyID(postID);
 		}
- 		adminMapper.insertCompany(companyInfoDomain);
+
+		adminMapper.insertCompany(companyInfoDomain);
 		return true;
 	}
 	

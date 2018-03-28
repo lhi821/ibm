@@ -76,8 +76,32 @@
       </div>
     </div>
   </div>
+  <input type="hidden" id="typeName" value='${typeName}'/>
+  <input type="hidden" id="typeCount" value='${typeCount}'/>
+  <input type="hidden" id="noteTitle" value='${noteTitle}'/>
+  <input type="hidden" id="noteHit" value='${noteHit}'/>
 </div>
 </body>
+<script>
+
+$(document).ready(function(){
+
+	var typeName = $('#typeName').val();
+	var typeCount = $('#typeCount').val();
+	var noteTitle = $('#noteTitle').val();
+	var noteHit = $('#noteHit').val();
+	
+  $.ajax({
+		type : 'POST',
+		url : '/board/index',
+		dataType: "json",
+		data : ({typeName:typeName, typeCount:typeCount, noteTitle:noteTitle, noteHit:noteHit}),
+		success:function(data){
+		}
+	});
+});
+
+</script>
 <!-- JS -->
 <script src="/js/analysis/graph.js"></script>
 </html>

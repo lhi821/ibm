@@ -18,8 +18,8 @@
       				<div class="row">
 					     	<div class="col-xs-12">
 		       				<div class="input-group stylish-input-group-left">
-		       					<div class="input-group-addon context-menu"><i id="" class="fab fa-font-awesome-flag grayscale"></i></div>
-										<input id="" type="text" class="form-control" placeholder="Alias of Information">
+		       					<div class="input-group-addon context-menu"><i class="fab fa-font-awesome-flag grayscale"></i></div>
+										<input id="setModalAlias" type="text" class="form-control" placeholder="Alias of Information">
 						      </div>
 					      </div>
 				      </div>
@@ -59,7 +59,7 @@
 									<div class="form-group">
 										<div class="input-group stylish-input-group-left">
 											<div class="input-group-addon"><i class="fas fa-user-plus grayscale"></i></div>
-											<input readonly id="setModalAtt" type="text" disabled class="form-control context-menu" placeholder="Attendants">
+											<input readonly id="setModalAtt" type="text" class="form-control context-menu" placeholder="Attendants">
 							      </div>
 							    </div>
 							  </div>
@@ -68,8 +68,8 @@
 					
 						<div class="modal-footer">
 							<div class="text-right">
-								<button id="setModalCanleBtn" type="button" class="btn btn-default btn-sm">
-									<i class="fas fa-ban grayscale"></i> Cancle
+								<button id="setModalCancelBtn" type="button" class="btn btn-default btn-sm">
+									<i class="fas fa-ban grayscale"></i> Cancel
 								</button>
 								<button id="setModalSaveBtn" type="button" class="btn btn-sm">
 									<i class="fas fa-cloud-upload-alt grayscale"></i> Save
@@ -83,9 +83,52 @@
 <script>
 
 $( document ).ready(function() {
-  $('#setModalCanleBtn').click(function() {
+  $('#setModalCancelBtn').click(function() {
     $("#noteHeadSaveModal").modal("hide");
   });
+  
+  $('#setModalSaveBtn').click(function() {
+    var data = {
+        				"alias" : $("#setModalAlias").val(),
+        				"meetingTypeId" : $("#selectType").val(),
+        				"title" :  $("#setModalTitle").val(),
+        				"location" : $("#setModalLoc").val(),
+        				"attendantsList" : attendantsList,
+        				"memberId" : $("#userId").val()
+        				};
+    $.ajax({
+      url: '/meetingnote/setNoteHead',
+      type: 'POST',
+      contentType: "application/json",
+      data: JSON.stringify(data),
+      success: function(data) {
+        $("#noteHeadSaveModal").modal("hide");
+        bootbox.alert({
+          message: "Save Success",
+          size: 'small',
+          buttons: {
+            ok: {
+                label: "OK",
+                className: 'btn'
+            	}
+        	}
+      	});
+      },
+      error: function(e) {
+        bootbox.alert({
+          message: "ERROR",
+          size: 'small',
+          buttons: {
+            ok: {
+                label: "OK",
+                className: 'btn'
+            	}
+        	}
+      	});
+      }
+    });
+  });
+  
 });
 
 </script>

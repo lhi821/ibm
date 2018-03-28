@@ -15,6 +15,7 @@
 	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
 	
 	<!-- posts area -->
+	<input id="userId" value='${usrId}' type="hidden">
 	<div class="col-xs-10 affix-content">
 		<div class="container affix-container">
 			<div class="row">
@@ -41,7 +42,7 @@
 									    <div class="form-group">
 									      <select id="selectType" class="selectpicker form-control" data-live-search="true" title="<i class='fas fa-tags grayscale input-icon'></i>Type">
 									      	<c:forEach items="${meetingTypes}" var="meetingType">
-									        	<option title="<i class='fas fa-tag grayscale input-icon'></i>${meetingType.meetingTypeNM}">${meetingType.meetingTypeNM}</option>
+									        	<option value="${meetingType.meetingTypeID}" title="<i class='fas fa-tag grayscale input-icon'></i>${meetingType.meetingTypeNM}">${meetingType.meetingTypeNM}</option>
 									        </c:forEach>
 									      </select>
 									    </div>
@@ -457,7 +458,8 @@ $( document ).ready(function() {
     $.ajax({
       url: '/nlp/getKeyword',
       type: 'POST',
-      data: {"text" : text},
+      data: JSON.stringify({"text" : text}),
+  		contentType: "application/json",
       success: function(data) {
         if(data.message == "success"){
           $("#keyWordInput").val("");
@@ -540,11 +542,65 @@ $( document ).ready(function() {
     });
   });
   
-  $('#getNoteHeadBtn').click(function() {
-    $("#noteHeadGetModal").modal();
-  });
   
   $('#setNoteHeadBtn').click(function() {
+    if($("#selectType").val() == ""){
+      bootbox.alert({
+        message: "Please Select Types",
+        size: 'small',
+        buttons: {
+          ok: {
+              label: "OK",
+              className: 'btn'
+          	}
+      	}
+    	});
+      return false;
+    }
+    if($("#locationInput").val() == ""){
+      bootbox.alert({
+        message: "Please fill out Location",
+        size: 'small',
+        buttons: {
+          ok: {
+              label: "OK",
+              className: 'btn'
+          	}
+      	}
+    	});
+      return false;
+    }
+    if($("#titleInput").val() == ""){
+      bootbox.alert({
+        message: "Please fill out Title",
+        size: 'small',
+        buttons: {
+          ok: {
+              label: "OK",
+              className: 'btn'
+          	}
+      	}
+    	});
+      return false;
+    }
+    if($("#attendantsInput").val() == ""){
+      bootbox.alert({
+        message: "Please select Attendants",
+        size: 'small',
+        buttons: {
+          ok: {
+              label: "OK",
+              className: 'btn'
+          	}
+      	}
+    	});
+      return false;
+    }
+    $("#setModalType").val($("#selectType option:selected").text());
+    $("#setModalLoc").val($("#locationInput").val());
+    $("#setModalTitle").val($("#titleInput").val());
+    $("#setModalAtt").val($("#attendantsInput").val());
+    
     $("#noteHeadSaveModal").modal();
   });
   
@@ -581,6 +637,60 @@ $( document ).ready(function() {
 });
 
 function saveMtn(saveType) {
+  
+  if($("#selectType").val() == ""){
+    bootbox.alert({
+      message: "Please Select Types",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    return false;
+  }
+  if($("#locationInput").val() == ""){
+    bootbox.alert({
+      message: "Please fill out Location",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    return false;
+  }
+  if($("#titleInput").val() == ""){
+    bootbox.alert({
+      message: "Please fill out Title",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    return false;
+  }
+  if($("#attendantsInput").val() == ""){
+    bootbox.alert({
+      message: "Please select Attendants",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    return false;
+  }
+  
   var url = "";
   
   //액션아이템 추출
@@ -676,7 +786,7 @@ function saveMtn(saveType) {
 		data : JSON.stringify(data),
 		contentType: "application/json",
 		success : function(data){
-		  alert("통신데이터 값 : " + data) ;
+		  location.href = "/board/index?veiwType=G&sideBar=T&subMenu=FFFF";
 		},
 		error : function(){
 		}

@@ -1,6 +1,7 @@
 package com.ibm.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -42,4 +43,12 @@ public interface BoardMapper {
 						+ "DATE_FORMAT(mod_date, '%Y-%m-%d %H:%i:%s') mod_date "
 				+ "FROM BOARD")
 	public List<BoardDomain> selectBoardList();
+	
+	
+	@Select("SELECT MEETINGNOTE.MEETINGNOTEID as meetingNoteId, MEETINGNOTE.VERSION, TITLE as title, CONTENTS as contents, MEETINGTYPENM as meetingNoteNm, MODMEMBERID as regMemberId, HIT as hit, DATE_FORMAT(MODDATE, '%Y-%m-%d %H:%i:%s') modDate\r\n" + 
+			"FROM MEETINGNOTE, MEETINGTYPE, MTNCONTENTS\r\n" + 
+			"WHERE MEETINGNOTE.MEETINGTYPEID = MEETINGTYPE.MEETINGTYPEID\r\n" + 
+			"and MEETINGNOTE.MEETINGNOTEID = MTNCONTENTS.MEETINGNOTEID\r\n" + 
+			"and MTNCONTENTS.seq = 1;")
+	public List<Map<String, Object>> getMeetingNote(Map<String, Object> requestMap);
 }

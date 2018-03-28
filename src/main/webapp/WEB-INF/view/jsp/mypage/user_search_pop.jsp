@@ -94,7 +94,7 @@
 						<div class="modal-footer">
 							<div class="text-right">
 								<button id="closeUserModal" type="button" class="btn btn-default btn-sm">
-									<i class="fas fa-ban grayscale"></i> Cancle
+									<i class="fas fa-ban grayscale"></i> Cancel
 								</button>
 								<button id="applyUserModal" type="button" class="btn btn-sm">
 									<i class="fas fa-check-circle grayscale"></i> Apply

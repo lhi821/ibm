@@ -15,23 +15,18 @@
 .panel-body.small {
 	padding: 5px;
 }
-
 .small {
 	font-size: 96% !important;
 	padding: 5px;
 }
-
 th {
 	text-align: center !important;
 	padding: 6px !important;
 }
-
 td {
 	text-align: center;
 	padding: 6px !important;
 }
-
-
 tr.acitve{
 	background-color: red !important;
 }
@@ -42,13 +37,11 @@ tr.acitve{
 <script src='/lib/jquery/jquery.min.js'></script>
 
 <script  type="text/javascript">
-
 $('.table tbody tr').on('click',function () {
 		console.log("click");
         $(this).addClass('table-primary');
         $(this).addClass('active');
 });
-
 		
 </script>
 
@@ -73,7 +66,7 @@ $('.table tbody tr').on('click',function () {
 				<li class="active"><a class="a" href="/admin/inviteMember"><i class="fas fa-user-plus"></i> Invite Members </a></li>
 				<li><a class="a" href="/admin/systemAdmin"><i class="fas fa-cog"></i> System Admin </a>
 				</ul>
-					<br>
+
 					<!-- 여기가 화면 -->
 					
 					
@@ -222,6 +215,7 @@ $('.table tbody tr').on('click',function () {
 	</div>
 </body>
 
+
 <script>
 var attendantsList = [];
 var attendantsNmList = [];
@@ -317,18 +311,7 @@ $( document ).ready(function() {
 
 });
 
-function activeClick(table){
-  $('#'+table+' tr').unbind();
-  $('#'+table+' tr').click(function() {
-    if ($(this).attr("class") == "grayscale") {
-      $(this).addClass("active");
-      $(this).css("font-weight", "bold");
-    }else{
-      $(this).removeClass("active");
-      $(this).css("font-weight", "");
-    }
-  });
-}
-
 </script>
+
+
 </html>

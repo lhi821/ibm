@@ -4,13 +4,27 @@
 
 //pie
 var ctxP = document.getElementById("pieChart").getContext('2d');
+
+var typeName = $('#typeName').val();
+var typeCount = $('#typeCount').val();
+var typeNameEle = typeName.split(",");
+var typeCountEle = typeCount.split(",");
+var typeNameArray = new Array();
+var typeCountArray = new Array();
+
+for (var i=0; i<typeNameEle.length; i++){
+	typeNameArray.push(typeNameEle[i].replace(/[\[\]']+/g,'' ));
+	typeCountArray.push(typeCountEle[i].replace(/[\[\]']+/g,'' ));
+}
+
 var myPieChart = new Chart(ctxP, {
+
   type: 'pie',
   data: {
-      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+      labels: typeNameArray,
       datasets: [
           {
-              data: [300, 50, 100, 40, 120],
+        	  data: typeCountArray,
               backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
               hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
           }
@@ -24,13 +38,28 @@ var myPieChart = new Chart(ctxP, {
 
 //bar
 var ctxB = document.getElementById("barChart").getContext('2d');
+
+var noteTitle = $('#noteTitle').val();
+var noteHit = $('#noteHit').val();
+var noteTitleEle = noteTitle.split(",");
+var noteHitEle = noteHit.split(",");
+var noteTitleArray = new Array();
+var noteHitArray = new Array();
+
+for (var i=0; i<noteTitleEle.length; i++){
+	noteTitleArray.push(noteTitleEle[i].replace(/[\[\]']+/g,'' ));
+	noteHitArray.push(noteHitEle[i].replace(/[\[\]']+/g,'' ));
+	if (i > 4)
+		break;
+}
+
 var myBarChart = new Chart(ctxB, {
   type: 'bar',
   data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: noteTitleArray,
       datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+    	  label: 'MEETING NOTE HIT RANKING',
+          data: noteHitArray,
           backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
