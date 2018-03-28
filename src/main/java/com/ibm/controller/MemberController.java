@@ -52,7 +52,7 @@ public class MemberController {
 
 		MemberDomain result = memberService.login(email, password);
 		
-		if(result.equals(null)) {
+		if(result == null) {
 			
 			String failmsg = "<script language='javascript' type='text/javascript'> alert('Fail Login'); </script>";
 			

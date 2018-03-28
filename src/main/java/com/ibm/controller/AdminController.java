@@ -1,7 +1,13 @@
 package com.ibm.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.domain.CompanyInfoDomain;
 import com.ibm.domain.MeetingTypeCodeDomain;
+import com.ibm.domain.MemberDomain;
+import com.ibm.domain.MemberProjectDivisionDomain;
 import com.ibm.service.AdminService;
 
 @Controller
@@ -31,10 +39,21 @@ public class AdminController {
 		return mv;
 	}
 	
-	@PostMapping("/create")
-	public String newMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain) throws Exception{
-		adminService.insertMeetingType(meetingTypeCodeDomain);
-		return "redirect:/admin/meetingTypeCode";
+	@PostMapping("/create") 
+	public ModelAndView newMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/meetingTypeCode");
+		List<MeetingTypeCodeDomain> meetingTypeList = new ArrayList<>();
+		if (adminService.insertMeetingType(meetingTypeCodeDomain)) {	//duplicate:N
+			meetingTypeList = adminService.selectMeetingTypeList();
+			mv.addObject("meetingTypeList", meetingTypeList);
+			mv.addObject("resultmsg", "success");
+			return mv; 
+		}else {															//duplicate:Y
+			meetingTypeList = adminService.selectMeetingTypeList();
+			mv.addObject("meetingTypeList", meetingTypeList);
+			mv.addObject("resultmsg", "fail");
+			return mv;
+		}
 	}
 
 	@PostMapping("/update")
@@ -61,9 +80,20 @@ public class AdminController {
 	
 
 	@PostMapping("/createCompany")
-	public String newCompany(CompanyInfoDomain companyInfoDomain) throws Exception{
-		adminService.insertCompany(companyInfoDomain);
-		return "redirect:/admin/companyInfo";
+	public ModelAndView newCompany(CompanyInfoDomain companyInfoDomain) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/companyInfo");
+		List<CompanyInfoDomain> companyInfoList = new ArrayList<>();
+		if (adminService.insertCompany(companyInfoDomain)) {
+			companyInfoList = adminService.selectCompanyInfoList();
+			mv.addObject("companyInfoList",companyInfoList);
+			mv.addObject("resultmsg", "success");
+			return mv; 
+		}else {
+			companyInfoList = adminService.selectCompanyInfoList();
+			mv.addObject("companyInfoList",companyInfoList);
+			mv.addObject("resultmsg", "fail");
+			return mv;
+		}
 	}
 
 	@PostMapping("/updateCompany")
@@ -80,8 +110,46 @@ public class AdminController {
 	
 	// TAB 3 -----------------------------------
 	@GetMapping("/inviteMember")
-	public ModelAndView adminConfig3() throws Exception{
+	public ModelAndView inviteMember(HttpServletRequest request, MemberDomain memberDomain) throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/inviteMember");
+		
+		HttpSession session = request.getSession();
+		String memberid = session.getAttribute("id").toString();
+		
+		ArrayList<String> AdminProjectList = (ArrayList<String>) adminService.selectProjectByAdmin(memberid);
+		
+		HashMap<String, HashMap<String, List<MemberDomain>>> map = new HashMap<String, HashMap<String, List<MemberDomain>>>();
+		
+		for(int i = 0; i < AdminProjectList.size(); i++) {
+			
+			String projectid = AdminProjectList.get(i);
+			
+			List<MemberDomain> memberlist = new ArrayList<>();
+			List<MemberDomain> nonmemberlist = new ArrayList<>();
+			
+			memberlist = adminService.selectMemberByProject(projectid);
+			nonmemberlist = adminService.selectNonMemberByProject(projectid);
+			
+			System.out.println(projectid);
+			System.out.println(memberlist.size());
+			System.out.println(nonmemberlist.size());
+			
+			HashMap<String, List<MemberDomain>> rightMemberList = new HashMap<>();
+			HashMap<String, List<MemberDomain>> leftMemberList = new HashMap<>();
+			
+			rightMemberList.put("rightMemberList", memberlist);
+			leftMemberList.put("leftMemberList", nonmemberlist);
+			
+			map.put(projectid, rightMemberList);
+			map.put(projectid, leftMemberList);
+			
+			
+			
+			
+		}
+		
+		mv.addObject("projectlist",map);
+		
 		return mv;
 	}
 	

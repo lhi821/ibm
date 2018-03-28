@@ -56,4 +56,14 @@ public interface MemberMapper {
 	@Select("SELECT MEMBERID FROM MEMBER ORDER BY MEMBERID DESC LIMIT 1")
 	public String getLastMemberId();
 	
+	@Select("SELECT membernm, companyid, dept, email " + 
+			"FROM member A JOIN mbr_prj_div B ON A.MEMBERID = B.MEMBERID " + 
+			"WHERE B.PROJECTID = #{projectid}")
+	public List<MemberDomain> selectMemberByProject(String projectid);
+	
+	@Select("SELECT membernm, companyid, dept, email " + 
+			"FROM member A JOIN mbr_prj_div B ON A.MEMBERID = B.MEMBERID " + 
+			"WHERE B.PROJECTID != #{projectid}")
+	public List<MemberDomain> selectNonMemberByProject(String projectid);
+	
 }

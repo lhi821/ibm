@@ -67,14 +67,22 @@ $('.table tbody tr').on('click',function () {
 			<div class="row">
 				<div class="container">
 
-					<!-- adminTab -->
-					<jsp:include page="../admin/layout/admintab.jsp"></jsp:include>
+				<ul class="nav nav-tabs">
+				<li><a class="a" href="/admin/meetingTypeCode"><i class="far fa-sticky-note"></i> Meeting Type </a></li>
+				<li><a class="a" href="/admin/companyInfo"><i class="far fa-building"></i> Company </a></li>
+				<li class="active"><a class="a" href="/admin/inviteMember"><i class="fas fa-user-plus"></i> Invite Members </a></li>
+				<li><a class="a" href="/admin/systemAdmin"><i class="fas fa-cog"></i> System Admin </a>
+				</ul>
 					<br>
 					<!-- 여기가 화면 -->
+					
+					
+					<c:forEach var="projects" varStatus="varstatus" items="${projectlist}"  step="1" begin="0">
+					
 					<div class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading content">
-								<div class="text-left">Invite Project Member</div>
+								<div class="text-left">${projects.key}</div>
 							</div>
 							<div class="panel-body content">
 								<div class="row">
@@ -91,13 +99,17 @@ $('.table tbody tr').on('click',function () {
 							</div>
 
 							<div class="modal-body">
+							
 								<div class="row">
+								
+								
+								
 									<div class="col-xs-5" style="width: 45%;">
 										<div
 											class="panel panel-default small-bottom small panel-min-height">
 											<div class="panel-body small">
 												<table
-													class="table table-hover table-sm small-bottom padding-none row-clickable">
+													class="table table-hover table-sm small-bottom padding-none row-clickable" id="leftTable">
 													<thead>
 														<tr>
 															<th scope="col" style="width: 20%">Name</th>
@@ -107,12 +119,33 @@ $('.table tbody tr').on('click',function () {
 														</tr>
 													</thead>
 													<tbody class="cursor"  id="multiselect">
-														<tr>
+													
+													<c:forEach var="memberlist" varStatus="status" items="${projects.value}">
+													<c:choose>
+													<c:when test="${memberlist.key == 'leftMemberList'}">
+													<c:forEach var="item" varStatus="status" items="${memberlist.value}"  step="1" begin="0" >
+														<tr class="cursor tableContent">
+															<td>${item.membernm}</td>
+															<td>${item.companyid}</td>
+															<td>${item.dept}</td>
+															<td>${item.email}</td>
+														</tr>
+													</c:forEach>
+													</c:when>
+													<c:otherwise>
+												아님
+												</c:otherwise>
+													</c:choose>
+												
+												
+													</c:forEach>
+													
+														<!-- <tr>
 															<td>Lee Hun Il</td>
 															<td>IBM</td>
 															<td>GBS</td>
 															<td>hooooonil@gmail.com</td>
-														</tr>
+														</tr> -->
 													</tbody>
 												</table>
 											</div>
@@ -134,7 +167,7 @@ $('.table tbody tr').on('click',function () {
 											class="panel panel-default small-bottom small panel-min-height">
 											<div class="panel-body small">
 												<table
-													class="table table-hover table-sm small-bottom padding-none row-clickable">
+													class="table table-hover table-sm small-bottom padding-none row-clickable" id="rightTable">
 													<thead>
 														<tr>
 															<th scope="col" style="width: 20%">Name</th>
@@ -144,12 +177,23 @@ $('.table tbody tr').on('click',function () {
 														</tr>
 													</thead>
 													<tbody class="cursor"  id="multiselect">
-														<tr>
-															<td>Lee Hun Il</td>
-															<td>IBM</td>
-															<td>GBS</td>
-															<td>hooooonil@gmail.com</td>
+													
+													<c:forEach var="memberlist" varStatus="status" items="${projects.value}">
+												
+													<c:if test="${memberlist.key == 'rightMemberList'}">
+													
+													<c:forEach var="item" varStatus="status" items="${memberlist[rightMemberList]}"  step="1" begin="0" >
+														<tr class="cursor tableContent">
+															<td>${item.membernm}</td>
+															<td>${item.companyid}</td>
+															<td>${item.dept}</td>
+															<td>${item.email}</td>
 														</tr>
+													</c:forEach>
+													
+													</c:if>
+												
+													</c:forEach>
 													</tbody>
 												</table>
 											</div>
@@ -157,11 +201,15 @@ $('.table tbody tr').on('click',function () {
 									</div>
 									
 									<!-- panel 끝 -->
+									
 								</div>
+								
 							</div>
+							
 						</div>
 						<!-- 여기가 끝 -->
 					</div>
+					</c:forEach>
 				</div>
 			</div>
 			<!-- footer -->
@@ -173,11 +221,45 @@ $('.table tbody tr').on('click',function () {
 		</div>
 	</div>
 </body>
+
 <script>
 var attendantsList = [];
 var attendantsNmList = [];
+
+
 $( document ).ready(function() {
+	
+	
+	
  
+	  $('#userSearchIcon').click(function() {
+		    var data = {"searchKey" : $("#searchKey").val()};
+		    $.ajax({
+		      url: '/member/search',
+		      type: 'POST',
+		      data: JSON.stringify(data),
+		      contentType: "application/json",
+		      success: function(data) {
+		    	    console.log(data);
+		    	    $("#leftTable").empty();
+		    	    for (var i=0; i<data.length; i++){
+		    	      $("#leftTable").append("<tr data-value="+data[i].memberid+" class='grayscale'>"+
+		    	          											"<td>"+data[i].membernm+"</td>"+
+		    	          											"<td>"+data[i].email+"</td>"+
+		    	          											"<td>"+data[i].phone+"</td>"+
+		    	          											"<td>"+data[i].jobs+"</td>"+
+		  	          											"</tr>");
+		    	    }
+		    	    activeClick("leftTable");
+		      },
+		      error: function(data) {
+		        	alert("Error");
+		    	}
+		    });
+		  });
+		  
+	
+	
   $('#toRightBtn').click(function() {
     $("#leftTable tr.active").each(function(){
       $(this).removeClass("active");
@@ -232,32 +314,7 @@ $( document ).ready(function() {
 		});
   });
   
-  $('#userSearchIcon').click(function() {
-    var data = {"searchKey" : $("#searchKey").val()};
-    $.ajax({
-      url: '/member/search',
-      type: 'POST',
-      data: JSON.stringify(data),
-      contentType: "application/json",
-      success: function(data) {
-    	    console.log(data);
-    	    $("#leftTable").empty();
-    	    for (var i=0; i<data.length; i++){
-    	      $("#leftTable").append("<tr data-value="+data[i].memberid+" class='grayscale'>"+
-    	          											"<td>"+data[i].membernm+"</td>"+
-    	          											"<td>"+data[i].email+"</td>"+
-    	          											"<td>"+data[i].phone+"</td>"+
-    	          											"<td>"+data[i].jobs+"</td>"+
-  	          											"</tr>");
-    	    }
-    	    activeClick("leftTable");
-      },
-      error: function(data) {
-        	alert("Error");
-    	}
-    });
-  });
-  
+
 });
 
 function activeClick(table){
