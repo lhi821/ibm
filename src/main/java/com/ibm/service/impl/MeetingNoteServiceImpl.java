@@ -1,5 +1,6 @@
 package com.ibm.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.domain.BoardDomain;
 import com.ibm.domain.MeetingNoteDomain;
+import com.ibm.domain.NoteHeadDomain;
 import com.ibm.mapper.ActionItemMapper;
 import com.ibm.mapper.HashTagMapper;
 import com.ibm.mapper.MeetingNoteMapper;
@@ -92,12 +94,47 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 		
 	}
 	
+	//노트헤드 저장
+	@SuppressWarnings("unchecked")
 	@Override
-	public void createPlanText(MeetingNoteDomain meetingNoteDomain) {
+	public void setNoteHead(Map<String, Object> noteHeadMap) {
+		String noteHeadId = getNhNextKey();
+		noteHeadMap.put("noteHeadId", noteHeadId);
+		meetingNoteMapper.setNoteHead(noteHeadMap);
 		
-	/*	meetingNoteMapper.insertMeetingNote(meetingNoteDomain);*/
+		for (Object attendee : (List<Object>) noteHeadMap.get("attendantsList")) {
+			Map<String, Object> headMbrMap = new HashMap<String, Object>();
+			headMbrMap.put("headmbrId", getHeadMbrId());
+			headMbrMap.put("noteheadId", noteHeadId);
+			headMbrMap.put("memberId", attendee);
+			meetingNoteMapper.createNoteHeadMbr(headMbrMap);
+		}
 	}
 	
+	//노트헤드가져오기
+	@Override
+	public List<NoteHeadDomain> getNoteHead(Map<String, Object> noteHeadMap){
+		List<NoteHeadDomain> outList = new ArrayList<>();
+		List<String> attendantList = new ArrayList<>();
+		List<String> attendantNmList = new ArrayList<>();
+		for (NoteHeadDomain noteHeadDomain : meetingNoteMapper.getNoteHead(noteHeadMap)) {
+			String attendant = "";
+			attendantList.clear();
+			attendantNmList.clear();
+			for (Map<String, String> memeberMap : meetingNoteMapper.getAttendants(noteHeadDomain.getNoteHeadId())) {
+				attendant = attendant + memeberMap.get("MEMBERNM") + ", ";
+				attendantList.add(memeberMap.get("MEMBERID"));
+				attendantNmList.add(memeberMap.get("MEMBERNM"));
+			}
+			
+			attendant = attendant.substring(0, attendant.length()-2);
+			noteHeadDomain.setAttendant(attendant);
+			noteHeadDomain.setAttendantIds(attendantList);
+			noteHeadDomain.setAttendantNms(attendantNmList);
+			outList.add(noteHeadDomain);
+		}
+		return outList;
+	}
 	public String getMtnNextKey() {
 		if (meetingNoteMapper.getLastMeetingNoteId() == null) {
 			return "MTN00001";
@@ -120,7 +157,33 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 			for (int i=0;i<idKeyLen;i++) {
 				idKeyStr += "0";
 			}
-			return "HT" + idKeyStr + (Integer.valueOf(hashTagMapper.getLastHashTagId().substring(3))+1);
+			return "HT" + idKeyStr + (Integer.valueOf(hashTagMapper.getLastHashTagId().substring(2))+1);
+		}
+	}
+	
+	public String getNhNextKey() {
+		if (meetingNoteMapper.getLastNoteHeadId() == null) {
+			return "NH00001";
+		}else {
+			String idKeyStr = "";
+			int idKeyLen = (5 - String.valueOf((Integer.valueOf(meetingNoteMapper.getLastNoteHeadId().substring(2))+1)).length());
+			for (int i=0;i<idKeyLen;i++) {
+				idKeyStr += "0";
+			}
+			return "NH" + idKeyStr + (Integer.valueOf(meetingNoteMapper.getLastNoteHeadId().substring(2))+1);
+		}
+	}
+	
+	public String getHeadMbrId() {
+		if (meetingNoteMapper.getLastNoteHeadMmbId() == null) {
+			return "HM00001";
+		}else {
+			String idKeyStr = "";
+			int idKeyLen = (5 - String.valueOf((Integer.valueOf(meetingNoteMapper.getLastNoteHeadMmbId().substring(2))+1)).length());
+			for (int i=0;i<idKeyLen;i++) {
+				idKeyStr += "0";
+			}
+			return "HM" + idKeyStr + (Integer.valueOf(meetingNoteMapper.getLastNoteHeadMmbId().substring(2))+1);
 		}
 	}
 	

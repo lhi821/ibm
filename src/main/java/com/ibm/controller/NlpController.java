@@ -14,37 +14,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ibm.service.NlpService;
+import com.ibm.service.ApiService;
 
 @Controller
 @RequestMapping("/nlp")
 public class NlpController {
 
 	@Autowired
-	NlpService nlpService;
+	ApiService apiService;
 	
 	static Logger logger = Logger.getLogger(SimpleLog.class);
 	
 	@PostMapping("/getKeyword")
 	@ResponseBody
-	public Map<String, Object> getKeyword(String text) throws Exception{
-
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<String> keyWordList = new ArrayList<>();
-		try {
-			keyWordList = nlpService.FindKeyWordList(text);
-			resultMap.put("message", "success");
-			resultMap.put("keyWordList", keyWordList);
-		} catch (Exception e) {
-			logger.debug(e);
-			resultMap.put("message", "fail");
-			resultMap.put("keyWordList", null);
-		}
-		
-		return resultMap;
+	@SuppressWarnings("rawtypes")
+	public Map getKeyword(@RequestBody Map requestMap) throws Exception{
+		return apiService.apiCallHttpPost("http://localhost:9208/nlp/getKeyword", requestMap);
 	}
 	
 }

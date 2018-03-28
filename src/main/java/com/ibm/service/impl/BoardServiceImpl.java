@@ -1,6 +1,7 @@
 package com.ibm.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardDomain> selectBoardList() {
 		return boardMapper.selectBoardList();
+	}
+	
+	@Override
+	public List<Map<String, Object>> getMeetingNote(Map<String, Object> requestMap) {
+		return boardMapper.getMeetingNote(requestMap);
 	}
 	
 }

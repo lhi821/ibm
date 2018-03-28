@@ -1,6 +1,7 @@
 package com.ibm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ibm.domain.BoardDomain;
 
@@ -15,5 +16,7 @@ public interface BoardService {
 	public void deleteBoard(int id);
 	
 	public List<BoardDomain> selectBoardList();
+	
+	public List<Map<String, Object>> getMeetingNote(Map<String, Object> requestMap);
 	
 }

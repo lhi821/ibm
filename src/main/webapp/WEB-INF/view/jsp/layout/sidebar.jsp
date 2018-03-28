@@ -42,6 +42,7 @@
 							</c:choose>
           </a>
         </li>
+        <li><a class="a cursor" class="curosr" href="/analysis/index"><span class="fas fa-chart-pie"></span> Analysis</a></li>
         <li>
           <a class="a cursor submenu collapsed" data-toggle="collapse" data-target="#toggleDemo0" data-parent="#sidenav01">
           <span class="fas fa-star"></span> Favorite <span class="caret pull-right"></span>
@@ -76,7 +77,6 @@
 	          </div>
 	        </li>
 			 	</c:forEach>
-        <li><a class="a cursor" class="curosr" href="/analysis/index"><span class="fas fa-chart-pie"></span> Analysis</a></li>
         <li><a class="notthing"></a></li>
       </ul>
       </div>

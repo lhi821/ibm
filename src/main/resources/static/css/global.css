@@ -125,6 +125,14 @@ th {
 	color: #777 !important; 
 }
 
+.whitescale{
+	color: #fff !important; 
+}
+
+.whitescale:hover{
+	color: #fff !important; 
+}
+
 .input-icon{
 	margin-right: 12px;
 }
@@ -155,8 +163,16 @@ textarea{
 
 .custom-nav {
 	border:0px;
-	border-bottom: 1px solid;
-  border-color: #e7e7e7;
+  background: -moz-linear-gradient(top, #3b5998, #2b4170);
+  background: -ms-linear-gradient(top, #3b5998, #2b4170);
+  background: -webkit-linear-gradient(top, #3b5998, #2b4170);
+  color: #FFFFFF;
+  margin-bottom: 2%;
+  border-radius: 0px;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: transparent !important;
 }
 
 .bootstrap-select{
@@ -345,4 +361,21 @@ top: 16px;
 
 .user-list:hover{
 		font-weight: 1000;
+}
+
+@font-face{font-family:'MeninBlue'; src:url('/fonts/MeninBlue.woff')}
+@font-face{font-family:'MeninBlue'; src:url('/fonts/MIB.eot')}
+@font-face{font-family:'IBMPlexSans-Bold'; src:url('/fonts/IBMPlexSans-Bold.woff')}
+@font-face{font-family:'IBMPlexSans-Bold'; src:url('/fonts/IBMPlexSans-Bold.eot')}
+@font-face{font-family:'IBMPlexSans'; src:url('/fonts/IBMPlexSans.woff')}
+@font-face{font-family:'IBMPlexSans'; src:url('/fonts/IBMPlexSans.eot')}
+
+.ibm{
+		font-family:'IBMPlexSans-Bold' !important;
+}
+
+.box-contents{
+    height: 80px;
+    max-height: 80px;
+    overflow: hidden;
 }

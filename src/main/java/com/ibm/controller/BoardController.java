@@ -41,9 +41,10 @@ public class BoardController {
 														@RequestParam(value="subMenu", required=false) String subMenu,
 														HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/index");
-		List<BoardDomain> resultList = new ArrayList<>();
-		resultList = boardService.selectBoardList();
-		mv.addObject("boardList", resultList);
+		List<Map<String,Object>> resultList = new ArrayList<>();
+		Map<String, Object> requestMap = new HashMap<String,Object>();
+		resultList = boardService.getMeetingNote(requestMap);
+		mv.addObject("resultList", resultList);
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
@@ -61,12 +62,16 @@ public class BoardController {
 	@GetMapping("/new")
 	public ModelAndView newPost(@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
 															@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
-															@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
+															@RequestParam(value="subMenu", required=false) String subMenu,
+															HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/create");
+		String usrId = session.getAttribute("id").toString();
+		
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
 		mv.addObject("meetingTypes", adminService.selectMeetingTypeList());
+		mv.addObject("usrId", usrId);
 		return mv;
 	}
 	
