@@ -11,7 +11,9 @@ public interface MeetingNoteService {
 	
 	public void createPlanText(MeetingNoteDomain meetingNoteDomain);
 
-	//public List<MeetingNoteDomain> selectMeetingNoteList();
+	public List<MeetingNoteDomain> selectMeetingNoteList();
 	public List<Integer> countMeetingTypePerNote();
 	public List<String> type_countMeetingTypePerNote();
+	public List<Integer> hitRanking();
+	public List<String> title_hitRanking();
 }

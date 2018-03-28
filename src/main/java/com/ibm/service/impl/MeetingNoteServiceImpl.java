@@ -124,19 +124,28 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 		}
 	}
 	
-	/*@Override
+	@Override
 	public List<MeetingNoteDomain> selectMeetingNoteList() {
 		return meetingNoteMapper.selectMeetingNoteList();
-	}*/
+	}
 	
 	@Override
-	public List<Integer> countMeetingTypePerNote() {
+	public List<Integer> countMeetingTypePerNote() {	// 회의유형 개수 순위 - 회의 유형 수
 		return meetingNoteMapper.countMeetingTypePerNote();
 	}
 	
 	@Override
-	public List<String> type_countMeetingTypePerNote() {
+	public List<String> type_countMeetingTypePerNote() {	//회의유형 개수 순위 - 회의 유형 이름
 		return meetingNoteMapper.type_countMeetingTypePerNote();
 	}
+	
+	@Override
+	public List<Integer> hitRanking() {		//조회수 순위 - 조회수
+		return meetingNoteMapper.hitRanking();
+	}
+	
+	@Override
+	public List<String> title_hitRanking() {		//조회수 순위 - 회의록명
+		return meetingNoteMapper.title_hitRanking();
+	}
 }
-
