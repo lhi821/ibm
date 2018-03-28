@@ -21,7 +21,14 @@ public class MeetingNoteDomain {
 	String modDate;
 	
 	String withDate;
+	String meetingNoteNm;
 
+	public String getMeetingNoteNm() {
+		return meetingNoteNm;
+	}
+	public void setMeetingNoteNm(String meetingNoteNm) {
+		this.meetingNoteNm = meetingNoteNm;
+	}
 	public String getWithDate() {
 		return withDate;
 	}
