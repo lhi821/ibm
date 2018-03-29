@@ -7,7 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.ibm.domain.CompanyInfoDomain;
 import com.ibm.domain.MeetingTypeCodeDomain;
+import com.ibm.domain.MemberDomain;
+import com.ibm.domain.MemberProjectDivisionDomain;
+import com.ibm.domain.ProjectDomain;
 import com.ibm.mapper.AdminMapper;
+import com.ibm.mapper.MemberMapper;
+import com.ibm.mapper.ProjectMapper;
 import com.ibm.service.AdminService;
 
 @Service
@@ -15,6 +20,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	AdminMapper adminMapper;
+	
+	@Autowired
+	MemberMapper memberMapper;
+	
+	@Autowired
+	ProjectMapper projectMapper;
 	
 	//TAB 1 [MeetingTypeCode Config]-----------------
 	@Override
@@ -71,6 +82,7 @@ public class AdminServiceImpl implements AdminService {
 			String postID =	"CP" + String.format("%05d", prevID_int);
 			companyInfoDomain.setCompanyID(postID);
 		}
+
 		adminMapper.insertCompany(companyInfoDomain);
 		return true;
 	}
@@ -88,4 +100,21 @@ public class AdminServiceImpl implements AdminService {
 	public void deleteCompany(String id) {
 		adminMapper.deleteCompany(id);
 	}
+	
+	//TAB 3 [InviteMember Config]-----------------
+	@Override
+	public List<ProjectDomain> selectProjectByAdmin(String memberid){
+		return projectMapper.selectProjectByAdmin(memberid);
+	}
+	
+	@Override
+	public List<MemberDomain> selectMemberByProject(String projectid){
+		return memberMapper.selectMemberByProject(projectid);
+	}
+	
+	@Override
+	public List<MemberDomain> selectNonMemberByProject(String projectid){
+		return memberMapper.selectNonMemberByProject(projectid);
+	}
+
 }

@@ -56,4 +56,10 @@ public interface AdminMapper {
 	
 	@Delete("DELETE FROM COMPANY WHERE companyid = #{id}")      
 	public void deleteCompany(@Param("id") String id);     
+	
+	//TAB 3 [InviteMember Config]-----------------
+	@Select("SELECT projectnm FROM MBR_PRJ_DIV A JOIN PROJECT B ON A.PROJECTID = B.PROJECTID WHERE memberID = #{memberid} AND roleid = 'ADMIN'")
+	public List<String> selectProjectByAdmin(@Param("memberid") String memberid);
+
+	
 }

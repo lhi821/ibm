@@ -136,12 +136,12 @@ public interface MeetingNoteMapper {
 					"AND NOTEHEAD_MEMBER.NOTEHEADID = #{id}")
 	public List<Map<String, String>> getAttendants(String id);
 
-	/*@Select("SELECT meetingnoteid, version, title, projectid, divisionid, meetingtypeid, "
+	@Select("SELECT meetingnoteid, version, title, projectid, divisionid, meetingtypeid, "
 			+ "regmemberid, modmemberid, location, starttm, endtm, mainpoint, hit, statusid, statusdesc,"
 			+ "DATE_FORMAT(regdate, '%Y-%m-%d %H:%i:%s') regdate, "
 			+ "DATE_FORMAT(moddate, '%Y-%m-%d %H:%i:%s') moddate "
 	+ "FROM MEETINGNOTE")
-	public List<MeetingNoteDomain> selectMeetingNoteList();*/
+	public List<MeetingNoteDomain> selectMeetingNoteList();
 	
 	//---ANALYSIS---
 	@Select("SELECT COUNT(meetingnoteid) meetingtypecount "
@@ -151,5 +151,10 @@ public interface MeetingNoteMapper {
 	
 	@Select("SELECT meetingtypenm FROM MEETINGTYPE INNER JOIN MEETINGNOTE ON MEETINGNOTE.meetingtypeid = MEETINGTYPE.meetingtypeid GROUP BY meetingtypenm desc")
 	public List<String> type_countMeetingTypePerNote();	// analysis - chart 1
-
+	
+	@Select("SELECT hit FROM MEETINGNOTE ORDER BY hit desc")
+	public List<Integer> hitRanking();	// analysis - chart 4
+	
+	@Select("SELECT title FROM MEETINGNOTE ORDER BY hit desc")
+	public List<String> title_hitRanking();	// analysis - chart 4
 }

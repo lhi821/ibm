@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
 
-	$('#loginModal').modal({backdrop: 'static'});
+	$('#loginModal').modal({keyboard: false, backdrop: 'static'});
 	 
   $('#galleryVeiw').click(function() { 
     $("#veiwType").val("G");
