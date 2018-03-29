@@ -18,25 +18,16 @@ public class AuthInterceptor implements HandlerInterceptor{
 		// TODO Auto-generated method stub
 		HandlerMethod method = (HandlerMethod)handler;
 		
-//		System.out.println("------------interceptor------------");
-		
 		CheckAuth auth = method.getMethodAnnotation(CheckAuth.class);
-		//어노테이션이 없거나 있는데 value를 false로 준경우.
-//		if(auth == null || auth.value() == false){
-//			return true;
-//		}
 		
 		// 세션체크
 		HttpSession session = request.getSession();
-		//로그인시 Account 객체가 세션에 담겨있습니다.
 		String id = (String) session.getAttribute("id");
-		// 로그인 체크 & 레벨 체크
+		
 		if(id == null){
-			
 			response.sendRedirect("/member/index");
 			return false;
 		}
-		
 		
 		return true;
 	}

@@ -125,9 +125,6 @@ $('.table tbody tr').on('click',function () {
 														</tr>
 													</c:forEach>
 													</c:when>
-													<c:otherwise>
-												아님
-												</c:otherwise>
 													</c:choose>
 												
 												

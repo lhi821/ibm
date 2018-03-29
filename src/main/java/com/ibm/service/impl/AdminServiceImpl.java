@@ -9,8 +9,10 @@ import com.ibm.domain.CompanyInfoDomain;
 import com.ibm.domain.MeetingTypeCodeDomain;
 import com.ibm.domain.MemberDomain;
 import com.ibm.domain.MemberProjectDivisionDomain;
+import com.ibm.domain.ProjectDomain;
 import com.ibm.mapper.AdminMapper;
 import com.ibm.mapper.MemberMapper;
+import com.ibm.mapper.ProjectMapper;
 import com.ibm.service.AdminService;
 
 @Service
@@ -21,6 +23,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	MemberMapper memberMapper;
+	
+	@Autowired
+	ProjectMapper projectMapper;
 	
 	//TAB 1 [MeetingTypeCode Config]-----------------
 	@Override
@@ -98,8 +103,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	//TAB 3 [InviteMember Config]-----------------
 	@Override
-	public List<String> selectProjectByAdmin(String memberid){
-		return adminMapper.selectProjectByAdmin(memberid);
+	public List<ProjectDomain> selectProjectByAdmin(String memberid){
+		return projectMapper.selectProjectByAdmin(memberid);
 	}
 	
 	@Override

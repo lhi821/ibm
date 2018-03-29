@@ -20,6 +20,7 @@ import com.ibm.domain.CompanyInfoDomain;
 import com.ibm.domain.MeetingTypeCodeDomain;
 import com.ibm.domain.MemberDomain;
 import com.ibm.domain.MemberProjectDivisionDomain;
+import com.ibm.domain.ProjectDomain;
 import com.ibm.service.AdminService;
 
 @Controller
@@ -115,23 +116,18 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		String memberid = session.getAttribute("id").toString();
 		
-		ArrayList<String> AdminProjectList = (ArrayList<String>) adminService.selectProjectByAdmin(memberid);
-		
+		ArrayList<ProjectDomain> AdminProjectList = (ArrayList<ProjectDomain>) adminService.selectProjectByAdmin(memberid);
 		HashMap<String, HashMap<String, List<MemberDomain>>> map = new HashMap<String, HashMap<String, List<MemberDomain>>>();
 		
 		for(int i = 0; i < AdminProjectList.size(); i++) {
 			
-			String projectid = AdminProjectList.get(i);
+			ProjectDomain projectlist = AdminProjectList.get(i);
 			
 			List<MemberDomain> memberlist = new ArrayList<>();
 			List<MemberDomain> nonmemberlist = new ArrayList<>();
 			
-			memberlist = adminService.selectMemberByProject(projectid);
-			nonmemberlist = adminService.selectNonMemberByProject(projectid);
-			
-			System.out.println(projectid);
-			System.out.println(memberlist.size());
-			System.out.println(nonmemberlist.size());
+			memberlist = adminService.selectMemberByProject(projectlist.getProjectid());
+			nonmemberlist = adminService.selectNonMemberByProject(projectlist.getProjectid());
 			
 			HashMap<String, List<MemberDomain>> rightMemberList = new HashMap<>();
 			HashMap<String, List<MemberDomain>> leftMemberList = new HashMap<>();
@@ -139,11 +135,8 @@ public class AdminController {
 			rightMemberList.put("rightMemberList", memberlist);
 			leftMemberList.put("leftMemberList", nonmemberlist);
 			
-			map.put(projectid, rightMemberList);
-			map.put(projectid, leftMemberList);
-			
-			
-			
+			map.put(projectlist.getProjectnm(), rightMemberList);
+			map.put(projectlist.getProjectnm(), leftMemberList);
 			
 		}
 		

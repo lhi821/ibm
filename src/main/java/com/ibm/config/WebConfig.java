@@ -24,7 +24,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor((HandlerInterceptor)new AuthInterceptor())
 		.addPathPatterns("/**") 
 		.excludePathPatterns("/member/**");
-;
 	}
 
 }

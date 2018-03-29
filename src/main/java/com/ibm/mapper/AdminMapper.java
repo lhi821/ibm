@@ -11,7 +11,6 @@ import org.apache.ibatis.annotations.Update;
 
 import com.ibm.domain.CompanyInfoDomain;
 import com.ibm.domain.MeetingTypeCodeDomain;
-import com.ibm.domain.MemberProjectDivisionDomain;
 
 @Mapper
 public interface AdminMapper {
