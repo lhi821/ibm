@@ -186,10 +186,9 @@ $('.table tbody tr').on('click',function () {
 													
 													</c:when>
 													<c:when test="${memberlist.key == 'leftMemberList'}">
-													혹시이건
+													
 													</c:when>
 													<c:otherwise>
-													나를 찾니
 													</c:otherwise>
 													</c:choose>
 													</c:forEach>
