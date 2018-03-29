@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.ibm.domain.BoardDomain;
 import com.ibm.domain.MeetingNoteDomain;
+import com.ibm.domain.NoteHeadDomain;
 
 @Mapper
 public interface MeetingNoteMapper {
@@ -86,12 +88,60 @@ public interface MeetingNoteMapper {
 		+ ")")
 	public void insertMtnAtentants(Map<String, Object> attenantsMap);
 	
-	@Select("SELECT meetingnoteid, version, title, projectid, divisionid, meetingtypeid, "
+
+	@Insert("INSERT INTO NOTEHEAD ("
+			+ "noteheadId, "
+			+ "ALIAS, "
+			+ "MEETINGTYPEID, "
+			+ "TITLE, "
+			+ "LOCATION, "
+			+ "MEMBERID"
+		+ ")"
+		+ "VALUES ("
+			+ "#{noteHeadId}, "
+			+ "#{alias}, "
+			+ "#{meetingTypeId}, "
+			+ "#{title}, "
+			+ "#{location}, "
+			+ "#{memberId}"
+		+ ")")
+	public void setNoteHead(Map<String, Object> noteHeadMap);
+	
+	@Select("SELECT NOTEHEADID FROM NOTEHEAD ORDER BY NOTEHEADID DESC LIMIT 1")
+	public String getLastNoteHeadId();
+	
+	@Insert("INSERT INTO NOTEHEAD_MEMBER ("
+			+ "HEADMBRID, "
+			+ "NOTEHEADID, "
+			+ "MEMBERID"
+		+ ")"
+		+ "VALUES ("
+			+ "#{headmbrId}, "
+			+ "#{noteheadId}, "
+			+ "#{memberId}"
+		+ ")")
+	public void createNoteHeadMbr(Map<String, Object> headMbrMap);
+	
+	@Select("SELECT HEADMBRID FROM NOTEHEAD_MEMBER ORDER BY HEADMBRID DESC LIMIT 1")
+	public String getLastNoteHeadMmbId();
+	
+	@Select("SELECT NOTEHEADID, ALIAS, TITLE, MEETINGTYPE.MEETINGTYPEID as meetingTypeId, MEETINGTYPENM as MEETINGTYPE, LOCATION, MEMBERID FROM NOTEHEAD, MEETINGTYPE WHERE MEMBERID = #{memberId} "
+				+ "AND NOTEHEAD.MEETINGTYPEID = MEETINGTYPE.MEETINGTYPEID")
+	public List<NoteHeadDomain> getNoteHead(Map<String, Object> noteHeadMap);
+	
+	@Select("SELECT MEMBER.MEMBERID as MEMBERID, MEMBER.MEMBERNM as MEMBERNM " + 
+					"FROM MEMBER, NOTEHEAD_MEMBER, NOTEHEAD " + 
+					"WHERE MEMBER.MEMBERID= NOTEHEAD_MEMBER.MEMBERID " + 
+					"AND NOTEHEAD.NOTEHEADID = NOTEHEAD_MEMBER.NOTEHEADID " + 
+					"AND NOTEHEAD_MEMBER.NOTEHEADID = #{id}")
+	public List<Map<String, String>> getAttendants(String id);
+
+	/*@Select("SELECT meetingnoteid, version, title, projectid, divisionid, meetingtypeid, "
 			+ "regmemberid, modmemberid, location, starttm, endtm, mainpoint, hit, statusid, statusdesc,"
 			+ "DATE_FORMAT(regdate, '%Y-%m-%d %H:%i:%s') regdate, "
 			+ "DATE_FORMAT(moddate, '%Y-%m-%d %H:%i:%s') moddate "
 	+ "FROM MEETINGNOTE")
-	public List<MeetingNoteDomain> selectMeetingNoteList();
+	public List<MeetingNoteDomain> selectMeetingNoteList();*/
 	
 	//---ANALYSIS---
 	@Select("SELECT COUNT(meetingnoteid) meetingtypecount "
