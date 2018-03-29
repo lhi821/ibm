@@ -136,12 +136,12 @@ public interface MeetingNoteMapper {
 					"AND NOTEHEAD_MEMBER.NOTEHEADID = #{id}")
 	public List<Map<String, String>> getAttendants(String id);
 
-	/*@Select("SELECT meetingnoteid, version, title, projectid, divisionid, meetingtypeid, "
+	@Select("SELECT meetingnoteid, version, title, projectid, divisionid, meetingtypeid, "
 			+ "regmemberid, modmemberid, location, starttm, endtm, mainpoint, hit, statusid, statusdesc,"
 			+ "DATE_FORMAT(regdate, '%Y-%m-%d %H:%i:%s') regdate, "
 			+ "DATE_FORMAT(moddate, '%Y-%m-%d %H:%i:%s') moddate "
 	+ "FROM MEETINGNOTE")
-	public List<MeetingNoteDomain> selectMeetingNoteList();*/
+	public List<MeetingNoteDomain> selectMeetingNoteList();
 	
 	//---ANALYSIS---
 	@Select("SELECT COUNT(meetingnoteid) meetingtypecount "
