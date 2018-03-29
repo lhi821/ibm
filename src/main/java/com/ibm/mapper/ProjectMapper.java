@@ -11,7 +11,7 @@ import com.ibm.domain.ProjectDomain;
 @Mapper
 public interface ProjectMapper {
 
-	@Select("SELECT projectid, projectnm FROM MBR_PRJ_DIV A JOIN PROJECT B ON A.PROJECTID = B.PROJECTID WHERE memberID = #{memberid} AND roleid = 'ADMIN'")
+	@Select("SELECT a.projectid projectid, projectnm FROM MBR_PRJ_DIV A JOIN PROJECT B ON A.PROJECTID = B.PROJECTID WHERE memberID = #{memberid} AND roleid = 'ADMIN'")
 	public List<ProjectDomain> selectProjectByAdmin(@Param("memberid") String memberid);
 	
 }

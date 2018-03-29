@@ -135,6 +135,10 @@ public class AdminController {
 			rightMemberList.put("rightMemberList", memberlist);
 			leftMemberList.put("leftMemberList", nonmemberlist);
 			
+			System.out.println(projectlist.getProjectnm());
+			System.out.println(nonmemberlist.size());
+			System.out.println(memberlist.size());
+			
 			map.put(projectlist.getProjectnm(), rightMemberList);
 			map.put(projectlist.getProjectnm(), leftMemberList);
 			

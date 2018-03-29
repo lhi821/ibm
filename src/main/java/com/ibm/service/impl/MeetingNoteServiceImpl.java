@@ -187,10 +187,10 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 		}
 	}
 	
-	@Override
+	/*@Override
 	public List<MeetingNoteDomain> selectMeetingNoteList() {
 		return meetingNoteMapper.selectMeetingNoteList();
-	}
+	}*/
 	
 	@Override
 	public List<Integer> countMeetingTypePerNote() {	// 회의유형 개수 순위 - 회의 유형 수

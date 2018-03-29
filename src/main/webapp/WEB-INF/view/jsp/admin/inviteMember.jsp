@@ -69,7 +69,7 @@ $('.table tbody tr').on('click',function () {
 
 					<!-- 여기가 화면 -->
 					
-					
+					<br>
 					<c:forEach var="projects" varStatus="varstatus" items="${projectlist}"  step="1" begin="0">
 					
 					<div class="col-xs-12">
@@ -168,11 +168,14 @@ $('.table tbody tr').on('click',function () {
 													</thead>
 													<tbody class="cursor"  id="multiselect">
 													
-													<c:forEach var="memberlist" varStatus="status" items="${projects.value}">
-												
-													<c:if test="${memberlist.key == 'rightMemberList'}">
 													
-													<c:forEach var="item" varStatus="status" items="${memberlist[rightMemberList]}"  step="1" begin="0" >
+													<c:forEach var="memberlist" varStatus="status" items="${projects.value}" step="1" begin="0" >
+													<c:choose>
+													
+													<c:when test="${memberlist.key == 'rightMemberList'}">
+													나를 못찾니
+													<c:set var="rightstatus" value="0"/> 
+													<c:forEach var="item" varStatus="rightstatus" items="${memberlist.value}"  step="1" begin="0" >
 														<tr class="cursor tableContent">
 															<td>${item.membernm}</td>
 															<td>${item.companyid}</td>
@@ -181,8 +184,14 @@ $('.table tbody tr').on('click',function () {
 														</tr>
 													</c:forEach>
 													
-													</c:if>
-												
+													</c:when>
+													<c:when test="${memberlist.key == 'leftMemberList'}">
+													혹시이건
+													</c:when>
+													<c:otherwise>
+													나를 찾니
+													</c:otherwise>
+													</c:choose>
 													</c:forEach>
 													</tbody>
 												</table>
