@@ -7,7 +7,7 @@ import com.ibm.domain.BoardDomain;
 
 public interface BoardService {
 
-	public BoardDomain selectBoard(int id);
+	public Map<String, Object> selectMeetingNote(String meetingNoteId);
 	
 	public void insertBoard(BoardDomain boardDomain);
 	

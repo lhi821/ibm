@@ -1,5 +1,6 @@
 package com.ibm.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
@@ -39,5 +40,10 @@ public interface HashTagMapper {
 	@Select("SELECT * FROM HASHTAG WHERE HASHTAG = #{hashTag}")
 	public Map<String, String> getHashTag(Map<String, Object> hashTagMap);
 	
+	@Select("SELECT HASHTAG.HASHTAG "
+				+ "FROM HASHTAG, MTN_HASHTAG "
+				+ "WHERE HASHTAG.HASHTAGID = MTN_HASHTAG.HASHTAGID "
+				+ "AND MTN_HASHTAG.MEETINGNOTEID = #{meetingNoteId}")
+	public List<String> getHashTagStr(Object meetingNoteId);
 
 }

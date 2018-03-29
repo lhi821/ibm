@@ -31,7 +31,6 @@
                     <tr>
                       <th scope="col">No.</th>
                       <th scope="col">Title</th>
-                      <th scope="col">Contents</th>
                       <th scope="col">Author</th>
                       <th scope="col">Last modified date</th>
                     </tr>
@@ -40,10 +39,9 @@
 
                   <c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
                     <tr id="${item.meetingNoteId}" class="cursor tableContent">
-                     
+                     	<td>${item.meetingNoteId}</td>
                       <td>${item.title}</td>
-                      <td>${item.contents}</td>
-                      <td>@${item.regMemberId}</td>
+                      <td>@${item.modMemberId}</td>
                       <td>${item.modDate}</td>
                     </tr>
                   </c:forEach>
@@ -59,7 +57,7 @@
                       <div class="panel-heading content">
                         <div class="text-left small">${item.title}</div>
                       </div>
-                      <div class="panel-body content box-contents">
+                      <div class="panel-body content box-contents panel-min-height">
                         <div class="text-left small">${item.contents}</div>
                       </div>
                       <div class="panel-footer">
@@ -74,11 +72,16 @@
                               </c:when>
                               <c:otherwise>
                                 <i class="fas fa-clock grayscale"></i> ${item.modDate}
-
                               </c:otherwise>
                             </c:choose>
                           </div>
-                        </div>        
+                        </div>
+                        <hr class='panel-hr'>
+                        <div class="row small">
+	                      	<div class="col-xs-12 bottom-hashTag small">
+                          	${item.hashTag}
+	                      	</div>
+	                      </div>       
                       </div>
                     </div>
                   </div>

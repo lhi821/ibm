@@ -111,20 +111,21 @@ public class BoardController {
 	}
 
 	@GetMapping("/{id}")
-	public ModelAndView read(@PathVariable int id, 
+	public ModelAndView read(@PathVariable String id, 
 													 @RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
 													 @RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
 														@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/read");
 		Map<String, Object> resultMap = new HashMap<>();
 		try {
-			BoardDomain result = boardService.selectBoard(id);
+			Map<String, Object> result = boardService.selectMeetingNote(id);
 			resultMap.put("result", result);
 			
 			resultMap.put("message", "success");
 		} catch(Exception E) {
 			resultMap.put("message", "fail");
 		}
+		mv.addObject("meetingTypes", adminService.selectMeetingTypeList());
 		mv.addObject("resultMap", resultMap);
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);

@@ -51,4 +51,31 @@ public interface BoardMapper {
 			"and MEETINGNOTE.MEETINGNOTEID = MTNCONTENTS.MEETINGNOTEID\r\n" + 
 			"and MTNCONTENTS.seq = 1;")
 	public List<Map<String, Object>> getMeetingNote(Map<String, Object> requestMap);
+	
+	@Select("Select * From MEETINGNOTE where MEETINGNOTEID = #{meetingNoteId}")
+	public Map<String, Object> selectMeetingNote(String meetingNoteId);
+	
+	@Select("Select * From ACTIONITEM where MEETINGNOTEID = #{meetingNoteId}")
+	public List<Map<String, Object>> selectMeetingNoteActionItem(String meetingNoteId);
+
+	@Select("Select * From MTN_HASHTAG, HASHTAG where MTN_HASHTAG.HASHTAGID = HASHTAG.HASHTAGID "
+				+ "AND MEETINGNOTEID = #{meetingNoteId}")
+	public List<Map<String, Object>> selectMeetingNoteHashTag(String meetingNoteId);
+	
+	@Select("select * " + 
+					"from meetingNote, attendee, member " + 
+					"where meetingNote.meetingnoteId = attendee.meetingnoteId " + 
+					"and attendee.memberid = member.memberid " + 
+					"and meetingNote.meetingnoteId = #{meetingNoteId}")
+	public List<Map<String, Object>> selectMeetingNoteAttendant(String meetingNoteId);
+	
+	@Select("select * " + 
+					"from meetingNote, mtncontents, member " + 
+					"where meetingNote.meetingnoteId = mtncontents.meetingnoteId " + 
+					"and mtncontents.speakerId = member.memberId " +
+					"and meetingNote.meetingnoteId = #{meetingNoteId}")
+	public List<Map<String, Object>> selectMeetingNoteContent(String meetingNoteId);
+	
+	@Select("SELECT * FROM MEETINGTYPE WHERE MEETINGTYPEID = #{meetingTypeId}")
+	public Map<String, Object> selectMeetingTypeNmbyId(String meetingTypeId);
 }
