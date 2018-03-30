@@ -186,6 +186,7 @@ $( document ).ready(function() {
       },
       error: function(data) {
         	alert("Error");
+        	console.log(data);
     	}
     });
   });

@@ -130,7 +130,7 @@
 	<!-- Modal -->
 	<jsp:include page="../mypage/periodSearch.jsp"></jsp:include>
 </body>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(function() {
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
@@ -138,7 +138,7 @@ $(function() {
         xhr.setRequestHeader(header, token);
     });
 });
-</script>
+</script> -->
 <script>
 //for Popover of bell
 $(function () {
