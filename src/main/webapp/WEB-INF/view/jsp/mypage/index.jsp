@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<% String usrId = (String)session.getAttribute("id");  %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,9 +16,9 @@
 
 <script>
 	function calendarInit(){
-		
-		var userId = '${userId}';
 
+		var userId = '<%=usrId%>';
+		
 		
 		$('#calendar').fullCalendar({
 			schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
@@ -53,7 +54,7 @@
 									events[i] = {
 										
 											"title":this.title,
-										//	"id":this.meetingnoteId,
+											"id":this.meetingnoteId,
 										 	"start":date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate()+"T"+this.startTm +":00",
 											"end":date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate()+"T"+this.endTm +":00",
 											
@@ -127,6 +128,7 @@
 		<div class="container affix-container">
 			<div class="row">
 				<div class="container">
+				<input type="hidden" name="memberid" value="${userId}"/>
 				<!-- 여기가 화면 -->
 				<!-- 사용자검색 팝업 
 					<button class="btn btn-toggle" data-toggle="modal" data-target="#userSearchPop">사용자검색</button>	
