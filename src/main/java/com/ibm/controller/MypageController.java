@@ -1,5 +1,6 @@
 package com.ibm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ibm.domain.HitHistoryDomain;
 import com.ibm.domain.MeetingNoteDomain;
 import com.ibm.domain.MemberDomain;
 import com.ibm.service.MemberService;
@@ -61,6 +63,23 @@ public class MypageController {
 	@GetMapping("/history")
 	public ModelAndView mypageHistory() throws Exception{
 		ModelAndView mv = new ModelAndView("/mypage/mypage_history");
+		
+		HitHistoryDomain historyDomain = new HitHistoryDomain();
+		historyDomain.setHitHistoryDiv("VIEW");
+		
+		List<MeetingNoteDomain> viewHistory = myPageService.getViewHistory(historyDomain);
+		
+		/* 인덱스 분리 화면단 disabled 버튼 깨짐 대체*/
+		List<MeetingNoteDomain> viewList = new ArrayList<>();
+		MeetingNoteDomain lstIndex = viewHistory.get(4);
+		
+		for(int i = 0; i < 4; ++i) {
+			viewList.add(viewHistory.get(i));
+		}
+		
+		mv.addObject("viewHistoryList", viewList);
+		mv.addObject("viewLastIndex", lstIndex);
+		
 		return mv;
 	}
 	

@@ -14,6 +14,14 @@
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/css/board/index.css">
 </head>
+
+<script type="text/javascript">
+
+function moveDetail(mtnId){
+	location.href="/board/"+mtnId+"?veiwType=G&sideBar=T&subMenu=FFFF"
+}
+</script>
+
 <body>
 
 	<!-- Navbar -->
@@ -48,16 +56,19 @@
 						  <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
 						</div>
 					 </div>
+					 
+					 
 					 <div class="col-xs-6 ">
   						<div class="list-group">
-  							<button type="button" class="list-group-item list-group-item-action active"><i class="fas fa-eye"></i>  View History </button>
-						  	<button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-						  	<button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-						  <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+  							<button type="button" class="list-group-item list-group-item-action active"><i class="fas fa-edit"></i> View History </button>
+  							<c:forEach var="l" items="${viewHistoryList}">			
+	  							<button type="button" class="list-group-item list-group-item-action" onClick="moveDetail('${l.meetingNoteId}')">${l.title}</button>
+							</c:forEach>	
+							<button type="button" class="list-group-item list-group-item-action" disabled onClick="moveDetail('${viewLastIndex.meetingNoteId}')">${viewLastIndex.title}</button>	
 						</div>
 					 </div>
+					 
+					 
 					 <div class="col-xs-6 ">
   						<div class="list-group">
   							<button type="button" class="list-group-item list-group-item-action active"><i class="fas fa-edit"></i> Edit History </button>
@@ -65,7 +76,7 @@
 						  	<button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
 							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
 							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-						  <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+						  
 						</div>
 					 </div>
 					 <div class="col-xs-6 ">

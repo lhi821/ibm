@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.domain.BoardDomain;
+import com.ibm.domain.HitHistoryDomain;
 import com.ibm.service.AdminService;
 import com.ibm.service.BoardService;
+import com.ibm.service.MypageService;
 
 @Controller
 @SessionAttributes("id")
@@ -34,6 +36,8 @@ public class BoardController {
 	@Autowired
 	AdminService adminService;
 	
+	@Autowired
+	MypageService myPageService;
 
 	@GetMapping("/index")
 	public ModelAndView board(@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
@@ -111,7 +115,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/{id}")
-	public ModelAndView read(@PathVariable String id, 
+	public ModelAndView read(@PathVariable String id, HttpSession session,
 													 @RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
 													 @RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
 														@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
@@ -122,6 +126,13 @@ public class BoardController {
 			resultMap.put("result", result);
 			
 			resultMap.put("message", "success");
+			
+			HitHistoryDomain hitHistoryDomain = new HitHistoryDomain();
+			hitHistoryDomain.setMeetingNoteId(id);;
+			hitHistoryDomain.setMemberId(session.getAttribute("id").toString());
+			hitHistoryDomain.setHitHistoryDiv("VIEW");
+			myPageService.insertHistory(hitHistoryDomain);
+			
 		} catch(Exception E) {
 			resultMap.put("message", "fail");
 		}

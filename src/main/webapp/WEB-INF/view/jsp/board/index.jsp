@@ -79,7 +79,7 @@
                         <hr class='panel-hr'>
                         <div class="row small">
 	                      	<div class="col-xs-12 bottom-hashTag small">
-                          	${item.hashTag}
+                          	<%-- ${item.hashTag} --%>
 	                      	</div>
 	                      </div>       
                       </div>
