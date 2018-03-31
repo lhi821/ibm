@@ -11,39 +11,15 @@
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="/css/board/index.css">
 
-<style type="text/css">
-.panel-body.small {
-	padding: 5px;
+<style>
+.marginright{
+	margin-right: 30px;
 }
-.small {
-	font-size: 96% !important;
-	padding: 5px;
-}
-th {
-	text-align: center !important;
-	padding: 6px !important;
-}
-td {
-	text-align: center;
-	padding: 6px !important;
-}
-tr.acitve{
-	background-color: red !important;
-}
+
 </style>
 
 <!-- js -->
-<link rel="stylesheet" type="text/css"href="/js/admin/multiselect.min.js">
 <script src='/lib/jquery/jquery.min.js'></script>
-
-<script  type="text/javascript">
-$('.table tbody tr').on('click',function () {
-		console.log("click");
-        $(this).addClass('table-primary');
-        $(this).addClass('active');
-});
-		
-</script>
 
 </head>
 <body>
@@ -102,7 +78,7 @@ $('.table tbody tr').on('click',function () {
 											class="panel panel-default small-bottom small panel-min-height">
 											<div class="panel-body small">
 												<table
-													class="table table-hover table-sm small-bottom padding-none row-clickable" id="leftTable">
+													class="table table-hover table-sm small-bottom padding-none" id="${projects.key}" >
 													<thead>
 														<tr>
 															<th scope="col" style="width: 20%">Name</th>
@@ -111,13 +87,13 @@ $('.table tbody tr').on('click',function () {
 															<th scope="col" style="width: 40%">Email</th>
 														</tr>
 													</thead>
-													<tbody class="cursor"  id="multiselect">
+													<tbody class="cursor ${projects.key}" id="leftTable${varstatus.count}">
 													
-													<c:forEach var="memberlist" varStatus="status" items="${projects.value}">
+													<c:forEach var="memberlist" varStatus="status" items="${projects.value[0]}">
 													<c:choose>
 													<c:when test="${memberlist.key == 'leftMemberList'}">
 													<c:forEach var="item" varStatus="status" items="${memberlist.value}"  step="1" begin="0" >
-														<tr class="cursor tableContent">
+														<tr id="${item.memberid}" class="grayscale">
 															<td>${item.membernm}</td>
 															<td>${item.companyid}</td>
 															<td>${item.dept}</td>
@@ -143,11 +119,11 @@ $('.table tbody tr').on('click',function () {
 									</div>
 									
 
-									<div class="col-xs-1" style="margin-top: 5%;">
-										<button id="toRightBtn" class="btn btn-block btn-xs">
+									<div class="col-xs-1" style="margin-top: 5%;" id="${projects.key}">
+										<button id="toRightBtn${varstatus.count}" class="btn btn-block btn-xs">
 											<i class="fas fa-angle-right grayscale"></i>
 										</button>
-										<button id="toLeftBtn" class="btn btn-block btn-xs">
+										<button id="toLeftBtn${varstatus.count}" class="btn btn-block btn-xs">
 											<i class="fas fa-angle-left grayscale"></i>
 										</button>
 									</div>
@@ -157,7 +133,7 @@ $('.table tbody tr').on('click',function () {
 											class="panel panel-default small-bottom small panel-min-height">
 											<div class="panel-body small">
 												<table
-													class="table table-hover table-sm small-bottom padding-none row-clickable" id="rightTable">
+													class="table table-hover table-sm small-bottom padding-none" id="${projects.key}">
 													<thead>
 														<tr>
 															<th scope="col" style="width: 20%">Name</th>
@@ -166,17 +142,16 @@ $('.table tbody tr').on('click',function () {
 															<th scope="col" style="width: 40%">Email</th>
 														</tr>
 													</thead>
-													<tbody class="cursor"  id="multiselect">
+													<tbody class="cursor ${projects.key}"  id="rightTable${varstatus.count}">
 													
 													
-													<c:forEach var="memberlist" varStatus="status" items="${projects.value}" step="1" begin="0" >
+													<c:forEach var="memberlist" varStatus="status" items="${projects.value[1]}" step="1" begin="0" end="2">
 													<c:choose>
 													
 													<c:when test="${memberlist.key == 'rightMemberList'}">
-													나를 못찾니
 													<c:set var="rightstatus" value="0"/> 
-													<c:forEach var="item" varStatus="rightstatus" items="${memberlist.value}"  step="1" begin="0" >
-														<tr class="cursor tableContent">
+													<c:forEach var="item" varStatus="rightstatus" items="${memberlist.value}"  step="1" begin="0" end="2">
+														<tr id="${item.memberid}" class="grayscale">
 															<td>${item.membernm}</td>
 															<td>${item.companyid}</td>
 															<td>${item.dept}</td>
@@ -185,18 +160,29 @@ $('.table tbody tr').on('click',function () {
 													</c:forEach>
 													
 													</c:when>
-													<c:when test="${memberlist.key == 'leftMemberList'}">
 													
-													</c:when>
-													<c:otherwise>
-													</c:otherwise>
 													</c:choose>
 													</c:forEach>
 													</tbody>
 												</table>
 											</div>
 										</div>
+										
+										
 									</div>
+									
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="text-right marginright">
+												<button id="closeUser${varstatus.count}" type="button" class="btn btn-default btn-sm">
+													<i class="fas fa-ban grayscale"></i> Cancel
+												</button>
+												<button id="applyUser${varstatus.count}" type="button" class="btn btn-sm">
+													<i class="fas fa-check-circle grayscale"></i> Apply
+												</button>
+											</div>
+											</div>
+										</div>
 									
 									<!-- panel 끝 -->
 									
@@ -224,99 +210,122 @@ $('.table tbody tr').on('click',function () {
 <script>
 var attendantsList = [];
 var attendantsNmList = [];
-
+var index = "";
 
 $( document ).ready(function() {
 	
 	
-	
- 
-	  $('#userSearchIcon').click(function() {
-		    var data = {"searchKey" : $("#searchKey").val()};
-		    $.ajax({
-		      url: '/member/search',
-		      type: 'POST',
-		      data: JSON.stringify(data),
-		      contentType: "application/json",
-		      success: function(data) {
-		    	    console.log(data);
-		    	    $("#leftTable").empty();
-		    	    for (var i=0; i<data.length; i++){
-		    	      $("#leftTable").append("<tr data-value="+data[i].memberid+" class='grayscale'>"+
-		    	          											"<td>"+data[i].membernm+"</td>"+
-		    	          											"<td>"+data[i].email+"</td>"+
-		    	          											"<td>"+data[i].phone+"</td>"+
-		    	          											"<td>"+data[i].jobs+"</td>"+
-		  	          											"</tr>");
-		    	    }
-		    	    activeClick("leftTable");
-		      },
-		      error: function(data) {
-		        	alert("Error");
-		    	}
-		    });
-		  });
-		  
-	
-	
-  $('#toRightBtn').click(function() {
-    $("#leftTable tr.active").each(function(){
-      $(this).removeClass("active");
-      $(this).css("font-weight", "");
-      
-      if(jQuery.inArray($(this).attr("data-value"), attendantsList) == -1){
-        attendantsList.push($(this).attr("data-value"));
+  $('tr').click(function() {
+	    if ($(this).attr("class") == "grayscale") {
+	      $(this).addClass("active");
+	      $(this).css("font-weight", "bold");
+	    }else{
+	      $(this).removeClass("active");
+	      $(this).css("font-weight", "");
+	    }
+	  });
+  
+
+  $('button[id^="toRightBt"]').click(function() {
+	  attendantsList = [];
+	  attendantsNmList = [];
+	  
+	  index = $(this).attr("id").substr(10,1);
+	  
+    $('[id="leftTable'+index+'"] tr.active').each(function(){
+      $(this).remove();
+      if(jQuery.inArray($(this).attr("id"), attendantsList) == -1){
+        attendantsList.push($(this).attr("id"));
         attendantsNmList.push($(this).children('td').eq(0).text());
         var clone = $(this).clone();
         clone.removeClass("active");
         clone.css("font-weight", "");
-        $("#rightTable").append(clone);
-        activeClick("rightTable");
+        $('[id="rightTable'+index+'"]').append(clone);
       }
-		});
+	});
   });
   
-  $('#toRightAllBtn').click(function() {
-    $("#leftTable tr").each(function(){
-      $(this).removeClass("active");
-      $(this).css("font-weight", "");
+  
+  $('button[id^="toLeftBt"]').click(function() {
+    attendantsList = [];
+    attendantsNmList = [];
+    
+    index = $(this).attr("id").substr(9,1);
+    
+    $('[id="rightTable'+index+'"] tr.active').each(function(){
+      $(this).remove();
       
-      if(jQuery.inArray($(this).attr("data-value"), attendantsList) == -1){
-        attendantsList.push($(this).attr("data-value"));
-        attendantsNmList.push($(this).children('td').eq(0).text());
-        var clone = $(this).clone();
-        clone.removeClass("active");
-        clone.css("font-weight", "");
-        $("#rightTable").append(clone);
-        activeClick("rightTable");
-      }
-		});
-  });
-  
-  $('#toLeftBtn').click(function() {
-    attendantsList = [];
-    attendantsNmList = [];
-    $("#rightTable tr.active").each(function(){
-      $(this).remove();
-		});
-    $("#rightTable tr").each(function(){
-      attendantsList.push($(this).attr("data-value"));
-      attendantsNmList.push($(this).children('td').eq(0).text());
-		});
-  });
-  
-  $('#toLeftAllBtn').click(function() {
-    attendantsList = [];
-    attendantsNmList = [];
-    $("#rightTable tr").each(function(){
-      $(this).remove();
-		});
+      if(jQuery.inArray($(this).attr("id"), attendantsList) == -1){
+          attendantsList.push($(this).attr("id"));
+          attendantsNmList.push($(this).children('td').eq(0).text());
+          var clone = $(this).clone();
+          clone.removeClass("active");
+          clone.css("font-weight", "");
+          $('[id="leftTable'+index+'"]').append(clone);
+        }
+      
+	});
+    
   });
   
 
+  $('#userSearchIcon').click(function() {
+	    var data = {"searchKey" : $("#searchKey").val()};
+	    $.ajax({
+	      url: '/member/search',
+	      type: 'POST',
+	      data: JSON.stringify(data),
+	      contentType: "application/json",
+	      success: function(data) {
+	    	    console.log(data);
+	    	    $("#leftTable").empty();
+	    	    for (var i=0; i<data.length; i++){
+	    	      $("#leftTable").append("<tr data-value="+data[i].memberid+" class='grayscale'>"+
+	    	          											"<td>"+data[i].membernm+"</td>"+
+	    	          											"<td>"+data[i].email+"</td>"+
+	    	          											"<td>"+data[i].phone+"</td>"+
+	    	          											"<td>"+data[i].jobs+"</td>"+
+	  	          											"</tr>");
+	    	    }
+	    	    activeClick("leftTable");
+	      },
+	      error: function(data) {
+	        	alert("Error");
+	    	}
+	    });
+	  });
+  
+  $('button[id^="applyUser"').click(function() {
+	  attendantsList = [];
+	    
+	  index = $(this).attr("id").substr(9,1);
+	    
+	  alert(index);
+	  
+	    $('[id="rightTable'+index+'"] tr').each(function(){
+	      
+	      if(jQuery.inArray($(this).attr("id"), attendantsList) == -1){
+	          attendantsList.push($(this).attr("id"));
+	        }
+	      
+		});
+  
+  });
+  
 });
 
+function activeClick(table){
+  $('#'+table+' tr').unbind();
+  $('#'+table+' tr').click(function() {
+    if ($(this).attr("class") == "grayscale") {
+      $(this).addClass("active");
+      $(this).css("font-weight", "bold");
+    }else{
+      $(this).removeClass("active");
+      $(this).css("font-weight", "");
+    }
+  });
+}
+
 </script>
-
-
 </html>
