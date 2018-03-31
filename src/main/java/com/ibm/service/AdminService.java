@@ -19,7 +19,7 @@ public interface AdminService {
 	public void updateCompany(CompanyInfoDomain companyInfoDomain);
 	public void deleteCompany(String id);
 	
-	public List<ProjectDomain> selectProjectByAdmin(String memberid);
+	public Object selectMemberByProjectAdmin(String memberid);
 	public List<MemberDomain> selectMemberByProject(String projectid);
 	public List<MemberDomain> selectNonMemberByProject(String projectid);
 }
