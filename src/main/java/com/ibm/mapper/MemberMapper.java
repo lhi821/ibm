@@ -68,4 +68,7 @@ public interface MemberMapper {
 			+ "WHERE B.MEMBERID IS NULL")
 	public List<MemberDomain> selectNonMemberByProject(String projectid);
 	
+	@Select("SELECT MEMBERNM FROM MEMBER WHERE MEMBERID = #{modMemberId}")
+	public String getMemberNm(String modMemberId);
+	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.ibm.domain.BoardDomain;
 import com.ibm.mapper.BoardMapper;
 import com.ibm.mapper.HashTagMapper;
+import com.ibm.mapper.MemberMapper;
 import com.ibm.service.BoardService;
 
 @Service
@@ -21,6 +22,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
 	HashTagMapper hashtagMapper;
+	
+	@Autowired
+	MemberMapper memberMapper;
 	
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -86,6 +90,7 @@ public class BoardServiceImpl implements BoardService{
 				hasTagStr = "<font class='grayscale'>No hash Tag</font>";
 			}
 			meetingNote.put("hashTag", hasTagStr);
+			meetingNote.put("modMemberNm", memberMapper.getMemberNm((String) meetingNote.get("modMemberId")));
 			resultList.add(meetingNote);
 			
 		}
