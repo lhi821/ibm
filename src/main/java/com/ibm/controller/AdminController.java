@@ -116,36 +116,8 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		String memberid = session.getAttribute("id").toString();
 		
-		ArrayList<ProjectDomain> AdminProjectList = (ArrayList<ProjectDomain>) adminService.selectProjectByAdmin(memberid);
-		HashMap<String, HashMap<String, List<MemberDomain>>> map = new HashMap<String, HashMap<String, List<MemberDomain>>>();
-		
-		for(int i = 0; i < AdminProjectList.size(); i++) {
-			
-			ProjectDomain projectlist = AdminProjectList.get(i);
-			
-			List<MemberDomain> memberlist = new ArrayList<>();
-			List<MemberDomain> nonmemberlist = new ArrayList<>();
-			
-			memberlist = adminService.selectMemberByProject(projectlist.getProjectid());
-			nonmemberlist = adminService.selectNonMemberByProject(projectlist.getProjectid());
-			
-			HashMap<String, List<MemberDomain>> rightMemberList = new HashMap<>();
-			HashMap<String, List<MemberDomain>> leftMemberList = new HashMap<>();
-			
-			rightMemberList.put("rightMemberList", memberlist);
-			leftMemberList.put("leftMemberList", nonmemberlist);
-			
-			System.out.println(projectlist.getProjectnm());
-			System.out.println(nonmemberlist.size());
-			System.out.println(memberlist.size());
-			
-			map.put(projectlist.getProjectnm(), rightMemberList);
-			map.put(projectlist.getProjectnm(), leftMemberList);
-			
-		}
-		
+		HashMap<String,List<HashMap<String, List<MemberDomain>>>> map = (HashMap<String, List<HashMap<String, List<MemberDomain>>>>) adminService.selectMemberByProjectAdmin(memberid);
 		mv.addObject("projectlist",map);
-		
 		return mv;
 	}
 	
