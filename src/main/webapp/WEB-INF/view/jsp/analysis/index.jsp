@@ -40,36 +40,64 @@
   
   <!-- sidebar -->
   <jsp:include page="../layout/sidebar.jsp"></jsp:include>
-  
-  <!-- posts area -->
-  <div class="col-xs-10 affix-content">
-    <div class="container affix-container">
-      <div class="row">
-        <div class="container">
-						<div class="col-xs-6">
-							<div class="graph-box-first">
-								<canvas id="pieChart"></canvas>
-							</div>
-						</div>
-						<div class="col-xs-6">
-							<div class="graph-box-first">
-								<canvas id="barChart"></canvas>
-							</div>
-						</div>
-						<div class="col-xs-6">
-							<div class="graph-box">
-								<canvas id="lineChart"></canvas>
-							</div>
-						</div>
-						<div class="col-xs-6">
-							<div class="graph-box">
-								<canvas id="doughnutChart"></canvas>
-							</div>
-						</div>
-        </div>
-      </div>
-    
-    <!-- footer -->   
+
+	<!-- posts area -->
+	<div class="col-xs-10 affix-content">
+		<div class="container affix-container">
+			<form id="newPostForm" action="/analysis/index" method="post">
+			<div class="row">
+				<div class="col-xs-3">
+					<div class="form-group">
+						<select id="selectProject" class="selectpicker form-control"
+							data-live-search="true"
+							title="<i class='fas fa-tags grayscale input-icon'></i>Project">
+							<c:forEach items="${projects}" var="project">
+								<option value="${project.projectid}"
+									title="<i class='fas fa-tag grayscale input-icon'></i>${project.projectnm}">${project.projectnm}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="form-group">
+						<select id="selectSubProject" class="selectpicker form-control"
+							data-live-search="true"
+							title="<i class='fas fa-tags grayscale input-icon'></i>SubProject">
+							<c:forEach items="${subprojects}" var="subproject">
+								<option value="${subproject.divisionID}"
+									title="<i class='fas fa-tag grayscale input-icon'></i>${subproject.divisionTNM}">${subproject.divisionTNM}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="graph-box-first">
+						<canvas id="pieChart"></canvas>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="graph-box-first">
+						<canvas id="barChart"></canvas>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="graph-box">
+						<canvas id="lineChart"></canvas>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="graph-box">
+						<canvas id="doughnutChart"></canvas>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- footer -->   
     <div class="row">
       <div class="container">
         <jsp:include page="../layout/footer.jsp"></jsp:include>
@@ -93,12 +121,25 @@ $(document).ready(function(){
 	
   $.ajax({
 		type : 'POST',
-		url : '/board/index',
+		url : '/analysis/index',
 		dataType: "json",
 		data : ({typeName:typeName, typeCount:typeCount, noteTitle:noteTitle, noteHit:noteHit}),
 		success:function(data){
 		}
 	});
+});
+
+$("#selectProject").change(function(){ 
+	
+	alert(12);
+	  $.ajax({
+			type : 'POST',
+			url : '/analysis/getSubtProject',
+			data : $("#selectProject").val(),
+			success:function(data){
+				console.log(data);
+			}
+		});
 });
 
 </script>

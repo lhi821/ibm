@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.ibm.domain.CompanyInfoDomain;
 import com.ibm.domain.MeetingTypeCodeDomain;
 import com.ibm.domain.MemberDomain;
-import com.ibm.domain.MemberProjectDivisionDomain;
 import com.ibm.domain.ProjectDomain;
 import com.ibm.mapper.AdminMapper;
 import com.ibm.mapper.MemberMapper;
