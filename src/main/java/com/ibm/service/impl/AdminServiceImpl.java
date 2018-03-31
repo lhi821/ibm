@@ -108,7 +108,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		ArrayList<ProjectDomain> AdminProjectList = (ArrayList<ProjectDomain>) projectMapper.selectProjectByAdmin(memberid);
 		
-		HashMap<String,List<HashMap<String, List<MemberDomain>>>> map = new HashMap<String, List<HashMap<String, List<MemberDomain>>>>();
+		HashMap<HashMap<String,String>,List<HashMap<String, List<MemberDomain>>>> map = new HashMap<HashMap<String,String>, List<HashMap<String, List<MemberDomain>>>>();
 		
 		for(int i = 0; i < AdminProjectList.size(); i++) {
 			
@@ -130,7 +130,10 @@ public class AdminServiceImpl implements AdminService {
 			leftright.add(leftMemberList);
 			leftright.add(rightMemberList);
 			
-			map.put(projectlist.getProjectnm(), leftright);
+			HashMap<String,String> project = new HashMap<>();
+			project.put(projectlist.getProjectid(), projectlist.getProjectnm());
+			
+			map.put(project, leftright);
 			
 		}
 		
@@ -145,6 +148,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<MemberDomain> selectNonMemberByProject(String projectid){
 		return memberMapper.selectNonMemberByProject(projectid);
+	}
+
+	@Override
+	public boolean insertMemberInProject(String projectid, List<String> memberid) {
+		
+		adminMapper.deleteMemberByProject(projectid);
+		for(int i = 0; i < memberid.size(); i++) {
+			adminMapper.insertMemberInProject(projectid, memberid.get(i));
+		}
+		return true;
 	}
 
 }

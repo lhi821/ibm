@@ -48,16 +48,18 @@
 											<th>Code</th>
 											<th>Code Name</th>
 											<th>Code Description</th>
+											<th>Code Color</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="item" varStatus="status"
 											items="${meetingTypeList}" step="1" begin="0">
 											<tr class="cursor tableContent" data-toggle="modal" data-target="#modifyMTCModal"
-											 data-id="${item.meetingTypeID}" data-nm="${item.meetingTypeNM}" data-desc="${item.meetingTypeDesc}">
+											 data-id="${item.meetingTypeID}" data-nm="${item.meetingTypeNM}" data-desc="${item.meetingTypeDesc}" data-color="${item.codeColor}">
 												<td>${item.meetingTypeID}</td>
 												<td>${item.meetingTypeNM}</td>
 												<td>${item.meetingTypeDesc}</td>
+												<td><div class='col-xs-6' style='background-color:${item.codeColor};'>&nbsp;</div></td>
 											</tr>
 										</c:forEach>
 									</tbody>
