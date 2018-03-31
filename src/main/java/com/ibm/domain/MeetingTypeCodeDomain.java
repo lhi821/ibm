@@ -4,6 +4,7 @@ public class MeetingTypeCodeDomain {
 	String meetingTypeID;
 	String meetingTypeNM;
 	String meetingTypeDesc;
+	String codeColor;
 	
 	public String getMeetingTypeID() {
 		return meetingTypeID;
@@ -23,4 +24,11 @@ public class MeetingTypeCodeDomain {
 	public void setMeetingTypeDesc(String meetingTypeDesc) {
 		this.meetingTypeDesc = meetingTypeDesc;
 	}
+	public String getCodeColor() {
+		return codeColor;
+	}
+	public void setCodeColor(String codeColor) {
+		this.codeColor = codeColor;
+	}
+	
 }

@@ -42,6 +42,16 @@
 								</div>
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<label for="codeColor" class="cols-sm-2 control-label">Code Color</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span> -->
+									<input type="text" class="form-control" name="codeColor" id="codeColor" size="100"/>
+								</div>
+							</div>
+						</div>
 
 						<div class="form-group">
 							<button id="mtUpdateBtn" type="submit" name="submit" value="submit" class="btn btn-lg btn-block login-button">Submit</button>
@@ -62,9 +72,11 @@ $('#modifyMTCModal').on('show.bs.modal', function(e){
 	var meetingTypeID = $(e.relatedTarget).data('id');
 	var meetingTypeNM = $(e.relatedTarget).data('nm');
 	var meetingTypeDesc = $(e.relatedTarget).data('desc');
+	var codeColor = $(e.relatedTarget).data('color');
 	$(e.currentTarget).find('input[name="meetingTypeID"]').val(meetingTypeID);
 	$(e.currentTarget).find('input[name="meetingTypeNM"]').val(meetingTypeNM);
 	$(e.currentTarget).find('input[name="meetingTypeDesc"]').val(meetingTypeDesc);
+	$(e.currentTarget).find('input[name="codeColor"]').val(codeColor);
 });
 
 $(document).ready(function() {
@@ -77,7 +89,10 @@ $(document).ready(function() {
 	$("#mtUpdateBtn").click(function(){
 		$("#modifyMTCForm").attr("action", "/admin/update").submit();
 	});
+
+	/* $('#codeColor').colorpicker(); */
 });
+
 
 </script>
 </html>

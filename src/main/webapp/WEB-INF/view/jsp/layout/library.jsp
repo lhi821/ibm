@@ -42,3 +42,7 @@
 		
 	<!-- autosize -->
 	<script src="/lib/autosize/autosize.min.js"></script>
+	
+	<!-- colorPicker -->
+	<link href="/lib/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
+	

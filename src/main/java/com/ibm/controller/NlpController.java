@@ -34,7 +34,7 @@ public class NlpController {
 	@ResponseBody
 	@SuppressWarnings("rawtypes")
 	public Map getKeyword(@RequestBody Map requestMap) throws Exception{
-		return apiService.apiCallHttpPost("http://localhost:9208/nlp/getKeyword", requestMap);
+		return apiService.apiCallHttpPost("http://116.255.87.207:8080/nlp/getKeyword", requestMap);
 	}
 	
 }
