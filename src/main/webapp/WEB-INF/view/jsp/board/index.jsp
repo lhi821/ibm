@@ -29,8 +29,8 @@
                 <table class="table table-hover small">
                   <thead>
                     <tr>
-                      <th scope="col">No.</th>
                       <th scope="col">Title</th>
+                      <th scope="col">Contents</th>
                       <th scope="col">Author</th>
                       <th scope="col">Last modified date</th>
                     </tr>
@@ -39,9 +39,9 @@
 
                   <c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
                     <tr id="${item.meetingNoteId}" class="cursor tableContent">
-                     	<td>${item.meetingNoteId}</td>
                       <td>${item.title}</td>
-                      <td>@${item.modMemberId}</td>
+                      <td class='contents-css'>${item.contents}</td>
+                      <td>${item.modMemberNm}</td>
                       <td>${item.modDate}</td>
                     </tr>
                   </c:forEach>
@@ -50,42 +50,42 @@
               </c:when>
               <c:otherwise>
 
-                <c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
-                  <div class="col-lg-3 col-md-4 col-xs-6"> 
-                    <div id="${item.meetingNoteId}" class="panel panel-default box">
-                    	<div class="ribbon content"><span>${item.meetingNoteNm}</span></div> 
-                      <div class="panel-heading content">
-                        <div class="text-left small">${item.title}</div>
-                      </div>
-                      <div class="panel-body content box-contents panel-min-height">
-                        <div class="text-left small">${item.contents}</div>
-                      </div>
-                      <div class="panel-footer">
-                        <div class="row small">
-                          <div class="col-xs-4 text-left small padding-right-small">
-
-                            <i class="fas fa-user-circle grayscale"></i>${item.regMemberId}</div>
-                          <div class="col-xs-8 text-right small padding-left-small">
-                            <c:choose>
-                              <c:when test="${item.modDate eq item.regDate}">
-                                <i class="far fa-clock grayscale"></i> ${item.regDate}
-                              </c:when>
-                              <c:otherwise>
-                                <i class="fas fa-clock grayscale"></i> ${item.modDate}
-                              </c:otherwise>
-                            </c:choose>
-                          </div>
-                        </div>
-                        <hr class='panel-hr'>
-                        <div class="row small">
-	                      	<div class="col-xs-12 bottom-hashTag small">
-                          	${item.hashTag}
-	                      	</div>
-	                      </div>       
-                      </div>
-                    </div>
-                  </div>
-                </c:forEach>
+								<c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
+								  <div class="col-lg-3 col-md-4 col-xs-6"> 
+								    <div id="${item.meetingNoteId}" class="panel panel-default box">
+								    	<div class="ribbon content"><span>${item.meetingNoteNm}</span></div> 
+								      <div class="panel-heading content">
+								        <div class="text-left small">${item.title}</div>
+								      </div>
+								      <div class="panel-body content box-contents panel-min-height">
+								        <div class="text-left small contents-css">${item.contents}</div>
+								      </div>
+								      <div class="panel-footer">
+								        <div class="row small">
+								          <div class="col-xs-4 text-left small padding-right-small">
+								
+								            <i class="fas fa-user-circle grayscale"></i>${item.modMemberNm}</div>
+								          <div class="col-xs-8 text-right small padding-left-small">
+								            <c:choose>
+								              <c:when test="${item.modDate eq item.regDate}">
+								                <i class="far fa-clock grayscale"></i> ${item.regDate}
+								              </c:when>
+								              <c:otherwise>
+								                <i class="fas fa-clock grayscale"></i> ${item.modDate}
+								              </c:otherwise>
+								            </c:choose>
+								          </div>
+								        </div>
+								        <hr class='panel-hr'>
+								        <div class="row small">
+								        	<div class="col-xs-12 bottom-hashTag small">
+								          	${item.hashTag}
+								        	</div>
+								        </div>       
+								      </div>
+								    </div>
+								  </div>
+								</c:forEach>
               </c:otherwise>
             </c:choose>
         </div>
@@ -101,14 +101,30 @@
           </div>
         </div>
       </div>  
-    
-    <!-- footer -->   
-    <div class="row">
-      <div class="container">
-        <jsp:include page="../layout/footer.jsp"></jsp:include>
-      </div>
-    </div>
-  </div>
+      
+      <div class="row">
+        <div class="container">
+          <div class="col-xs-12 text-center">
+            <div class="pagination">
+						  <a href="#">&laquo;</a>
+						  <a href="#" class='active'>1</a>
+						  <a href="#">2</a>
+						  <a href="#">3</a>
+						  <a href="#">4</a>
+						  <a href="#">5</a>
+						  <a href="#">&raquo;</a>
+						</div>
+        </div>
+      </div>  
+      
+	    <!-- footer -->   
+	    <div class="row small-bottom">
+	      <div class="container">
+	        <jsp:include page="../layout/footer.jsp"></jsp:include>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </div>
 
 </body>
