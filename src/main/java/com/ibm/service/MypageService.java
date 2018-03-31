@@ -12,5 +12,9 @@ public interface MypageService {
 	public void insertHistory(HitHistoryDomain hitHistoryDomain) throws Exception;
 	
 	public List<MeetingNoteDomain> getViewHistory(HitHistoryDomain hitHistoryDomain) throws Exception;
+
+	public List<MeetingNoteDomain> getUploadHistory(MeetingNoteDomain mtnDomain) throws Exception;
+
+	public List<MeetingNoteDomain> getEditHistory(MeetingNoteDomain mtnDomain) throws Exception;
 			
 }

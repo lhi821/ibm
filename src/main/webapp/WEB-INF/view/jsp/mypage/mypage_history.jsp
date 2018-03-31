@@ -46,47 +46,44 @@ function moveDetail(mtnId){
 				 
         	
 				<div class="row">
-  					<div class="col-xs-6 ">
+  					<div class="col-xs-12 ">
   						<div class="list-group">
   							<button type="button" class="list-group-item list-group-item-action active"><i class="far fa-check-circle"></i> Current Project </button>
 						  	<button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
 						  	<button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+						
 						  <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
 						</div>
 					 </div>
 					 
 					 
-					 <div class="col-xs-6 ">
+					 <div class="col-xs-12 ">
   						<div class="list-group">
   							<button type="button" class="list-group-item list-group-item-action active"><i class="fas fa-edit"></i> View History </button>
   							<c:forEach var="l" items="${viewHistoryList}">			
 	  							<button type="button" class="list-group-item list-group-item-action" onClick="moveDetail('${l.meetingNoteId}')">${l.title}</button>
 							</c:forEach>	
-							<button type="button" class="list-group-item list-group-item-action" disabled onClick="moveDetail('${viewLastIndex.meetingNoteId}')">${viewLastIndex.title}</button>	
+							<!-- <button type="button" class="list-group-item list-group-item-action" disabled onClick="moveDetail('${viewLastIndex.meetingNoteId}')"></button> -->	
 						</div>
 					 </div>
 					 
 					 
-					 <div class="col-xs-6 ">
+					 <div class="col-xs-12 " >
   						<div class="list-group">
   							<button type="button" class="list-group-item list-group-item-action active"><i class="fas fa-edit"></i> Edit History </button>
-						  	<button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-						  	<button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-						  
+						  	<c:forEach var="l" items="${editHistory}">			
+	  							<button type="button" class="list-group-item list-group-item-action" onClick="moveDetail('${l.meetingNoteId}')">${l.title}</button>
+							</c:forEach>
+						  	
 						</div>
 					 </div>
-					 <div class="col-xs-6 ">
+					 <div class="col-xs-12 ">
   						<div class="list-group">
   							<button type="button" class="list-group-item list-group-item-action active"><i class="fas fa-upload"></i>  Upload History </button>
-						  	<button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-						  	<button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-							<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-						  <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+						  	<c:forEach var="l" items="${uploadHistory}">			
+	  							<button type="button" class="list-group-item list-group-item-action" onClick="moveDetail('${l.meetingNoteId}')">${l.title}</button>
+							</c:forEach>
+						  	
 						</div>
 					 </div>				
 					 </div>

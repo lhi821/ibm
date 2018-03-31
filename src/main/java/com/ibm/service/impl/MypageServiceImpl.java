@@ -33,4 +33,16 @@ public class MypageServiceImpl implements MypageService {
 		
 	}
 
+	@Override
+	public List<MeetingNoteDomain> getUploadHistory(MeetingNoteDomain mtnDomain) throws Exception {
+		// TODO Auto-generated method stub
+		return mypageMapper.getUploadHistory(mtnDomain);
+	}
+
+	@Override
+	public List<MeetingNoteDomain> getEditHistory(MeetingNoteDomain mtnDomain) throws Exception {
+		// TODO Auto-generated method stub
+		return mypageMapper.getEditHistory(mtnDomain);
+	}
+
 }
