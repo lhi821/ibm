@@ -62,10 +62,10 @@
                       </div>
                       <div class="panel-footer">
                         <div class="row small">
-                          <div class="col-xs-4 text-left small">
+                          <div class="col-xs-4 text-left small padding-right-small">
 
                             <i class="fas fa-user-circle grayscale"></i>${item.regMemberId}</div>
-                          <div class="col-xs-8 text-right small">
+                          <div class="col-xs-8 text-right small padding-left-small">
                             <c:choose>
                               <c:when test="${item.modDate eq item.regDate}">
                                 <i class="far fa-clock grayscale"></i> ${item.regDate}
@@ -79,7 +79,7 @@
                         <hr class='panel-hr'>
                         <div class="row small">
 	                      	<div class="col-xs-12 bottom-hashTag small">
-                          	<%-- ${item.hashTag} --%>
+                          	${item.hashTag}
 	                      	</div>
 	                      </div>       
                       </div>
