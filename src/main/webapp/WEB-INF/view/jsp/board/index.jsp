@@ -24,6 +24,25 @@
     <div class="container affix-container">
       <div class="row">
         <div class="container">
+        
+		      <div class="col-xs-12" style="padding:0px;">
+		      	<div class="col-lg-9 col-md-8 col-xs-6"></div>
+				  	<div class="col-lg-3 col-md-4 col-xs-6">
+						  <div class="panel panel-default" style="margin-bottom:20px;">
+							  <div class="panel-body text-center" style="padding:2px;">
+								    <label class="radio-inline">
+								      <input id="displayNew" type="radio" name="radioName">New
+								    </label>
+								    <label class="radio-inline">
+								      <input id="displayOld" type="radio" name="radioName">Old
+								    </label>
+								    <label class="radio-inline">
+								      <input id="displayHid" type="radio" name="radioName">Hit
+								    </label>
+							  </div> 
+						  </div>
+					  </div>
+				  </div>
             <c:choose>
               <c:when test="${veiwType eq 'L'}">
                 <table class="table table-hover small">
@@ -41,7 +60,7 @@
                     <tr id="${item.meetingNoteId}" class="cursor tableContent">
                       <td>${item.title}</td>
                       <td class='contents-css'>${item.contents}</td>
-                      <td>${item.modMemberNm}</td>
+                      <td>${item.regMemberId}</td>
                       <td>${item.modDate}</td>
                     </tr>
                   </c:forEach>
@@ -64,7 +83,7 @@
 								        <div class="row small">
 								          <div class="col-xs-4 text-left small padding-right-small">
 								
-								            <i class="fas fa-user-circle grayscale"></i>${item.modMemberNm}</div>
+								            <i class="fas fa-user-circle grayscale"></i>${item.regMemberId}</div>
 								          <div class="col-xs-8 text-right small padding-left-small">
 								            <c:choose>
 								              <c:when test="${item.modDate eq item.regDate}">

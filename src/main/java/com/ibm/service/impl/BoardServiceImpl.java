@@ -90,7 +90,7 @@ public class BoardServiceImpl implements BoardService{
 				hasTagStr = "<font class='grayscale'>No hash Tag</font>";
 			}
 			meetingNote.put("hashTag", hasTagStr);
-			meetingNote.put("modMemberNm", memberMapper.getMemberNm((String) meetingNote.get("modMemberId")));
+			meetingNote.put("regMemberId", memberMapper.getMemberNm((String) meetingNote.get("modMemberId")));
 			resultList.add(meetingNote);
 			
 		}
