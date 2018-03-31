@@ -1,5 +1,7 @@
 package com.ibm.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.ibm.domain.CompanyInfoDomain;
 import com.ibm.domain.MeetingTypeCodeDomain;
 import com.ibm.domain.MemberDomain;
-import com.ibm.domain.MemberProjectDivisionDomain;
 import com.ibm.domain.ProjectDomain;
 import com.ibm.mapper.AdminMapper;
 import com.ibm.mapper.MemberMapper;
@@ -103,8 +104,37 @@ public class AdminServiceImpl implements AdminService {
 	
 	//TAB 3 [InviteMember Config]-----------------
 	@Override
-	public List<ProjectDomain> selectProjectByAdmin(String memberid){
-		return projectMapper.selectProjectByAdmin(memberid);
+	public Object selectMemberByProjectAdmin(String memberid){
+		
+		ArrayList<ProjectDomain> AdminProjectList = (ArrayList<ProjectDomain>) projectMapper.selectProjectByAdmin(memberid);
+		
+		HashMap<String,List<HashMap<String, List<MemberDomain>>>> map = new HashMap<String, List<HashMap<String, List<MemberDomain>>>>();
+		
+		for(int i = 0; i < AdminProjectList.size(); i++) {
+			
+			ProjectDomain projectlist = AdminProjectList.get(i);
+			
+			List<MemberDomain> memberlist = new ArrayList<>();
+			List<MemberDomain> nonmemberlist = new ArrayList<>();
+			
+			memberlist = selectMemberByProject(projectlist.getProjectid());
+			nonmemberlist = selectNonMemberByProject(projectlist.getProjectid());
+			
+			HashMap<String, List<MemberDomain>> rightMemberList = new HashMap<>();
+			HashMap<String, List<MemberDomain>> leftMemberList = new HashMap<>();
+			
+			rightMemberList.put("rightMemberList", memberlist);
+			leftMemberList.put("leftMemberList", nonmemberlist);
+			
+			List<HashMap<String, List<MemberDomain>>> leftright = new ArrayList<>();
+			leftright.add(leftMemberList);
+			leftright.add(rightMemberList);
+			
+			map.put(projectlist.getProjectnm(), leftright);
+			
+		}
+		
+		return map;
 	}
 	
 	@Override

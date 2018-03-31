@@ -6,8 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 public class MemberDomain {
 	
@@ -38,10 +36,8 @@ public class MemberDomain {
 	@Column(nullable = false, length=1)
 	private String joinyn;
 	
-	@CreationTimestamp
 	private Date regdt;
 	
-	@UpdateTimestamp
 	private Date moddt;
 
 	
