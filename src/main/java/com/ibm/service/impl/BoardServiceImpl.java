@@ -77,6 +77,7 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public List<Map<String, Object>> getMeetingNote(Map<String, Object> requestMap) {
+		
 		List<Map<String, Object>> resultList = new ArrayList<>();
 		
 		for (Map<String, Object> meetingNote : boardMapper.getMeetingNote(requestMap)) {

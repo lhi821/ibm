@@ -69,42 +69,42 @@
               </c:when>
               <c:otherwise>
 
-								<c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
-								  <div class="col-lg-3 col-md-4 col-xs-6"> 
-								    <div id="${item.meetingNoteId}" class="panel panel-default box">
-								    	<div class="ribbon content"><span>${item.meetingNoteNm}</span></div> 
-								      <div class="panel-heading content">
-								        <div class="text-left small">${item.title}</div>
-								      </div>
-								      <div class="panel-body content box-contents panel-min-height">
-								        <div class="text-left small contents-css">${item.contents}</div>
-								      </div>
-								      <div class="panel-footer">
-								        <div class="row small">
-								          <div class="col-xs-4 text-left small padding-right-small">
-								
-								            <i class="fas fa-user-circle grayscale"></i>${item.regMemberId}</div>
-								          <div class="col-xs-8 text-right small padding-left-small">
-								            <c:choose>
-								              <c:when test="${item.modDate eq item.regDate}">
-								                <i class="far fa-clock grayscale"></i> ${item.regDate}
-								              </c:when>
-								              <c:otherwise>
-								                <i class="fas fa-clock grayscale"></i> ${item.modDate}
-								              </c:otherwise>
-								            </c:choose>
-								          </div>
-								        </div>
-								        <hr class='panel-hr'>
-								        <div class="row small">
-								        	<div class="col-xs-12 bottom-hashTag small">
-								          	${item.hashTag}
-								        	</div>
-								        </div>       
-								      </div>
-								    </div>
-								  </div>
-								</c:forEach>
+				<c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
+				  <div class="col-lg-3 col-md-4 col-xs-6"> 
+				    <div id="${item.meetingNoteId}" class="panel panel-default box">
+				    	<div class="ribbon content"><span>${item.meetingNoteNm}</span></div> 
+				      <div class="panel-heading content">
+				        <div id="mtnTitle" class="text-left small regIdx">${item.title}</div>
+				      </div>
+				      <div class="panel-body content box-contents panel-min-height">
+				        <div id="mtnCnt" class="text-left small regIdx contents-css">${item.contents}</div>
+				      </div>
+				      <div class="panel-footer">
+				        <div class="row small">
+				          <div id="mtnRegId" class="col-xs-4 text-left regIdx small padding-right-small">
+				
+				            <i class="fas fa-user-circle grayscale"></i>${item.regMemberId}</div>
+				          <div class="col-xs-8 text-right small padding-left-small">
+				            <c:choose>
+				              <c:when test="${item.modDate eq item.regDate}">
+				                <i class="far fa-clock grayscale"></i> ${item.regDate}
+				              </c:when>
+				              <c:otherwise>
+				                <i class="fas fa-clock grayscale"></i> ${item.modDate}
+				              </c:otherwise>
+				            </c:choose>
+				          </div>
+				        </div>
+				        <hr class='panel-hr'>
+				        <div class="row small">
+				        	<div id="mtnHt" class="col-xs-12  bottom-hashTag small">
+				          		${item.hashTag}
+				        	</div>
+				        </div>       
+				      </div>
+				    </div>
+				  </div>
+				</c:forEach>
               </c:otherwise>
             </c:choose>
         </div>

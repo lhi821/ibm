@@ -46,7 +46,7 @@ function moveDetail(mtnId){
 				 
         	
 				<div class="row">
-  					<div class="col-xs-12 ">
+  					<!-- <div class="col-xs-12 ">
   						<div class="list-group">
   							<button type="button" class="list-group-item list-group-item-action active"><i class="far fa-check-circle"></i> Current Project </button>
 						  	<button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
@@ -54,7 +54,7 @@ function moveDetail(mtnId){
 						
 						  <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
 						</div>
-					 </div>
+					 </div> -->
 					 
 					 
 					 <div class="col-xs-12 ">
