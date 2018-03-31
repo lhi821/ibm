@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
 public class MemberDomain {
 	
 	@Column(nullable = false, unique = true, length=100)
@@ -39,7 +38,6 @@ public class MemberDomain {
 	private Date regdt;
 	
 	private Date moddt;
-
 	
 	public String getMemberid() {
 		return memberid;
