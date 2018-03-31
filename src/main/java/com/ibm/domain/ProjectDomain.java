@@ -4,8 +4,6 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 public class ProjectDomain {
 	
 	@Column(nullable = false, unique = true, length=100)
@@ -17,10 +15,8 @@ public class ProjectDomain {
 	@Column(length=100)
 	private String companyid;
 	
-	@CreationTimestamp
 	private Date startdt;
 
-	@CreationTimestamp
 	private Date enddt;
 
 	public String getProjectid() {
