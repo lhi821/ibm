@@ -1,5 +1,6 @@
 package com.ibm.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ibm.domain.CompanyInfoDomain;
@@ -22,5 +23,6 @@ public interface AdminService {
 	public Object selectMemberByProjectAdmin(String memberid);
 	public List<MemberDomain> selectMemberByProject(String projectid);
 	public List<MemberDomain> selectNonMemberByProject(String projectid);
+	public boolean insertMemberInProject(String projectid, List<String> memberid);
 }
 
