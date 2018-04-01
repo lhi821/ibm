@@ -45,7 +45,7 @@ public interface BoardMapper {
 	public List<BoardDomain> selectBoardList();
 	
 	
-	@Select("SELECT MEETINGNOTE.MEETINGNOTEID as meetingNoteId, MEETINGNOTE.VERSION, TITLE as title, CONTENTS as contents, MEETINGTYPENM as meetingNoteNm, MODMEMBERID as modMemberId, HIT as hit, DATE_FORMAT(MODDATE, '%Y-%m-%d %H:%i:%s') modDate\r\n" + 
+	@Select("SELECT MEETINGNOTE.MEETINGNOTEID as meetingNoteId, MEETINGNOTE.VERSION, TITLE as title, CONTENTS as contents, MEETINGTYPENM as meetingNoteNm, codecolor as codeColor, MODMEMBERID as modMemberId, HIT as hit, DATE_FORMAT(MODDATE, '%Y-%m-%d %H:%i:%s') modDate\r\n" + 
 			"FROM MEETINGNOTE, MEETINGTYPE, MTNCONTENTS\r\n" + 
 			"WHERE MEETINGNOTE.MEETINGTYPEID = MEETINGTYPE.MEETINGTYPEID\r\n" + 
 			"and MEETINGNOTE.MEETINGNOTEID = MTNCONTENTS.MEETINGNOTEID\r\n" + 

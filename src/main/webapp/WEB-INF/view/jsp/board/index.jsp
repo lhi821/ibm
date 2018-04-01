@@ -72,7 +72,7 @@
 				<c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
 				  <div class="col-lg-3 col-md-4 col-xs-6"> 
 				    <div id="${item.meetingNoteId}" class="panel panel-default box">
-				    	<div class="ribbon content"><span>${item.meetingNoteNm}</span></div> 
+				    	<div class="ribbon content"><span style='background-color:${item.codeColor}; color:#fff;'>${item.meetingNoteNm}</span></div> 
 				      <div class="panel-heading content">
 				        <div id="mtnTitle" class="text-left small regIdx">${item.title}</div>
 				      </div>
