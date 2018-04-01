@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.ibm.domain.BoardDomain;
 import com.ibm.domain.MeetingNoteDomain;
@@ -177,5 +178,8 @@ public interface MeetingNoteMapper {
 	
 	@Select("SELECT title FROM MEETINGNOTE ORDER BY hit desc")
 	public List<String> title_hitRanking();	
+
+	@Update("Update MEETINGNOTE SET STATUSID = 3, STATUSDESC = '삭제' WHERE MEETINGNOTEID = #{meetingNoteId}")
+	public void deleteMtn(Map<String, Object> requestMap);	
 
 }

@@ -99,7 +99,7 @@
 										<div class="panel-heading bg-white">
 											<div class='row'>
 												<div class='col-xs-4'>
-													<img class="photo3" src="/img/contributor/jungwanbae.png" />
+													<img class="photo3" src="/img/contributor/dongkyu.png" />
 												</div>
 												<div class='col-xs-8 grayscale'>
 													<p class='small-bottom'>Dongkyu Hong</p>

@@ -38,6 +38,14 @@ public class MeetingNoteController {
 		
 		return "redirect:/board/index";
 	}
+	
+	@PostMapping("/delete")
+	@ResponseBody
+	public String deleteMtnDialouge(@RequestBody Map<String, Object> requestMap) throws Exception{
+		meetingNoteService.deleteMtn(requestMap);
+		
+		return "redirect:/board/index";
+	}
 
 	@PostMapping("/setNoteHead")
 	@ResponseBody

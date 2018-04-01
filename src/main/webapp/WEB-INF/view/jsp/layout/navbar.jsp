@@ -61,12 +61,28 @@
 		});
 	
 	//일반 검색
-	function searchStart() {	
+	function searchStart() {
+		
+		if(($('#withDate').val() != "y") && ($('#inputValue').val().length < 2)){
+		
+			bootbox.alert({
+        	message: "Please enter at least two characters",
+        	size: 'small',
+       		buttons: {
+          	ok: {
+              label: "OK",
+              className: 'btn'
+            	}
+         	}
+       		});
+			return false;
+		}
+		
 		$('#integSearchForm').submit();
 		
 	}
 
-	//날짜조건 추각 검색
+	//날짜조건 추가 검색
 	function searchWithDate(start, end){
 
 		$('#selectedStartDate').val(start)
@@ -76,6 +92,8 @@
 		searchStart()
 
 	}
+	
+	
 	
 	$(function(){
 		var inputVal = '${searchVal}'
@@ -102,7 +120,7 @@
  				$("div[id=mtnCnt]").each(function(idx){	
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
- 				$("div[id=mtnRegNm]").each(function(idx){	
+ 				$("span[id=mtnRegNm]").each(function(idx){	
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  				$("div[id=mtnHt]").each(function(idx){	
@@ -118,7 +136,7 @@
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  			}else if(categoryVal == 'regId'){
- 				$("div[id=mtnRegId]").each(function(idx){	
+ 				$("span[id=mtnRegNm]").each(function(idx){	
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  			}else {
@@ -198,7 +216,7 @@
 			     			<option value="title">Title</option> 
 			     			<option value="content">Contents</option> 
 			     			<option value="regId">Writer</option>
-			     			<option value="hashTag">HashTag</option>	<!-- TODO 해시태그 검색 --> 
+			     			<option value="hashTag">HashTag</option>	
 			     	</select>
 			     	<div class="input-group stylish-input-group">
 						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	

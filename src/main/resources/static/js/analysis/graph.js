@@ -38,26 +38,27 @@ var myPieChart = new Chart(ctxP, {
 
 //bar
 var ctxB = document.getElementById("barChart").getContext('2d');
-var meetingNoteCount = $('#meetingNoteCount').val();
-var companyName = $('#companyName').val();
-var companyCount = $('#companyCount').val();
-var companyNameEle = companyName.split(",");
-var companyCountEle = companyCount.split(",");
-var companyNameArray = new Array();
-var companyCountArray = new Array();
 
-for (var i=0; i<companyNameEle.length; i++){
-	companyNameArray.push(companyNameEle[i].replace(/[\[\]']+/g,'' ));
-	companyCountArray.push(companyCountEle[i].replace(/[\[\]']+/g,'' ));
+var noteTitle = $('#noteTitle').val();
+var noteHit = $('#noteHit').val();
+var noteTitleEle = noteTitle.split(",");
+var noteHitEle = noteHit.split(",");
+var noteTitleArray = new Array();
+var noteHitArray = new Array();
+var meetingNoteCount = $('#meetingNoteCount').val();
+
+for (var i=0; i<3; i++){
+	noteTitleArray.push(noteTitleEle[i].replace(/[\[\]']+/g,'' ));
+	noteHitArray.push(noteHitEle[i].replace(/[\[\]']+/g,'' ));
 }
 
 var myBarChart = new Chart(ctxB, {
   type: 'bar',
   data: {
-      labels: companyNameArray,
+	  label: "Meeting note Hit Ranking",
+      labels: noteTitleArray,
       datasets: [{
-    	  label: "Out of " + meetingNoteCount,
-          data: companyCountArray,
+          data: noteHitArray,
           backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -92,28 +93,25 @@ var myBarChart = new Chart(ctxB, {
 //doughnut
 var ctxD = document.getElementById("doughnutChart").getContext('2d');
 
-var noteTitle = $('#noteTitle').val();
-var noteHit = $('#noteHit').val();
-var noteTitleEle = noteTitle.split(",");
-var noteHitEle = noteHit.split(",");
-var noteTitleArray = new Array();
-var noteHitArray = new Array();
+var companyName = $('#companyName').val();
+var companyCount = $('#companyCount').val();
+var companyNameEle = companyName.split(",");
+var companyCountEle = companyCount.split(",");
+var companyNameArray = new Array();
+var companyCountArray = new Array();
 
-for (var i=0; i<noteTitleEle.length; i++){
-	noteTitleArray.push(noteTitleEle[i].replace(/[\[\]']+/g,'' ));
-	noteHitArray.push(noteHitEle[i].replace(/[\[\]']+/g,'' ));
-	if (i > 4)
-		break;
+for (var i=0; i<companyNameEle.length; i++){
+	companyNameArray.push(companyNameEle[i].replace(/[\[\]']+/g,'' ));
+	companyCountArray.push(companyCountEle[i].replace(/[\[\]']+/g,'' ));
 }
 
 var myLineChart = new Chart(ctxD, {	
     type: 'doughnut',
     data: {
-    	label: 'MEETING NOTE HIT RANKING',
-        labels: noteTitleArray,
+        labels: companyNameArray,
         datasets: [
             {
-                data: noteHitArray,
+                data: companyCountArray,
                 backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
                 hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
             }
