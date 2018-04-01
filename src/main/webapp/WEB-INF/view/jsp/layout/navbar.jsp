@@ -46,7 +46,6 @@
 	
 	$('body').on('hidden.bs.popover', function () { 
 		
-		alert("start");
 		  $.ajax({
 	  	      url: '/member/changeAlertStatus',
 	  	      type: 'POST',
