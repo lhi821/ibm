@@ -50,7 +50,7 @@ public interface BoardMapper {
 			"WHERE MEETINGNOTE.MEETINGTYPEID = MEETINGTYPE.MEETINGTYPEID\r\n" + 
 			"and MEETINGNOTE.MEETINGNOTEID = MTNCONTENTS.MEETINGNOTEID\r\n" + 
 			"and MTNCONTENTS.seq = 1 " +
-			"and MEETINGNOTE.STATUSID != 4")
+			"and MEETINGNOTE.STATUSID not in (3, 4)")
 	public List<Map<String, Object>> getMeetingNote(Map<String, Object> requestMap);
 	
 	@Select("Select * From MEETINGNOTE where MEETINGNOTEID = #{meetingNoteId}")

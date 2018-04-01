@@ -207,7 +207,7 @@
 						  
 						  <div class="row">
 								<div class="col-xs-6 text-left">
-									<button type="button" class="btn btn-default">
+									<button id='backBtn' type="button" class="btn btn-default">
 							  		<i class="fas fa-arrow-circle-left grayscale"></i> Back
 									</button>
 							  </div>
@@ -252,6 +252,10 @@ var gvDialougeID = 0;
 
 $( document ).ready(function() {
   
+  $("#backBtn").click(function(){
+		window.history.back();
+	});
+
   autosize($('.dialogueContents'));
   autosize($('#planContents'));
   

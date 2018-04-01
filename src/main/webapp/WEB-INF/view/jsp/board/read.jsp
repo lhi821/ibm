@@ -16,6 +16,7 @@
 	
 	<!-- posts area -->
 	<input id="userId" value='${usrId}' type="hidden">
+	<input id="regMemId" value='${resultMap.result.meetingNote.REGMEMBERID}' type="hidden">
 	<div class="col-xs-10 affix-content">
 		<div class="container affix-container">
 			<div class="row">
@@ -30,7 +31,7 @@
 					    			<span><i class="fas fa-angle-right"></i></span>
 					    			<span class="cursor"><i class="far fa-folder-open"></i> Sub menu 1</span>
 					    			<span><i class="fas fa-angle-right"></i></span>
-					    			<span><i class="far fa-file-alt"></i> ${resultMap.result.meetingNote.MEETINGNOTEID}</span>
+					    			<span><i class="far fa-file-alt"></i> <span id='meetingNoteId'>${resultMap.result.meetingNote.MEETINGNOTEID}</span></span>
 					    		</div>
 				    		</div>
 				    	</div>
@@ -194,13 +195,16 @@
 						  
 						  <div class="row">
 								<div class="col-xs-6 text-left">
-									<button type="button" class="btn btn-default">
+									<button id='backBtn' type="button" class="btn btn-default">
 							  		<i class="fas fa-arrow-circle-left grayscale"></i> Back
 									</button>
 							  </div>
 							  <div class="col-xs-6 text-right">
+							  	<button id="mtnDeleteBtn" type="button" class="btn">
+							  		<i class="far fa-trash-alt grayscale"></i> Delete
+									</button>
 							  	<button id="mtnSaveBtn" type="button" class="btn btn-default">
-							  		<i class="far fa-star"></i> Favorite
+							  		<i class="far fa-star grayscale"></i> Favorite
 									</button>
 							  </div>
 							</div>
@@ -231,6 +235,51 @@
 <script>
 
 $( document ).ready(function() {
+  
+  $("#backBtn").click(function(){
+		window.history.back();
+	});
+  
+  
+  $("#mtnDeleteBtn").click(function(){
+		if ($("#userId").val() != $("#regMemId").val()){
+		  bootbox.alert({
+        message: "Only the author is allowed to delete this meeting note",
+        size: 'small',
+        buttons: {
+          ok: {
+              label: "OK",
+              className: 'btn'
+          	}
+      	}
+    	});
+		  return false;
+		}
+		var data = {"meetingNoteId" : $("#meetingNoteId").text()};
+		$.ajax({
+			type : "POST",
+			url : "/meetingnote/delete",
+			data : JSON.stringify(data),
+			contentType: "application/json",
+			success : function(data){
+	    	location.href = "/board/index?veiwType=G&sideBar=T&subMenu=FFFF";
+			},
+			error : function(){
+			  bootbox.alert({
+	        message: "ERROR",
+	        size: 'small',
+	        buttons: {
+	          ok: {
+	              label: "OK",
+	              className: 'btn'
+	          	}
+	      	}
+	    	});
+			}
+		});
+		
+		
+	});
   
   $('#toggle-event').prop('disabled', function(i, v) { return !v; });
   if($("#hiddenToggle").val() == 'planText'){

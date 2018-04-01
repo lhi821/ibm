@@ -119,9 +119,11 @@ public class BoardController {
 	public ModelAndView read(@PathVariable String id, HttpSession session,
 													 @RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
 													 @RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
-														@RequestParam(value="subMenu", required=false) String subMenu) throws Exception{
+														@RequestParam(value="subMenu", required=false) String subMenu,
+														HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/board/read");
 		Map<String, Object> resultMap = new HashMap<>();
+		String usrId = session.getAttribute("id").toString();
 		try {
 			Map<String, Object> result = boardService.selectMeetingNote(id);
 			resultMap.put("result", result);
@@ -142,6 +144,7 @@ public class BoardController {
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
+		mv.addObject("usrId", usrId);
 		return mv;
 	}
 
