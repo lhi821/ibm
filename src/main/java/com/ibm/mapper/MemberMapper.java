@@ -71,5 +71,14 @@ public interface MemberMapper {
 	
 	@Select("SELECT MEMBERNM FROM MEMBER WHERE MEMBERID = #{modMemberId}")
 	public String getMemberNm(String modMemberId);
+
+	@Select("SELECT PROJECTNM FROM ALERT A JOIN PROJECT B ON A.PROJECTID = B.PROJECTID WHERE MEMBERID = #{memberid} AND CONFIRMYN = 'N'")
+	public List<String> selectInvitedProjectList(String memberid);
+
+	@Update("UPDATE ALERT SET CONFIRMYN = 'Y' WHERE MEMBERID = #{memberid}")
+	public void updateAlertStatus(String memberid);
+	
+	
+	
 	
 }

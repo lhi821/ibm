@@ -85,6 +85,10 @@ public class MemberController {
 		
 		md.addAttribute("id");
 		
+		// 초대된 프로젝트
+		List<String> invitedProject = memberService.selectInvitedProjectList(memberid);
+		session.setAttribute("invitedproject", invitedProject);
+		
 		String url = "redirect:/analysis/index";
 		return new ModelAndView(url);
 
@@ -140,6 +144,14 @@ public class MemberController {
 	@ResponseBody
 	public List<MemberDomain> selectMemberByKeyword(@RequestBody Map<String, String> MemberMap) throws Exception{
 		return memberService.selectMemberByKeyword(MemberMap);
+	}
+	
+	@PostMapping("/changeAlertStatus")
+	@ResponseBody
+	public void updateAlertStatus(@RequestBody String memberid, HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession();
+		memberid = (String) session.getAttribute("id");
+		memberService.updateAlertStatus(memberid);
 	}
 
 }

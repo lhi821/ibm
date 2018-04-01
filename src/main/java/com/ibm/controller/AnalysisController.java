@@ -51,6 +51,7 @@ public class AnalysisController {
 		mv.addObject("meetingNoteCount",meetingNoteCount);
 		mv.addObject("noteTitle", title);
 		mv.addObject("noteHit", hit);
+		
 		return mv;
 	}
 	

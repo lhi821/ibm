@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,6 +18,7 @@
 	
 	<meta name="_csrf" content="${_csrf.token}" />
 	<meta name="_csrf_header" content="${_csrf.headerName}" />
+	
 	<script>
 	 /* $(document).ready(function() {
 		  $('[data-toggle="datepicker"]').datepicker('setDate', new Date());
@@ -29,6 +31,34 @@
 		  		  
 		 
 	}); */
+	
+	$(document).ready(function() {
+		<%  
+		ArrayList<String> invitedproject = (ArrayList) session.getAttribute("invitedproject"); %>
+		var invitedproject = <%=invitedproject%>
+
+		if(invitedproject != null){
+			$('.fa-layers-counter').css('display','none');
+			$('#popover').popover('disable');
+		}
+	});
+	
+	
+	$('body').on('hidden.bs.popover', function () { 
+		
+		alert("start");
+		  $.ajax({
+	  	      url: '/member/changeAlertStatus',
+	  	      type: 'POST',
+	  	      data: "memberid",
+	  	      datatype: 'json',
+	  	      success: function(data) {
+	  	      },
+	  	      error: function(data) {
+	  	      }
+	  	  });
+		  
+		});
 	
 	//일반 검색
 	function searchStart() {	
@@ -104,7 +134,10 @@
 		
 	})
 	
+
 	</script>
+	
+
 </head>
 <body>
 
@@ -132,14 +165,15 @@
 			<li><a class="cursor whitescale" data-toggle="modal" data-target="#periodSearch"><i class="fas fa-calendar-alt"></i>&nbsp;</a></li>
 	  		<li><a class="cursor whitescale" href="/member/logout">Logout</a></li>
 				<li><a class="cursor whitescale">  
-					<span class="fa-layers fa-fw" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
+					<span class="fa-layers fa-fw" id="popover" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
 					data-content="<ul class='noti-ul'>
-													<c:forEach var='i' begin='0' varStatus='status' end='1'>
-														<li class='cursor'>You have been invited project <b>SLT</b></li>
+					
+													<c:forEach var='item' begin='0' varStatus='status' items="${invitedproject}">
+														<li class='cursor'>You have been invited project <b>${item}</b></li>
 													</c:forEach>
 												</ul>">
 	    			<i class="fas fa-bell"></i>
-	    			<span class="fa-layers-counter" style="background:Tomato"></span>
+	    			<span class="fa-layers-counter" style="background:Tomato; display:hidden;"></span>
 	  			</span>&nbsp;</a></li>
 				<li><a class="cursor whitescale" href="/mypage/main"><i class="fas fa-user-circle"></i>&nbsp;</a></li>
 				<li><a class="cursor whitescale" href="/admin/meetingTypeCode"><i class="fas fa-cog"></i>&nbsp;</a></li>
