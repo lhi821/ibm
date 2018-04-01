@@ -45,6 +45,7 @@
 	<div class="col-xs-10 affix-content">
 		<div class="container affix-container">
 			<form id="newPostForm" action="/analysis/index" method="post">
+			
 			<div class="row">
 				<div class="col-xs-3">
 					<div class="form-group">
@@ -74,44 +75,50 @@
 				</div>
 				<div class="col-xs-6">
 					<div class="graph-box-first">
+						<canvas id="doughnutChart"></canvas>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="graph-box">
 						<canvas id="barChart"></canvas>
 					</div>
 				</div>
 				<div class="col-xs-6">
-					<div class="graph-box">
-						<canvas id="lineChart"></canvas>
-					</div>
-				</div>
-				<div class="col-xs-6">
-					<div class="graph-box">
-						<canvas id="doughnutChart"></canvas>
+					<div id='wordCloudBox' class="graph-box">
+						 <div id='wordcloud'></div>
 					</div>
 				</div>
 			</div>
-			</form>
+		
+	
+	 <input type="hidden" id="typeName" value='${typeName}'/>
+		  <input type="hidden" id="typeCount" value='${typeCount}'/>
+		  <input type="hidden" id="companyName" value='${companyName}'/>
+		  <input type="hidden" id="companyCount" value='${companyCount}'/>
+		  <input type="hidden" id="meetingNoteCount" value='${meetingNoteCount}'/>
+		  <input type="hidden" id="noteTitle" value='${noteTitle}'/>
+		  <input type="hidden" id="noteHit" value='${noteHit}'/>
+		</form>
+		
+			<!-- footer -->   
+		  <div class="row">
+		    <div class="container">
+		      <jsp:include page="../layout/footer.jsp"></jsp:include>
+		    </div>
+		  </div>
+		
 		</div>
 	</div>
-
-	<!-- footer -->   
-    <div class="row">
-      <div class="container">
-        <jsp:include page="../layout/footer.jsp"></jsp:include>
-      </div>
-    </div>
-  </div>
-  <input type="hidden" id="typeName" value='${typeName}'/>
-  <input type="hidden" id="typeCount" value='${typeCount}'/>
-  <input type="hidden" id="companyName" value='${companyName}'/>
-  <input type="hidden" id="companyCount" value='${companyCount}'/>
-  <input type="hidden" id="meetingNoteCount" value='${meetingNoteCount}'/>
-  <input type="hidden" id="noteTitle" value='${noteTitle}'/>
-  <input type="hidden" id="noteHit" value='${noteHit}'/>
-</div>
+	
+ 
 </body>
 <script>
 
 $(document).ready(function(){
-	drawGraph();
+  $(".graph-box-first").each(function() { $(this).height($("#wordCloudBox").height()) });
+  $(".graph-box").each(function() { $(this).height($("#wordCloudBox").height()) });
+	//drawGraph();
+	
 });
 
 $("#selectProject").change(function(){ 
@@ -133,31 +140,17 @@ $("#selectProject").change(function(){
 		});
 });
 
-$("#selectSubProject").change(function(){ 
-	drawGraph();
-});
+</script>
 
-function drawGraph(){
 
-	var typeName = $('#typeName').val();
-	var typeCount = $('#typeCount').val();
-	var companyName = $('#companyName').val();
-	var companyCount = $('#companyCount').val();
-	var meetingNoteCount = $('#meetingNoteCount').val();
-	var noteTitle = $('#noteTitle').val();
-	var noteHit = $('#noteHit').val();
-	
-	$.ajax({
-		type : 'POST',
-		url : '/analysis/index',
-		dataType: "json",
-		data : ({typeName:typeName, typeCount:typeCount, companyName:companyName, companyCount:companyCount, meetingNoteCount:meetingNoteCount, noteTitle:noteTitle, noteHit:noteHit}),
-		success:function(data){
-		}
-	});
-}
-
+<!-- Word Cloud -->
+<script>
+      d3.wordcloud()
+        .selector('#wordcloud')
+        .words([{text: 'word', size: 15}, {text: 'cloud', size: 15}])
+        .start();
 </script>
 <!-- JS -->
 <script src="/js/analysis/graph.js"></script>
+
 </html>

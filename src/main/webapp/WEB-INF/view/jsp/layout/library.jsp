@@ -47,6 +47,7 @@
 	<link href="/lib/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
 	
 	<!-- wordCloud -->
-	<script src="/lib/jQCloud-master/jqcloud.min.js"></script>
-	<link rel="stylesheet" href="/lib/jQCloud-master/jqcloud.min.css">
-	
+	<script src="/lib/wordCloud/d3/d3.js"></script>
+	<script src="/lib/wordCloud/d3/d3.layout.cloud.js"></script>
+	<script src="/lib/wordCloud/d3.wordcloud.js"></script>
+

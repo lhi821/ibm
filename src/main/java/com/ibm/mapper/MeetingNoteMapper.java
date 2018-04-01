@@ -150,8 +150,8 @@ public interface MeetingNoteMapper {
 			+ "GROUP BY meetingtypeid desc")
 	public List<Integer> countMeetingTypePerNote();	
 	
-	@Select("SELECT meetingtypenm FROM MEETINGTYPE"
-			+ "INNER JOIN MEETINGNOTE ON MEETINGNOTE.meetingtypeid = MEETINGTYPE.meetingtypeid"
+	@Select("SELECT meetingtypenm FROM MEETINGTYPE "
+			+ "INNER JOIN MEETINGNOTE ON MEETINGNOTE.meetingtypeid = MEETINGTYPE.meetingtypeid "
 			+ "GROUP BY meetingtypenm desc")
 	public List<String> type_countMeetingTypePerNote();
 	
@@ -159,15 +159,15 @@ public interface MeetingNoteMapper {
 	@Select("SELECT count(meetingnoteid) from MEETINGNOTE")
 	public int countMeetingNote();	
 	
-	@Select("select companynm from company"
-			+ "inner join member on company.companyid = member.companyid"
-			+ "inner join meetingnote on meetingnote.regmemberid = member.memberid"
+	@Select("select companynm from company "
+			+ "inner join member on company.companyid = member.companyid "
+			+ "inner join meetingnote on meetingnote.regmemberid = member.memberid "
 			+ "group by companynm DESC")
 	public List<String> companyRanking();
 	
-	@Select("select count(companynm) from company"
-			+ "inner join member on company.companyid = member.companyid"
-			+ "inner join meetingnote on meetingnote.regmemberid = member.memberid"
+	@Select("select count(companynm) from company "
+			+ "inner join member on company.companyid = member.companyid "
+			+ "inner join meetingnote on meetingnote.regmemberid = member.memberid "
 			+ "group by companynm DESC")
 	public List<Integer> countCompanyRanking();
 	
