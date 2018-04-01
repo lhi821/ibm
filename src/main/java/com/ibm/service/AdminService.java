@@ -24,5 +24,6 @@ public interface AdminService {
 	public List<MemberDomain> selectMemberByProject(String projectid);
 	public List<MemberDomain> selectNonMemberByProject(String projectid);
 	public boolean insertMemberInProject(String projectid, List<String> memberid);
+	public List<ProjectDomain> selectProjectList();
 }
 

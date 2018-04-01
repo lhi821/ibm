@@ -177,4 +177,9 @@ public class AdminServiceImpl implements AdminService {
 		return true;
 	}
 
+	@Override
+	public List<ProjectDomain> selectProjectList() {
+		return memberMapper.selectProject();
+	}
+
 }
