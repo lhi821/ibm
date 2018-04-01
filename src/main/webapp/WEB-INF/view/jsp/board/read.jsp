@@ -30,7 +30,7 @@
 					    			<span><i class="fas fa-angle-right"></i></span>
 					    			<span class="cursor"><i class="far fa-folder-open"></i> Sub menu 1</span>
 					    			<span><i class="fas fa-angle-right"></i></span>
-					    			<span><i class="far fa-file-alt"></i> MtnNumber TODO</span>
+					    			<span><i class="far fa-file-alt"></i> ${resultMap.result.meetingNote.MEETINGNOTEID}</span>
 					    		</div>
 				    		</div>
 				    	</div>
