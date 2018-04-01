@@ -34,7 +34,17 @@
 	function searchStart() {
 		
 		if(($('#withDate').val() != "y") && ($('#inputValue').val().length < 2)){
-			alert('2글자 이상 입력해주세요.')
+		
+			bootbox.alert({
+        	message: "Please enter at least two characters",
+        	size: 'small',
+       		buttons: {
+          	ok: {
+              label: "OK",
+              className: 'btn'
+            	}
+         	}
+       		});
 			return false;
 		}
 		
