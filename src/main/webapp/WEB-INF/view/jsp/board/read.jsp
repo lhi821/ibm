@@ -147,12 +147,6 @@
 								    	<input id="hiddenToggle" class='context-menu' type="hidden" value ='${resultMap.result.contentsList[0].SPEAKERID}'>
 									  </div>
 									  <div class="col-xs-6 text-right">
-									  	<!-- <button id="getNoteHeadBtn" type="button" class="btn btn-default btn-xs">
-									  		<i class="fas fa-cloud-download-alt grayscale"></i> Get Information
-											</button>
-									  	<button id="setNoteHeadBtn" type="button" class="btn btn-default btn-xs">
-									  		<i class="fas fa-cloud-upload-alt grayscale"></i> Save Information
-											</button> -->
 									  </div>
 									</div>
 						    </div>

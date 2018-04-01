@@ -48,7 +48,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span> -->
-									<input type="text" class="form-control" name="codeColor" id="codeColor" size="100"/>
+									<input type="text" class="form-control" name="codeColor" id="codeColorMod" size="100"/>
 								</div>
 							</div>
 						</div>
@@ -76,7 +76,12 @@ $('#modifyMTCModal').on('show.bs.modal', function(e){
 	$(e.currentTarget).find('input[name="meetingTypeID"]').val(meetingTypeID);
 	$(e.currentTarget).find('input[name="meetingTypeNM"]').val(meetingTypeNM);
 	$(e.currentTarget).find('input[name="meetingTypeDesc"]').val(meetingTypeDesc);
+	
+	$('#codeColorMod').colorpicker({"color": codeColor});
 	$(e.currentTarget).find('input[name="codeColor"]').val(codeColor);
+	$('#codeColorMod').colorpicker({
+    format: null
+  });
 });
 
 $(document).ready(function() {
@@ -90,7 +95,7 @@ $(document).ready(function() {
 		$("#modifyMTCForm").attr("action", "/admin/update").submit();
 	});
 
-	/* $('#codeColor').colorpicker(); */
+  
 });
 
 

@@ -49,10 +49,10 @@
 										<div class="panel-heading bg-white">
 											<div class='row'>
 												<div class='col-xs-4'>
-													<img class="photo3" src="/img/contributor/suminkim.png" />
+													<img class="photo3" src="/img/contributor/yunsookim.png" />
 												</div>
 												<div class='col-xs-8 grayscale'>
-													<p class='small-bottom'>Sumin Kim</p>
+													<p class='small-bottom'>Yunsoo Kim</p>
 													<p style='font-size:10px;'>Consultant</p>
 												</div>
 											</div>
@@ -60,9 +60,9 @@
 									  <div class="panel-body text-left grayscale" style='font-size:10px;'>
 									  	<p class='small-bottom'>Global Business Services</p>
 									  	<p>Seoul, Korea, Republic of</p>
-									  	<p class='small-bottom'>+82-10-9455-7051 (Mobile)</p>
-									  	<p class='small-bottom'><b>suminkim@kr.ibm.com</b></p>
-									  	<p class='small-bottom'>Sumin Kim/Korea/IBM</p>
+									  	<p class='small-bottom'>+82-01049956671 (Mobile)</p>
+									  	<p class='small-bottom'><b>kyunsoo@kr.ibm.com</b></p>
+									  	<p class='small-bottom'>Yunsoo Kim/Korea/IBM</p>
 									  	<p class='small-bottom'>&nbsp;</p>
 									  </div>
 								  </div>
@@ -123,14 +123,13 @@
 							</div>
 							<h4 class='dialogueContents MeninBlue'>DEVELOPER</h4>
 							<div class="row">
-								
 
 								<div class="col-xs-3">
 									<div class="panel panel-default">
 										<div class="panel-heading bg-white">
 											<div class='row'>
 												<div class='col-xs-4'>
-												<img class="photo3" src="/img/contributor/hyeinlee.png" />
+												<img class="photo3" src="/img/contributor/yulimkang.png" />
 												</div>
 												<div class='col-xs-8 grayscale'>
 													<p class='small-bottom'>Yulim Kang</p>

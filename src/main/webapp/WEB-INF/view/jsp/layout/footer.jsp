@@ -10,7 +10,11 @@
 <footer class="footer" id="page_footer">
   <div class="container">
     <center>
-    <p class="footer_text">이용약관 | 개인정보 취급방침 | 자주 묻는 질문 | <span id='ConBtn' class='cursor'> Contributor</span> </p>
+    <p class="footer_text"><span class='cursor'> About Us </span>&nbsp;&nbsp;|&nbsp;&nbsp; 
+    											 <span class='cursor'> Terms </span>&nbsp;&nbsp;|&nbsp;&nbsp; 
+    											 <span class='cursor'> Q & A </span>&nbsp;&nbsp;|&nbsp;&nbsp; 
+    											 <span id='ConBtn' class='cursor'> Contributor</span> 
+		 </p>
     </center>
   </div>
 </footer>

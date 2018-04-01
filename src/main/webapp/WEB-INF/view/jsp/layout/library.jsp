@@ -44,7 +44,8 @@
 	<script src="/lib/autosize/autosize.min.js"></script>
 	
 	<!-- colorPicker -->
-	<link href="/lib/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
+	<link href="/lib/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css" rel="stylesheet">
+	<script src="/lib/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
 	
 	<!-- wordCloud -->
 	<script src="/lib/wordCloud/d3/d3.js"></script>

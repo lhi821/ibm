@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ibm.domain.AlertDomain;
 import com.ibm.domain.CompanyInfoDomain;
 import com.ibm.domain.MeetingTypeCodeDomain;
 import com.ibm.domain.MemberDomain;
@@ -154,8 +155,24 @@ public class AdminServiceImpl implements AdminService {
 	public boolean insertMemberInProject(String projectid, List<String> memberid) {
 		
 		adminMapper.deleteMemberByProject(projectid);
+		
+		String alertid;
+		String lastAlertId;
+		
 		for(int i = 0; i < memberid.size(); i++) {
+			
+			lastAlertId = adminMapper.selectLastestAlertid();
+			alertid = null;
+			if (lastAlertId == null) {
+				alertid = "AL00001";
+			} else {
+				String prevID = lastAlertId.substring(2, 7);
+				int prevID_int = Integer.parseInt(prevID) + 1;
+				alertid =	"AL" + String.format("%05d", prevID_int);
+			}
+			
 			adminMapper.insertMemberInProject(projectid, memberid.get(i));
+			adminMapper.insertAlartMember(alertid, projectid, memberid.get(i));
 		}
 		return true;
 	}

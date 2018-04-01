@@ -41,7 +41,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span> -->
-									<input type="text" class="form-control" name="codeColor" id="codeColor" size="100"/>
+									<input type="text" class="form-control colorpicker-component" name="codeColor" id="codeColor" size="100" value="#ffffff"/>
 								</div>
 							</div>
 						</div>
@@ -57,4 +57,11 @@
 
 
 </body>
+<script>
+$(document).ready(function(){
+  $('#codeColor').colorpicker({
+    format: null
+  });
+});
+</script>
 </html>

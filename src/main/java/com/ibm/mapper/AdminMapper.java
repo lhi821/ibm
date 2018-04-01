@@ -67,5 +67,11 @@ public interface AdminMapper {
 
 	@Insert("INSERT INTO MBR_PRJ_DIV (projectid, divisionid, memberid, roleid, joindt) VALUES (#{projectid},'D001',#{memberid},'USER',CURRENT_TIMESTAMP) ON DUPLICATE KEY update memberid = #{memberid}")
 	public void insertMemberInProject(@Param("projectid") String projectid,@Param("memberid") String memberid);
+
+	@Insert("INSERT INTO ALERT (alertid, memberid, projectid, confirmyn) VALUES (#{alertid},#{memberid},#{projectid},'N')")
+	public void insertAlartMember(@Param("alertid") String alertid, @Param("projectid") String projectid,@Param("memberid") String memberid);
+	
+	@Select("SELECT MAX(alertid) FROM ALERT")
+	public String selectLastestAlertid();
 	
 }
