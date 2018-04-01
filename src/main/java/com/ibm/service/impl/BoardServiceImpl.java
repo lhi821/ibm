@@ -51,7 +51,7 @@ public class BoardServiceImpl implements BoardService{
 		attendantStr = attendantStr.substring(0, attendantStr.length()-2);
 		resultMap.put("attendant", attendantStr);
 		resultMap.put("contentsList", boardMapper.selectMeetingNoteContent(meetingNoteId));
-		
+		boardMapper.hitupdate(meetingNoteId);
 		return resultMap;
 	}
 	

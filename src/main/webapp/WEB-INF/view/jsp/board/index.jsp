@@ -74,7 +74,7 @@
 				    <div id="${item.meetingNoteId}" class="panel panel-default box">
 				    	<div class="ribbon content"><span style='background-color:${item.codeColor}; color:#fff;'>${item.meetingNoteNm}</span></div> 
 				      <div class="panel-heading content">
-				        <div id="mtnTitle" class="text-left small regIdx">${item.title}</div>
+				        <div id="mtnTitle" class="text-left small regIdx mtnTitle">${item.title}</div>
 				      </div>
 				      <div class="panel-body content box-contents panel-min-height">
 				        <div id="mtnCnt" class="text-left small regIdx contents-css">${item.contents}</div>

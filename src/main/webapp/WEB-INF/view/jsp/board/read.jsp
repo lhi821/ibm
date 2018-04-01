@@ -26,12 +26,18 @@
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="row">
 								<div class="left-padding">
-					    		<div class="col-xs-12 small grayscale">
+					    		<div class="col-xs-6 small grayscale">
 					    			<span class="cursor"><i class="fas fa-folder-open"></i> Proejct 1</span>
 					    			<span><i class="fas fa-angle-right"></i></span>
 					    			<span class="cursor"><i class="far fa-folder-open"></i> Sub menu 1</span>
 					    			<span><i class="fas fa-angle-right"></i></span>
-					    			<span><i class="far fa-file-alt"></i> <span id='meetingNoteId'>${resultMap.result.meetingNote.MEETINGNOTEID}</span></span>
+					    			<span>
+					    				<i class="far fa-file-alt"></i> <span id='meetingNoteId'>${resultMap.result.meetingNote.MEETINGNOTEID}</span>
+					    			</span>
+				    			</div>
+				    			<div class="col-xs-6 small text-right">
+				    				<i class='fas fa-eye grayscale'></i>
+					    			<span class="badge badge-pill badge-danger small-bottom">${resultMap.result.meetingNote.HIT}</span>
 					    		</div>
 				    		</div>
 				    	</div>

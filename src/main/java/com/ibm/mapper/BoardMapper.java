@@ -79,4 +79,8 @@ public interface BoardMapper {
 	
 	@Select("SELECT * FROM MEETINGTYPE WHERE MEETINGTYPEID = #{meetingTypeId}")
 	public Map<String, Object> selectMeetingTypeNmbyId(String meetingTypeId);
+	
+	@Update("UPDATE MEETINGNOTE SET HIT = HIT + 1 WHERE MEETINGNOTEID = #{meetingNoteId}")
+	public void hitupdate(String meetingNoteId);	
+
 }
