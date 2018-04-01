@@ -19,4 +19,7 @@ public interface MeetingNoteService {
 	public List<String> type_countMeetingTypePerNote();
 	public List<Integer> hitRanking();
 	public List<String> title_hitRanking();
+	public int countMeetingNote();
+	public List<String> companyRanking();
+	public List<Integer> countCompanyRanking();
 }

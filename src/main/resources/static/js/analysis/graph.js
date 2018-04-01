@@ -38,28 +38,26 @@ var myPieChart = new Chart(ctxP, {
 
 //bar
 var ctxB = document.getElementById("barChart").getContext('2d');
+var meetingNoteCount = $('#meetingNoteCount').val();
+var companyName = $('#companyName').val();
+var companyCount = $('#companyCount').val();
+var companyNameEle = companyName.split(",");
+var companyCountEle = companyCount.split(",");
+var companyNameArray = new Array();
+var companyCountArray = new Array();
 
-var noteTitle = $('#noteTitle').val();
-var noteHit = $('#noteHit').val();
-var noteTitleEle = noteTitle.split(",");
-var noteHitEle = noteHit.split(",");
-var noteTitleArray = new Array();
-var noteHitArray = new Array();
-
-for (var i=0; i<noteTitleEle.length; i++){
-	noteTitleArray.push(noteTitleEle[i].replace(/[\[\]']+/g,'' ));
-	noteHitArray.push(noteHitEle[i].replace(/[\[\]']+/g,'' ));
-	if (i > 4)
-		break;
+for (var i=0; i<companyNameEle.length; i++){
+	companyNameArray.push(companyNameEle[i].replace(/[\[\]']+/g,'' ));
+	companyCountArray.push(companyCountEle[i].replace(/[\[\]']+/g,'' ));
 }
 
 var myBarChart = new Chart(ctxB, {
   type: 'bar',
   data: {
-      labels: noteTitleArray,
+      labels: companyNameArray,
       datasets: [{
-    	  label: 'MEETING NOTE HIT RANKING',
-          data: noteHitArray,
+    	  label: "Out of " + meetingNoteCount,
+          data: companyCountArray,
           backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -90,51 +88,32 @@ var myBarChart = new Chart(ctxB, {
   }
 });
           
-
-//line
-var ctxL = document.getElementById("lineChart").getContext('2d');
-var myLineChart = new Chart(ctxL, {
-  type: 'line',
-  data: {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
-      datasets: [
-          {
-              label: "My First dataset",
-              fillColor: "rgba(220,220,220,0.2)",
-              strokeColor: "rgba(220,220,220,1)",
-              pointColor: "rgba(220,220,220,1)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(220,220,220,1)",
-              data: [65, 59, 80, 81, 56, 55, 40]
-          },
-          {
-              label: "My Second dataset",
-              fillColor: "rgba(151,187,205,0.2)",
-              strokeColor: "rgba(151,187,205,1)",
-              pointColor: "rgba(151,187,205,1)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(151,187,205,1)",
-              data: [28, 48, 40, 19, 86, 27, 90]
-          }
-      ]
-  },
-  options: {
-      responsive: true
-  }    
-});
-
           
 //doughnut
 var ctxD = document.getElementById("doughnutChart").getContext('2d');
-var myLineChart = new Chart(ctxD, {
+
+var noteTitle = $('#noteTitle').val();
+var noteHit = $('#noteHit').val();
+var noteTitleEle = noteTitle.split(",");
+var noteHitEle = noteHit.split(",");
+var noteTitleArray = new Array();
+var noteHitArray = new Array();
+
+for (var i=0; i<noteTitleEle.length; i++){
+	noteTitleArray.push(noteTitleEle[i].replace(/[\[\]']+/g,'' ));
+	noteHitArray.push(noteHitEle[i].replace(/[\[\]']+/g,'' ));
+	if (i > 4)
+		break;
+}
+
+var myLineChart = new Chart(ctxD, {	
     type: 'doughnut',
     data: {
-        labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+    	label: 'MEETING NOTE HIT RANKING',
+        labels: noteTitleArray,
         datasets: [
             {
-                data: [300, 50, 100, 40, 120],
+                data: noteHitArray,
                 backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
                 hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
             }
