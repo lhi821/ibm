@@ -36,7 +36,7 @@
 		
 	}
 
-	//날짜조건 추각 검색
+	//날짜조건 추가 검색
 	function searchWithDate(start, end){
 
 		$('#selectedStartDate').val(start)
@@ -72,7 +72,7 @@
  				$("div[id=mtnCnt]").each(function(idx){	
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
- 				$("div[id=mtnRegNm]").each(function(idx){	
+ 				$("span[id=mtnRegNm]").each(function(idx){	
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  				$("div[id=mtnHt]").each(function(idx){	
@@ -88,7 +88,7 @@
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  			}else if(categoryVal == 'regId'){
- 				$("div[id=mtnRegId]").each(function(idx){	
+ 				$("span[id=mtnRegNm]").each(function(idx){	
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  			}else {
@@ -164,7 +164,7 @@
 			     			<option value="title">Title</option> 
 			     			<option value="content">Contents</option> 
 			     			<option value="regId">Writer</option>
-			     			<option value="hashTag">HashTag</option>	<!-- TODO 해시태그 검색 --> 
+			     			<option value="hashTag">HashTag</option>	
 			     	</select>
 			     	<div class="input-group stylish-input-group">
 						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	
