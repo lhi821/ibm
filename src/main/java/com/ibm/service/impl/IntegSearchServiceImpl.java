@@ -70,6 +70,7 @@ public class IntegSearchServiceImpl implements IntegSearchService{
 				returnList = integSearchMapper.getIntegSearchResult_regId(mtnDomain);
 			}else {
 				returnList = integSearchMapper.getIntegSearchResult_hashTag(mtnDomain);
+			
 			}
 		}
 		

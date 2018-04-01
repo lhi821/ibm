@@ -31,7 +31,13 @@
 	}); */
 	
 	//일반 검색
-	function searchStart() {	
+	function searchStart() {
+		
+		if(($('#withDate').val() != "y") && ($('#inputValue').val().length < 2)){
+			alert('2글자 이상 입력해주세요.')
+			return false;
+		}
+		
 		$('#integSearchForm').submit();
 		
 	}
@@ -46,6 +52,8 @@
 		searchStart()
 
 	}
+	
+	
 	
 	$(function(){
 		var inputVal = '${searchVal}'
