@@ -144,17 +144,38 @@ public interface MeetingNoteMapper {
 	public List<MeetingNoteDomain> selectMeetingNoteList();
 	
 	//---ANALYSIS---
+	// chart 1
 	@Select("SELECT COUNT(meetingnoteid) meetingtypecount "
 			+ "FROM MEETINGNOTE "
 			+ "GROUP BY meetingtypeid desc")
-	public List<Integer> countMeetingTypePerNote();	// analysis - chart 1
+	public List<Integer> countMeetingTypePerNote();	
 	
-	@Select("SELECT meetingtypenm FROM MEETINGTYPE INNER JOIN MEETINGNOTE ON MEETINGNOTE.meetingtypeid = MEETINGTYPE.meetingtypeid GROUP BY meetingtypenm desc")
-	public List<String> type_countMeetingTypePerNote();	// analysis - chart 1
+	@Select("SELECT meetingtypenm FROM MEETINGTYPE"
+			+ "INNER JOIN MEETINGNOTE ON MEETINGNOTE.meetingtypeid = MEETINGTYPE.meetingtypeid"
+			+ "GROUP BY meetingtypenm desc")
+	public List<String> type_countMeetingTypePerNote();
 	
+	// chart 3
+	@Select("SELECT count(meetingnoteid) from MEETINGNOTE")
+	public int countMeetingNote();	
+	
+	@Select("select companynm from company"
+			+ "inner join member on company.companyid = member.companyid"
+			+ "inner join meetingnote on meetingnote.regmemberid = member.memberid"
+			+ "group by companynm DESC")
+	public List<String> companyRanking();
+	
+	@Select("select count(companynm) from company"
+			+ "inner join member on company.companyid = member.companyid"
+			+ "inner join meetingnote on meetingnote.regmemberid = member.memberid"
+			+ "group by companynm DESC")
+	public List<Integer> countCompanyRanking();
+	
+	// chart 4
 	@Select("SELECT hit FROM MEETINGNOTE ORDER BY hit desc")
-	public List<Integer> hitRanking();	// analysis - chart 4
+	public List<Integer> hitRanking();	
 	
 	@Select("SELECT title FROM MEETINGNOTE ORDER BY hit desc")
-	public List<String> title_hitRanking();	// analysis - chart 4
+	public List<String> title_hitRanking();	
+
 }

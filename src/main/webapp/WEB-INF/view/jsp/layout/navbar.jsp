@@ -67,33 +67,33 @@
  			
  			if(categoryVal == 'all'){
  				$("div[id=mtnTitle]").each(function(idx){	
- 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  				$("div[id=mtnCnt]").each(function(idx){	
- 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
- 				$("div[id=mtnRegId]").each(function(idx){	
- 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 				$("div[id=mtnRegNm]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  				$("div[id=mtnHt]").each(function(idx){	
- 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  				
  			}else if(categoryVal == 'title' ){
  				$("div[id=mtnTitle]").each(function(idx){	
- 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  			}else if(categoryVal == 'content'){
  				$("div[id=mtnCnt]").each(function(idx){	
- 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  			}else if(categoryVal == 'regId'){
  				$("div[id=mtnRegId]").each(function(idx){	
- 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  			}else {
  				$("div[id=mtnHt]").each(function(idx){	
- 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  			}
  			

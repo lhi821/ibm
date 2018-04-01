@@ -192,23 +192,46 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 		return meetingNoteMapper.selectMeetingNoteList();
 	}*/
 	
+	//회의유형 개수 순위 - 회의 유형 수
 	@Override
-	public List<Integer> countMeetingTypePerNote() {	// 회의유형 개수 순위 - 회의 유형 수
+	public List<Integer> countMeetingTypePerNote() {
 		return meetingNoteMapper.countMeetingTypePerNote();
 	}
 	
+	//회의유형 개수 순위 - 회의 유형 이름
 	@Override
-	public List<String> type_countMeetingTypePerNote() {	//회의유형 개수 순위 - 회의 유형 이름
+	public List<String> type_countMeetingTypePerNote() {
 		return meetingNoteMapper.type_countMeetingTypePerNote();
 	}
 	
+	//조회수 순위 - 조회수
 	@Override
-	public List<Integer> hitRanking() {		//조회수 순위 - 조회수
+	public List<Integer> hitRanking() {	
 		return meetingNoteMapper.hitRanking();
 	}
 	
+	//조회수 순위 - 회의록명
 	@Override
-	public List<String> title_hitRanking() {		//조회수 순위 - 회의록명
+	public List<String> title_hitRanking() {
 		return meetingNoteMapper.title_hitRanking();
 	}
+	
+	//전체 회의록 개수
+	@Override
+	public int countMeetingNote() {
+		return meetingNoteMapper.countMeetingNote();
+	}
+	
+	//전체 회의록 기준 참여자 회사별 랭킹 - 회사명
+	@Override
+	public List<String> companyRanking() {		
+		return meetingNoteMapper.companyRanking();
+	}
+	
+	//전체 회의록 기준 참여자 회사별 랭킹 - 회사별 수
+	@Override
+	public List<Integer> countCompanyRanking() {		
+		return meetingNoteMapper.countCompanyRanking();
+	}
+	
 }

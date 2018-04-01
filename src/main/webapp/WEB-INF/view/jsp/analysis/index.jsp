@@ -101,6 +101,9 @@
   </div>
   <input type="hidden" id="typeName" value='${typeName}'/>
   <input type="hidden" id="typeCount" value='${typeCount}'/>
+  <input type="hidden" id="companyName" value='${companyName}'/>
+  <input type="hidden" id="companyCount" value='${companyCount}'/>
+  <input type="hidden" id="meetingNoteCount" value='${meetingNoteCount}'/>
   <input type="hidden" id="noteTitle" value='${noteTitle}'/>
   <input type="hidden" id="noteHit" value='${noteHit}'/>
 </div>
@@ -138,6 +141,9 @@ function drawGraph(){
 
 	var typeName = $('#typeName').val();
 	var typeCount = $('#typeCount').val();
+	var companyName = $('#companyName').val();
+	var companyCount = $('#companyCount').val();
+	var meetingNoteCount = $('#meetingNoteCount').val();
 	var noteTitle = $('#noteTitle').val();
 	var noteHit = $('#noteHit').val();
 	
@@ -145,7 +151,7 @@ function drawGraph(){
 		type : 'POST',
 		url : '/analysis/index',
 		dataType: "json",
-		data : ({typeName:typeName, typeCount:typeCount, noteTitle:noteTitle, noteHit:noteHit}),
+		data : ({typeName:typeName, typeCount:typeCount, companyName:companyName, companyCount:companyCount, meetingNoteCount:meetingNoteCount, noteTitle:noteTitle, noteHit:noteHit}),
 		success:function(data){
 		}
 	});
