@@ -212,7 +212,7 @@
 									</button>
 							  </div>
 							  <div class="col-xs-6 text-right">
-							  	<button type="button" class="btn btn-default">
+							  	<button id="mtnPreview" type="button" class="btn btn-default">
 							  		<i class="fas fa-desktop grayscale"></i> Preview
 									</button>
 									<button id="mtnTempSaveBtn" type="button" class="btn btn-default">
@@ -243,6 +243,7 @@
 	<jsp:include page="../mypage/user_search_pop.jsp"></jsp:include>
 	<jsp:include page="noteHeadGet.jsp"></jsp:include>
 	<jsp:include page="noteHeadSave.jsp"></jsp:include>
+	<jsp:include page="preview.jsp"></jsp:include>
 	
 </body>
 <script>
@@ -608,6 +609,51 @@ $( document ).ready(function() {
     $("#userSearchPop").modal();
   });
   
+  $('#mtnPreview').click(function() {
+    
+    $("#previewMainPoint").val($("#mainPoint").val());
+    $("#previewKeyWordInput").val($("#keyWordInput").val());
+    $("#previewActionItemRows").empty().append($("#ActionItemRows").clone());
+    
+    var actionitem = $("#ActionItemRows").clone();
+    $("#previewActionItemRows").empty().append(actionitem);
+    $("#previewActionItemRows").find(".minusActionItem ").each(function() { $(this).remove() } );
+    $("#previewActionItemRows").find(".plusActionItem ").each(function() { $(this).remove() } );
+    
+    $("#preveiwSelectType").val($("#selectType").val());
+    $("#preveiwDateInput").val($("#dateInput").val());
+    $("#preveiwStartTime").val($("#startTime").val());
+    $("#preveiwEndTime").val($("#endTime").val());
+    $("#preveiwLocationInput").val($("#locationInput").val());
+    $("#preveiwTitleInput").val($("#titleInput").val());
+    
+    $('#previewToggle-event').prop('disabled', function(i, v) { return !v; });
+    $('#toggle-event').prop('checked',  $('#toggle-event').prop('checked')).bootstrapToggle('destroy').bootstrapToggle();
+    
+    //dialogue
+    if($('#toggle-event').prop('checked')){
+      $("#preveiwPainTextBox").hide();
+      $("#previewDialogueBox").show();
+      
+      var dialogueBox = $("#dialogueBox").clone();
+      $("#previewDialogueBox").empty().append(dialogueBox);
+      $("#previewDialogueBox").find(".fa-comment-alt").each(function() { $(this).remove() } );
+      $("#previewDialogueBox").find(".fa-trash-alt").each(function() { $(this).remove() } );
+      $("#previewDialogueBox").find(".chooseUserNm").each(function() { $(this).addClass('small') } );
+      
+    }
+    //plantext
+    else{
+      $("#preveiwPainTextBox").show();
+      $("#previewDialogueBox").hide();
+      
+      $("#previewPlanContents").val($("#planContents").val());
+    }
+    
+    
+    $("#previewModal").modal();
+  });
+  
   $('#closeUserModal').click(function() {
     $("#userSearchPop").modal("hide");
   });
@@ -755,6 +801,20 @@ function saveMtn(saveType) {
  	   											 });
    	}
   }
+  if(mtnContentsList.length == 0){
+    bootbox.alert({
+      message: "Please write Meeting Note",
+      size: 'small',
+      buttons: {
+        ok: {
+            label: "OK",
+            className: 'btn'
+        	}
+    	}
+  	});
+    bindFunctionBtn();
+    return false;
+  }
   
 	var data = {"meetingNoteDomain" : {
 															    		"version" : $("#mtnVersion").val(),
@@ -786,7 +846,20 @@ function saveMtn(saveType) {
 		data : JSON.stringify(data),
 		contentType: "application/json",
 		success : function(data){
-		  location.href = "/board/index?veiwType=G&sideBar=T&subMenu=FFFF";
+		  if (saveType == "save") {
+		    location.href = "/board/index?veiwType=G&sideBar=T&subMenu=FFFF";
+		  }else{
+		    bootbox.alert({
+	        message: "Your Meeting Note has been saved as draft",
+	        size: 'small',
+	        buttons: {
+	          ok: {
+	              label: "OK",
+	              className: 'btn'
+	          	}
+	      	}
+	    	});
+		  }
 		},
 		error : function(){
 		  bindFunctionBtn();
