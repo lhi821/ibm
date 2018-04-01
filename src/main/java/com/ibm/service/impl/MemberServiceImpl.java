@@ -114,6 +114,14 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.editPassword(memberDomain);
 	}
 	
+	public List<String> selectInvitedProjectList(String memberid){
+		return memberMapper.selectInvitedProjectList(memberid);
+	}
+
+	@Override
+	public void updateAlertStatus(String memberid) {
+		memberMapper.updateAlertStatus(memberid);
+	}
 	
 	
 }
