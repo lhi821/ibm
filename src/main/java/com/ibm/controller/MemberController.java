@@ -55,7 +55,7 @@ public class MemberController {
 		
 		if(result == null) {
 			
-			String failmsg = "<script language='javascript' type='text/javascript'> alert('Fail Login'); </script>";
+			String failmsg = "No matching member information";
 			
 			model.addObject(failmsg);
 			

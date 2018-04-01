@@ -12,6 +12,24 @@
 	<!-- JS -->
 	<script src="/js/member/login.js"></script>
 	
+<script>
+
+	$(document).ready(function() {
+		$(".btn-join").click(function(event) {
+			var pwd = $("#inputPassword").val();
+			var pwd1 = $("#inputConfirmPassword").val();
+			if( pwd != pwd1 ) {	
+				alert("The passowrd does not match.");
+				event.preventDefault();
+			}else {
+				alert("Registered Successfully");		
+			}
+		})	;	
+		
+	});
+
+</script>
+
 </head>
 <body>
 	<div class="container modal fade" id="loginModal">
@@ -28,7 +46,7 @@
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" >Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" id="login">Sign in</button>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           
             
