@@ -36,7 +36,7 @@ public class AnalysisController {
 	public ModelAndView board(HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/analysis/index");
 		
-		//Chart1 : meeting type ranking
+	/*	//Chart1 : meeting type ranking
 		List<String> meetingType = meetingNoteService.type_countMeetingTypePerNote();
 		List<Integer> meetingTypeCount = meetingNoteService.countMeetingTypePerNote();
 		
@@ -48,16 +48,16 @@ public class AnalysisController {
 		//Chart4 : meeting note ranking per hit count
 		List<String> title = meetingNoteService.title_hitRanking();
 		List<Integer> hit = meetingNoteService.hitRanking();
-		
+		*/
 		mv.addObject("projects", projectService.selectProjectList());
-		
+		/*
 		mv.addObject("typeName", meetingType);
 		mv.addObject("typeCount", meetingTypeCount);
 		mv.addObject("companyName", company);
 		mv.addObject("companyCount", companyCount);
 		mv.addObject("meetingNoteCount",meetingNoteCount);
 		mv.addObject("noteTitle", title);
-		mv.addObject("noteHit", hit);
+		mv.addObject("noteHit", hit);*/
 		
 		mv.addObject("favList", boardService.findFavList((String) session.getAttribute("id")));
 

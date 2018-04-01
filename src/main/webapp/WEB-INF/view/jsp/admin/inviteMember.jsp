@@ -149,12 +149,12 @@
 													<tbody class="cursor ${projects.key}"  id="rightTable${varstatus.count}">
 													
 													
-													<c:forEach var="memberlist" varStatus="status" items="${projects.value[1]}" step="1" begin="0" end="2">
+													<c:forEach var="memberlist" varStatus="status" items="${projects.value[1]}" step="1" begin="0" >
 													<c:choose>
 													
 													<c:when test="${memberlist.key == 'rightMemberList'}">
 													<c:set var="rightstatus" value="0"/> 
-													<c:forEach var="item" varStatus="rightstatus" items="${memberlist.value}"  step="1" begin="0" end="2">
+													<c:forEach var="item" varStatus="rightstatus" items="${memberlist.value}"  step="1" begin="0">
 														<tr id="${item.memberid}" class="grayscale">
 															<td>${item.membernm}</td>
 															<td>${item.companyid}</td>
@@ -296,10 +296,10 @@ $( document ).ready(function() {
   	      data: "projectid="+projectid+"&memberid="+attendantsList,
   	      datatype: 'json',
   	      success: function(data) {
-  	    	    alert("Success");
+  	    	    alert("Member has been updated!!");
   	      },
   	      error: function(data) {
-  	        	alert("Error");
+  	        	alert("Error: Please contact the administrator");
   	      }
   	  });
   	      

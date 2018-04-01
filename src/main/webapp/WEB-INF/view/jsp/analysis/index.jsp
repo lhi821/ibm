@@ -47,6 +47,7 @@
 			<form id="newPostForm" action="/analysis/index" method="post">
 			
 			<div class="row">
+				<div class="col-xs-6"></div>
 				<div class="col-xs-3">
 					<div class="form-group">
 						<select id="selectProject" class="selectpicker form-control"
@@ -69,35 +70,30 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6">
+					<label class='grayscale'><i class="fas fa-tags"></i> Meeting Type</label>
 					<div class="graph-box-first">
 						<canvas id="pieChart"></canvas>
 					</div>
 				</div>
 				<div class="col-xs-6">
+					<label class='grayscale'><i class="fas fa-trophy"></i> Hit Rank</label>
 					<div class="graph-box-first">
-						<canvas id="doughnutChart"></canvas>
-					</div>
-				</div>
-				<div class="col-xs-6">
-					<div class="graph-box">
 						<canvas id="barChart"></canvas>
 					</div>
 				</div>
 				<div class="col-xs-6">
-					<div id='wordCloudBox' class="graph-box">
+					<label class='grayscale'><i class="fas fa-cloud"></i> Hash Tag</label>
+					<div id='wordCloudBox' class="graph-box-first">
 						 <div id='wordcloud'></div>
 					</div>
 				</div>
+				<div class="col-xs-6">
+					<label class='grayscale'><i class="fab fa-cuttlefish"></i> Utilization</label>
+					<div class="graph-box-first">
+						<canvas id="doughnutChart"></canvas>
+					</div>
+				</div>
 			</div>
-		
-	
-	 <input type="hidden" id="typeName" value='${typeName}'/>
-		  <input type="hidden" id="typeCount" value='${typeCount}'/>
-		  <input type="hidden" id="companyName" value='${companyName}'/>
-		  <input type="hidden" id="companyCount" value='${companyCount}'/>
-		  <input type="hidden" id="meetingNoteCount" value='${meetingNoteCount}'/>
-		  <input type="hidden" id="noteTitle" value='${noteTitle}'/>
-		  <input type="hidden" id="noteHit" value='${noteHit}'/>
 		</form>
 		
 			<!-- footer -->   
@@ -117,39 +113,39 @@
 $(document).ready(function(){
   $(".graph-box-first").each(function() { $(this).height($("#wordCloudBox").height()) });
   $(".graph-box").each(function() { $(this).height($("#wordCloudBox").height()) });
-	//drawGraph();
-	
-});
+	});
 
-$("#selectProject").change(function(){ 
-	
-	  $.ajax({
-			type : 'POST',
-			url : '/analysis/getSubtProject',
-			data : {"projectId" : $("#selectProject").val()},
-			success:function(data){
-				$("#selectSubProject").empty();
-				for(var i=0;i<data.length;i++){
-					var divisionID = data[i].divisionID;
-					var divisionTNM = data[i].divisionTNM;
-					$("#selectSubProject").append("<option value='"+divisionID+"'>"+divisionTNM+"</option>");
-				}
-				
-				$('#selectSubProject').selectpicker('refresh');
-			}
-		});
-});
+	$("#selectProject").change(
+			function() {
 
+				$.ajax({
+					type : 'POST',
+					url : '/analysis/getSubtProject',
+					data : {
+						"projectId" : $("#selectProject").val()
+					},
+					success : function(data) {
+						$("#selectSubProject").empty();
+						for (var i = 0; i < data.length; i++) {
+							var divisionID = data[i].divisionID;
+							var divisionTNM = data[i].divisionTNM;
+							$("#selectSubProject").append(
+									"<option value='"+divisionID+"'>"
+											+ divisionTNM + "</option>");
+						}
+
+						$('#selectSubProject').selectpicker('refresh');
+					}
+				});
+			});
+	
+	$("#selectSubProject").change(function(){
+	  location.reload();
+	});
+	
+	  
 </script>
 
-
-<!-- Word Cloud -->
-<script>
-      d3.wordcloud()
-        .selector('#wordcloud')
-        .words([{text: 'word', size: 15}, {text: 'cloud', size: 15}])
-        .start();
-</script>
 <!-- JS -->
 <script src="/js/analysis/graph.js"></script>
 

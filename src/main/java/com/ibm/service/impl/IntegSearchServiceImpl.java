@@ -50,8 +50,10 @@ public class IntegSearchServiceImpl implements IntegSearchService{
 					returnList = integSearchMapper.getIntegSearchResult_title_withDate(mtnDomain);
 				}else if(category.equals("content")) {				
 					returnList = integSearchMapper.getIntegSearchResult_content_withDate(mtnDomain);
-				}else {
+				}else if(category.equals("regId")){
 					returnList = integSearchMapper.getIntegSearchResult_regId_withDate(mtnDomain);
+				} else {
+					returnList = integSearchMapper.getIntegSearchResult_hashTag_wtihDate(mtnDomain);
 				}
 			}
 			
@@ -64,8 +66,11 @@ public class IntegSearchServiceImpl implements IntegSearchService{
 				returnList = integSearchMapper.getIntegSearchResult_title(mtnDomain);
 			}else if(category.equals("content")) {
 				returnList = integSearchMapper.getIntegSearchResult_content(mtnDomain);
-			}else {
+			}else if(category.equals("regId")) {
 				returnList = integSearchMapper.getIntegSearchResult_regId(mtnDomain);
+			}else {
+				returnList = integSearchMapper.getIntegSearchResult_hashTag(mtnDomain);
+			
 			}
 		}
 		
@@ -81,10 +86,15 @@ public class IntegSearchServiceImpl implements IntegSearchService{
 			if (hasTagStr == "") {
 				hasTagStr = "<font class='grayscale'>No hash Tag</font>";
 			}
+			
+			
 			returnList.get(i).put("hashTag", hasTagStr);
+			
 			returnList.get(i).put("meetingNoteNm", integSearchMapper.getMeetingNoteTypeNm(returnList.get(i).get("meetingTypeId").toString()));
 			returnList.get(i).put("regMemberId", memberMapper.getMemberNm((String) returnList.get(i).get("modMemberId")));
 		}
+		
+		
 		
 		return returnList;	
 	}

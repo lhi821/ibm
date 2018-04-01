@@ -51,20 +51,42 @@
         </li>
         
         <!-- TODO -->
-      	<c:forEach var="i" begin="0" varStatus="status" end="2">
 	        <li>
-	          <a class="a cursor submenu collapsed" data-toggle="collapse" data-target="#toggleDemo${status.count}" data-parent="#sidenav01">
-	          <span class="fas fa-folder"></span> Project ${status.count} <span class="caret pull-right"></span>
+	          <a class="a cursor submenu collapsed" data-toggle="collapse" data-target="#toggleDemo1" data-parent="#sidenav01">
+	          <span class="fas fa-folder"></span> Amore SLT<span class="caret pull-right"></span>
 	          </a>
-	          <div class="collapse" id="toggleDemo${status.count}" style="height: 0px;">
+	          <div class="collapse" id="toggleDemo1" style="height: 0px;">
 	            <ul class="nav nav-list">
-	              <li><a class="a cursor small"><span class="far fa-folder"></span> Submenu ${status.count}.1</a></li>
-	              <li><a class="a cursor small"><span class="far fa-folder"></span> Submenu ${status.count}.2</a></li>
-	              <li><a class="a cursor small"><span class="far fa-folder"></span> Submenu ${status.count}.3</a></li>
+	              <li><a href='/board/index' class="a cursor small"><span class="far fa-folder"></span> CIT</a></li>
+	              <li><a href='/board/index' class="a cursor small"><span class="far fa-folder"></span> SIT</a></li>
+	              <li><a href='/board/index' class="a cursor small"><span class="far fa-folder"></span> SLT</a></li>
+	              <li><a href='/board/index' class="a cursor small"><span class="far fa-folder"></span> LEGACY</a></li>
 	            </ul>
 	          </div>
 	        </li>
-			 	</c:forEach>
+	        
+	        <li>
+	          <a class="a cursor submenu collapsed" data-toggle="collapse" data-target="#toggleDemo2" data-parent="#sidenav01">
+	          <span class="fas fa-folder"></span> ABL<span class="caret pull-right"></span>
+	          </a>
+	          <div class="collapse" id="toggleDemo2" style="height: 0px;">
+	            <ul class="nav nav-list">
+	              <li><a href='/board/index' class="a cursor small"><span class="far fa-folder"></span> Business</a></li>
+	              <li><a href='/board/index' class="a cursor small"><span class="far fa-folder"></span> Infra</a></li>
+	            </ul>
+	          </div>
+	        </li>
+	        
+	        <li>
+	          <a class="a cursor submenu collapsed" data-toggle="collapse" data-target="#toggleDemo3" data-parent="#sidenav01">
+	          <span class="fas fa-folder"></span> LOTTE Dept. Cognitive<span class="caret pull-right"></span>
+	          </a>
+	          <div class="collapse" id="toggleDemo3" style="height: 0px;">
+	            <ul class="nav nav-list">
+	              <li><a href='/board/index' class="a cursor small"><span class="far fa-folder"></span> SOE</a></li>
+	            </ul>
+	          </div>
+	        </li>
         <li><a class="notthing"></a></li>
       </ul>
       </div>

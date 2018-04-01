@@ -83,7 +83,7 @@
 				        <div class="row small">
 				          <div id="mtnRegId" class="col-xs-4 text-left regIdx small padding-right-small">
 				
-				            <i class="fas fa-user-circle grayscale"></i><span id='mtnRegNm'> ${item.regMemberId}</span></div>
+				            <i class="fas fa-user-circle grayscale"></i><span id="mtnRegNm"> ${item.regMemberId}</span></div>
 				          <div class="col-xs-8 text-right small padding-left-small">
 				            <c:choose>
 				              <c:when test="${item.modDate eq item.regDate}">

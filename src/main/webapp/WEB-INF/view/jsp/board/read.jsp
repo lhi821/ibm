@@ -279,6 +279,8 @@ $( document ).ready(function() {
 		          	}
 		      	}
 		    	});
+				  
+				  location.reload();
 			  }
 			},
 			error : function(){

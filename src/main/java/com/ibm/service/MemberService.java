@@ -27,5 +27,9 @@ public interface MemberService {
 	public MemberDomain selectMember_edit(MemberDomain memberDomain);
 
 	public void editMemberChange(MemberDomain memberDomain);
+
+	public List<String> selectInvitedProjectList(String memberid);
+
+	public void updateAlertStatus(String memberid);
 	
 }
