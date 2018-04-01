@@ -61,5 +61,17 @@ public class MeetingNoteController {
 		return meetingNoteService.getNoteHead(requestMap);
 	}
 	
+	@PostMapping("/favorites")
+	@ResponseBody
+	public Map<String, Object> favorites(@RequestBody Map<String, Object> requestMap) throws Exception{
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try{
+		meetingNoteService.favorite(requestMap);
+		resultMap.put("rsltMsg", "success");
+		}catch (Exception e) {
+			resultMap.put("rsltMsg", "fail");
+		}
+		return resultMap;
+	}
 
 }

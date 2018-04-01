@@ -52,6 +52,7 @@ public class BoardController {
 		mv.addObject("resultList", resultList);
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
+	
 		mv.addObject("subMenu", subMenu);
 		
 		// get session
@@ -60,6 +61,9 @@ public class BoardController {
 			session.invalidate();
 			return new ModelAndView("redirect:/member/index");
 		}
+		
+		String usrId = session.getAttribute("id").toString();
+		mv.addObject("favList", boardService.findFavList(usrId));
 		
 		return mv;
 	}
@@ -77,6 +81,7 @@ public class BoardController {
 		mv.addObject("subMenu", subMenu);
 		mv.addObject("meetingTypes", adminService.selectMeetingTypeList());
 		mv.addObject("usrId", usrId);
+		mv.addObject("favList", boardService.findFavList(usrId));
 		return mv;
 	}
 	
@@ -145,6 +150,7 @@ public class BoardController {
 		mv.addObject("sideBar", sideBar);
 		mv.addObject("subMenu", subMenu);
 		mv.addObject("usrId", usrId);
+		mv.addObject("favList", boardService.findFavList(usrId));
 		return mv;
 	}
 

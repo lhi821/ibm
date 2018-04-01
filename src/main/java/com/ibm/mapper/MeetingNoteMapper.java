@@ -182,4 +182,23 @@ public interface MeetingNoteMapper {
 	@Update("Update MEETINGNOTE SET STATUSID = 3, STATUSDESC = '삭제' WHERE MEETINGNOTEID = #{meetingNoteId}")
 	public void deleteMtn(Map<String, Object> requestMap);	
 
+	
+	@Insert("INSERT INTO FAVORITES ("
+			+ "MEMBERID, "
+			+ "FAVORITESTYPE, "
+			+ "FAVORITESID"
+		+ ")"
+		+ "VALUES ("
+			+ "#{memberId}, "
+			+ "#{favoritetype}, "
+			+ "#{favoriteId}"
+		+ ")")
+	public void favorite(Map<String, Object> requestMap);
+	
+	@Select("SELECT * FROM FAVORITES WHERE FAVORITESID = #{meetingNoteId}")
+	public Map<String, Object> findFav(String meetingNoteId);
+	
+	@Select("SELECT * FROM FAVORITES WHERE MEMBERID = #{memberId}")
+	public List<Map<String, Object>> findFavList(String memberId);
 }
+

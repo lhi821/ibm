@@ -23,4 +23,6 @@ public interface MeetingNoteService {
 	public int countMeetingNote();
 	public List<String> companyRanking();
 	public List<Integer> countCompanyRanking();
+	
+	public void favorite(Map<String, Object> requestMap);
 }

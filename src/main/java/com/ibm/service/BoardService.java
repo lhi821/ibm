@@ -19,4 +19,5 @@ public interface BoardService {
 	
 	public List<Map<String, Object>> getMeetingNote(Map<String, Object> requestMap);
 	
+	public List<Map<String, Object>> findFavList(String memberId);
 }

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ibm.domain.HitHistoryDomain;
 import com.ibm.domain.MeetingNoteDomain;
 import com.ibm.domain.MemberDomain;
+import com.ibm.service.BoardService;
 import com.ibm.service.MemberService;
 import com.ibm.service.MypageService;
 
@@ -30,6 +31,8 @@ public class MypageController {
 	MypageService myPageService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	BoardService boardService;
 	
 	@GetMapping("/main")
 	public ModelAndView mypage(HttpSession session) throws Exception{
@@ -41,7 +44,7 @@ public class MypageController {
 
 			mv.addObject("userId", usrId);
 		}
-		
+		mv.addObject("favList", boardService.findFavList(usrId));
 		return mv;
 	}
 	
@@ -78,7 +81,7 @@ public class MypageController {
 		
 		mv.addObject("uploadHistory", uploadHistory);
 		mv.addObject("editHistory", editHistory);
-		
+		mv.addObject("favList", boardService.findFavList((String) session.getAttribute("id")));
 		return mv;
 	}
 	
@@ -93,6 +96,7 @@ public class MypageController {
 		mv.addObject("userJobs", session.getAttribute("jobs"));
 		mv.addObject("userPhone", session.getAttribute("phone"));
 		mv.addObject("userEmail", session.getAttribute("email"));
+		mv.addObject("favList", boardService.findFavList((String) session.getAttribute("id")));
 		
 		return mv;
 	}
@@ -121,6 +125,8 @@ public class MypageController {
 		session.setAttribute("jobs", editedMemberInfo.getJobs());
 		session.setAttribute("phone", editedMemberInfo.getPhone());
 		session.setAttribute("email", editedMemberInfo.getEmail());
+		
+		mv.addObject("favList", boardService.findFavList((String) session.getAttribute("id")));
 		
 			
 		return mv;

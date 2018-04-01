@@ -209,9 +209,20 @@
 							  	<button id="mtnDeleteBtn" type="button" class="btn">
 							  		<i class="far fa-trash-alt grayscale"></i> Delete
 									</button>
-							  	<button id="mtnSaveBtn" type="button" class="btn btn-default">
-							  		<i class="far fa-star grayscale"></i> Favorite
-									</button>
+											
+									<c:choose>
+								    <c:when test="${resultMap.result.isFavorite}">
+							    		<button id="mtnFavorite" type="button" class="btn btn-default">
+									  		<i class="fas fa-star grayscale"></i> Favorite
+											</button>
+								    </c:when>
+								    <c:otherwise>
+							    		<button id="mtnFavorite" type="button" class="btn btn-default">
+									  		<i class="far fa-star grayscale"></i> Favorite
+											</button>
+								    </c:otherwise>
+									</c:choose>
+		
 							  </div>
 							</div>
 						</form>			
@@ -246,6 +257,44 @@ $( document ).ready(function() {
 		window.history.back();
 	});
   
+  $("#mtnFavorite").click(function(){
+    var data = {"memberId" : $("#userId").val(), "favoritetype" : "meetingNote", "favoriteId" : window.location.pathname.substring(7)};
+		$.ajax({
+			type : "POST",
+			url : "/meetingnote/favorites",
+			data : JSON.stringify(data),
+			contentType: "application/json",
+			success : function(data){
+			  if(data.rsltMsg == "success"){
+			    
+			    $("#mtnFavorite").find("svg").attr("data-prefix", "fas");
+			    
+				  bootbox.alert({
+		        message: "Added to Favorite",
+		        size: 'small',
+		        buttons: {
+		          ok: {
+		              label: "OK",
+		              className: 'btn'
+		          	}
+		      	}
+		    	});
+			  }
+			},
+			error : function(){
+			  bootbox.alert({
+	        message: "ERROR",
+	        size: 'small',
+	        buttons: {
+	          ok: {
+	              label: "OK",
+	              className: 'btn'
+	          	}
+	      	}
+	    	});
+			}
+		});
+  });
   
   $("#mtnDeleteBtn").click(function(){
 		if ($("#userId").val() != $("#regMemId").val()){
@@ -261,7 +310,7 @@ $( document ).ready(function() {
     	});
 		  return false;
 		}
-		var data = {"meetingNoteId" : $("#meetingNoteId").text()};
+		var data = {"meetingNoteId" : window.location.pathname.substring(7)};
 		$.ajax({
 			type : "POST",
 			url : "/meetingnote/delete",

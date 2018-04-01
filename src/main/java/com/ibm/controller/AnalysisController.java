@@ -2,6 +2,9 @@ package com.ibm.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.domain.DivisionDomain;
+import com.ibm.service.BoardService;
 import com.ibm.service.MeetingNoteService;
 import com.ibm.service.ProjectService;
 
@@ -24,9 +28,12 @@ public class AnalysisController {
 	
 	@Autowired
 	ProjectService projectService;
+	
+	@Autowired
+	BoardService boardService;
 
 	@GetMapping("/index")
-	public ModelAndView board() throws Exception{
+	public ModelAndView board(HttpSession session, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/analysis/index");
 		
 		//Chart1 : meeting type ranking
@@ -51,6 +58,9 @@ public class AnalysisController {
 		mv.addObject("meetingNoteCount",meetingNoteCount);
 		mv.addObject("noteTitle", title);
 		mv.addObject("noteHit", hit);
+		
+		mv.addObject("favList", boardService.findFavList((String) session.getAttribute("id")));
+
 		return mv;
 	}
 	

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.ibm.domain.BoardDomain;
 import com.ibm.mapper.BoardMapper;
 import com.ibm.mapper.HashTagMapper;
+import com.ibm.mapper.MeetingNoteMapper;
 import com.ibm.mapper.MemberMapper;
 import com.ibm.service.BoardService;
 
@@ -25,6 +26,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
 	MemberMapper memberMapper;
+	
+	@Autowired
+	MeetingNoteMapper meetingNoteMapper;
 	
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -51,6 +55,14 @@ public class BoardServiceImpl implements BoardService{
 		attendantStr = attendantStr.substring(0, attendantStr.length()-2);
 		resultMap.put("attendant", attendantStr);
 		resultMap.put("contentsList", boardMapper.selectMeetingNoteContent(meetingNoteId));
+		
+		System.out.println(meetingNoteMapper.findFav(meetingNoteId).get("FAVORITESID"));
+		if (meetingNoteMapper.findFav(meetingNoteId).get("FAVORITESID") == null) {
+			resultMap.put("isFavorite", false);
+		}else {
+			resultMap.put("isFavorite", true);
+		}
+		
 		boardMapper.hitupdate(meetingNoteId);
 		return resultMap;
 	}
@@ -97,6 +109,11 @@ public class BoardServiceImpl implements BoardService{
 		}
 	 	
 		return resultList;
+	}
+	
+	@Override
+	public List<Map<String, Object>> findFavList(String memberId){
+		return meetingNoteMapper.findFavList(memberId);
 	}
 	
 }

@@ -19,14 +19,7 @@
     <div class="col-xs-2 affix-sidebar" style="visibility:hidden;">
 		<div class="sidebar-nav">
   <div class="navbar navbar-default" role="navigation">
-<!--     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      </button>
-    </div> -->
+
     <div class="navbar-collapse collapse sidebar-navbar-collapse">
       <ul class="nav navbar-nav" id="sidenav01" style="overflow: hidden;">
         <li id="sidebarFold" class="active">
@@ -49,14 +42,9 @@
           </a>
           <div class="collapse" id="toggleDemo0" style="height: 0px;">
             <ul class="nav nav-list">
- 							<c:forEach var="i" begin="0" varStatus="status" end="1">
-	            	<li><a class="a cursor small"><span class="far fa-folder"></span> submenu ${status.count}<span class="fas fa-star fa-xs pull-right"></span></a></li>
-	            </c:forEach>
-	            <c:forEach var="i" begin="0" varStatus="status" end="1">
-	            	<li><a class="a cursor small"><span class="far fa-file-alt" style="margin-left:1.5px;"></span> doc ${status.count}<span class="fas fa-bookmark fa-xs pull-right" style="margin-right:1.5px;"></span></a></li>
-	            </c:forEach>
-	             <c:forEach var="i" begin="0" varStatus="status" end="1">
-	            	<li><a class="a cursor small"><span class="fab fa-slack-hash"></span> tag ${status.count}<span class="fas fa-heart fa-xs pull-right"></span></a></li>
+            
+	           	<c:forEach items="${favList}" var="fav" varStatus="status">
+	            	<li><a href='/board/${fav.FAVORITESID}' class="a cursor small"><span class="far fa-file-alt" style="margin-left:1.5px;"></span> ${fav.FAVORITESID}<span class="fas fa-bookmark fa-xs pull-right" style="margin-right:1.5px;"></span></a></li>
 	            </c:forEach>
             </ul>
           </div>

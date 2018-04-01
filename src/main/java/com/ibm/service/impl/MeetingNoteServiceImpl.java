@@ -30,6 +30,13 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 	@Autowired
 	HashTagMapper hashTagMapper;
 	
+	
+	@Override
+	public void favorite(Map<String, Object> requestMap) {
+		meetingNoteMapper.favorite(requestMap);
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void createDialogue(Map<String, Object> requestMap) {
