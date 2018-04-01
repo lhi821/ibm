@@ -51,7 +51,11 @@
 					<div class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading content">
-								<div class="text-left">${projects.key}</div>
+								<div class="text-left">
+									<c:forEach var="projectnm" varStatus="status" items="${projects.key}">
+										${projectnm.value}
+									</c:forEach>
+								</div>
 							</div>
 							<div class="panel-body content">
 								<div class="row">
@@ -82,9 +86,9 @@
 													<thead>
 														<tr>
 															<th scope="col" style="width: 20%">Name</th>
-															<th scope="col" style="width: 20%">Company</th>
+															<th scope="col" style="width: 25%">Company</th>
 															<th scope="col" style="width: 20%">Team</th>
-															<th scope="col" style="width: 40%">Email</th>
+															<th scope="col" style="width: 35%">Email</th>
 														</tr>
 													</thead>
 													<tbody class="cursor ${projects.key}" id="leftTable${varstatus.count}">
@@ -137,9 +141,9 @@
 													<thead>
 														<tr>
 															<th scope="col" style="width: 20%">Name</th>
-															<th scope="col" style="width: 20%">Company</th>
+															<th scope="col" style="width: 25%">Company</th>
 															<th scope="col" style="width: 20%">Team</th>
-															<th scope="col" style="width: 40%">Email</th>
+															<th scope="col" style="width: 35%">Email</th>
 														</tr>
 													</thead>
 													<tbody class="cursor ${projects.key}"  id="rightTable${varstatus.count}">
@@ -173,7 +177,8 @@
 									
 									<div class="row">
 										<div class="col-xs-12">
-											<div class="text-right marginright">
+										<c:forEach var="projectnm" varStatus="varstatus" items="${projects.key}">
+											<div class="text-right marginright" id="${projectnm.key}">
 												<button id="closeUser${varstatus.count}" type="button" class="btn btn-default btn-sm">
 													<i class="fas fa-ban grayscale"></i> Cancel
 												</button>
@@ -181,6 +186,7 @@
 													<i class="fas fa-check-circle grayscale"></i> Apply
 												</button>
 											</div>
+											</c:forEach>
 											</div>
 										</div>
 									
@@ -269,6 +275,36 @@ $( document ).ready(function() {
   });
   
 
+  $('button[id^="applyUser"]').click(function() {
+  	  attendantsList = [];
+  	    
+  	  index = $(this).attr("id").substr(9,1);
+  	  var projectid = $(this).parent().attr("id");
+  	  
+  	  $('[id="rightTable'+index+'"] tr').unbind();
+  	  $('[id="rightTable'+index+'"] tr').each(function(){
+  	      
+  	      attendantsList.push($(this).attr("id"));
+  	      
+  	  });
+  	    
+  	  var data = {"projectid": projectid, "memberid": attendantsList };
+
+      $.ajax({
+  	      url: '/admin/applyMember',
+  	      type: 'POST',
+  	      data: "projectid="+projectid+"&memberid="+attendantsList,
+  	      datatype: 'json',
+  	      success: function(data) {
+  	    	    alert("Success");
+  	      },
+  	      error: function(data) {
+  	        	alert("Error");
+  	      }
+  	  });
+  	      
+  });
+
   $('#userSearchIcon').click(function() {
 	    var data = {"searchKey" : $("#searchKey").val()};
 	    $.ajax({
@@ -295,24 +331,11 @@ $( document ).ready(function() {
 	    });
 	  });
   
-  $('button[id^="applyUser"').click(function() {
-	  attendantsList = [];
-	    
-	  index = $(this).attr("id").substr(9,1);
-	    
-	  alert(index);
-	  
-	    $('[id="rightTable'+index+'"] tr').each(function(){
-	      
-	      if(jQuery.inArray($(this).attr("id"), attendantsList) == -1){
-	          attendantsList.push($(this).attr("id"));
-	        }
-	      
-		});
   
-  });
   
 });
+
+
 
 function activeClick(table){
   $('#'+table+' tr').unbind();

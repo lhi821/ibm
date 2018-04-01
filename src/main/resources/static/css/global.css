@@ -389,3 +389,34 @@ top: 16px;
     height: 15px;
     overflow: hidden;
 }
+
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #555;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.contents-css{
+		height: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+

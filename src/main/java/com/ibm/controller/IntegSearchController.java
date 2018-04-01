@@ -1,6 +1,7 @@
 package com.ibm.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,14 +37,17 @@ public class IntegSearchController {
 		
 		MeetingNoteDomain mtnDomain = new MeetingNoteDomain();
 		
+		
+		
 		mtnDomain.setCategory(category);
 		mtnDomain.setInputVal(inputVal);
 		mtnDomain.setWithDate("");
 		
 		ModelAndView mv = new ModelAndView("/board/index");
-		List<MeetingNoteDomain> resultList;
+		List<Map<String, Object>> resultList;
 		
 		if("y".equals(request.getParameter("withDate").toString())){
+			
 			startDate = request.getParameter("selectedStartDate");
 			endDate = request.getParameter("selectedEndDate");
 			withDate = request.getParameter("withDate");
@@ -51,49 +55,21 @@ public class IntegSearchController {
 			mtnDomain.setWithDate(withDate);
 			mtnDomain.setStartTm(startDate);
 			mtnDomain.setEndTm(endDate);
+			
 		}
 			
-		resultList = searchService.getIntegSearchResult(mtnDomain);
-	
-		mv.addObject("resultList", resultList);
+		resultList = searchService.getIntegSearchResult(mtnDomain);	
 		
+		mv.addObject("resultList", resultList);		
 		
 		mv.addObject("veiwType", veiwType);
 		mv.addObject("sideBar", sideBar);
-		mv.addObject("subMenu", subMenu);
+		mv.addObject("subMenu", "FFFF");
+		mv.addObject("searchVal", inputVal);
+		mv.addObject("categoryVal", category);
 		
 		return mv;
 	}
 	
-	@GetMapping("/date_result")
-	public ModelAndView getIntegSearchResult_date(HttpServletRequest request,
-			@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
-			@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
-			@RequestParam(value="subMenu", required=false) String subMenu) throws Throwable {
-		
-		
-		String regDate = request.getParameter("selectedDate");
-		String parseDate[] = regDate.split("/");
-		String formatedDate = parseDate[2]+"-"+parseDate[0]+"-"+parseDate[1];		
-		
-		MeetingNoteDomain mtnDomain = new MeetingNoteDomain();
-		
-		mtnDomain.setRegDate(formatedDate);
-		
-		
-		ModelAndView mv = new ModelAndView("/board/index");
-		List<MeetingNoteDomain> resultList;
-		resultList = searchService.getIntegSearchResult_date(mtnDomain);
-		
-		
-		mv.addObject("resultList", resultList);
-		
-		
-		mv.addObject("veiwType", veiwType);
-		mv.addObject("sideBar", sideBar);
-		mv.addObject("subMenu", subMenu);
-		
-		return mv;
-	}
 	
 }

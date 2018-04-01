@@ -626,17 +626,14 @@ $( document ).ready(function() {
     $("#chooseUserNm0").trigger( "click" );
   });
   
-  $('#mtnSaveBtn').click(function(){
-    saveMtn("save");
-  });
-   
-  $('#mtnTempSaveBtn').click(function(){
-    saveMtn("temp");
-  });
+  bindFunctionBtn();
   
 });
 
 function saveMtn(saveType) {
+  
+  $('#mtnSaveBtn').unbind();
+  $('#mtnTempSaveBtn').unbind();
   
   if($("#selectType").val() == ""){
     bootbox.alert({
@@ -649,6 +646,7 @@ function saveMtn(saveType) {
         	}
     	}
   	});
+    bindFunctionBtn();
     return false;
   }
   if($("#locationInput").val() == ""){
@@ -662,6 +660,7 @@ function saveMtn(saveType) {
         	}
     	}
   	});
+    bindFunctionBtn();
     return false;
   }
   if($("#titleInput").val() == ""){
@@ -688,6 +687,7 @@ function saveMtn(saveType) {
         	}
     	}
   	});
+    bindFunctionBtn();
     return false;
   }
   
@@ -762,7 +762,7 @@ function saveMtn(saveType) {
 															    		"projectId" : "TEST",
 															    		"divisionId" : "TEST",
 															    		"meetingTypeId" : $("#selectType").val(),
-															    		"regMemberId" : $("#userId").val(),
+															    		"regMemberId" : $("uesrId").val(),
 															    		"modMemberId" : $("#userId").val(),
 															    		"location" : $("#locationInput").val(),
 															    		"startTm" : $("#startTime").val(),
@@ -789,10 +789,26 @@ function saveMtn(saveType) {
 		  location.href = "/board/index?veiwType=G&sideBar=T&subMenu=FFFF";
 		},
 		error : function(){
+		  bindFunctionBtn();
 		}
 	});
+	
+	bindFunctionBtn();
   
 };
+
+function bindFunctionBtn(){
+  $('#mtnSaveBtn').unbind();
+  $('#mtnTempSaveBtn').unbind();
+  $('#mtnSaveBtn').click(function(){
+    saveMtn("save");
+  });
+   
+  $('#mtnTempSaveBtn').click(function(){
+    saveMtn("temp");
+  });
+}
+
 function chooseSpeaker(){
 
   userIcon = null;

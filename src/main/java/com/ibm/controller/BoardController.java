@@ -43,7 +43,8 @@ public class BoardController {
 	public ModelAndView board(@RequestParam(value="veiwType", required=false, defaultValue = "G") String veiwType,
 														@RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
 														@RequestParam(value="subMenu", required=false) String subMenu,
-														HttpServletRequest request) throws Exception{
+														HttpServletRequest request) throws Exception {
+				
 		ModelAndView mv = new ModelAndView("/board/index");
 		List<Map<String,Object>> resultList = new ArrayList<>();
 		Map<String, Object> requestMap = new HashMap<String,Object>();

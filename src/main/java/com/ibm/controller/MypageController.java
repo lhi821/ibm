@@ -61,24 +61,23 @@ public class MypageController {
 	}
 	
 	@GetMapping("/history")
-	public ModelAndView mypageHistory() throws Exception{
+	public ModelAndView mypageHistory(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView("/mypage/mypage_history");
+		String userId = session.getAttribute("id").toString();
 		
-		HitHistoryDomain historyDomain = new HitHistoryDomain();
-		historyDomain.setHitHistoryDiv("VIEW");
+		HitHistoryDomain viewHistoryDomain = new HitHistoryDomain();
+		viewHistoryDomain.setHitHistoryDiv("VIEW");
+		List<MeetingNoteDomain> viewHistory = myPageService.getViewHistory(viewHistoryDomain);
+		mv.addObject("viewHistoryList", viewHistory);
 		
-		List<MeetingNoteDomain> viewHistory = myPageService.getViewHistory(historyDomain);
+		MeetingNoteDomain mtnDomain = new MeetingNoteDomain();
+		mtnDomain.setRegMemberId(userId);
+		mtnDomain.setModMemberId(userId);
+		List<MeetingNoteDomain> uploadHistory = myPageService.getUploadHistory(mtnDomain);
+		List<MeetingNoteDomain> editHistory = myPageService.getEditHistory(mtnDomain);
 		
-		/* 인덱스 분리 화면단 disabled 버튼 깨짐 대체*/
-		List<MeetingNoteDomain> viewList = new ArrayList<>();
-		MeetingNoteDomain lstIndex = viewHistory.get(4);
-		
-		for(int i = 0; i < 4; ++i) {
-			viewList.add(viewHistory.get(i));
-		}
-		
-		mv.addObject("viewHistoryList", viewList);
-		mv.addObject("viewLastIndex", lstIndex);
+		mv.addObject("uploadHistory", uploadHistory);
+		mv.addObject("editHistory", editHistory);
 		
 		return mv;
 	}

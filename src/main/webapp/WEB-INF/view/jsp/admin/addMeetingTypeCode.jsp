@@ -35,6 +35,16 @@
 								</div>
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<label for="codeColor" class="cols-sm-2 control-label">Code Color</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span> -->
+									<input type="text" class="form-control" name="codeColor" id="codeColor" size="100"/>
+								</div>
+							</div>
+						</div>
 
 						<div class="form-group">
 							<button type="submit" value="Save" class="btn btn-lg btn-block login-button">Submit </button>

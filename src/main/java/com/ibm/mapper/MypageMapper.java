@@ -29,6 +29,20 @@ public interface MypageMapper {
 			+ "	order by hh.hitDttm desc"
 			+ " limit 5")
 	public List<MeetingNoteDomain> getViewHistory(HitHistoryDomain hitHistoryDomain);
+	
+	@Select("select * "
+			+ " from meetingnote " 
+			+" where regmemberid = #{regMemberId}"
+			+ "	order by regdate desc "
+			+ " limit 5")
+	public List<MeetingNoteDomain> getUploadHistory(MeetingNoteDomain hitHistoryDomain);
+
+	@Select("select * "
+			+ " from meetingnote " 
+			+" where modmemberid = #{modMemberId}"
+			+ "	order by regdate desc "
+			+ " limit 5")
+	public List<MeetingNoteDomain> getEditHistory(MeetingNoteDomain mtnDomain);
 
 	
 	

@@ -47,6 +47,63 @@
 
 	}
 	
+	$(function(){
+		var inputVal = '${searchVal}'
+		var categoryVal = '${categoryVal}'
+		
+		if(inputVal != '' && categoryVal != ''){
+			$('#inputValue').val(inputVal)
+			$('#categoryBox option:selected').val(categoryVal)
+		}
+		
+		if(inputVal != null && inputVal != '' && categoryVal != null && categoryVal != '') {
+
+			var regexStr = "(";
+			for (var i = 0; i < inputVal.length; i++) {
+				regexStr += "["+inputVal.charAt(i)+"]";
+			}
+			regexStr += "+)";
+			var regex = new RegExp(regexStr,'gim');
+ 			
+ 			if(categoryVal == 'all'){
+ 				$("div[id=mtnTitle]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 	 			});
+ 				$("div[id=mtnCnt]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 	 			});
+ 				$("div[id=mtnRegId]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 	 			});
+ 				$("div[id=mtnHt]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 	 			});
+ 				
+ 			}else if(categoryVal == 'title' ){
+ 				$("div[id=mtnTitle]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 	 			});
+ 			}else if(categoryVal == 'content'){
+ 				$("div[id=mtnCnt]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 	 			});
+ 			}else if(categoryVal == 'regId'){
+ 				$("div[id=mtnRegId]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 	 			});
+ 			}else {
+ 				$("div[id=mtnHt]").each(function(idx){	
+ 					$(this).html( $(this).text().replace(regex, '<strong style="color:red" class="result">$1</strong>') );
+ 	 			});
+ 			}
+ 			
+
+		}
+	
+		
+		
+	})
+	
 	</script>
 </head>
 <body>
@@ -107,7 +164,7 @@
 			     			<option value="title">Title</option> 
 			     			<option value="content">Contents</option> 
 			     			<option value="regId">Writer</option>
-			     			<option>HashTag</option>	<!-- TODO 해시태그 검색 --> 
+			     			<option value="hashTag">HashTag</option>	<!-- TODO 해시태그 검색 --> 
 			     	</select>
 			     	<div class="input-group stylish-input-group">
 						<input id="inputValue" name="inputVal" type="text" class="form-control" placeholder="Search">	

@@ -58,14 +58,18 @@ public interface MemberMapper {
 	
 	@Select("SELECT A.memberid memberid, membernm, companyid, dept, email " + 
 			"FROM member A JOIN mbr_prj_div B ON A.MEMBERID = B.MEMBERID " + 
-			"WHERE B.PROJECTID = #{projectid}"
+			"WHERE B.PROJECTID = #{projectid} "
+			+ "AND B.ROLEID = 'USER' "
 			+ "GROUP BY MEMBERID, MEMBERNM, COMPANYID, DEPT, EMAIL")
 	public List<MemberDomain> selectMemberByProject(String projectid);
 	
 	@Select("SELECT A.memberid memberid, membernm, companyid, dept, email " + 
 			"FROM member A LEFT JOIN mbr_prj_div B ON A.MEMBERID = B.MEMBERID " + 
-			"AND B.PROJECTID = #{projectid}"
+			"AND B.PROJECTID = #{projectid} "
 			+ "WHERE B.MEMBERID IS NULL")
 	public List<MemberDomain> selectNonMemberByProject(String projectid);
+	
+	@Select("SELECT MEMBERNM FROM MEMBER WHERE MEMBERID = #{modMemberId}")
+	public String getMemberNm(String modMemberId);
 	
 }

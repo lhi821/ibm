@@ -16,19 +16,20 @@ import com.ibm.domain.MeetingTypeCodeDomain;
 public interface AdminMapper {
 	
 	//TAB 1 [MeetingTypeCode Config]-----------------
-	@Insert("INSERT INTO MEETINGTYPE (meetingTypeID, meetingTypeNM, meetingTypeDesc) "
-			+ "VALUES (#{meetingTypeID}, #{meetingTypeNM}, #{meetingTypeDesc})")
+	@Insert("INSERT INTO MEETINGTYPE (meetingTypeID, meetingTypeNM, meetingTypeDesc, codeColor) "
+			+ "VALUES (#{meetingTypeID}, #{meetingTypeNM}, #{meetingTypeDesc}, #{codeColor})")
 	public void insertMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain);
 	
-	@Select("SELECT meetingtypeid, meetingtypenm, meetingtypedesc FROM MEETINGTYPE")
+	@Select("SELECT meetingtypeid, meetingtypenm, meetingtypedesc, codeColor FROM MEETINGTYPE")
 	public List<MeetingTypeCodeDomain> selectMeetingTypeList();
 	
-	@Select("SELECT meetingtypeid, meetingtypenm, meetingtypedesc FROM MEETINGTYPE ORDER BY meetingtypeid desc")
+	@Select("SELECT meetingtypeid, meetingtypenm, meetingtypedesc, codeColor FROM MEETINGTYPE ORDER BY meetingtypeid desc")
 	public List<MeetingTypeCodeDomain> selectLatestMeetingType();
 	
 	@Update("UPDATE MEETINGTYPE "
 			+ "SET meetingTypeNM = #{meetingTypeNM}, "
-			        + "meetingTypeDesc = #{meetingTypeDesc}"
+			        + "meetingTypeDesc = #{meetingTypeDesc}, "
+			        + "codeColor = #{codeColor}"
 			+ "WHERE meetingTypeID = #{meetingTypeID}")
 	public void updateMeetingType(MeetingTypeCodeDomain meetingTypeCodeDomain);
 	
@@ -61,5 +62,10 @@ public interface AdminMapper {
 	@Select("SELECT projectnm FROM MBR_PRJ_DIV A JOIN PROJECT B ON A.PROJECTID = B.PROJECTID WHERE memberID = #{memberid} AND roleid = 'ADMIN'")
 	public List<String> selectProjectByAdmin(@Param("memberid") String memberid);
 
+	@Delete("DELETE FROM MBR_PRJ_DIV WHERE projectid = #{projectid} AND roleid = 'USER'")
+	public void deleteMemberByProject(String projectid);
+
+	@Insert("INSERT INTO MBR_PRJ_DIV (projectid, divisionid, memberid, roleid, joindt) VALUES (#{projectid},'D001',#{memberid},'USER',CURRENT_TIMESTAMP) ON DUPLICATE KEY update memberid = #{memberid}")
+	public void insertMemberInProject(@Param("projectid") String projectid,@Param("memberid") String memberid);
 	
 }

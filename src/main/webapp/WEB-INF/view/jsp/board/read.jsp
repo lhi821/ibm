@@ -40,7 +40,7 @@
 										<div class="col-xs-12">
 											<div class="form-group">
 												<label class="grayscale">Main Point</label>
-												<textarea readonly id="mainPoint" placeholder="Main Point" class="form-control" rows="2" >${resultMap.result.meetingNote.MAINPOINT}</textarea>
+												<textarea readonly id="mainPoint" placeholder="Main Point" class="form-control context-menu" rows="2" >${resultMap.result.meetingNote.MAINPOINT}</textarea>
 									    </div>
 									  </div>
 									</div>
@@ -52,8 +52,8 @@
 													<label class="grayscale">Action Item</label>
 												</c:if>
 												<div class="input-group stylish-input-group-left">
-													<div class="input-group-addon"><i class="fas fa-exclamation grayscale input-icon-action"></i></div>
-													<input readOnly value='${actionItem.ACTIONITEM}' type="text" class="form-control action-item" placeholder="Action Item">
+													<div class="input-group-addon"><i class="fas fa-exclamation grayscale input-icon-action context-menu"></i></div>
+													<input readOnly value='${actionItem.ACTIONITEM}' type="text" class="form-control action-item context-menu" placeholder="Action Item">
 									      </div>
 									    </div>
 									  </div>
@@ -65,7 +65,7 @@
 											<label class="grayscale">key Word</label>
 												<div class="input-group stylish-input-group-left">
 													<div class="input-group-addon"><i class="fab fa-slack-hash grayscale"></i></div>
-													<input readOnly value='${resultMap.result.hashTag}' id="keyWordInput" type="text" class="form-control" placeholder="Key Word">
+													<input readOnly value='${resultMap.result.hashTag}' id="keyWordInput" type="text" class="form-control context-menu" placeholder="Key Word">
 									      </div>
 									    </div>
 									  </div>
@@ -86,8 +86,8 @@
 									  <div class="col-xs-2">
 									  	<div class="form-group">
 												<div class="input-group stylish-input-group-left">
-													<div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale"></i></div>
-											    <input id="dateInput" class="form-control cursor left-padding" readonly value="${resultMap.result.meetingNote.MODDATE}">
+													<div class="input-group-addon context-menu"><i class="far fa-calendar-alt grayscale"></i></div>
+											    <input id="dateInput" class="form-control context-menu left-padding" readonly value="${resultMap.result.meetingNote.MODDATE}">
 											  </div>
 											</div>
 									  </div>
@@ -109,7 +109,7 @@
 									  	<div class="form-group">
 												<div class="input-group stylish-input-group-left">
 													<div class="input-group-addon"><i class="fas fa-map-pin grayscale"></i></div>
-													<input readonly value='${resultMap.result.meetingNote.LOCATION}' id="locationInput" type="text" class="form-control" placeholder="Location">
+													<input readonly value='${resultMap.result.meetingNote.LOCATION}' id="locationInput" type="text" class="form-control context-menu" placeholder="Location">
 									      </div>
 									    </div>
 									  </div>
@@ -119,7 +119,7 @@
 											<div class="form-group">
 												<div class="input-group stylish-input-group-left">
 													<div class="input-group-addon"><i class="fas fa-book grayscale input-icon-title"></i></div>
-													<input readonly id="titleInput" type="text" class="form-control" placeholder="Title" value='${resultMap.result.meetingNote.TITLE}'>
+													<input readonly id="titleInput" type="text" class="form-control context-menu" placeholder="Title" value='${resultMap.result.meetingNote.TITLE}'>
 									      </div>
 									    </div>
 									  </div>
@@ -135,16 +135,16 @@
 										<div class="col-xs-12">
 											<div class="form-group">
 												<div id="attendantsDiv" class="input-group stylish-input-group-left">
-													<div class="input-group-addon cursor"><i class="fas fa-user-plus grayscale"></i></div>
-													<input readonly value='${resultMap.result.attendant}' id="attendantsInput" type="text" disabled class="form-control cursor" placeholder="Attendants">
+													<div class="input-group-addon context-menu"><i class="fas fa-user-plus grayscale"></i></div>
+													<input readonly value='${resultMap.result.attendant}' id="attendantsInput" type="text" disabled class="form-control context-menu" placeholder="Attendants">
 									      </div>
 									    </div>
 									  </div>
 									</div>
 									<div class="row">
 										<div class="col-xs-6 text-left">
-								    	<input id="toggle-event" type="checkbox" checked data-toggle="toggle" data-size="mini" data-on="Dialogue" data-off="Plan Text" data-onstyle="default">
-								    	<input id="hiddenToggle" type="hidden" value ='${resultMap.result.contentsList[0].SPEAKERID}'>
+								    	<input id="toggle-event" class='context-menu' type="checkbox" checked data-toggle="toggle" data-size="mini" data-on="Dialogue" data-off="Plan Text" data-onstyle="default">
+								    	<input id="hiddenToggle" class='context-menu' type="hidden" value ='${resultMap.result.contentsList[0].SPEAKERID}'>
 									  </div>
 									  <div class="col-xs-6 text-right">
 									  	<!-- <button id="getNoteHeadBtn" type="button" class="btn btn-default btn-xs">
@@ -178,7 +178,7 @@
 											  <div class="col-xs-12">
 									  			<div class="col-xs-1 padding-left-small">
 														<div class="text-right">
-															<span class="grayscale cursor chooseUser"><i class="fas fa-user-circle chat-user"></i><span id='chooseUserNm0' class='chooseUserNm'> ${contents.MEMBERNM}</span></span>
+															<span class="grayscale context-menu chooseUser"><i class="fas fa-user-circle chat-user"></i><span id='chooseUserNm0' class='chooseUserNm'> ${contents.MEMBERNM}</span></span>
 														</div>
 													</div>
 													<div class="col-xs-11">
@@ -187,7 +187,7 @@
 																${contents.CONTENTS}
 															</textarea>
 															<div class="text-right">
-																<!-- <i class="fas fa-comment-alt grayscale cursor chat-icon addDialogue"></i> -->
+																<!-- <i class="fas fa-comment-alt grayscale context-menu chat-icon addDialogue"></i> -->
 															</div>
 														</div>
 													</div>
