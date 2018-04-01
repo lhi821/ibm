@@ -762,7 +762,7 @@ function saveMtn(saveType) {
 															    		"projectId" : "TEST",
 															    		"divisionId" : "TEST",
 															    		"meetingTypeId" : $("#selectType").val(),
-															    		"regMemberId" : $("uesrId").val(),
+															    		"regMemberId" : $("#userId").val(),
 															    		"modMemberId" : $("#userId").val(),
 															    		"location" : $("#locationInput").val(),
 															    		"startTm" : $("#startTime").val(),
