@@ -157,8 +157,8 @@ textarea{
 }
 
 .panel-body .text-left{
-	height: 50px;
-  overflow: hidden; 
+	height: auto;
+  overflow: ellipsis; 
 }
 
 .custom-nav {
@@ -381,7 +381,8 @@ top: 16px;
 .box-contents{
     height: 80px;
     max-height: 80px;
-    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow:hidden;
 }
 
 .panel-hr{
@@ -391,7 +392,8 @@ top: 16px;
 
 .bottom-hashTag{
     height: 15px;
-    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow:hidden;
 }
 
 
@@ -445,4 +447,11 @@ top: 16px;
     border-radius: 50%;
 }
 
+
+.mtnTitle {
+	  white-space: nowrap; 
+    width: 80%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
 

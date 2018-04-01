@@ -94,6 +94,12 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 		
 	}
 	
+	
+	@Override
+	public void deleteMtn(Map<String, Object> requestMap) {
+		meetingNoteMapper.deleteMtn(requestMap);
+	}
+	
 	//노트헤드 저장
 	@SuppressWarnings("unchecked")
 	@Override
