@@ -51,17 +51,18 @@ public class BoardServiceImpl implements BoardService{
 		for(Object attendee : boardMapper.selectMeetingNoteAttendant(meetingNoteId)) {
 			Map attendentMap = (Map) attendee;
 			attendantStr = attendantStr + attendentMap.get("MEMBERNM")+", ";
+		
 		}
 		attendantStr = attendantStr.substring(0, attendantStr.length()-2);
+		
 		resultMap.put("attendant", attendantStr);
 		resultMap.put("contentsList", boardMapper.selectMeetingNoteContent(meetingNoteId));
 		
-		if (meetingNoteMapper.findFav(meetingNoteId).get("FAVORITESID") == null) {
+		if (meetingNoteMapper.findFav(meetingNoteId) == null) {
 			resultMap.put("isFavorite", false);
 		}else {
 			resultMap.put("isFavorite", true);
 		}
-		
 		boardMapper.hitupdate(meetingNoteId);
 		return resultMap;
 	}

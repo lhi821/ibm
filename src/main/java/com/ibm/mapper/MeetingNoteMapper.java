@@ -198,7 +198,11 @@ public interface MeetingNoteMapper {
 	@Select("SELECT * FROM FAVORITES WHERE FAVORITESID = #{meetingNoteId}")
 	public Map<String, Object> findFav(String meetingNoteId);
 	
-	@Select("SELECT * FROM FAVORITES WHERE MEMBERID = #{memberId}")
+	@Select("SELECT * \r\n" + 
+			"FROM FAVORITES, MEETINGNOTE \r\n" + 
+			"where MEETINGNOTE.MEETINGNOTEID = FAVORITES.FAVORITESID\r\n" + 
+			"and MEETINGNOTE.STATUSID not in (3, 4)\r\n" + 
+			"and MEMBERID = #{memberId}")
 	public List<Map<String, Object>> findFavList(String memberId);
 }
 
