@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.ibm.domain.MemberDomain;
+import com.ibm.domain.ProjectDomain;
 
 @Mapper
 public interface MemberMapper {
@@ -77,6 +78,9 @@ public interface MemberMapper {
 
 	@Update("UPDATE ALERT SET CONFIRMYN = 'Y' WHERE MEMBERID = #{memberid}")
 	public void updateAlertStatus(String memberid);
+
+	@Select("SELECT A.PROJECTID, A.PROJECTNM, B.COMPANYNM COMPANYID, A.STARTDT, A.ENDDT FROM PROJECT A JOIN COMPANY B ON A.COMPANYID = B.COMPANYID")
+	public List<ProjectDomain> selectProject();
 	
 	
 	
