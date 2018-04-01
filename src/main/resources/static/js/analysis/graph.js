@@ -55,9 +55,9 @@ for (var i=0; i<3; i++){
 var myBarChart = new Chart(ctxB, {
   type: 'bar',
   data: {
-	  label: "Meeting note Hit Ranking",
       labels: noteTitleArray,
       datasets: [{
+    	  label: 'Hit Ranking',
           data: noteHitArray,
           backgroundColor: [
               'rgba(255, 99, 132, 0.2)',

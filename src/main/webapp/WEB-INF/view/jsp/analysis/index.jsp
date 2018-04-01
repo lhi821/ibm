@@ -117,29 +117,58 @@
 $(document).ready(function(){
   $(".graph-box-first").each(function() { $(this).height($("#wordCloudBox").height()) });
   $(".graph-box").each(function() { $(this).height($("#wordCloudBox").height()) });
-	//drawGraph();
-	
-});
 
-$("#selectProject").change(function(){ 
-	
-	  $.ajax({
+  var typeName = $('#typeName').val();
+ 	var typeCount = $('#typeCount').val();
+ 	var noteTitle = $('#noteTitle').val();
+ 	var noteHit = $('#noteHit').val();
+ 	var companyName = $('#companyName').val();
+ 	var companyCount = $('#companyCount').val();
+ 	var meetingNoteCount = $('#meetingNoteCount').val();
+ 	
+	$.ajax({
 			type : 'POST',
-			url : '/analysis/getSubtProject',
-			data : {"projectId" : $("#selectProject").val()},
-			success:function(data){
-				$("#selectSubProject").empty();
-				for(var i=0;i<data.length;i++){
-					var divisionID = data[i].divisionID;
-					var divisionTNM = data[i].divisionTNM;
-					$("#selectSubProject").append("<option value='"+divisionID+"'>"+divisionTNM+"</option>");
-				}
-				
-				$('#selectSubProject').selectpicker('refresh');
+			url : '/analysis/index',
+			dataType : "json",
+			data : ({
+				typeName : typeName,
+				typeCount : typeCount,
+				noteTitle : noteTitle,
+				noteHit : noteHit,
+				companyName : companyName,
+				companyCount : companyCount,
+				meetingNoteCount : meetingNoteCount
+			}),
+			success : function(data) {
 			}
 		});
-});
 
+	});
+
+	$("#selectProject").change(
+			function() {
+
+				$.ajax({
+					type : 'POST',
+					url : '/analysis/getSubtProject',
+					data : {
+						"projectId" : $("#selectProject").val()
+					},
+					success : function(data) {
+						$("#selectSubProject").empty();
+						for (var i = 0; i < data.length; i++) {
+							var divisionID = data[i].divisionID;
+							var divisionTNM = data[i].divisionTNM;
+							$("#selectSubProject").append(
+									"<option value='"+divisionID+"'>"
+											+ divisionTNM + "</option>");
+						}
+
+						$('#selectSubProject').selectpicker('refresh');
+					}
+				});
+			});
+	
 </script>
 
 
