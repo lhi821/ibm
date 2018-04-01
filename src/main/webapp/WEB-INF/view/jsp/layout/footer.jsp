@@ -10,9 +10,12 @@
 <footer class="footer" id="page_footer">
   <div class="container">
     <center>
-    <p class="footer_text">이용약관 | 개인정보 취급방침 | 자주 묻는 질문 </p>
+    <p class="footer_text">이용약관 | 개인정보 취급방침 | 자주 묻는 질문 | <span id='ConBtn' class='cursor'> Contributor</span> </p>
     </center>
   </div>
 </footer>
+
+<jsp:include page="contributor/contributor.jsp"></jsp:include>
+
 </body>
 </html>

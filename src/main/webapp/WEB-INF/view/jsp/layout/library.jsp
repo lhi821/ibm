@@ -46,3 +46,7 @@
 	<!-- colorPicker -->
 	<link href="/lib/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet">
 	
+	<!-- wordCloud -->
+	<script src="/lib/jQCloud-master/jqcloud.min.js"></script>
+	<link rel="stylesheet" href="/lib/jQCloud-master/jqcloud.min.css">
+	
