@@ -19,5 +19,5 @@ public interface ProjectMapper {
 	public List<ProjectDomain> selectProjectList();
 	
 	@Select("SELECT * FROM DIVISION where projectID = #{id}")
-	public List<DivisionDomain> selectDivisionList(int id);
+	public List<DivisionDomain> selectDivisionList(String id);
 }

@@ -7,5 +7,5 @@ import com.ibm.domain.ProjectDomain;
 
 public interface ProjectService {
 	public List<ProjectDomain> selectProjectList();
-	public List<DivisionDomain> selectDivisionList(int id);
+	public List<DivisionDomain> selectDivisionList(String id);
 }

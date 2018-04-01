@@ -21,7 +21,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 	
 	@Override
-	public List<DivisionDomain> selectDivisionList(int id){
+	public List<DivisionDomain> selectDivisionList(String id){
 		return projectMapper.selectDivisionList(id);
 	}
 }

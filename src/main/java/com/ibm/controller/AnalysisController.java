@@ -41,8 +41,6 @@ public class AnalysisController {
 		List<String> title = meetingNoteService.title_hitRanking();
 		List<Integer> hit = meetingNoteService.hitRanking();
 		
-		String test = projectService.selectDivisionList(2).get(0).getDivisionTNM();
-		System.out.println(test);
 		mv.addObject("projects", projectService.selectProjectList());
 		mv.addObject("typeName", meetingType);
 		mv.addObject("typeCount", meetingTypeCount);
@@ -54,7 +52,7 @@ public class AnalysisController {
 	@PostMapping("/getSubtProject")
 	@ResponseBody
 	public List<DivisionDomain> getSubtProject(String projectId) throws Exception{
-		return projectService.selectDivisionList(Integer.valueOf(projectId));
+		return projectService.selectDivisionList(projectId);
 	}
 
 }

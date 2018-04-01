@@ -52,8 +52,7 @@
 							data-live-search="true"
 							title="<i class='fas fa-tags grayscale input-icon'></i>Project">
 							<c:forEach items="${projects}" var="project">
-								<option value="${project.projectid}"
-									title="<i class='fas fa-tag grayscale input-icon'></i>${project.projectnm}">${project.projectnm}</option>
+								<option value="${project.projectid}" title="<i class='fas fa-tag grayscale input-icon'></i>${project.projectnm}">${project.projectnm}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -63,10 +62,6 @@
 						<select id="selectSubProject" class="selectpicker form-control"
 							data-live-search="true"
 							title="<i class='fas fa-tags grayscale input-icon'></i>SubProject">
-							<c:forEach items="${subprojects}" var="subproject">
-								<option value="${subproject.divisionID}"
-									title="<i class='fas fa-tag grayscale input-icon'></i>${subproject.divisionTNM}">${subproject.divisionTNM}</option>
-							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -113,13 +108,40 @@
 <script>
 
 $(document).ready(function(){
+	drawGraph();
+});
+
+$("#selectProject").change(function(){ 
+	
+	  $.ajax({
+			type : 'POST',
+			url : '/analysis/getSubtProject',
+			data : {"projectId" : $("#selectProject").val()},
+			success:function(data){
+				$("#selectSubProject").empty();
+				for(var i=0;i<data.length;i++){
+					var divisionID = data[i].divisionID;
+					var divisionTNM = data[i].divisionTNM;
+					$("#selectSubProject").append("<option value='"+divisionID+"'>"+divisionTNM+"</option>");
+				}
+				
+				$('#selectSubProject').selectpicker('refresh');
+			}
+		});
+});
+
+$("#selectSubProject").change(function(){ 
+	drawGraph();
+});
+
+function drawGraph(){
 
 	var typeName = $('#typeName').val();
 	var typeCount = $('#typeCount').val();
 	var noteTitle = $('#noteTitle').val();
 	var noteHit = $('#noteHit').val();
 	
-  $.ajax({
+	$.ajax({
 		type : 'POST',
 		url : '/analysis/index',
 		dataType: "json",
@@ -127,20 +149,7 @@ $(document).ready(function(){
 		success:function(data){
 		}
 	});
-});
-
-$("#selectProject").change(function(){ 
-	
-	alert(12);
-	  $.ajax({
-			type : 'POST',
-			url : '/analysis/getSubtProject',
-			data : $("#selectProject").val(),
-			success:function(data){
-				console.log(data);
-			}
-		});
-});
+}
 
 </script>
 <!-- JS -->
