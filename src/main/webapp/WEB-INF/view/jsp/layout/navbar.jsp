@@ -72,7 +72,7 @@
  				$("div[id=mtnCnt]").each(function(idx){	
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
- 				$("div[id=mtnRegId]").each(function(idx){	
+ 				$("div[id=mtnRegNm]").each(function(idx){	
  					$(this).html( $(this).text().replace(regex, '<strong style="background-color:yellow" class="result">$1</strong>') );
  	 			});
  				$("div[id=mtnHt]").each(function(idx){	
