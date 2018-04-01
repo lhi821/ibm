@@ -56,7 +56,6 @@ public class BoardServiceImpl implements BoardService{
 		resultMap.put("attendant", attendantStr);
 		resultMap.put("contentsList", boardMapper.selectMeetingNoteContent(meetingNoteId));
 		
-		System.out.println(meetingNoteMapper.findFav(meetingNoteId).get("FAVORITESID"));
 		if (meetingNoteMapper.findFav(meetingNoteId).get("FAVORITESID") == null) {
 			resultMap.put("isFavorite", false);
 		}else {

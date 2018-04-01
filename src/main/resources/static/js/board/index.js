@@ -13,4 +13,9 @@ $(document).ready(function(){
   $('#newPostBtn').click(function() { 
     $(location).attr('href',"/board/new/?veiwType=" + $("#veiwType").val()+'&sideBar='+$("#sideBar").val()+'&subMenu='+checkSubmenu());
   });
+  
+  $(".main-hashTag").click(function() { 
+    var param = $(this).text().substring(1);
+    location.href = "/integSearch/result?withDate=&selectedStartDate=&selectedEndDate=&category=hashTag&inputVal="+param;
+  });
 });

@@ -49,9 +49,9 @@
                   <thead>
                     <tr>
                       <th scope="col">Title</th>
-                      <th scope="col">Contents</th>
+                      <th scope="col">KeyWord</th>
                       <th scope="col">Author</th>
-                      <th scope="col">Last modified date</th>
+                      <th scope="col">Date</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -59,7 +59,7 @@
                   <c:forEach var="item" varStatus="status" items="${resultList}" step="1" begin="0">
                     <tr id="${item.meetingNoteId}" class="cursor tableContent">
                       <td>${item.title}</td>
-                      <td class='contents-css'>${item.contents}</td>
+                      <td>${item.hashTag}</td>
                       <td>${item.regMemberId}</td>
                       <td>${item.modDate}</td>
                     </tr>
@@ -81,10 +81,10 @@
 				      </div>
 				      <div class="panel-footer">
 				        <div class="row small">
-				          <div id="mtnRegId" class="col-xs-4 text-left regIdx small padding-right-small">
+				          <div id="mtnRegId" class="col-xs-5 text-left regIdx small padding-right-small">
 				
 				            <i class="fas fa-user-circle grayscale"></i><span id="mtnRegNm"> ${item.regMemberId}</span></div>
-				          <div class="col-xs-8 text-right small padding-left-small">
+				          <div class="col-xs-7 text-right small padding-left-small">
 				            <c:choose>
 				              <c:when test="${item.modDate eq item.regDate}">
 				                <i class="far fa-clock grayscale"></i> ${item.regDate}

@@ -180,7 +180,6 @@
 			<ul class="nav navbar-nav navbar-right">
 			<!-- 통합검색 날짜 버튼 -->
 			<li><a class="cursor whitescale" data-toggle="modal" data-target="#periodSearch"><i class="fas fa-calendar-alt"></i>&nbsp;</a></li>
-	  		<li><a class="cursor whitescale" href="/member/logout">Logout</a></li>
 				<li><a class="cursor whitescale">  
 					<span class="fa-layers fa-fw" id="popover" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
 					data-content="<ul class='noti-ul'>
@@ -194,6 +193,7 @@
 	  			</span>&nbsp;</a></li>
 				<li><a class="cursor whitescale" href="/mypage/main"><i class="fas fa-user-circle"></i>&nbsp;</a></li>
 				<li><a class="cursor whitescale" href="/admin/meetingTypeCode"><i class="fas fa-cog"></i>&nbsp;</a></li>
+				<li><a class="cursor whitescale" href="/member/logout"><i class="fas fa-power-off"></i>&nbsp;</a></li>
 			</ul>
 				<!-- 날짜 
 				 <form id="datePickForm" class="navbar-form navbar-right" action="/integSearch/date_result" method="get">

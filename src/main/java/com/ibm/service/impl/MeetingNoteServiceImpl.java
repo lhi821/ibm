@@ -40,12 +40,6 @@ public class MeetingNoteServiceImpl implements MeetingNoteService{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void createDialogue(Map<String, Object> requestMap) {
-		System.out.println(requestMap.get("meetingNoteDomain"));
-		System.out.println(requestMap.get("AttendantsList"));
-		System.out.println(requestMap.get("ActionItemList"));
-		System.out.println(requestMap.get("HashTagList"));
-		System.out.println(requestMap.get("MtnContentsList"));
-		
 		String meetingNoteId = getMtnNextKey();
 		
 		//회의록 저장

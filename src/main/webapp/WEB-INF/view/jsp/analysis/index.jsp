@@ -82,7 +82,7 @@
 					</div>
 				</div>
 				<div class="col-xs-6">
-					<label class='grayscale'><i class="fas fa-cloud"></i> Hash Tag</label>
+					<label class='grayscale'><i class="fas fa-cloud"></i> KeyWord</label>
 					<div id='wordCloudBox' class="graph-box-first">
 						 <div id='wordcloud'></div>
 					</div>
