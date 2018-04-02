@@ -31,17 +31,7 @@
 		  		  
 		 
 	}); */
-	
-	$(document).ready(function() {
-		<%  ArrayList<String> invitedproject = (ArrayList) session.getAttribute("invitedproject"); %>
-		var invitedproject = <%=invitedproject%>
 
-		if(invitedproject != null){
-			$('.fa-layers-counter').css('display','none');
-			$('#popover').popover('disable');
-		}
-	});
-	
 	
 	$('#popover').on('hiden.bs.popover', function () { 
 		

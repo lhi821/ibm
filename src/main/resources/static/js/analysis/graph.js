@@ -72,7 +72,7 @@ var myLineChart = new Chart(ctxD, {
       labels: ["IBM", "BTS", "Mamaoo", "RedVelvet"],
       datasets: [
           {
-              data: [300, 140, 100, 40],
+              data: [18, 8, 4, 3],
               backgroundColor: ["#F7464A", "#be91d2", "#FDB45C", "#46BFBD"],
               hoverBackgroundColor: ["#FF5A5E", "#c9a2db", "#FFC870", "#5AD3D1"]
           }
