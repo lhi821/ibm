@@ -52,7 +52,7 @@ public interface IntegSearchMapper {
 			"WHERE mtn.modmemberid = mb.memberid " +
 			"and mtn.STATUSID not in (3, 4) " +
 			"and mtn.MEETINGTYPEID = MEETINGTYPE.MEETINGTYPEID " +
-			"and memberNm LIKE CONCAT('%',UPPER(#{inputVal}),'%')"
+			"and memberNm LIKE CONCAT('%',UPPER(#{inputVal}),'%') "
 			+ "and mtnc.seq = 1")
 	public List<Map<String, Object>> getIntegSearchResult_regId(MeetingNoteDomain mtnDomain);
 	

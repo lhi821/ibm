@@ -33,8 +33,7 @@
 	}); */
 	
 	$(document).ready(function() {
-		<%  
-		ArrayList<String> invitedproject = (ArrayList) session.getAttribute("invitedproject"); %>
+		<%  ArrayList<String> invitedproject = (ArrayList) session.getAttribute("invitedproject"); %>
 		var invitedproject = <%=invitedproject%>
 
 		if(invitedproject != null){
@@ -44,7 +43,7 @@
 	});
 	
 	
-	$('body').on('hidden.bs.popover', function () { 
+	$('#popover').on('hiden.bs.popover', function () { 
 		
 		  $.ajax({
 	  	      url: '/member/changeAlertStatus',
@@ -184,8 +183,8 @@
 					<span class="fa-layers fa-fw" id="popover" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"
 					data-content="<ul class='noti-ul'>
 					
-													<c:forEach var='item' begin='0' varStatus='status' items="${invitedproject}">
-														<li class='cursor'>You have been invited project <b>${item}</b></li>
+													<c:forEach var='projectitem' begin='0' varStatus='status1' items="${invitedproject}">
+														<li class='cursor'>You have been invited project <b>${projectitem}</b></li>
 													</c:forEach>
 												</ul>">
 	    			<i class="fas fa-bell"></i>
@@ -243,8 +242,10 @@ $(function() {
 <script>
 //for Popover of bell
 $(function () {
-  $('[data-toggle="popover"]').popover()
-})
+  $('[data-toggle="popover"]').popover({
+	  container: 'body'
+  })
+});
 
 $(document).ajaxStart(function() {
   $("#loaderBox").show();
