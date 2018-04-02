@@ -126,9 +126,13 @@ public class BoardController {
 													 @RequestParam(value="sideBar", required=false, defaultValue = "T") String sideBar,
 														@RequestParam(value="subMenu", required=false) String subMenu,
 														HttpServletRequest request) throws Exception{
+		System.out.println("durl");
 		ModelAndView mv = new ModelAndView("/board/read");
 		Map<String, Object> resultMap = new HashMap<>();
+		System.out.println("요기는");
 		String usrId = session.getAttribute("id").toString();
+		
+		System.out.println(usrId);
 		try {
 			Map<String, Object> result = boardService.selectMeetingNote(id);
 			resultMap.put("result", result);
@@ -140,6 +144,7 @@ public class BoardController {
 			hitHistoryDomain.setMemberId(session.getAttribute("id").toString());
 			hitHistoryDomain.setHitHistoryDiv("VIEW");
 			myPageService.insertHistory(hitHistoryDomain);
+			System.out.println(result);
 			
 		} catch(Exception E) {
 			resultMap.put("message", "fail");

@@ -151,6 +151,7 @@ public class MemberController {
 	public void updateAlertStatus(@RequestBody String memberid, HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession();
 		memberid = (String) session.getAttribute("id");
+		System.out.println("ddd"+memberid);
 		memberService.updateAlertStatus(memberid);
 	}
 
