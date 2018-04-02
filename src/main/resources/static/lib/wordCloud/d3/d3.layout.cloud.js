@@ -197,11 +197,11 @@
   }
 
   function cloudFont() {
-    return "normal";
+    return "IBMPlexSans-Bold' !important";
   }
 
   function cloudFontNormal() {
-    return "normal";
+    return "IBMPlexSans-Bold' !important";
   }
 
   function cloudFontSize(d) {
