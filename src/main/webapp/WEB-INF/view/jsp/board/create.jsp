@@ -800,7 +800,7 @@ function saveMtn(saveType) {
    	  mtnContentsList.push({
    	   					 						"version" : $("#mtnVersion").val(),
    	   											"seq" : i + 1,
-   	   											"speakerId" : "planText",
+   	   											"speakerId" : "M00000",
    	   											"contents" : $("#planContents").val().substring(start, end)
  	   											 });
    	}

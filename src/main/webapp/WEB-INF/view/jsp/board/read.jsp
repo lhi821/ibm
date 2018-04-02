@@ -158,7 +158,7 @@
 									</div>
 						    </div>
 						    <div class="panel-body">
-						    <c:if test="${resultMap.result.contentsList[0].SPEAKERID == 'planText'}">
+						    <c:if test="${resultMap.result.contentsList[0].SPEAKERID == 'M00000'}">
 									<div id="painTextBox" class="row display-none">
 										<div class="col-xs-12">
 											<div class="form-group">
@@ -173,7 +173,7 @@
 									  </div>
 								  </div>
 							   </c:if>
-							   <c:if test="${resultMap.result.contentsList[0].SPEAKERID != 'planText'}">
+							   <c:if test="${resultMap.result.contentsList[0].SPEAKERID != 'M00000'}">
 								   <c:forEach items="${resultMap.result.contentsList}" var="contents" varStatus="status">
 										  <div id="dialogueBox" class="row">
 											  <div class="col-xs-12">
@@ -339,7 +339,7 @@ $( document ).ready(function() {
 	});
   
   $('#toggle-event').prop('disabled', function(i, v) { return !v; });
-  if($("#hiddenToggle").val() == 'planText'){
+  if($("#hiddenToggle").val() == 'M00000'){
     $('#toggle-event').prop('checked', false).bootstrapToggle('destroy').bootstrapToggle();
     $('#dialogueBox').hide();
     $('#painTextBox').show();

@@ -194,14 +194,7 @@
 				<li><a class="cursor whitescale" href="/admin/meetingTypeCode"><i class="fas fa-cog"></i>&nbsp;</a></li>
 				<li><a class="cursor whitescale" href="/member/logout"><i class="fas fa-power-off"></i>&nbsp;</a></li>
 			</ul>
-				<!-- 날짜 
-				 <form id="datePickForm" class="navbar-form navbar-right" action="/integSearch/date_result" method="get">
-			   	<div class="input-group stylish-input-group-left fixed-width">
-						<div class="input-group-addon cursor"><i class="far fa-calendar-alt grayscale"></i></div>
-					    <input id="selectedDate" name="selectedDate" class="form-control cursor left-padding" readonly data-toggle="datepicker" placeholder="Date">
-			 	</div>
-		 		</form> -->
-		 		
+				
 		 		<!-- 통합검색 -->
 				<form id="integSearchForm" class="navbar-form navbar-right" action="/integSearch/result" method="get">
 				   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
